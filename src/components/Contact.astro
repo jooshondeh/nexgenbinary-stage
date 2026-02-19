@@ -1,114 +1,25 @@
----
-const { site } = Astro.props;
-const c = site.contact ?? {};
-const formEndpoint = c.formEndpoint ?? "";
-const successMessage = c.successMessage ?? "Sent.";
-const errorMessage = c.errorMessage ?? "Error.";
----
-<section id="contact" class="nb-anchor-offset nb-section" style="background:#ffffff">
-  <div class="container">
-    <div class="row g-4 align-items-start">
-      <div class="col-lg-5">
-        <h2 class="section-title fw-bold">{c.title}</h2>
-        <p class="text-secondary mt-3">{c.lead}</p>
+<script define:vars={{ endpoint: formEndpoint, successText: successMessage, errorText: errorMessage }}>
+  const form = document.getElementById('contactForm');
+  const statusEl = document.getElementById('contactStatus');
 
-        <div class="mt-4">
-          <div class="small text-secondary">{c.phoneLabel}</div>
-          <a class="text-decoration-none fw-semibold" href={c.phoneHref}>{c.phoneText}</a>
-        </div>
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    statusEl.textContent = "Sending…";
 
-        <div class="mt-3">
-          <div class="small text-secondary">{c.emailLabel}</div>
-          <a class="text-decoration-none fw-semibold" href={c.emailHref}>{c.emailText}</a>
-        </div>
+    const data = Object.fromEntries(new FormData(form).entries());
 
-        <div class="mt-4">
-          <a class="btn btn-primary" href={site.bookings?.url} target="_blank" rel="noopener">Book a consult</a>
-          <button class="btn btn-outline-primary ms-2" type="button" data-bs-toggle="modal" data-bs-target="#bookingModal">
-            View booking calendar
-          </button>
-        </div>
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-        <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
-          <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Schedule a consultation</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body p-0">
-                <iframe title="Microsoft Bookings" src={site.bookings?.embedUrl} style="width:100%; height:75vh; border:0;" loading="lazy"></iframe>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-7">
-        <div class="p-4 nb-card">
-          <h3 class="h5 fw-semibold mb-3">Send a message</h3>
-
-          <form id="contactForm" class="row g-3">
-            <div class="col-md-6">
-              <label class="form-label">Name</label>
-              <input class="form-control" name="name" required />
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label">Email</label>
-              <input class="form-control" name="email" type="email" required />
-            </div>
-
-            <div class="col-12">
-              <label class="form-label">Practice / Organization</label>
-              <input class="form-control" name="org" />
-            </div>
-
-            <div class="col-12">
-              <label class="form-label">Message</label>
-              <textarea class="form-control" name="message" rows="6" required></textarea>
-            </div>
-
-            <div class="col-12 d-flex flex-wrap gap-2 align-items-center">
-              <button class="btn btn-primary" type="submit">Send message</button>
-              <a class="btn btn-outline-secondary" href={c.emailHref}>Email using my mail app</a>
-              <div id="contactStatus" class="small text-secondary"></div>
-            </div>
-          </form>
-
-          <script>
-            const form = document.getElementById('contactForm');
-            const statusEl = document.getElementById('contactStatus');
-
-            form?.addEventListener('submit', async (e) => {
-              e.preventDefault();
-              statusEl.textContent = "Sending…";
-
-              const data = Object.fromEntries(new FormData(form).entries());
-              const endpoint = {json.dumps(formEndpoint)};
-
-              try {
-                const res = await fetch(endpoint, {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify(data)
-                });
-
-                if (!res.ok) throw new Error('Bad response');
-                statusEl.textContent = {json.dumps(successMessage)};
-                form.reset();
-              } catch (err) {
-                statusEl.textContent = {json.dumps(errorMessage)};
-              }
-            });
-          </script>
-
-          <p class="small text-secondary mt-3 mb-0">
-            Tip: Connect this form to a Power Automate HTTP endpoint that emails your shared mailbox.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+      if (!res.ok) throw new Error('Bad response');
+      statusEl.textContent = successText;
+      form.reset();
+    } catch (err) {
+      statusEl.textContent = errorText;
+    }
+  });
+</script>
