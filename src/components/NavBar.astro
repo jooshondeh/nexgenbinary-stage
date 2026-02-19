@@ -1,0 +1,28 @@
+---
+const { site } = Astro.props;
+const nav = site.nav ?? [];
+const topbar = site.topbar ?? {};
+---
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background:#0b1220; border-bottom:1px solid rgba(255,255,255,.08)">
+  <div class="container">
+    <a class="navbar-brand fw-semibold" href="#home">{site.brand?.logoText ?? site.brand?.name ?? "NexGen Binary"}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nbNav" aria-controls="nbNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nbNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        {nav.map((item) => (
+          <li class="nav-item">
+            <a class="nav-link" href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="d-lg-flex align-items-center gap-3 ms-lg-3 mt-3 mt-lg-0">
+        <a class="text-decoration-none small text-light" href={topbar.emailHref}>{topbar.emailText}</a>
+        <a class="btn btn-sm btn-outline-light" href={topbar.phoneHref}>{topbar.phoneText}</a>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,28 @@
+---
+const { site } = Astro.props;
+const services = site.services ?? {};
+---
+<section id="services" class="nb-anchor-offset nb-section" style="background:#f8fafc">
+  <div class="container">
+    <div class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-between gap-3 mb-4">
+      <div>
+        <h2 class="section-title fw-bold mb-1">{services.title}</h2>
+        <p class="text-secondary mb-0">A complete set of IT capabilities tailored for dental practices.</p>
+      </div>
+      <a class="btn btn-primary" href={site.bookings?.url} target="_blank" rel="noopener">Book a consult</a>
+    </div>
+
+    <div class="row g-3">
+      {(services.groups ?? []).map((g) => (
+        <div class="col-lg-6">
+          <div class="p-4 nb-card h-100 bg-white">
+            <h3 class="h5 fw-semibold mb-3">{g.title}</h3>
+            <ul class="mb-0">
+              {(g.items ?? []).map((it) => (<li class="mb-2">{it}</li>))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

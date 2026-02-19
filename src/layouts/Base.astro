@@ -1,0 +1,22 @@
+---
+const { title = "NexGen Binary", description = "Reliable IT for dental practices across Virginia." } = Astro.props;
+import "../styles/custom.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b1220" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <slot />
+    <script type="module">
+      import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+    </script>
+  </body>
+</html>

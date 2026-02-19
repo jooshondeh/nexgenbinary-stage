@@ -1,0 +1,27 @@
+---
+const { site } = Astro.props;
+const why = site.whyUs ?? {};
+---
+<section class="nb-section" style="background:#ffffff">
+  <div class="container">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-5">
+        <h2 class="section-title fw-bold">{why.title}</h2>
+        <p class="text-secondary mt-3">
+          Practical, proactive IT designed to keep your front desk and operatories running smoothly—without surprises.
+        </p>
+      </div>
+      <div class="col-lg-7">
+        <div class="row g-3">
+          {(why.bullets ?? []).map((b) => (
+            <div class="col-md-6">
+              <div class="p-4 nb-card h-100">
+                <div class="fw-semibold">{b}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

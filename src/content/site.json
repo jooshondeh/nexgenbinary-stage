@@ -1,0 +1,178 @@
+{
+  "brand": {
+    "name": "NexGen Binary",
+    "tagline": "Future-ready systems. Human-ready support.",
+    "logoText": "NexGen Binary"
+  },
+  "topbar": {
+    "phoneText": "Call [Main Number]",
+    "phoneHref": "tel:+10000000000",
+    "emailText": "info@nexgenbinary.com",
+    "emailHref": "mailto:info@nexgenbinary.com"
+  },
+  "nav": [
+    {
+      "label": "Home",
+      "href": "#home"
+    },
+    {
+      "label": "Services",
+      "href": "#services"
+    },
+    {
+      "label": "Who We Serve",
+      "href": "#who-we-serve"
+    },
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ],
+  "hero": {
+    "eyebrow": "Reliable IT for Dental Practices Across Virginia",
+    "headline": "Future\u2011ready IT that keeps your dental practice running.",
+    "subheadline": "Fully managed IT, security, cloud, and support services designed for dental offices\u2014so your staff stays productive and patient care stays uninterrupted.",
+    "primaryCta": "Schedule a Consultation",
+    "secondaryCta": "Call Us"
+  },
+  "bookings": {
+    "url": "https://outlook.office.com/bookings/PASTE-YOUR-BOOKINGS-LINK",
+    "embedUrl": "https://outlook.office.com/bookings/PASTE-YOUR-EMBED-LINK"
+  },
+  "whatWeDo": {
+    "title": "What We Do",
+    "items": [
+      {
+        "title": "Fully Managed IT",
+        "text": "Proactive support for workstations, servers, and networks."
+      },
+      {
+        "title": "Security & Compliance-Aware",
+        "text": "HIPAA-aware practices with modern cybersecurity."
+      },
+      {
+        "title": "Dental-Focused Expertise",
+        "text": "EMR, imaging systems, front desk & operatory workflows."
+      },
+      {
+        "title": "Local & Responsive",
+        "text": "Serving Richmond, NOVA, and statewide Virginia."
+      }
+    ]
+  },
+  "whyUs": {
+    "title": "Why Dental Practices Choose Us",
+    "bullets": [
+      "Minimized downtime and faster issue resolution",
+      "Clear, predictable monthly pricing",
+      "Secure systems designed for healthcare environments",
+      "Support that understands clinical and administrative workflows"
+    ]
+  },
+  "services": {
+    "title": "Services",
+    "groups": [
+      {
+        "title": "Fully Managed IT Services",
+        "items": [
+          "Workstation and server management (local or cloud)",
+          "Patch management and monitoring",
+          "Backup and disaster recovery",
+          "Proactive maintenance and reporting"
+        ]
+      },
+      {
+        "title": "Dental EMR & Clinical Systems Support",
+        "items": [
+          "EMR/EHR platform support and optimization",
+          "Imaging system coordination (X-ray, scanners, vendor integrations)",
+          "Secure access for providers and staff",
+          "Coordination with EMR vendors and dental software partners"
+        ]
+      },
+      {
+        "title": "Microsoft 365 & Cloud Solutions",
+        "items": [
+          "Microsoft 365 setup, licensing, and management",
+          "Email security and data protection",
+          "SharePoint and Teams collaboration",
+          "Cloud migration and hybrid environments"
+        ]
+      },
+      {
+        "title": "Security & Cyber Protection",
+        "items": [
+          "Endpoint protection and device encryption",
+          "Email security and phishing protection",
+          "Secure remote access",
+          "Backup integrity and ransomware preparedness"
+        ]
+      },
+      {
+        "title": "Networking, Wi\u2011Fi, Infrastructure, VoIP & Cameras",
+        "items": [
+          "Secure wired and wireless network design",
+          "VLAN segmentation for clinical and guest networks",
+          "Firewall and network security management",
+          "Performance monitoring and optimization",
+          "Business phone systems (call routing and shared main lines)",
+          "Security cameras (on-site or compliant cloud-based systems)"
+        ]
+      }
+    ]
+  },
+  "whoWeServe": {
+    "title": "Who We Serve \u2014 Dental Practices",
+    "lead": "We specialize in supporting dental practices of all sizes\u2014from single-location offices to growing multi-site groups.",
+    "challengesTitle": "We Understand Dental IT Challenges",
+    "challenges": [
+      "Front desk uptime is critical",
+      "Operatories depend on reliable workstations and imaging",
+      "EMR systems must stay available and secure",
+      "Compliance and patient data protection are non-negotiable"
+    ],
+    "approachTitle": "Our Approach",
+    "approach": [
+      "Support aligned with clinical workflows",
+      "Minimal disruption during office hours",
+      "After-hours maintenance when needed",
+      "Clear communication with staff and vendors"
+    ],
+    "serviceArea": "Service Area: Richmond, NOVA, and statewide Virginia"
+  },
+  "about": {
+    "title": "About",
+    "whoWeAreTitle": "Who We Are",
+    "whoWeAre": "NexGen Binary is a Virginia-based IT services company focused on delivering secure, reliable, and people-first technology solutions for dental and healthcare environments.",
+    "leadershipTitle": "Leadership & Team Experience",
+    "leadership": "Our CEO Shayan Mirhashemi has over 20 years of experience in information technology across a wide range of industries, primarily within major healthcare organizations. Our team also brings experience supporting healthcare and dental offices, government agencies, and private-sector organizations\u2014delivering enterprise-level discipline with small-business responsiveness.",
+    "securityTitle": "Security & Compliance-Aware by Design",
+    "securityBullets": [
+      "HIPAA-aware IT practices",
+      "Secure access controls and encryption",
+      "Vendor accountability and documentation",
+      "Industry-standard cybersecurity tools"
+    ],
+    "licensed": "Licensed and insured."
+  },
+  "contact": {
+    "title": "Contact",
+    "lead": "If you\u2019re looking for reliable IT support that understands dental practices, we\u2019d be happy to connect.",
+    "phoneLabel": "Phone",
+    "phoneText": "[Main Number]",
+    "phoneHref": "tel:+10000000000",
+    "emailLabel": "Email",
+    "emailText": "info@nexgenbinary.com",
+    "emailHref": "mailto:info@nexgenbinary.com",
+    "formEndpoint": "https://example.com/replace-with-your-form-endpoint",
+    "successMessage": "Thanks\u2014your message was sent. We\u2019ll get back to you shortly.",
+    "errorMessage": "Sorry\u2014something went wrong. Please email us instead."
+  },
+  "footer": {
+    "copyright": "\u00a9 NexGen Binary LLC. All rights reserved."
+  }
+}

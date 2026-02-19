@@ -1,0 +1,19 @@
+:root{ --nb-accent: #0d6efd; --nb-dark: #0b1220; }
+body { scroll-behavior: smooth; }
+.nb-hero {
+  background: radial-gradient(1200px 600px at 20% 0%, rgba(13,110,253,.22), transparent 55%),
+              radial-gradient(900px 500px at 70% 20%, rgba(32,201,151,.18), transparent 60%),
+              linear-gradient(180deg, #0b1220 0%, #0b1220 60%, #0f172a 100%);
+  color: #fff;
+}
+.nb-section { padding: 5rem 0; }
+.nb-card { border: 1px solid rgba(0,0,0,.08); border-radius: 1rem; }
+.nb-pill {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .35rem .75rem; border-radius: 999px;
+  background: rgba(13,110,253,.12); color: #fff;
+  border: 1px solid rgba(13,110,253,.25);
+}
+.nb-muted { color: rgba(255,255,255,.75); }
+.nb-anchor-offset { scroll-margin-top: 90px; }
+.nb-footer { background: #0b1220; color: rgba(255,255,255,.7); padding: 2rem 0; }

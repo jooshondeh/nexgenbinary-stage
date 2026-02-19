@@ -1,0 +1,35 @@
+---
+const { site } = Astro.props;
+const a = site.about ?? {};
+---
+<section id="about" class="nb-anchor-offset nb-section" style="background:#f8fafc">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <h2 class="section-title fw-bold">{a.title}</h2>
+
+        <div class="mt-4 p-4 nb-card bg-white">
+          <div class="fw-semibold">{a.whoWeAreTitle}</div>
+          <p class="text-secondary mb-0 mt-2">{a.whoWeAre}</p>
+        </div>
+
+        <div class="mt-3 p-4 nb-card bg-white">
+          <div class="fw-semibold">{a.leadershipTitle}</div>
+          <p class="text-secondary mb-0 mt-2">{a.leadership}</p>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="p-4 nb-card bg-white h-100">
+          <div class="fw-semibold">{a.securityTitle}</div>
+          <ul class="mt-3">
+            {(a.securityBullets ?? []).map((x) => (<li class="mb-2">{x}</li>))}
+          </ul>
+          <div class="alert alert-primary mt-3 mb-0">
+            <strong>{a.licensed}</strong> We build with documentation and accountability from day one.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

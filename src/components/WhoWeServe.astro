@@ -1,0 +1,40 @@
+---
+const { site } = Astro.props;
+const wv = site.whoWeServe ?? {};
+---
+<section id="who-we-serve" class="nb-anchor-offset nb-section" style="background:#ffffff">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <h2 class="section-title fw-bold">{wv.title}</h2>
+        <p class="text-secondary mt-3">{wv.lead}</p>
+        <div class="p-4 nb-card mt-4">
+          <div class="fw-semibold mb-2">{wv.serviceArea}</div>
+          <div class="text-secondary small">Remote-friendly support with on-site capability when needed.</div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="row g-3">
+          <div class="col-12">
+            <div class="p-4 nb-card h-100">
+              <div class="fw-semibold mb-2">{wv.challengesTitle}</div>
+              <ul class="mb-0">
+                {(wv.challenges ?? []).map((x) => (<li class="mb-2">{x}</li>))}
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="p-4 nb-card h-100">
+              <div class="fw-semibold mb-2">{wv.approachTitle}</div>
+              <ul class="mb-0">
+                {(wv.approach ?? []).map((x) => (<li class="mb-2">{x}</li>))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
