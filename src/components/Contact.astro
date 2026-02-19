@@ -1,13 +1,19 @@
-<script define:vars={{ endpoint: formEndpoint, successText: successMessage, errorText: errorMessage }}>
-
+<script>
   const form = document.getElementById('contactForm');
   const statusEl = document.getElementById('contactStatus');
+  const endpointEl = document.getElementById('contactEndpoint');
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     statusEl.textContent = "Sending…";
 
     const data = Object.fromEntries(new FormData(form).entries());
+    const endpoint = endpointEl?.value || "";
+
+    if (!endpoint) {
+      statusEl.textContent = "Form endpoint is not configured yet.";
+      return;
+    }
 
     try {
       const res = await fetch(endpoint, {
@@ -17,10 +23,10 @@
       });
 
       if (!res.ok) throw new Error('Bad response');
-      statusEl.textContent = successText;
+      statusEl.textContent = "Thanks—your message was sent. We’ll get back to you shortly.";
       form.reset();
     } catch (err) {
-      statusEl.textContent = errorText;
+      statusEl.textContent = "Sorry—something went wrong. Please email us instead.";
     }
   });
 </script>
