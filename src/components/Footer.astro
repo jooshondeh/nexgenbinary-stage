@@ -2,11 +2,8 @@
 const { site } = Astro.props;
 ---
 <footer class="nb-footer">
-  <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
-    <div>{site.footer?.copyright}</div>
-    <div class="d-flex gap-3">
-      <a class="text-decoration-none" style="color:inherit" href="#home">Back to top</a>
-      <a class="text-decoration-none" style="color:inherit" href={site.topbar?.emailHref}>Email</a>
-    </div>
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+    <div class="fw-medium">{site.footer?.copyright}</div>
+    <div><a class="text-decoration-none fw-semibold" href="#home">Back to top</a></div>
   </div>
 </footer>

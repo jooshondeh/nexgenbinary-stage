@@ -16,13 +16,12 @@ const hero = site.hero ?? {};
         </div>
         <p class="small text-white-50 mt-3 mb-0">Serving Richmond, NOVA, and statewide Virginia • HIPAA-aware • Dental workflow support</p>
       </div>
-
       <div class="col-lg-5">
         <div class="p-3 p-md-4 nb-hero-panel">
-          <h2 class="h5 fw-bold text-white mb-3">{site.whatWeDo?.title}</h2>
+          <h2 class="h5 fw-bold mb-3">What We Do</h2>
           <div class="d-grid gap-2">
             {(site.whatWeDo?.items ?? []).slice(0,4).map((x) => (
-              <div class="nb-card nb-pop" style="background:rgba(255,255,255,.92)">
+              <div class="nb-card nb-pop">
                 <div class="fw-semibold">{x.title}</div>
                 <div class="small text-secondary">{x.text}</div>
               </div>
