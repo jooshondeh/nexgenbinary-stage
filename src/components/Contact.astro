@@ -1,6 +1,7 @@
 ---
 const { site } = Astro.props;
 const c = site.contact ?? {};
+const formEndpoint = c.formEndpoint ?? "";
 ---
 <section id="contact" class="nb-anchor-offset nb-section">
   <div class="container">
@@ -8,49 +9,111 @@ const c = site.contact ?? {};
       <div class="col-lg-5">
         <h2 class="nb-section-title">{c.title}</h2>
         <p class="nb-section-subtitle mt-3">{c.lead}</p>
+
         <div class="nb-card mt-4">
           <div class="small text-secondary">{c.phoneLabel}</div>
           <a class="text-decoration-none fw-semibold" href={c.phoneHref}>{c.phoneText}</a>
+
           <div class="small text-secondary mt-3">{c.emailLabel}</div>
           <a class="text-decoration-none fw-semibold" href={c.emailHref}>{c.emailText}</a>
-          <div class="mt-4"><a class="btn nb-btn-primary" href={site.bookings?.url} target="_blank" rel="noopener">Book a consult</a></div>
+
+          <div class="mt-4">
+            <a class="btn nb-btn-primary" href={site.bookings?.url} target="_blank" rel="noopener">Book a consult</a>
+          </div>
         </div>
       </div>
+
       <div class="col-lg-7">
         <div class="nb-card">
           <h3 class="h5 fw-bold mb-3">Send a message</h3>
           <form id="contactForm" class="row g-3">
-            <div class="col-md-6"><label class="form-label">Name</label><input class="form-control" name="name" required /></div>
-            <div class="col-md-6"><label class="form-label">Email</label><input class="form-control" name="email" type="email" required /></div>
-            <div class="col-md-6"><label class="form-label">Phone</label><input class="form-control" name="phone" type="tel" /></div>
-            <div class="col-md-6"><label class="form-label">Practice / Organization</label><input class="form-control" name="org" /></div>
-            <div class="col-12"><label class="form-label">Message</label><textarea class="form-control" name="message" rows="6" required></textarea></div>
+            <input type="hidden" id="contactEndpoint" value={formEndpoint} />
+
+            <div class="col-md-6">
+              <label class="form-label">Name</label>
+              <input class="form-control" name="name" required />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input class="form-control" name="email" type="email" required />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Phone</label>
+              <input class="form-control" name="phone" type="tel" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Practice / Organization</label>
+              <input class="form-control" name="org" />
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Message</label>
+              <textarea class="form-control" name="message" rows="6" required></textarea>
+            </div>
+
             <div class="col-12 d-flex flex-wrap gap-2 align-items-center">
               <button class="btn nb-btn-primary" type="submit">Send message</button>
               <a class="btn btn-outline-secondary rounded-pill" href={c.emailHref}>Email using my mail app</a>
               <div id="contactStatus" class="small text-secondary"></div>
             </div>
           </form>
-          <script>
-            const form=document.getElementById("contactForm");
-            const statusEl=document.getElementById("contactStatus");
-            form?.addEventListener("submit",(e)=>{
-              e.preventDefault();
-              const fd=new FormData(form);
-              const name=(fd.get("name")||"").toString();
-              const email=(fd.get("email")||"").toString();
-              const phone=(fd.get("phone")||"").toString();
-              const org=(fd.get("org")||"").toString();
-              const msg=(fd.get("message")||"").toString();
-              const subject=encodeURIComponent(`NexGen Binary website inquiry${org?" - "+org:""}`);
-              const body=encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nOrganization: ${org}\n\nMessage:\n${msg}`);
-              statusEl.textContent="Opening your email app…";
-              window.location.href=`mailto:info@nexgenbinary.com?subject=${subject}&body=${body}`;
-              setTimeout(()=>{statusEl.textContent="If your email app did not open, use the Email button.";},1200);
-            });
-          </script>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("contactStatus");
+    const endpointEl = document.getElementById("contactEndpoint");
+
+    form?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const endpoint = (endpointEl?.value || "").trim();
+
+      if (!endpoint || endpoint.includes("PASTE-POWER-AUTOMATE-HTTP-URL")) {
+        statusEl.textContent = "Form is not configured yet.";
+        alert("Contact form is not connected yet. Please use the email button for now.");
+        return;
+      }
+
+      statusEl.textContent = "Sending…";
+
+      const fd = new FormData(form);
+      const payload = {
+        source: "nexgenbinary.com",
+        submittedAt: new Date().toISOString(),
+        name: (fd.get("name") || "").toString(),
+        email: (fd.get("email") || "").toString(),
+        phone: (fd.get("phone") || "").toString(),
+        organization: (fd.get("org") || "").toString(),
+        message: (fd.get("message") || "").toString()
+      };
+
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        // Power Automate often returns 200/202; treat any OK as success
+        if (!res.ok) throw new Error("send_failed");
+
+        form.reset();
+        statusEl.textContent = "Message sent.";
+        alert("Thank you. Your message was sent successfully. Someone will reach out soon.");
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = "Unable to send automatically right now.";
+        alert("We could not send the message automatically right now. Please use the 'Email using my mail app' button.");
+      }
+    });
+  </script>
 </section>
