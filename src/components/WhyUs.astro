@@ -2,20 +2,27 @@
 const { site } = Astro.props;
 const why = site.whyUs ?? {};
 ---
-<section class="nb-section" style="background:#ffffff">
+<section class="nb-section nb-section-alt">
   <div class="container">
-    <div class="row g-4 align-items-start">
+    <div class="row g-4">
       <div class="col-lg-5">
-        <h2 class="section-title fw-bold">{why.title}</h2>
-        <p class="text-secondary mt-3">
-          Practical, proactive IT designed to keep your front desk and operatories running smoothly—without surprises.
-        </p>
+        <h2 class="nb-section-title">{why.title}</h2>
+        <p class="nb-section-subtitle">Proactive IT support built for clinical uptime, predictable costs, and secure healthcare operations.</p>
+
+        <div class="nb-philosophy mt-4">
+          <div class="fw-bold mb-2">{why.philosophyTitle}</div>
+          <ul class="mb-0 ps-3">
+            {(why.philosophy ?? []).map((p) => <li class="mb-2">{p}</li>)}
+          </ul>
+        </div>
       </div>
+
       <div class="col-lg-7">
         <div class="row g-3">
           {(why.bullets ?? []).map((b) => (
             <div class="col-md-6">
-              <div class="p-4 nb-card h-100">
+              <div class="nb-card nb-pop h-100 d-flex align-items-start">
+                <div class="me-2 mt-1 text-primary">●</div>
                 <div class="fw-semibold">{b}</div>
               </div>
             </div>

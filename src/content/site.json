@@ -1,12 +1,12 @@
 {
   "brand": {
     "name": "NexGen Binary",
-    "tagline": "Future-ready systems. Human-ready support.",
-    "logoText": "NexGen Binary"
+    "logoText": "NexGen Binary",
+    "slogan": "Precision Built. People First. Always."
   },
   "topbar": {
-    "phoneText": "Call [Main Number]",
-    "phoneHref": "tel:+10000000000",
+    "phoneText": "Call 804-000-0000",
+    "phoneHref": "tel:+18040000000",
     "emailText": "info@nexgenbinary.com",
     "emailHref": "mailto:info@nexgenbinary.com"
   },
@@ -18,6 +18,10 @@
     {
       "label": "Services",
       "href": "#services"
+    },
+    {
+      "label": "Pricing",
+      "href": "#pricing"
     },
     {
       "label": "Who We Serve",
@@ -34,9 +38,9 @@
   ],
   "hero": {
     "eyebrow": "Reliable IT for Dental Practices Across Virginia",
-    "headline": "Future\u2011ready IT that keeps your dental practice running.",
-    "subheadline": "Fully managed IT, security, cloud, and support services designed for dental offices\u2014so your staff stays productive and patient care stays uninterrupted.",
-    "primaryCta": "Schedule a Consultation",
+    "headline": "Future‑ready systems. Human‑ready support.",
+    "subheadline": "We provide fully managed IT, security, cloud, and support services designed specifically for dental offices—so your practice stays secure, compliant, and running without disruption.",
+    "primaryCta": "Book a Consultation",
     "secondaryCta": "Call Us"
   },
   "bookings": {
@@ -51,12 +55,12 @@
         "text": "Proactive support for workstations, servers, and networks."
       },
       {
-        "title": "Security & Compliance-Aware",
-        "text": "HIPAA-aware practices with modern cybersecurity."
+        "title": "Security & Compliance‑Aware",
+        "text": "HIPAA-aware practices with modern cybersecurity controls."
       },
       {
         "title": "Dental-Focused Expertise",
-        "text": "EMR, imaging systems, front desk & operatory workflows."
+        "text": "EMR, imaging, front desk, and operatory workflow support."
       },
       {
         "title": "Local & Responsive",
@@ -71,6 +75,11 @@
       "Clear, predictable monthly pricing",
       "Secure systems designed for healthcare environments",
       "Support that understands clinical and administrative workflows"
+    ],
+    "philosophyTitle": "Our Business Philosophy",
+    "philosophy": [
+      "We combine next-gen design with dependable execution, treating your systems as mission-critical because they are.",
+      "Our promise is simple: partnership, transparency, and outstanding work—before, during, and after every project."
     ]
   },
   "services": {
@@ -89,7 +98,7 @@
         "title": "Dental EMR & Clinical Systems Support",
         "items": [
           "EMR/EHR platform support and optimization",
-          "Imaging system coordination (X-ray, scanners, vendor integrations)",
+          "Imaging system coordination (X‑ray, scanners, vendor integrations)",
           "Secure access for providers and staff",
           "Coordination with EMR vendors and dental software partners"
         ]
@@ -113,7 +122,7 @@
         ]
       },
       {
-        "title": "Networking, Wi\u2011Fi, Infrastructure, VoIP & Cameras",
+        "title": "Networking, Wi‑Fi, Infrastructure, VoIP & Cameras",
         "items": [
           "Secure wired and wireless network design",
           "VLAN segmentation for clinical and guest networks",
@@ -125,9 +134,85 @@
       }
     ]
   },
+  "pricing": {
+    "title": "Service Plan Comparison",
+    "subtitle": "Two monthly support options tailored for dental offices. Pricing is customized by office size, devices, and clinical software footprint.",
+    "plans": [
+      {
+        "name": "Basic Care Plan",
+        "monthly": "Monthly pricing: custom quote by office size"
+      },
+      {
+        "name": "Premium Care + Extended Warranty",
+        "monthly": "Monthly pricing: custom quote by office size"
+      }
+    ],
+    "rows": [
+      {
+        "feature": "Monthly patching",
+        "basic": "✔",
+        "premium": "✔"
+      },
+      {
+        "feature": "File & DB backups",
+        "basic": "✔",
+        "premium": "✔"
+      },
+      {
+        "feature": "Backup monitoring",
+        "basic": "✔",
+        "premium": "✔"
+      },
+      {
+        "feature": "Equipment & rack cleaning",
+        "basic": "✔",
+        "premium": "✔"
+      },
+      {
+        "feature": "Standard support",
+        "basic": "✔",
+        "premium": "✔"
+      },
+      {
+        "feature": "Priority support",
+        "basic": "— Business Hour",
+        "premium": "✔ After Hours"
+      },
+      {
+        "feature": "Loaner equipment",
+        "basic": "—",
+        "premium": "✔ (exclude Server)"
+      },
+      {
+        "feature": "Annual technology review",
+        "basic": "—",
+        "premium": "✔ (include OS upgrade)"
+      },
+      {
+        "feature": "Enhanced monitoring",
+        "basic": "—",
+        "premium": "✔"
+      },
+      {
+        "feature": "Extended 3-year hardware warranty",
+        "basic": "—",
+        "premium": "✔ (equipment purchased from us)"
+      },
+      {
+        "feature": "Discounted hardware pricing",
+        "basic": "—",
+        "premium": "✔"
+      },
+      {
+        "feature": "Best for",
+        "basic": "Offices needing reliable maintenance",
+        "premium": "Offices wanting full protection & predictable costs"
+      }
+    ]
+  },
   "whoWeServe": {
-    "title": "Who We Serve \u2014 Dental Practices",
-    "lead": "We specialize in supporting dental practices of all sizes\u2014from single-location offices to growing multi-site groups.",
+    "title": "Who We Serve — Dental Practices",
+    "lead": "We specialize in supporting dental practices of all sizes—from single-location offices to growing multi-site groups.",
     "challengesTitle": "We Understand Dental IT Challenges",
     "challenges": [
       "Front desk uptime is critical",
@@ -149,7 +234,7 @@
     "whoWeAreTitle": "Who We Are",
     "whoWeAre": "NexGen Binary is a Virginia-based IT services company focused on delivering secure, reliable, and people-first technology solutions for dental and healthcare environments.",
     "leadershipTitle": "Leadership & Team Experience",
-    "leadership": "Our CEO Shayan Mirhashemi has over 20 years of experience in information technology across a wide range of industries, primarily within major healthcare organizations. Our team also brings experience supporting healthcare and dental offices, government agencies, and private-sector organizations\u2014delivering enterprise-level discipline with small-business responsiveness.",
+    "leadership": "Our CEO Shayan Mirhashemi has over 20 years of experience in information technology across major healthcare organizations. Our team also brings experience supporting healthcare and dental offices, government agencies, and private-sector organizations, giving us enterprise-level discipline with local responsiveness.",
     "securityTitle": "Security & Compliance-Aware by Design",
     "securityBullets": [
       "HIPAA-aware IT practices",
@@ -161,18 +246,16 @@
   },
   "contact": {
     "title": "Contact",
-    "lead": "If you\u2019re looking for reliable IT support that understands dental practices, we\u2019d be happy to connect.",
+    "lead": "If you’re looking for reliable IT support that understands dental practices, we’d be happy to connect.",
     "phoneLabel": "Phone",
-    "phoneText": "[Main Number]",
-    "phoneHref": "tel:+10000000000",
+    "phoneText": "804-000-0000",
+    "phoneHref": "tel:+18040000000",
     "emailLabel": "Email",
     "emailText": "info@nexgenbinary.com",
     "emailHref": "mailto:info@nexgenbinary.com",
-    "formEndpoint": "https://example.com/replace-with-your-form-endpoint",
-    "successMessage": "Thanks\u2014your message was sent. We\u2019ll get back to you shortly.",
-    "errorMessage": "Sorry\u2014something went wrong. Please email us instead."
+    "formEndpoint": "https://example.com/replace-with-your-form-endpoint"
   },
   "footer": {
-    "copyright": "\u00a9 NexGen Binary LLC. All rights reserved."
+    "copyright": "© NexGen Binary LLC. All rights reserved."
   }
 }

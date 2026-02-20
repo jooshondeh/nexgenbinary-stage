@@ -1,7 +1,7 @@
 ---
 const { title = "NexGen Binary", description = "Reliable IT for dental practices across Virginia." } = Astro.props;
 import "../styles/custom.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 ---
 <!doctype html>
 <html lang="en">
@@ -11,12 +11,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0b1220" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/Company_logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
     <slot />
     <script type="module">
-      import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+      import "bootstrap/dist/js/bootstrap.bundle.min.js";
     </script>
   </body>
 </html>

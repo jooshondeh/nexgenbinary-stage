@@ -1,19 +1,189 @@
-:root{ --nb-accent: #0d6efd; --nb-dark: #0b1220; }
-body { scroll-behavior: smooth; }
-.nb-hero {
-  background: radial-gradient(1200px 600px at 20% 0%, rgba(13,110,253,.22), transparent 55%),
-              radial-gradient(900px 500px at 70% 20%, rgba(32,201,151,.18), transparent 60%),
-              linear-gradient(180deg, #0b1220 0%, #0b1220 60%, #0f172a 100%);
-  color: #fff;
+:root{
+  --nb-navy:#081426;
+  --nb-navy-2:#10213e;
+  --nb-surface:#f5f8fc;
+  --nb-primary:#0d6efd;
+  --nb-accent:#4fc3f7;
+  --nb-text:#132238;
+  --nb-muted:#5f6d7f;
+  --nb-border:#d8e2ef;
+  --nb-shadow:0 14px 38px rgba(7,25,54,.10);
+  --nb-shadow-lg:0 22px 52px rgba(7,25,54,.17);
 }
-.nb-section { padding: 5rem 0; }
-.nb-card { border: 1px solid rgba(0,0,0,.08); border-radius: 1rem; }
-.nb-pill {
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .35rem .75rem; border-radius: 999px;
-  background: rgba(13,110,253,.12); color: #fff;
-  border: 1px solid rgba(13,110,253,.25);
+
+html,body{overflow-x:hidden}
+body{
+  color:var(--nb-text);
+  font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:#fff;
+  scroll-behavior:smooth;
 }
-.nb-muted { color: rgba(255,255,255,.75); }
-.nb-anchor-offset { scroll-margin-top: 90px; }
-.nb-footer { background: #0b1220; color: rgba(255,255,255,.7); padding: 2rem 0; }
+h1,h2,h3,h4,.navbar-brand{
+  font-family:"Plus Jakarta Sans","Inter",sans-serif;
+  letter-spacing:-.02em;
+}
+.nb-section{padding:5rem 0; position:relative}
+.nb-section-alt{background:linear-gradient(180deg,#fff 0%,var(--nb-surface) 100%)}
+.nb-anchor-offset{scroll-margin-top:88px}
+
+.nb-navbar{
+  background:rgba(8,20,38,.86);
+  backdrop-filter: blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+.navbar .nav-link{
+  color:rgba(255,255,255,.82)!important;
+  font-weight:500;
+}
+.navbar .nav-link:hover{
+  color:#fff!important;
+}
+
+.nb-logo{
+  width:38px;height:38px;object-fit:contain;border-radius:10px;
+  background:#fff;padding:3px; box-shadow:0 8px 18px rgba(0,0,0,.2);
+}
+.nb-slogan{color:rgba(255,255,255,.88);font-weight:500}
+
+.nb-hero{
+  background:
+    radial-gradient(900px 420px at 12% 10%, rgba(13,110,253,.28), transparent 60%),
+    radial-gradient(700px 350px at 86% 12%, rgba(79,195,247,.2), transparent 60%),
+    linear-gradient(180deg,#071126 0%,#0b1220 58%,#0f172a 100%);
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+.nb-pill{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.45rem .85rem;border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.08);
+  box-shadow:0 10px 24px rgba(0,0,0,.2);
+  color:#e8f4ff;font-weight:600;font-size:.92rem;
+}
+.nb-hero-panel{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:1.1rem;
+  box-shadow:0 20px 48px rgba(0,0,0,.25);
+  backdrop-filter: blur(6px);
+}
+
+.nb-card{
+  border:1px solid rgba(14,26,43,.08);
+  border-radius:1rem;
+  background:#fff;
+  box-shadow:var(--nb-shadow);
+  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  padding:1rem;
+}
+.nb-card:hover{
+  transform:translateY(-4px) scale(1.01);
+  box-shadow:var(--nb-shadow-lg);
+  border-color:rgba(13,110,253,.22);
+}
+.nb-pop:hover{transform:translateY(-6px) scale(1.02)}
+
+.nb-section-title{font-weight:800;margin-bottom:.35rem}
+.nb-section-subtitle{color:var(--nb-muted);max-width:760px}
+
+.nb-btn-primary{
+  border:0;color:#fff;font-weight:700;border-radius:999px;
+  padding:.82rem 1.05rem;
+  background:linear-gradient(135deg,#0d6efd 0%, #0aa2ff 100%);
+  box-shadow:0 12px 28px rgba(13,110,253,.34);
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.nb-btn-primary:hover{
+  color:#fff; transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(13,110,253,.42);
+  filter:brightness(1.02);
+}
+.nb-btn-ghost{
+  border-radius:999px;border:1px solid rgba(255,255,255,.35);
+  color:#fff;font-weight:600;padding:.8rem 1rem;background:rgba(255,255,255,.04);
+}
+.nb-btn-ghost:hover{color:#fff;background:rgba(255,255,255,.12)}
+
+.nb-philosophy{
+  background:linear-gradient(180deg,#0c1830,#0d203f);
+  color:#eef5ff;
+  border-radius:1rem;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 18px 42px rgba(7,25,54,.2);
+  padding:1.1rem 1rem;
+}
+
+/* Pricing */
+.nb-pricing-grid .nb-plan-card{
+  border-radius:1rem;
+  border:1px solid rgba(13,110,253,.14);
+  background:linear-gradient(180deg,#fff,#f8fbff);
+  box-shadow:var(--nb-shadow);
+  padding:1rem;
+  height:100%;
+}
+.nb-plan-card h3{margin-bottom:.35rem}
+.nb-plan-chip{
+  display:inline-block;
+  font-size:.78rem;
+  border-radius:999px;
+  padding:.2rem .55rem;
+  background:#eaf3ff;
+  color:#0b5ed7;
+  font-weight:700;
+}
+.nb-table-wrap{
+  overflow-x:auto;
+  border-radius:1rem;
+  border:1px solid rgba(14,26,43,.10);
+  box-shadow:var(--nb-shadow);
+  background:#fff;
+}
+.nb-table{margin:0;min-width:940px}
+.nb-table thead th{
+  background:#d9e5f4;
+  color:#0a213c;
+  font-weight:800;
+  vertical-align:middle;
+  border-bottom:2px solid #c7d8ec;
+}
+.nb-table td,.nb-table th{
+  padding:.75rem .8rem;
+  border-color:var(--nb-border);
+}
+.nb-table tbody tr:hover td{background:#f7fbff}
+.nb-check{color:#2c7be5;font-weight:800}
+
+/* Mobile-friendly pricing cards (shown on small screens) */
+.nb-pricing-mobile .accordion-button{
+  font-weight:700;
+  border-radius:.8rem !important;
+}
+.nb-pricing-mobile .accordion-item{
+  border:1px solid var(--nb-border);
+  border-radius:.9rem;
+  overflow:hidden;
+  box-shadow:var(--nb-shadow);
+  margin-bottom:.75rem;
+}
+.nb-rowlabel{font-weight:600;color:#0a213c}
+.nb-muted{color:var(--nb-muted)}
+
+.nb-footer{
+  background:#071126;
+  color:rgba(255,255,255,.72);
+  padding:2.2rem 0;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.form-control,.form-select{
+  border-radius:.8rem;border-color:var(--nb-border);
+  padding:.72rem .85rem;
+}
+.form-control:focus{
+  border-color:#0d6efd;
+  box-shadow:0 0 0 .2rem rgba(13,110,253,.16);
+}
