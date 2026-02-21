@@ -33,27 +33,22 @@ const formEndpoint = c.formEndpoint ?? "";
               <label class="form-label">Name</label>
               <input class="form-control" name="name" required />
             </div>
-
             <div class="col-md-6">
               <label class="form-label">Email</label>
               <input class="form-control" name="email" type="email" required />
             </div>
-
             <div class="col-md-6">
               <label class="form-label">Phone</label>
               <input class="form-control" name="phone" type="tel" />
             </div>
-
             <div class="col-md-6">
               <label class="form-label">Practice / Organization</label>
               <input class="form-control" name="org" />
             </div>
-
             <div class="col-12">
               <label class="form-label">Message</label>
               <textarea class="form-control" name="message" rows="6" required></textarea>
             </div>
-
             <div class="col-12 d-flex flex-wrap gap-2 align-items-center">
               <button class="btn nb-btn-primary" type="submit">Send message</button>
               <a class="btn btn-outline-secondary rounded-pill" href={c.emailHref}>Email using my mail app</a>
@@ -72,7 +67,6 @@ const formEndpoint = c.formEndpoint ?? "";
 
     form?.addEventListener("submit", async (e) => {
       e.preventDefault();
-
       const endpoint = (endpointEl?.value || "").trim();
 
       if (!endpoint || endpoint.includes("PASTE-POWER-AUTOMATE-HTTP-URL")) {
@@ -97,13 +91,9 @@ const formEndpoint = c.formEndpoint ?? "";
       try {
         const res = await fetch(endpoint, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
-
-        // Power Automate often returns 200/202; treat any OK as success
         if (!res.ok) throw new Error("send_failed");
 
         form.reset();

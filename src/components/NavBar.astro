@@ -4,8 +4,8 @@ const { site } = Astro.props;
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top nb-navbar">
   <div class="container">
     <a class="navbar-brand fw-semibold d-flex align-items-center gap-2" href="#home">
-      <img src="/Company_logo.png" alt="NexGen Binary logo" class="nb-logo" />
-      <span>{site.brand?.logoText}</span>
+      <img src="/Company_logo.png?v=5" alt="NexGen Binary logo" class="nb-logo" />
+      <span class="nb-brand-text">{site.brand?.logoText}</span>
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nbNav" aria-controls="nbNav" aria-expanded="false" aria-label="Toggle navigation">
