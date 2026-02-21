@@ -54,13 +54,13 @@ const navItems = [
     const links = document.querySelectorAll("[data-nav-link]");
     const sectionLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
 
+    // Close mobile menu after click
     links.forEach((link) => {
       link.addEventListener("click", () => {
         if (!nav) return;
         if (window.innerWidth < 992 && nav.classList.contains("show")) {
           if (window.bootstrap?.Collapse) {
-            const instance = window.bootstrap.Collapse.getOrCreateInstance(nav);
-            instance.hide();
+            window.bootstrap.Collapse.getOrCreateInstance(nav).hide();
           } else {
             nav.classList.remove("show");
             toggler?.setAttribute("aria-expanded", "false");
@@ -69,6 +69,7 @@ const navItems = [
       });
     });
 
+    // Active nav highlight on scroll
     const sections = sectionLinks
       .map((a) => {
         const id = a.getAttribute("href");
@@ -90,6 +91,7 @@ const navItems = [
     setActive();
     window.addEventListener("scroll", setActive, { passive: true });
 
+    // Fallback manual toggle if Bootstrap JS did not load
     if (toggler && nav && !window.bootstrap?.Collapse) {
       toggler.addEventListener("click", () => {
         const isOpen = nav.classList.contains("show");
