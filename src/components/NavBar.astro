@@ -2,11 +2,13 @@
 const { site } = Astro.props;
 
 /*
-  Nav order aligned to page section order:
-  Home -> Services -> Who We Serve -> About -> Pricing -> Contact
+  Nav order aligned to the visual page flow (top to bottom).
+  If any optional section id does not exist, that link simply won't scroll.
 */
 const navItems = [
   { label: "Home", href: "#home" },
+  { label: "What We Do", href: "#what-we-do" },
+  { label: "Why Choose Us", href: "#why-choose-us" },
   { label: "Services", href: "#services" },
   { label: "Who We Serve", href: "#who-we-serve" },
   { label: "About", href: "#about" },
@@ -18,13 +20,12 @@ const navItems = [
   <div class="container">
     <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
       <img
-        id="nbLogoImg"
-        src="/Company_logo.svg?v=19"
+        src="/Company_logo.png?v=20"
         alt="NexGen Binary logo"
         class="nb-logo"
         width="44"
         height="44"
-        onerror="if(!this.dataset.triedPng){this.dataset.triedPng='1';this.src='/Company_logo.png?v=19';}else{this.style.visibility='hidden';}"
+        onerror="this.style.display='none';"
       />
       <span class="fw-bold fs-3 nb-brand-text">{site?.brand?.logoText ?? "NexGen Binary"}</span>
     </a>
@@ -66,7 +67,6 @@ const navItems = [
     const links = document.querySelectorAll("[data-nav-link]");
     const sectionLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
 
-    // close mobile menu after selecting an item
     links.forEach((link) => {
       link.addEventListener("click", () => {
         if (!nav || window.innerWidth >= 992 || !nav.classList.contains("show")) return;
@@ -79,19 +79,19 @@ const navItems = [
       });
     });
 
-    // active highlight follows page scroll
     const sections = sectionLinks
       .map((a) => {
         const href = a.getAttribute("href");
-        return href ? document.querySelector(href) : null;
+        const el = href ? document.querySelector(href) : null;
+        return el ? { href, el } : null;
       })
       .filter(Boolean);
 
     const setActive = () => {
-      const y = window.scrollY + 120;
+      const y = window.scrollY + 130;
       let currentId = "#home";
-      sections.forEach((sec) => {
-        if (sec && sec.offsetTop <= y) currentId = "#" + sec.id;
+      sections.forEach((s) => {
+        if (s.el.offsetTop <= y) currentId = s.href;
       });
       sectionLinks.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === currentId));
     };
@@ -99,7 +99,6 @@ const navItems = [
     setActive();
     window.addEventListener("scroll", setActive, { passive: true });
 
-    // fallback manual toggle if bootstrap JS is unavailable
     if (toggler && nav && !window.bootstrap?.Collapse) {
       toggler.addEventListener("click", () => {
         const isOpen = nav.classList.contains("show");
