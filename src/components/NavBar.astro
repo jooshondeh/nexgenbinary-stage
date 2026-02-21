@@ -13,7 +13,14 @@ const navItems = [
 <nav class="navbar navbar-expand-lg fixed-top nb-navbar" aria-label="Main navigation">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
-      <img src="/Company_logo.png" alt="NexGen Binary logo" class="nb-logo" />
+      <img
+        src="/Company_logo.png?v=17"
+        alt="NexGen Binary logo"
+        class="nb-logo"
+        width="44"
+        height="44"
+        onerror="if(this.dataset.fallbackTried){this.style.display='none';}else{this.dataset.fallbackTried='1';this.src='/Company_logo.svg?v=17';}"
+      />
       <span class="fw-bold fs-3 nb-brand-text">{site?.brand?.logoText ?? "NexGen Binary"}</span>
     </a>
 
@@ -37,9 +44,9 @@ const navItems = [
           </li>
         ))}
         <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-          <a class="btn nb-btn-primary nb-btn-inlineicon" href="#contact" data-nav-link>
-            <span>Call</span>
-            <span class="small">804-000-0000</span>
+          <a class="btn nb-btn-primary nb-btn-inlineicon" href="#contact" data-nav-link aria-label="Call NexGen Binary 804-000-0000">
+            <span class="nb-phone-dot" aria-hidden="true">☎</span>
+            <span>804-000-0000</span>
           </a>
         </li>
       </ul>
@@ -54,26 +61,24 @@ const navItems = [
     const links = document.querySelectorAll("[data-nav-link]");
     const sectionLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
 
-    // Close mobile menu after click
+    // Mobile menu close on selection
     links.forEach((link) => {
       link.addEventListener("click", () => {
-        if (!nav) return;
-        if (window.innerWidth < 992 && nav.classList.contains("show")) {
-          if (window.bootstrap?.Collapse) {
-            window.bootstrap.Collapse.getOrCreateInstance(nav).hide();
-          } else {
-            nav.classList.remove("show");
-            toggler?.setAttribute("aria-expanded", "false");
-          }
+        if (!nav || window.innerWidth >= 992 || !nav.classList.contains("show")) return;
+        if (window.bootstrap?.Collapse) {
+          window.bootstrap.Collapse.getOrCreateInstance(nav).hide();
+        } else {
+          nav.classList.remove("show");
+          toggler?.setAttribute("aria-expanded", "false");
         }
       });
     });
 
-    // Active nav highlight on scroll
+    // Active section highlighting
     const sections = sectionLinks
       .map((a) => {
-        const id = a.getAttribute("href");
-        return id ? document.querySelector(id) : null;
+        const href = a.getAttribute("href");
+        return href ? document.querySelector(href) : null;
       })
       .filter(Boolean);
 
@@ -91,7 +96,7 @@ const navItems = [
     setActive();
     window.addEventListener("scroll", setActive, { passive: true });
 
-    // Fallback manual toggle if Bootstrap JS did not load
+    // Fallback if bootstrap JS fails
     if (toggler && nav && !window.bootstrap?.Collapse) {
       toggler.addEventListener("click", () => {
         const isOpen = nav.classList.contains("show");
