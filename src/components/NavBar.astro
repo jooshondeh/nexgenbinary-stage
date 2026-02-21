@@ -4,7 +4,7 @@ const { site } = Astro.props;
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top nb-navbar">
   <div class="container">
     <a class="navbar-brand fw-semibold d-flex align-items-center gap-2" href="#home">
-      <img src="/Company_logo.png?v=5" alt="NexGen Binary logo" class="nb-logo" />
+      <img src="/Company_logo.svg?v=6" alt="NexGen Binary logo" class="nb-logo" />
       <span class="nb-brand-text">{site.brand?.logoText}</span>
     </a>
 
@@ -20,7 +20,7 @@ const { site } = Astro.props;
       </ul>
       <div class="d-lg-flex align-items-center gap-2 ms-lg-3 mt-3 mt-lg-0">
         <a class="text-decoration-none small text-light" href={site.topbar?.emailHref}>{site.topbar?.emailText}</a>
-        <a class="btn btn-sm btn-outline-light rounded-pill" href={site.topbar?.phoneHref}>{site.topbar?.phoneText}</a>
+        <a class="btn btn-sm btn-outline-light rounded-pill" href="#contact">Call Us</a>
       </div>
     </div>
   </div>
