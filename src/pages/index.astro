@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
 ---
 <Layout title="NexGen Binary | Home" active="home">
 
@@ -11,8 +12,8 @@ import Layout from "../layouts/Layout.astro";
         <h1>Managed IT for Dental & Healthcare Offices</h1>
         <p class="lead">Responsive, security-focused support for Microsoft 365, devices, networking, and daily office operations.</p>
         <div class="inline-row">
-          <a href="/consultation#book" class="btn primary"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
-          <a href="/contact" class="btn ghost"><i class="fa-solid fa-paper-plane"></i> Send Message</a>
+          <a href={`${BASE}consultation#book`} class="btn primary"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
+          <a href={`${BASE}contact`} class="btn ghost"><i class="fa-solid fa-paper-plane"></i> Send Message</a>
         </div>
         <div class="pill-row">
           <span><i class="fa-solid fa-network-wired"></i> Fully Managed IT</span>
