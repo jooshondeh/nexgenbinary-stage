@@ -1,11 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
 const BASE = import.meta.env.BASE_URL;
+const navHref = (p) => `${BASE}${p}`;
 ---
 <Layout title="Consultation | NexGen Binary" active="consultation">
-
-<main class="container page"><div class="panel" id="book"><h1>Book a Consultation</h1>
-<form class="form"><label>Name *<input type="text" required /></label><label>Email *<input type="email" required /></label><label>Message *<textarea rows="5" required></textarea></label>
-<button class="btn primary" type="submit"><i class="fa-solid fa-calendar-check"></i> Submit</button></form></div></main>
+<main class="page">
+  <div class="container grid2">
+    <section class="panel">
+      <h1>Book a Consultation</h1>
+      <p class="muted">Tell us about your office, current setup, and what support you need.</p>
+    </section>
+    <section class="panel" id="book">
+      <form class="form">
+        <label>Name * <input type="text" required /></label>
+        <label>Email * <input type="email" required /></label>
+        <label>Message * <textarea rows="5" required></textarea></label>
+        <button class="btn primary" type="submit"><i class="fa-solid fa-calendar-check"></i> Submit</button>
+      </form>
+    </section>
+  </div>
+</main>
 
 </Layout>

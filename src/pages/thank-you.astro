@@ -1,7 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
 const BASE = import.meta.env.BASE_URL;
+const navHref = (p) => `${BASE}${p}`;
 ---
 <Layout title="Thank You | NexGen Binary" active="">
-<main class="container page"><div class="card"><h1>Thank You</h1></div></main>
+<main class="page">
+  <div class="container">
+    <div class="card">
+      <h1>Thank You</h1>
+      <p class="muted">Content placeholder page.</p>
+    </div>
+  </div>
+</main>
+
 </Layout>
