@@ -1,0 +1,112 @@
+---
+const { title = "NexGen Binary", active = "home" } = Astro.props;
+const BASE = import.meta.env.BASE_URL;
+const href = (p) => `${BASE}${p}`;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <style is:global>
+    :root{--line:rgba(255,255,255,.12);--text:#eef5ff;--muted:#c5d3e6;--blue:#1677ff;--blue2:#0f5fd4;--accent:#85d7ff;--shadow:0 14px 30px rgba(0,0,0,.28)}
+    *{box-sizing:border-box} html,body{margin:0;padding:0}
+    body{font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:radial-gradient(circle at 15% -10%, #143f74 0%, #08162c 45%, #050b15 100%);line-height:1.45}
+    img{max-width:100%;height:auto;display:block} a{color:inherit} .container{width:min(1160px, calc(100% - 32px));margin-inline:auto}
+    .site-header{position:sticky;top:0;z-index:40;background:rgba(6,16,32,.88);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+    .nav-wrap{min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0;text-decoration:none}.brand-logo{width:56px;height:56px;object-fit:contain}.brand-stack{display:flex;flex-direction:column;min-width:0}
+    .brand-name{font-size:1.45rem;font-weight:800;line-height:1}.brand-slogan{font-size:.72rem;color:#adc2dd;margin-top:5px;line-height:1.15}
+    .menu-btn{display:none;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.05);color:#fff;padding:8px 10px;cursor:pointer}
+    .site-nav{display:flex;align-items:center;gap:6px}.site-nav a{padding:8px 10px;border-radius:9px;text-decoration:none;color:#d8e6f7;font-size:.92rem}
+    .site-nav a:hover,.site-nav a.active{background:rgba(255,255,255,.06);color:#fff}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:10px 13px;text-decoration:none;font-weight:700;background:rgba(255,255,255,.04)}
+    .btn.primary,.nav-cta{background:linear-gradient(180deg,var(--blue),var(--blue2));border-color:rgba(133,215,255,.35)} .btn.ghost{background:rgba(255,255,255,.03)}
+    .hero{padding:32px 0 10px}.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(133,215,255,.28);background:rgba(133,215,255,.10);color:#9bdcff;padding:6px 10px;border-radius:999px;font-size:.82rem}
+    h1,h2,h3,h4{margin:0 0 10px} h1{font-size:2.05rem;line-height:1.08;margin-top:12px} h2{font-size:1.45rem} h3{font-size:1.08rem}
+    .lead{color:var(--muted);font-size:1.03rem;margin:0 0 12px}.muted{color:var(--muted)} .small{font-size:.88rem}
+    .section{padding:14px 0}.section-head{margin:8px 0 10px}
+    .panel,.card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:var(--shadow)}
+    .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .inline-row{display:flex;flex-wrap:wrap;gap:8px}.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .pill-row span{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);padding:6px 9px;border-radius:999px;font-size:.84rem}
+    .icon-box{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03)} .icon{color:var(--accent);font-size:1.1rem}
+    .feature-item{display:flex;gap:10px;align-items:flex-start} .check-list,.bullet-list{margin:8px 0 0;padding-left:20px} .check-list li,.bullet-list li{margin:5px 0}
+    .plan-card .plan-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.plan-title-wrap{display:flex;gap:10px}
+    .toggle-btn{border:1px solid var(--line);border-radius:999px;padding:7px 10px;background:rgba(255,255,255,.05);color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+    .toggle-content{display:none;margin-top:10px}.toggle-content.open{display:block}.plan-actions{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
+    .page{padding:20px 0}.form{display:grid;gap:8px}.form label{display:grid;gap:5px;font-size:.92rem}
+    .form input,.form textarea{width:100%;border-radius:10px;padding:10px 12px;border:1px solid var(--line);color:#fff;background:rgba(2,10,20,.55);font:inherit}
+    .site-footer{margin-top:28px;border-top:1px solid var(--line);background:rgba(3,10,19,.66)} .footer-grid{display:grid;grid-template-columns:1.2fr .8fr .9fr;gap:14px;padding:16px 0 8px}
+    .footer-brand{display:flex;align-items:center;gap:8px}.footer-brand img{width:34px;height:34px;object-fit:contain}.footer-links{margin:0;padding-left:18px}.footer-links li{margin:4px 0}.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:10px 0;color:#bfd0e4}
+    .mobile-cta{display:none;position:fixed;left:10px;right:10px;bottom:10px;z-index:50;border:1px solid var(--line);border-radius:14px;padding:8px;background:rgba(4,10,20,.92);gap:8px}
+    .mobile-cta a{flex:1;text-align:center;text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:10px 8px;background:rgba(255,255,255,.04);font-weight:700}.mobile-cta a.primary{background:linear-gradient(180deg,var(--blue),var(--blue2));border-color:rgba(133,215,255,.35)}
+    @media (max-width:980px){.menu-btn{display:block}.site-nav{display:none;position:absolute;top:84px;left:16px;right:16px;flex-direction:column;align-items:stretch;padding:10px;border-radius:14px;background:rgba(6,16,32,.98);border:1px solid var(--line);box-shadow:var(--shadow)}.site-nav.open{display:flex}.hero-grid,.grid2,.grid3,.footer-grid{grid-template-columns:1fr}.plan-card .plan-top{flex-direction:column}}
+    @media (max-width:700px){body{padding-bottom:76px}.mobile-cta{display:flex}.brand-logo{width:48px;height:48px}.brand-name{font-size:1.08rem}.brand-slogan{font-size:.64rem;max-width:190px}h1{font-size:1.75rem}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href={BASE} class="brand">
+        <img src={href('assets/nexgen-logo-transparent.png')} alt="NexGen Binary logo" class="brand-logo" />
+        <span class="brand-stack">
+          <span class="brand-name">NexGen Binary</span>
+          <span class="brand-slogan">Future-Ready in Every Bit, Human-Ready in Every Beat</span>
+        </span>
+      </a>
+      <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" type="button"><i class="fa-solid fa-bars"></i></button>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href={BASE} class={active === 'home' ? 'active' : ''}>Home</a>
+        <a href={href('services')} class={active === 'services' ? 'active' : ''}>Services</a>
+        <a href={href('consultation')} class={active === 'consultation' ? 'active' : ''}>Consultation</a>
+        <a href={href('about')} class={active === 'about' ? 'active' : ''}>About</a>
+        <a href={href('contact')} class={active === 'contact' ? 'active' : ''}>Contact</a>
+        <a href={href('consultation#book')} class="btn nav-cta"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
+      </nav>
+    </div>
+  </header>
+
+  <slot />
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand"><img src={href('assets/nexgen-logo-transparent.png')} alt="" /><strong>NexGen Binary</strong></div>
+        <p class="muted">Managed IT and co-managed IT support for dental and healthcare offices in Virginia.</p>
+      </div>
+      <div><h4>Service Areas</h4><ul class="footer-links"><li><a href={href('service-area-richmond')}>Richmond</a></li><li><a href={href('service-area-henrico')}>Henrico</a></li><li><a href={href('service-area-chesterfield')}>Chesterfield</a></li></ul></div>
+      <div><h4>Quick Links</h4><ul class="footer-links"><li><a href={href('services')}>Services</a></li><li><a href={href('consultation')}>Consultation</a></li><li><a href={href('contact')}>Contact</a></li></ul></div>
+    </div>
+    <div class="container footer-bottom">© <span id="year"></span> NexGen Binary</div>
+  </footer>
+
+  <div class="mobile-cta">
+    <a href="tel:+18040000000"><i class="fa-solid fa-phone"></i> Call</a>
+    <a href={href('consultation#book')} class="primary"><i class="fa-solid fa-calendar-check"></i> Book</a>
+    <a href={href('contact')}><i class="fa-solid fa-paper-plane"></i> Message</a>
+  </div>
+
+  <script is:inline>
+    (() => {
+      const nav = document.querySelector('.site-nav');
+      const menu = document.querySelector('.menu-btn');
+      const year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
+      if (menu && nav) menu.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        menu.setAttribute('aria-expanded', String(open));
+      });
+      document.querySelectorAll('.toggle-btn').forEach((btn) => btn.addEventListener('click', () => {
+        const panel = btn.closest('.plan-card')?.querySelector('.toggle-content');
+        if (!panel) return;
+        const open = panel.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(open));
+      }));
+    })();
+  </script>
+</body>
+</html>
