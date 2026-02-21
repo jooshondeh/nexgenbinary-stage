@@ -1,1 +1,0 @@
-// script now inline in Layout.astro
