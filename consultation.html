@@ -1,132 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Book a Consultation | NexGen Binary</title>
-  <meta name="description" content="Book an IT consultation for your dental or healthcare office in Virginia." />
-  <meta name="theme-color" content="#08162c" />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-  <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <link rel="preload" as="image" href="assets/nexgen-logo-transparent-cropped.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <link rel="stylesheet" href="styles.css" />
-  <!-- Google tag (gtag.js) -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultation | NexGen Binary</title>
+<meta name="description" content="Book an IT consultation with NexGen Binary.">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX');
 </script>
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"LocalBusiness",
   "name":"NexGen Binary",
-  "image":"assets/nexgen-logo-transparent-cropped.png",
   "url":"https://example.com/",
   "telephone":"+18040000000",
+  "image":"assets/nexgen-logo-transparent-cropped.png",
+  "sameAs":["https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID"],
   "areaServed":["Richmond, VA","Henrico, VA","Chesterfield, VA","Midlothian, VA","Mechanicsville, VA","Glen Allen, VA","Short Pump, VA"],
-  "address": {
-    "@type":"PostalAddress",
-    "addressLocality":"Richmond",
-    "addressRegion":"VA",
-    "addressCountry":"US"
-  },
-  "openingHoursSpecification":[
-    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"}
-  ],
-  "sameAs": ["https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID"],
-  "description":"Managed IT and co-managed IT support for dental and healthcare offices in Virginia."
+  "address":{"@type":"PostalAddress","addressLocality":"Richmond","addressRegion":"VA","addressCountry":"US"}
 }
 </script>
-  
+
 </head>
 <body>
-
 <header class="site-header">
   <div class="container nav-wrap">
-    <a href="index.html" class="brand" aria-label="NexGen Binary home">
-      <img src="assets/nexgen-logo-transparent-cropped.png" alt="NexGen Binary logo" class="brand-logo" width="56" height="56" loading="eager" decoding="async" />
-      <span class="brand-name">NexGen Binary</span>
+    <a class="brand" href="index.html">
+      <img src="assets/nexgen-logo-transparent-cropped.png" alt="NexGen Binary logo" class="brand-logo" width="56" height="56">
+      <span class="brand-text">
+        <span class="brand-name">NexGen Binary</span>
+        <span class="brand-slogan">Future-Ready in Every Bit, Human-Ready in Every Beat</span>
+      </span>
     </a>
-    <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
-    <nav class="site-nav" aria-label="Main navigation">
-      <a href="index.html" class="">Home</a>
-      <a href="services.html" class="">Services</a>
-      <a href="consultation.html" class="active">Consultation</a>
-      <a href="about.html" class="">About</a>
-      <a href="contact.html" class="">Contact</a>
-      <a href="service-area-richmond.html" class="">Service Areas</a>
-      <a href="consultation.html#book" class="nav-cta js-track" data-event="cta_click" data-label="nav_book_consult"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
+    <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav">
+      <a class="" href="index.html">Home</a>
+      <a class="" href="services.html">Services</a>
+      <a class="active" href="consultation.html">Consultation</a>
+      <a class="" href="about.html">About</a>
+      <a class="" href="contact.html">Contact</a>
+      <a class="" href="service-area-richmond.html">Service Areas</a>
+      <a class="btn nav-cta track" data-event="cta_click" data-label="nav_book" href="consultation.html#book"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
     </nav>
   </div>
 </header>
 
 
-<main class="page-pad">
-  <section class="container page-hero">
-    <span class="eyebrow">Consultation</span>
-    <h1>Book an IT Consultation</h1>
-    <p class="hero-copy">Tell us about your office and current IT challenges. We’ll prepare a focused discussion and next-step options.</p>
-  </section>
-
-  <section class="container two-col">
-    <div class="card">
-      <h2>What Happens Next</h2>
-      <ol class="steps">
-        <li><strong>Submit your request</strong> with basic office details.</li>
-        <li><strong>We review and respond</strong> within one business day.</li>
-        <li><strong>Discovery call</strong> to understand systems, support gaps, and priorities.</li>
-        <li><strong>Recommended next steps</strong> with a plan-fit discussion.</li>
+<main class="container page">
+  <div class="grid2">
+    <section class="panel">
+      <h1>Book a Consultation</h1>
+      <p class="muted">Tell us about your office and top IT challenges.</p>
+      <h3>What happens next</h3>
+      <ol class="bullet-list">
+        <li>Submit your request</li>
+        <li>We respond within one business day</li>
+        <li>Discovery call (20–30 minutes)</li>
+        <li>Recommended next steps</li>
       </ol>
-      <h3>Before You Submit</h3>
-      <p class="muted">Please do not include patient data, medical records, or other sensitive information in this form.</p>
-      <p class="muted">Use general descriptions only (for example: “Wi-Fi issues” or “M365 login problems”).</p>
-      <div class="notice-card compact">
-        <p><strong>Google Business Profile:</strong> Want to verify location and hours first? <a href="https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID" target="_blank" rel="noopener noreferrer" class="inline-link js-track" data-event="gbp_click" data-label="consult_gbp">View our Google Business Profile</a>.</p>
+      <p class="notice">Please do not include patient data or sensitive information in this form.</p>
+      <div class="row-wrap">
+        <a class="btn ghost track" data-event="gbp_click" data-label="consult_gbp" target="_blank" rel="noopener" href="https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID"><i class="fa-brands fa-google"></i> Google Business Profile</a>
       </div>
-    </div>
-
-    <div class="card" id="book">
+    </section>
+    <section class="panel" id="book">
       <h2>Consultation Request</h2>
-      <p class="muted small">Form instructions: fields marked * are required. Email format should be name@example.com. Phone is optional unless you prefer a call back.</p>
-
-      <form class="contact-form consult-form track-form" action="https://formspree.io/f/REPLACE_CONSULT_FORM_ID" method="post" novalidate data-form-name="consultation_request" data-thankyou="thank-you.html?form=consultation">
-        <input type="hidden" name="_subject" value="New NexGen Binary Consultation Request" />
-        <input type="hidden" name="_next" value="https://example.com/thank-you.html?form=consultation" />
-        <label for="c_name">Full Name <span class="req">*</span></label>
-        <input id="c_name" name="name" type="text" required autocomplete="name" placeholder="Your name" />
-
-        <label for="c_company">Practice / Company <span class="req">*</span></label>
-        <input id="c_company" name="company" type="text" required placeholder="Practice name" />
-
-        <label for="c_email">Email <span class="req">*</span></label>
-        <input id="c_email" name="email" type="email" required autocomplete="email" inputmode="email" aria-describedby="c_email_help" placeholder="you@example.com" />
-        <small id="c_email_help" class="field-help">Use a business email if possible for faster follow-up.</small>
-
-        <label for="c_phone">Phone (optional)</label>
-        <input id="c_phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="c_phone_help" placeholder="Example: (804) 000-0000" />
-        <small id="c_phone_help" class="field-help">Optional. Include if you prefer a callback.</small>
-
-        <label for="c_size">Office Size</label>
-        <select id="c_size" name="office_size">
-          <option value="">Select one</option>
-          <option>1–10 users</option><option>11–25 users</option><option>26–50 users</option><option>50+ users</option>
-        </select>
-
-        <label for="c_help">How can we help? <span class="req">*</span></label>
-        <textarea id="c_help" name="message" rows="5" required aria-describedby="c_help_help" placeholder="General description only (no patient data): Wi-Fi issues, device support, M365 support, security hardening"></textarea>
-        <small id="c_help_help" class="field-help">Please do not include patient or sensitive information.</small>
-
-        <p class="form-hint">Fields marked <span class="req">*</span> are required.</p>
+      <form class="form consult-form" action="https://formspree.io/f/REPLACE_CONSULT_FORM_ID" method="post" novalidate data-form-name="consultation_request">
+        <input type="hidden" name="_subject" value="New NexGen Binary Consultation Request">
+        <label>Full Name *<input type="text" name="name" required></label>
+        <label>Practice / Company *<input type="text" name="company" required></label>
+        <label>Email *<input type="email" name="email" required placeholder="name@example.com"></label>
+        <label>Phone (optional)<input type="tel" name="phone" placeholder="(804) 000-0000"></label>
+        <label>Office Size
+          <select name="office_size">
+            <option value="">Select one</option><option>1–10 users</option><option>11–25 users</option><option>26–50 users</option><option>50+ users</option>
+          </select>
+        </label>
+        <label>How can we help? *<textarea name="message" rows="5" required placeholder="General description only (no patient data)"></textarea></label>
+        <p class="muted small">Use general descriptions only. We can gather detailed technical info later in a secure channel.</p>
         <div class="form-status" aria-live="polite"></div>
-        <button type="submit" class="send-btn"><i class="fa-solid fa-calendar-check"></i> Submit Consultation Request</button>
+        <button class="btn primary" type="submit"><i class="fa-solid fa-calendar-check"></i> Submit Consultation Request</button>
       </form>
-      <p class="muted xsmall">Replace the Formspree endpoint in the form <code>action</code> and the <code>_next</code> URL with your real domain before going live.</p>
-    </div>
-  </section>
+    </section>
+  </div>
 </main>
 
 
@@ -134,59 +98,50 @@
   <div class="container footer-grid">
     <div>
       <div class="footer-brand">
-        <img src="assets/nexgen-logo-transparent-cropped.png" alt="" class="footer-logo" width="34" height="34" loading="lazy" decoding="async" />
+        <img src="assets/nexgen-logo-transparent-cropped.png" class="footer-logo" alt="" width="32" height="32">
         <strong>NexGen Binary</strong>
       </div>
-      <p class="muted">Managed IT and co-managed IT support for dental and healthcare offices in Virginia.</p>
-      <p class="muted small">Service area: Richmond, Henrico, Chesterfield, Midlothian, Mechanicsville, and nearby areas.</p>
-      <div class="footer-actions">
-        <a href="tel:+18040000000" class="ghost-btn js-track call-link" data-event="call_click" data-label="footer_call"><i class="fa-solid fa-phone"></i> Call (804) 000-0000</a>
-        <a href="https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID" target="_blank" rel="noopener noreferrer" class="ghost-btn js-track" data-event="gbp_click" data-label="footer_gbp"><i class="fa-brands fa-google"></i> Google Business Profile</a>
+      <p class="muted">Managed IT and co-managed IT for dental and healthcare offices in Virginia.</p>
+      <p class="muted small">Service areas: Richmond, Henrico, Chesterfield, Midlothian, Mechanicsville, Glen Allen, Short Pump.</p>
+      <div class="row-wrap">
+        <a class="btn ghost track" data-event="call_click" data-label="footer_call" href="tel:+18040000000"><i class="fa-solid fa-phone"></i> (804) 000-0000</a>
+        <a class="btn ghost track" data-event="gbp_click" data-label="footer_gbp" target="_blank" rel="noopener" href="https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID"><i class="fa-brands fa-google"></i> Google Business Profile</a>
       </div>
     </div>
     <div>
       <h4>Hours</h4>
-      <ul class="footer-list">
+      <ul class="plain-list">
         <li>Mon–Fri: 8:00 AM – 6:00 PM</li>
         <li>Remote support: Business hours</li>
-        <li>Onsite visits: Scheduled / priority-based</li>
-      </ul>
-      <h4>Service Areas</h4>
-      <ul class="footer-list">
-        <li><a href="service-area-richmond.html">Richmond</a></li>
-        <li><a href="service-area-henrico.html">Henrico</a></li>
-        <li><a href="service-area-chesterfield.html">Chesterfield</a></li>
+        <li>Onsite support: Scheduled / priority</li>
       </ul>
     </div>
     <div>
       <h4>Quick Links</h4>
-      <ul class="footer-list">
+      <ul class="plain-list">
         <li><a href="services.html">Services</a></li>
-        <li><a href="consultation.html">Book Consultation</a></li>
+        <li><a href="consultation.html">Consultation</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Privacy & Site Notice</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
         <li><a href="thank-you.html">Confirmation Page</a></li>
       </ul>
-      <div class="trust-badges mini">
-        <span><i class="fa-brands fa-microsoft"></i> Microsoft 365</span>
+      <div class="badge-row">
+        <span><i class="fa-brands fa-microsoft"></i> M365</span>
         <span><i class="fa-solid fa-shield-halved"></i> Security-First</span>
-        <span><i class="fa-solid fa-location-dot"></i> Virginia-Based</span>
+        <span><i class="fa-solid fa-location-dot"></i> Virginia</span>
         <span><i class="fa-solid fa-tooth"></i> Dental Focus</span>
       </div>
     </div>
   </div>
-  <div class="container footer-bottom">
-    <p>© <span id="year"></span> NexGen Binary. All rights reserved.</p>
-  </div>
+  <div class="container footer-bottom">© <span id="year"></span> NexGen Binary</div>
 </footer>
 
-<div class="mobile-sticky-cta">
-  <a href="tel:+18040000000" class="js-track call-link" data-event="call_click" data-label="mobile_call"><i class="fa-solid fa-phone"></i> Call</a>
-  <a href="consultation.html#book" class="js-track" data-event="cta_click" data-label="mobile_book_consult"><i class="fa-solid fa-calendar-check"></i> Book</a>
-  <a href="contact.html" class="js-track" data-event="cta_click" data-label="mobile_message"><i class="fa-solid fa-paper-plane"></i> Message</a>
+<div class="mobile-cta">
+  <a class="track" data-event="call_click" data-label="mobile_call" href="tel:+18040000000"><i class="fa-solid fa-phone"></i> Call</a>
+  <a class="track" data-event="cta_click" data-label="mobile_book" href="consultation.html#book"><i class="fa-solid fa-calendar-check"></i> Book</a>
+  <a class="track" data-event="cta_click" data-label="mobile_msg" href="contact.html"><i class="fa-solid fa-paper-plane"></i> Message</a>
 </div>
 
-<script src="script.js" defer></script>
-
+<script src="script.js"></script>
 </body>
 </html>

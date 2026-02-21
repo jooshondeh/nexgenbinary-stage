@@ -1,96 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thank You | NexGen Binary</title>
-  <meta name="description" content="Confirmation page for form submissions." />
-  <meta name="theme-color" content="#08162c" />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-  <link rel="preconnect" href="https://www.googletagmanager.com" />
-  <link rel="preload" as="image" href="assets/nexgen-logo-transparent-cropped.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <link rel="stylesheet" href="styles.css" />
-  <!-- Google tag (gtag.js) -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thank You | NexGen Binary</title>
+<meta name="description" content="Confirmation page.">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX');
 </script>
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"LocalBusiness",
   "name":"NexGen Binary",
-  "image":"assets/nexgen-logo-transparent-cropped.png",
   "url":"https://example.com/",
   "telephone":"+18040000000",
+  "image":"assets/nexgen-logo-transparent-cropped.png",
+  "sameAs":["https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID"],
   "areaServed":["Richmond, VA","Henrico, VA","Chesterfield, VA","Midlothian, VA","Mechanicsville, VA","Glen Allen, VA","Short Pump, VA"],
-  "address": {
-    "@type":"PostalAddress",
-    "addressLocality":"Richmond",
-    "addressRegion":"VA",
-    "addressCountry":"US"
-  },
-  "openingHoursSpecification":[
-    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"}
-  ],
-  "sameAs": ["https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID"],
-  "description":"Managed IT and co-managed IT support for dental and healthcare offices in Virginia."
+  "address":{"@type":"PostalAddress","addressLocality":"Richmond","addressRegion":"VA","addressCountry":"US"}
 }
 </script>
-  
+
 </head>
 <body>
-
 <header class="site-header">
   <div class="container nav-wrap">
-    <a href="index.html" class="brand" aria-label="NexGen Binary home">
-      <img src="assets/nexgen-logo-transparent-cropped.png" alt="NexGen Binary logo" class="brand-logo" width="56" height="56" loading="eager" decoding="async" />
-      <span class="brand-name">NexGen Binary</span>
+    <a class="brand" href="index.html">
+      <img src="assets/nexgen-logo-transparent-cropped.png" alt="NexGen Binary logo" class="brand-logo" width="56" height="56">
+      <span class="brand-text">
+        <span class="brand-name">NexGen Binary</span>
+        <span class="brand-slogan">Future-Ready in Every Bit, Human-Ready in Every Beat</span>
+      </span>
     </a>
-    <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
-    <nav class="site-nav" aria-label="Main navigation">
-      <a href="index.html" class="">Home</a>
-      <a href="services.html" class="">Services</a>
-      <a href="consultation.html" class="">Consultation</a>
-      <a href="about.html" class="">About</a>
-      <a href="contact.html" class="">Contact</a>
-      <a href="service-area-richmond.html" class="">Service Areas</a>
-      <a href="consultation.html#book" class="nav-cta js-track" data-event="cta_click" data-label="nav_book_consult"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
+    <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav">
+      <a class="" href="index.html">Home</a>
+      <a class="" href="services.html">Services</a>
+      <a class="" href="consultation.html">Consultation</a>
+      <a class="" href="about.html">About</a>
+      <a class="" href="contact.html">Contact</a>
+      <a class="" href="service-area-richmond.html">Service Areas</a>
+      <a class="btn nav-cta track" data-event="cta_click" data-label="nav_book" href="consultation.html#book"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
     </nav>
   </div>
 </header>
 
 
-<main class="page-pad">
-  <section class="container page-hero">
-    <span class="eyebrow">Confirmation</span>
-    <h1>Thanks — Your Request Was Sent</h1>
-    <p class="hero-copy">We received your submission. A member of NexGen Binary will review it and follow up with next steps.</p>
-  </section>
-  <section class="container two-col">
-    <div class="card">
-      <h2>What Happens Next</h2>
-      <ol class="steps">
-        <li>We review your request details.</li>
-        <li>We follow up by email (or phone if provided).</li>
-        <li>We schedule a consultation or clarify next steps.</li>
+<main class="container page">
+  <div class="grid2">
+    <section class="panel">
+      <h1>Thanks — Your Request Was Sent</h1>
+      <p>We received your submission and will follow up with next steps.</p>
+      <ol class="bullet-list">
+        <li>We review your request</li>
+        <li>We reply by email (or phone if provided)</li>
+        <li>We schedule a consultation or next step</li>
       </ol>
-      <p class="muted">If this is urgent, call us directly during business hours.</p>
-      <a href="tel:+18040000000" class="cta-btn js-track call-link" data-event="call_click" data-label="thankyou_call"><i class="fa-solid fa-phone"></i> Call Us</a>
-    </div>
-    <div class="card">
+    </section>
+    <section class="card">
       <h2>Keep Exploring</h2>
-      <div class="inline-actions col">
-        <a href="services.html" class="ghost-btn js-track" data-event="cta_click" data-label="thankyou_services"><i class="fa-solid fa-layer-group"></i> Services</a>
-        <a href="service-area-richmond.html" class="ghost-btn js-track" data-event="cta_click" data-label="thankyou_areas"><i class="fa-solid fa-map-location-dot"></i> Service Areas</a>
-        <a href="index.html" class="ghost-btn js-track" data-event="cta_click" data-label="thankyou_home"><i class="fa-solid fa-house"></i> Back to Home</a>
+      <div class="col-wrap">
+        <a class="btn ghost track" data-event="cta_click" data-label="thanks_services" href="services.html">Services</a>
+        <a class="btn ghost track" data-event="cta_click" data-label="thanks_areas" href="service-area-richmond.html">Service Areas</a>
+        <a class="btn ghost track" data-event="cta_click" data-label="thanks_home" href="index.html">Home</a>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </main>
 
 
@@ -98,59 +81,50 @@
   <div class="container footer-grid">
     <div>
       <div class="footer-brand">
-        <img src="assets/nexgen-logo-transparent-cropped.png" alt="" class="footer-logo" width="34" height="34" loading="lazy" decoding="async" />
+        <img src="assets/nexgen-logo-transparent-cropped.png" class="footer-logo" alt="" width="32" height="32">
         <strong>NexGen Binary</strong>
       </div>
-      <p class="muted">Managed IT and co-managed IT support for dental and healthcare offices in Virginia.</p>
-      <p class="muted small">Service area: Richmond, Henrico, Chesterfield, Midlothian, Mechanicsville, and nearby areas.</p>
-      <div class="footer-actions">
-        <a href="tel:+18040000000" class="ghost-btn js-track call-link" data-event="call_click" data-label="footer_call"><i class="fa-solid fa-phone"></i> Call (804) 000-0000</a>
-        <a href="https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID" target="_blank" rel="noopener noreferrer" class="ghost-btn js-track" data-event="gbp_click" data-label="footer_gbp"><i class="fa-brands fa-google"></i> Google Business Profile</a>
+      <p class="muted">Managed IT and co-managed IT for dental and healthcare offices in Virginia.</p>
+      <p class="muted small">Service areas: Richmond, Henrico, Chesterfield, Midlothian, Mechanicsville, Glen Allen, Short Pump.</p>
+      <div class="row-wrap">
+        <a class="btn ghost track" data-event="call_click" data-label="footer_call" href="tel:+18040000000"><i class="fa-solid fa-phone"></i> (804) 000-0000</a>
+        <a class="btn ghost track" data-event="gbp_click" data-label="footer_gbp" target="_blank" rel="noopener" href="https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID"><i class="fa-brands fa-google"></i> Google Business Profile</a>
       </div>
     </div>
     <div>
       <h4>Hours</h4>
-      <ul class="footer-list">
+      <ul class="plain-list">
         <li>Mon–Fri: 8:00 AM – 6:00 PM</li>
         <li>Remote support: Business hours</li>
-        <li>Onsite visits: Scheduled / priority-based</li>
-      </ul>
-      <h4>Service Areas</h4>
-      <ul class="footer-list">
-        <li><a href="service-area-richmond.html">Richmond</a></li>
-        <li><a href="service-area-henrico.html">Henrico</a></li>
-        <li><a href="service-area-chesterfield.html">Chesterfield</a></li>
+        <li>Onsite support: Scheduled / priority</li>
       </ul>
     </div>
     <div>
       <h4>Quick Links</h4>
-      <ul class="footer-list">
+      <ul class="plain-list">
         <li><a href="services.html">Services</a></li>
-        <li><a href="consultation.html">Book Consultation</a></li>
+        <li><a href="consultation.html">Consultation</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="privacy.html">Privacy & Site Notice</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
         <li><a href="thank-you.html">Confirmation Page</a></li>
       </ul>
-      <div class="trust-badges mini">
-        <span><i class="fa-brands fa-microsoft"></i> Microsoft 365</span>
+      <div class="badge-row">
+        <span><i class="fa-brands fa-microsoft"></i> M365</span>
         <span><i class="fa-solid fa-shield-halved"></i> Security-First</span>
-        <span><i class="fa-solid fa-location-dot"></i> Virginia-Based</span>
+        <span><i class="fa-solid fa-location-dot"></i> Virginia</span>
         <span><i class="fa-solid fa-tooth"></i> Dental Focus</span>
       </div>
     </div>
   </div>
-  <div class="container footer-bottom">
-    <p>© <span id="year"></span> NexGen Binary. All rights reserved.</p>
-  </div>
+  <div class="container footer-bottom">© <span id="year"></span> NexGen Binary</div>
 </footer>
 
-<div class="mobile-sticky-cta">
-  <a href="tel:+18040000000" class="js-track call-link" data-event="call_click" data-label="mobile_call"><i class="fa-solid fa-phone"></i> Call</a>
-  <a href="consultation.html#book" class="js-track" data-event="cta_click" data-label="mobile_book_consult"><i class="fa-solid fa-calendar-check"></i> Book</a>
-  <a href="contact.html" class="js-track" data-event="cta_click" data-label="mobile_message"><i class="fa-solid fa-paper-plane"></i> Message</a>
+<div class="mobile-cta">
+  <a class="track" data-event="call_click" data-label="mobile_call" href="tel:+18040000000"><i class="fa-solid fa-phone"></i> Call</a>
+  <a class="track" data-event="cta_click" data-label="mobile_book" href="consultation.html#book"><i class="fa-solid fa-calendar-check"></i> Book</a>
+  <a class="track" data-event="cta_click" data-label="mobile_msg" href="contact.html"><i class="fa-solid fa-paper-plane"></i> Message</a>
 </div>
 
-<script src="script.js" defer></script>
-
+<script src="script.js"></script>
 </body>
 </html>
