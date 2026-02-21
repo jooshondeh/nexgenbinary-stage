@@ -4,18 +4,24 @@ import IconBadge from "./IconBadge.astro";
 const why = site.whyUs ?? {};
 const icons = ["tools","chart","shield","people"];
 ---
-<section class="nb-section" style="background:#ffffff">
+<section id="why-choose-us" class="nb-anchor-offset nb-section" style="background:#ffffff">
   <div class="container">
     <div class="row g-4 align-items-start">
       <div class="col-lg-5">
         <h2 class="section-title fw-bold">{why.title ?? "Why Dental Practices Choose Us"}</h2>
-        <p class="text-secondary mt-3">
-          Practical, proactive IT designed to keep your front desk and operatories running smoothly—without surprises.
-        </p>
+        <p class="text-secondary mt-3">Practical, proactive IT designed to keep your front desk and operatories running smoothly—without surprises.</p>
         <div class="nb-philosophy mt-3">
-          <strong>Our business philosophy</strong><br />
-          We combine next-gen design with dependable execution, treating your systems as mission-critical because they are.
-          Our promise is simple: partnership, transparency, and outstanding work—before, during, and after every project.
+          <div class="fw-semibold mb-2">Our business philosophy</div>
+          <div class="nb-checklist">
+            <div class="nb-checkrow">
+              <div class="nb-icon-wrap"><IconBadge name="checkcircle" /></div>
+              <div>We combine next-gen design with dependable execution, treating your systems as mission-critical because they are.</div>
+            </div>
+            <div class="nb-checkrow">
+              <div class="nb-icon-wrap"><IconBadge name="checkcircle" /></div>
+              <div>Our promise is simple: partnership, transparency, and outstanding work—before, during, and after every project.</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-lg-7">

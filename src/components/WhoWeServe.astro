@@ -9,7 +9,6 @@ const w = site.whoWeServe ?? {};
       <div class="col-lg-6">
         <h2 class="section-title fw-bold">{w.title ?? "Who We Serve — Dental Practices"}</h2>
         <p class="text-secondary mt-3">{w.lead ?? ""}</p>
-
         <div class="p-4 nb-card nb-pop mt-4">
           <div class="d-flex align-items-start gap-2">
             <div class="nb-icon-wrap" style="width:38px;height:38px;flex:0 0 38px"><IconBadge name="chart" /></div>
@@ -20,7 +19,6 @@ const w = site.whoWeServe ?? {};
           </div>
         </div>
       </div>
-
       <div class="col-lg-6">
         <div class="row g-3">
           <div class="col-12">
@@ -29,9 +27,7 @@ const w = site.whoWeServe ?? {};
                 <div class="nb-icon-wrap" style="width:38px;height:38px;flex:0 0 38px"><IconBadge name="shield" /></div>
                 <div class="fw-semibold">{w.challengesTitle ?? "We Understand Dental IT Challenges"}</div>
               </div>
-              <ul class="mb-0">
-                {(w.challenges ?? []).map((x) => (<li class="mb-2">{x}</li>))}
-              </ul>
+              <ul class="mb-0">{(w.challenges ?? []).map((x) => (<li class="mb-2">{x}</li>))}</ul>
             </div>
           </div>
           <div class="col-12">
@@ -40,14 +36,11 @@ const w = site.whoWeServe ?? {};
                 <div class="nb-icon-wrap" style="width:38px;height:38px;flex:0 0 38px"><IconBadge name="people" /></div>
                 <div class="fw-semibold">{w.approachTitle ?? "Our Approach"}</div>
               </div>
-              <ul class="mb-0">
-                {(w.approach ?? []).map((x) => (<li class="mb-2">{x}</li>))}
-              </ul>
+              <ul class="mb-0">{(w.approach ?? []).map((x) => (<li class="mb-2">{x}</li>))}</ul>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>

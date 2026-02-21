@@ -2,7 +2,7 @@
 const { title = "NexGen Binary", description = "Reliable IT for dental practices across Virginia." } = Astro.props;
 import "../styles/custom.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import companyLogo from "../assets/Company_logo.svg";
+import companyLogo from "../assets/Company_logo.png";
 ---
 <!doctype html>
 <html lang="en">
@@ -11,8 +11,8 @@ import companyLogo from "../assets/Company_logo.svg";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href={companyLogo.src} />
-    <link rel="shortcut icon" type="image/svg+xml" href={companyLogo.src} />
+    <link rel="icon" type="image/png" href={`${companyLogo.src}?v=9`} />
+    <link rel="shortcut icon" type="image/png" href={`${companyLogo.src}?v=9`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />

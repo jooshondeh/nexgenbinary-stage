@@ -1,5 +1,6 @@
 ---
 const { site } = Astro.props;
+import IconBadge from "./IconBadge.astro";
 const hero = site.hero ?? {};
 ---
 <header id="home" class="nb-anchor-offset nb-hero">
@@ -12,7 +13,7 @@ const hero = site.hero ?? {};
         <p class="lead text-white-50 mb-4">{hero.subheadline}</p>
         <div class="d-flex flex-wrap gap-2">
           <a class="btn nb-btn-primary" href={site.bookings?.url} target="_blank" rel="noopener">{hero.primaryCta}</a>
-          <a class="btn nb-btn-ghost nb-pop" href="#contact">Call Us</a>
+          <a class="btn nb-btn-ghost nb-pop nb-btn-inlineicon" href="#contact"><IconBadge name="phonecall" /><span>Call Us</span></a>
         </div>
       </div>
       <div class="col-lg-5">
@@ -20,7 +21,10 @@ const hero = site.hero ?? {};
           <h2 class="h5 fw-bold mb-3">{site.whatWeDo?.title ?? "What We Do"}</h2>
           <div class="d-grid gap-2">
             {(site.whatWeDo?.items ?? []).slice(0,4).map((x) => (
-              <div class="nb-card nb-pop"><div class="fw-semibold">{x.title}</div><div class="small text-secondary">{x.text}</div></div>
+              <div class="nb-card nb-pop">
+                <div class="fw-semibold">{x.title}</div>
+                <div class="small text-secondary">{x.text}</div>
+              </div>
             ))}
           </div>
         </div>

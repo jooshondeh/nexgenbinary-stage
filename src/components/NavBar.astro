@@ -1,6 +1,7 @@
 ---
 const { site } = Astro.props;
-import companyLogo from "../assets/Company_logo.svg";
+import companyLogo from "../assets/Company_logo.png";
+import IconBadge from "./IconBadge.astro";
 ---
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top nb-navbar">
   <div class="container">
@@ -8,22 +9,41 @@ import companyLogo from "../assets/Company_logo.svg";
       <img src={companyLogo.src} alt="NexGen Binary logo" class="nb-logo" />
       <span class="nb-brand-text">{site.brand?.logoText}</span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nbNav"><span class="navbar-toggler-icon"></span></button>
+
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#nbNav" aria-controls="nbNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
     <div class="collapse navbar-collapse" id="nbNav">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="nbNavLinks">
         {(site.nav ?? []).map((item) => <li class="nav-item"><a class="nav-link" href={item.href}>{item.label}</a></li>)}
       </ul>
       <div class="d-lg-flex align-items-center gap-2 ms-lg-3 mt-3 mt-lg-0">
-        <a class="nb-toplink d-flex align-items-center gap-1" href={site.topbar?.emailHref}><span class="nb-icon nb-icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>{site.topbar?.emailText}</span></a>
-        <a class="btn btn-sm nb-btn-primary py-2 px-3" href="#contact">Call</a>
+        <a class="nb-toplink d-flex align-items-center gap-1" href={site.topbar?.emailHref}>
+          <span class="nb-icon nb-icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span>{site.topbar?.emailText}</span>
+        </a>
+        <a class="btn btn-sm nb-btn-primary py-2 px-3 nb-btn-inlineicon" href="#contact">
+          <IconBadge name="phonecall" />
+          <span>804-000-0000</span>
+        </a>
       </div>
     </div>
   </div>
+
   <script>
     const links=[...document.querySelectorAll('#nbNavLinks a[href^="#"]')];
     const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
     const setActive=(id)=>links.forEach(a=>a.classList.toggle('active', a.getAttribute('href')===`#${id}`));
     const obs=new IntersectionObserver((entries)=>{const v=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio); if(v[0]?.target?.id) setActive(v[0].target.id);},{rootMargin:'-35% 0px -50% 0px', threshold:[0.15,0.35,0.6]});
     sections.forEach(s=>obs.observe(s)); setActive((location.hash||'#home').replace('#',''));
+
+    // close mobile menu after selecting item
+    const navCollapse = document.getElementById('nbNav');
+    links.forEach(link=>link.addEventListener('click', ()=>{
+      if (window.innerWidth < 992 && navCollapse?.classList.contains('show') && window.bootstrap?.Collapse) {
+        new window.bootstrap.Collapse(navCollapse, { toggle:false }).hide();
+      }
+    }));
   </script>
 </nav>
