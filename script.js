@@ -1,25 +1,25 @@
 
 (function(){
-  const nav = document.querySelector('.nav');
-  const btn = document.querySelector('.menu-btn');
-  const y = document.getElementById('year');
-  if (y) y.textContent = new Date().getFullYear();
+  const nav = document.querySelector('.site-nav');
+  const menu = document.querySelector('.menu-btn');
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
 
-  if (btn && nav){
-    btn.addEventListener('click', () => {
+  if (menu && nav){
+    menu.addEventListener('click', () => {
       const open = nav.classList.toggle('open');
-      btn.setAttribute('aria-expanded', String(open));
+      menu.setAttribute('aria-expanded', String(open));
     });
   }
 
-  document.querySelectorAll('.toggle-btn').forEach(t => {
-    t.addEventListener('click', () => {
-      const panel = t.closest('.panel');
-      const c = panel ? panel.querySelector('.toggle-content') : null;
-      if (!c) return;
-      const open = c.classList.toggle('open');
-      t.setAttribute('aria-expanded', String(open));
-      if (typeof gtag === 'function') gtag('event','plan_toggle',{open: open});
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.plan-card');
+      const panel = card ? card.querySelector('.toggle-content') : null;
+      if (!panel) return;
+      const open = panel.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      if (typeof gtag === 'function') gtag('event','plan_toggle',{open});
     });
   });
 
@@ -35,35 +35,36 @@
   });
 
   function bindForm(sel){
-    const f = document.querySelector(sel);
-    if (!f) return;
-    const status = f.querySelector('.form-status');
-    f.addEventListener('submit', (e) => {
-      const req = Array.from(f.querySelectorAll('[required]'));
-      const bad = req.find(x => !String(x.value || '').trim());
+    const form = document.querySelector(sel);
+    if (!form) return;
+    const status = form.querySelector('.form-status');
+    form.addEventListener('submit', (e) => {
+      const reqs = Array.from(form.querySelectorAll('[required]'));
+      const bad = reqs.find(x => !String(x.value || '').trim());
       if (bad){
         e.preventDefault();
-        if (status){ status.textContent = 'Please complete required fields.'; status.className = 'form-status error';}
+        if (status){ status.textContent = 'Please complete required fields.'; status.className='form-status error'; }
         bad.focus();
         if (typeof gtag === 'function') gtag('event','form_validation_error',{field: bad.name || bad.id});
         return;
       }
-      const email = f.querySelector('input[type="email"]');
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){
+      const email = form.querySelector('input[type="email"]');
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((email.value||'').trim())){
         e.preventDefault();
-        if (status){ status.textContent = 'Please enter a valid email.'; status.className = 'form-status error';}
+        if (status){ status.textContent = 'Please enter a valid email address.'; status.className='form-status error'; }
         email.focus();
         return;
       }
-      if (status){ status.textContent = 'Submitting…'; status.className = 'form-status';}
-      if (typeof gtag === 'function') gtag('event','generate_lead',{form_name: f.dataset.formName || 'form'});
-      // Optional local redirect if no form backend is connected:
-      if ((f.action || '').includes('REPLACE_')){
+      if (status){ status.textContent = 'Submitting…'; status.className='form-status'; }
+      if (typeof gtag === 'function') gtag('event','generate_lead',{form_name: form.dataset.formName || 'form'});
+      // demo fallback when Formspree endpoint placeholder hasn't been replaced yet
+      if ((form.action || '').includes('REPLACE_')){
         e.preventDefault();
         location.href = 'thank-you.html';
       }
     });
   }
+
   bindForm('.consult-form');
   bindForm('.message-form');
 

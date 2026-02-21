@@ -1,44 +1,26 @@
-NexGen Binary Static Replacement Package (GitHub Pages)
+DEPLOY-CHECKLIST (for your current repo)
 
-WHY THE CHANGES DID NOT SHOW
-- Your repo is an Astro project and includes a GitHub Actions workflow (.github/workflows/astro.yml).
-- That workflow builds and deploys the Astro site (usually from src/ + public/ to dist/).
-- Raw HTML files uploaded to repo root do NOT replace the Astro-generated site unless you switch deployment method.
+Your repo screenshot shows an Astro project. If you want THIS static package to be the live site:
 
-RECOMMENDED CLEAN RESET (Static site route)
-1) In GitHub: Settings > Pages
-   - Change Source to: Deploy from a branch
+1) GitHub > Settings > Pages
+   - Source: Deploy from a branch
    - Branch: main
    - Folder: /(root)
 
-2) Delete these Astro/build folders/files from the repo (they are not needed for the static package):
-   FOLDERS TO REMOVE:
+2) Remove Astro/build folders:
    - .astro/
-   - .github/           (or at least .github/workflows/astro.yml)
+   - .github/   (or at least .github/workflows/astro.yml)
    - dist/
    - node_modules/
    - public/
    - src/
 
-   FILES TO REMOVE:
+3) Remove Astro/build files:
    - astro.config.mjs
    - package.json
    - package-lock.json
    - tsconfig.json
-   - PATCH-contact-formEndpoint.json (optional; keep only if you need it)
-   - Any old duplicate site files if present
 
-3) Upload ALL files from this package into the repo root (same level as index.html)
+4) Upload all files from this zip to the repo root
 
-4) Commit and hard refresh the site (Ctrl+F5)
-
-PLACEHOLDERS TO UPDATE BEFORE GO-LIVE
-- G-XXXXXXXXXX (Google Analytics / gtag)
-- Phone number and tel link
-- Google Business Profile URL
-- Formspree form endpoints
-- example.com URLs in sitemap/robots/schema
-
-ALTERNATIVE (Keep Astro)
-- If you want to keep Astro, this package must be converted into src/pages/*.astro and public assets.
-- Ask for an “Astro-native conversion package” and I can generate that version.
+5) Commit, wait for Pages deploy, then hard refresh (Ctrl+F5)
