@@ -1,20 +1,36 @@
 ---
 const { site } = Astro.props;
 import IconBadge from "./IconBadge.astro";
-const d = site.whyChooseUs ?? {};
-const iconCycle = ["tools","chart","shield","people"];
+const why = site.whyUs ?? {};
+const icons = ["tools","chart","shield","people"];
 ---
-<section id="why-choose-us" class="nb-anchor-offset nb-section nb-section-alt">
+<section class="nb-section" style="background:#ffffff">
   <div class="container">
-    <h2 class="nb-section-title">{d.title ?? "Why Dental Practices Choose Us"}</h2>
-    <p class="nb-section-subtitle">{d.subtitle ?? ""}</p>
-    <div class="row g-3 mt-1">
-      {(d.items ?? []).map((item, i) => <div class="col-md-6"><div class="nb-card nb-pop h-100"><div class="nb-icon-row"><div class="nb-icon-wrap"><IconBadge name={iconCycle[i % iconCycle.length]} /></div><div><div class="fw-semibold">{item}</div></div></div></div></div>)}
-    </div>
-    <div class="nb-philosophy mt-4">
-      <div class="d-flex align-items-start gap-2">
-        <div class="nb-icon-wrap" style="background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.2)"><IconBadge name="check" /></div>
-        <div><div class="fw-bold mb-1">Our business philosophy</div><div>{d.philosophy ?? "We combine next-gen design with dependable execution, treating your systems as mission-critical because they are. Our promise is simple: partnership, transparency, and outstanding work—before, during, and after every project."}</div></div>
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-5">
+        <h2 class="section-title fw-bold">{why.title ?? "Why Dental Practices Choose Us"}</h2>
+        <p class="text-secondary mt-3">
+          Practical, proactive IT designed to keep your front desk and operatories running smoothly—without surprises.
+        </p>
+        <div class="nb-philosophy mt-3">
+          <strong>Our business philosophy</strong><br />
+          We combine next-gen design with dependable execution, treating your systems as mission-critical because they are.
+          Our promise is simple: partnership, transparency, and outstanding work—before, during, and after every project.
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="row g-3">
+          {(why.bullets ?? []).map((b, i) => (
+            <div class="col-md-6">
+              <div class="p-4 nb-card nb-pop h-100">
+                <div class="nb-icon-row">
+                  <div class="nb-icon-wrap"><IconBadge name={icons[i % icons.length]} /></div>
+                  <div class="fw-semibold">{b}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </div>

@@ -15,18 +15,15 @@ import companyLogo from "../assets/Company_logo.svg";
       </ul>
       <div class="d-lg-flex align-items-center gap-2 ms-lg-3 mt-3 mt-lg-0">
         <a class="nb-toplink d-flex align-items-center gap-1" href={site.topbar?.emailHref}><span class="nb-icon nb-icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.8"/><path d="M4 7l8 6 8-6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>{site.topbar?.emailText}</span></a>
-        <a class="btn btn-sm nb-btn-primary py-2 px-3" href="#contact">Contact Us</a>
+        <a class="btn btn-sm nb-btn-primary py-2 px-3" href="#contact">Call</a>
       </div>
     </div>
   </div>
   <script>
-    const links = Array.from(document.querySelectorAll('#nbNavLinks a[href^="#"]'));
-    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-    const setActive = (id) => links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
-    const obs = new IntersectionObserver((entries) => {
-      const v = entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio);
-      if (v[0]?.target?.id) setActive(v[0].target.id);
-    }, { rootMargin: '-35% 0px -50% 0px', threshold:[0.15,0.35,0.6] });
+    const links=[...document.querySelectorAll('#nbNavLinks a[href^="#"]')];
+    const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const setActive=(id)=>links.forEach(a=>a.classList.toggle('active', a.getAttribute('href')===`#${id}`));
+    const obs=new IntersectionObserver((entries)=>{const v=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio); if(v[0]?.target?.id) setActive(v[0].target.id);},{rootMargin:'-35% 0px -50% 0px', threshold:[0.15,0.35,0.6]});
     sections.forEach(s=>obs.observe(s)); setActive((location.hash||'#home').replace('#',''));
   </script>
 </nav>

@@ -1,25 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="NexGen Binary logo">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0a2540"/>
-      <stop offset="100%" stop-color="#164f8a"/>
-    </linearGradient>
-    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity=".16"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity=".03"/>
+      <stop offset="0%" stop-color="#0a2540"/><stop offset="100%" stop-color="#164f8a"/>
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="96" fill="url(#bg)"/>
   <path d="M512 0H338l174 174z" fill="#f48824"/>
   <path d="M0 512V398l114 114z" fill="#f48824"/>
-  <rect x="26" y="26" width="460" height="460" rx="86" fill="url(#glass)" stroke="#ffffff" stroke-width="7"/>
-  <rect x="74" y="74" width="364" height="272" rx="26" fill="#f7fbff" stroke="#dce9f8" stroke-width="2"/>
-  <path d="M118 298V122M118 122L214 298M214 298V122" stroke="#0a2540" stroke-width="18" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M282 122V298" stroke="#0a2540" stroke-width="18" fill="none" stroke-linecap="round"/>
-  <path d="M282 124h34c38 0 62 17 62 41s-24 41-62 41h-34" stroke="#0a2540" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M282 206h42c40 0 66 18 66 44s-26 44-66 44h-42" stroke="#0a2540" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M234 210h32" stroke="#f48824" stroke-width="10" stroke-linecap="round"/>
-  <rect x="90" y="366" width="332" height="10" rx="5" fill="#f48824"/>
-  <text x="256" y="425" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#ffffff">NEXGEN BINARY</text>
-  <text x="256" y="462" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="19" fill="#d6ebff">IT • SECURITY • CLOUD</text>
+  <rect x="30" y="30" width="452" height="452" rx="82" fill="none" stroke="#ffffff" stroke-opacity=".3" stroke-width="8"/>
+  <rect x="74" y="76" width="364" height="262" rx="22" fill="#f8fbff" stroke="#dbe8f6" stroke-width="2"/>
+  <path d="M114 294V124M114 124L206 294M206 294V124" stroke="#0a2540" stroke-width="18" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M270 124V294" stroke="#0a2540" stroke-width="18" fill="none" stroke-linecap="round"/>
+  <path d="M270 126h35c35 0 58 15 58 38s-23 38-58 38h-35" stroke="#0a2540" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M270 202h43c38 0 63 18 63 44s-25 44-63 44h-43" stroke="#0a2540" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="86" y="360" width="340" height="10" rx="5" fill="#f48824"/>
+  <text x="256" y="424" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#fff">NexGen Binary</text>
 </svg>

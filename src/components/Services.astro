@@ -1,15 +1,33 @@
 ---
 const { site } = Astro.props;
 import IconBadge from "./IconBadge.astro";
-const s = site.services ?? {};
+const services = site.services ?? {};
 const iconMap = ["monitor","shield","cloud","wifi","phone","camera","tools","people"];
 ---
-<section id="services" class="nb-anchor-offset nb-section">
+<section id="services" class="nb-anchor-offset nb-section" style="background:#f8fafc">
   <div class="container">
-    <h2 class="nb-section-title">{s.title ?? "Services"}</h2>
-    <p class="nb-section-subtitle">{s.subtitle ?? ""}</p>
-    <div class="row g-3 mt-1">
-      {(s.items ?? []).map((item, i) => <div class="col-md-6"><div class="nb-card nb-pop h-100"><div class="nb-icon-row"><div class="nb-icon-wrap"><IconBadge name={iconMap[i % iconMap.length]} /></div><div><div class="fw-semibold">{item.title ?? item.name ?? "Service"}</div><div class="small text-secondary">{item.text ?? item.description ?? ""}</div></div></div></div></div>)}
+    <div class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-between gap-3 mb-4">
+      <div>
+        <h2 class="section-title fw-bold mb-1">{services.title ?? "Services"}</h2>
+        <p class="text-secondary mb-0">A complete set of IT capabilities tailored for dental practices.</p>
+      </div>
+      <a class="btn nb-btn-primary" href={site.bookings?.url} target="_blank" rel="noopener">Book a consult</a>
+    </div>
+
+    <div class="row g-3">
+      {(services.groups ?? []).map((g, idx) => (
+        <div class="col-lg-6">
+          <div class="p-4 nb-card nb-pop h-100 bg-white">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="nb-icon-wrap" style="width:38px;height:38px;flex:0 0 38px"><IconBadge name={iconMap[idx % iconMap.length]} /></div>
+              <h3 class="h5 fw-semibold mb-0">{g.title}</h3>
+            </div>
+            <ul class="mb-0">
+              {(g.items ?? []).map((it) => (<li class="mb-2">{it}</li>))}
+            </ul>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
