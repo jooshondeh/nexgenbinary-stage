@@ -1,0 +1,29 @@
+UPLOAD THIS PACKAGE TO REBUILD YOUR ASTRO REPO AFTER ACCIDENTAL DELETIONS.
+
+Replace or restore these items from this zip:
+- .github/workflows/astro.yml
+- astro.config.mjs
+- package.json
+- tsconfig.json
+- README.md
+- src/layouts/Layout.astro
+- src/pages/*.astro
+- public/styles.css
+- public/script.js
+- public/robots.txt
+- public/sitemap.xml
+- public/assets/nexgen-logo-transparent.png
+
+DELETE from repo root if still present (old static version):
+- index.html, about.html, services.html, consultation.html, contact.html, privacy.html, thank-you.html
+- service-area-*.html
+- styles.css, script.js, robots.txt, sitemap.xml (root copies)
+- root /assets folder
+- DEPLOY-CHECKLIST.txt and README.txt (optional cleanup)
+
+After upload:
+1) Commit changes
+2) GitHub Actions should run again (workflow restored)
+3) Hard refresh site (Ctrl+F5)
+
+Note: package-lock.json is intentionally not included; GitHub Actions will create dependencies via npm install.
