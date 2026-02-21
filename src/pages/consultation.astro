@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+<Layout title="Consultation | NexGen Binary" active="consultation">
+
+<main class="container page">
+  <div class="grid2">
+    <section class="panel">
+      <h1>Book a Consultation</h1>
+      <p class="muted">Tell us about your office and top IT priorities. We’ll follow up with next-step options.</p>
+      <h3>What Happens Next</h3>
+      <ol class="bullet-list"><li>Submit your request</li><li>We review and respond within one business day</li><li>Discovery call to understand systems and priorities</li><li>Recommended next steps</li></ol>
+      <p class="notice">Please do not include patient data or sensitive information in this form.</p>
+      <div class="inline-row"><a href="https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID" target="_blank" rel="noopener" class="btn ghost track" data-event="gbp_click" data-label="consult_gbp"><i class="fa-brands fa-google"></i> Google Business Profile</a></div>
+    </section>
+    <section class="panel" id="book">
+      <h2>Consultation Request</h2>
+      <form class="form consult-form" action="https://formspree.io/f/REPLACE_CONSULT_FORM_ID" method="post" novalidate data-form-name="consultation_request">
+        <input type="hidden" name="_subject" value="New NexGen Binary Consultation Request">
+        <label>Full Name *<input type="text" name="name" required></label>
+        <label>Practice / Company *<input type="text" name="company" required></label>
+        <label>Email *<input type="email" name="email" required placeholder="name@example.com"></label>
+        <label>Phone (optional)<input type="tel" name="phone" placeholder="(804) 000-0000"></label>
+        <label>Office Size
+          <select name="office_size"><option value="">Select one</option><option>1–10 users</option><option>11–25 users</option><option>26–50 users</option><option>50+ users</option></select>
+        </label>
+        <label>How can we help? *<textarea name="message" rows="5" required placeholder="General description only (no patient data)"></textarea></label>
+        <p class="muted small">Use general descriptions only. We can gather detailed technical information later in a secure channel.</p>
+        <div class="form-status" aria-live="polite"></div>
+        <button type="submit" class="btn primary"><i class="fa-solid fa-calendar-check"></i> Submit Consultation Request</button>
+      </form>
+    </section>
+  </div>
+</main>
+
+</Layout>
