@@ -11,8 +11,13 @@ const embeddedFavicon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAACAAAAAgAC
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/png" href={embeddedFavicon} />
-    <link rel="shortcut icon" href={embeddedFavicon} />
+    <meta name="theme-color" content="#0b2742" />
+
+    <!-- Favicon force refresh: embedded + multiple rels -->
+    <link rel="icon" href={embeddedFavicon} />
+    <link rel="icon" type="image/png" sizes="32x32" href={embeddedFavicon} />
+    <link rel="icon" type="image/png" sizes="16x16" href={embeddedFavicon} />
+    <link rel="shortcut icon" type="image/png" href={embeddedFavicon} />
     <link rel="apple-touch-icon" href={embeddedFavicon} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
