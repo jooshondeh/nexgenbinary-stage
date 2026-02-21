@@ -2,6 +2,7 @@
 const { site } = Astro.props;
 import IconBadge from "./IconBadge.astro";
 const hero = site.hero ?? {};
+const heroIcons = ["tools","lockshield","cloud","people"];
 ---
 <header id="home" class="nb-anchor-offset nb-hero">
   <div class="container py-5">
@@ -19,11 +20,16 @@ const hero = site.hero ?? {};
       <div class="col-lg-5">
         <div class="p-3 p-md-4 nb-hero-panel">
           <h2 class="h5 fw-bold mb-3">{site.whatWeDo?.title ?? "What We Do"}</h2>
-          <div class="d-grid gap-2">
-            {(site.whatWeDo?.items ?? []).slice(0,4).map((x) => (
+          <div class="d-grid gap-2 nb-hero-mini-list">
+            {(site.whatWeDo?.items ?? []).slice(0,4).map((x, i) => (
               <div class="nb-card nb-pop">
-                <div class="fw-semibold">{x.title}</div>
-                <div class="small text-secondary">{x.text}</div>
+                <div class="nb-icon-row">
+                  <div class="nb-icon-wrap"><IconBadge name={heroIcons[i % heroIcons.length]} /></div>
+                  <div>
+                    <div class="fw-semibold">{x.title}</div>
+                    <div class="small text-secondary">{x.text}</div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
