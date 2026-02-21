@@ -2,6 +2,7 @@
 const { title = "NexGen Binary", description = "Reliable IT for dental practices across Virginia." } = Astro.props;
 import "../styles/custom.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import companyLogo from "../assets/Company_logo.svg";
 ---
 <!doctype html>
 <html lang="en">
@@ -11,17 +12,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0a2540" />
-    <link rel="icon" type="image/svg+xml" href="/Company_logo.svg?v=6" />
-    <link rel="alternate icon" type="image/png" href="/Company_logo.png?v=5" />
-    <link rel="apple-touch-icon" href="/Company_logo.png?v=5" />
+    <link rel="icon" type="image/svg+xml" href={companyLogo.src} />
+    <link rel="shortcut icon" type="image/svg+xml" href={companyLogo.src} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
     <slot />
-    <script type="module">
-      import "bootstrap/dist/js/bootstrap.bundle.min.js";
-    </script>
+    <script type="module">import "bootstrap/dist/js/bootstrap.bundle.min.js";</script>
   </body>
 </html>

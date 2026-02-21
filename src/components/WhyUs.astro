@@ -1,33 +1,20 @@
 ---
 const { site } = Astro.props;
-const why = site.whyUs ?? {};
+import IconBadge from "./IconBadge.astro";
+const d = site.whyChooseUs ?? {};
+const iconCycle = ["tools","chart","shield","people"];
 ---
-<section class="nb-section nb-section-alt">
+<section id="why-choose-us" class="nb-anchor-offset nb-section nb-section-alt">
   <div class="container">
-    <div class="row g-4">
-      <div class="col-lg-5">
-        <h2 class="nb-section-title">{why.title}</h2>
-        <p class="nb-section-subtitle">Proactive IT support built for clinical uptime, predictable costs, and secure healthcare operations.</p>
-
-        <div class="nb-philosophy mt-4">
-          <div class="fw-bold mb-2">{why.philosophyTitle}</div>
-          <ul class="mb-0 ps-3">
-            {(why.philosophy ?? []).map((p) => <li class="mb-2">{p}</li>)}
-          </ul>
-        </div>
-      </div>
-
-      <div class="col-lg-7">
-        <div class="row g-3">
-          {(why.bullets ?? []).map((b) => (
-            <div class="col-md-6">
-              <div class="nb-card nb-pop h-100 d-flex align-items-start">
-                <div class="me-2 mt-1 text-primary">●</div>
-                <div class="fw-semibold">{b}</div>
-              </div>
-            </div>
-          ))}
-        </div>
+    <h2 class="nb-section-title">{d.title ?? "Why Dental Practices Choose Us"}</h2>
+    <p class="nb-section-subtitle">{d.subtitle ?? ""}</p>
+    <div class="row g-3 mt-1">
+      {(d.items ?? []).map((item, i) => <div class="col-md-6"><div class="nb-card nb-pop h-100"><div class="nb-icon-row"><div class="nb-icon-wrap"><IconBadge name={iconCycle[i % iconCycle.length]} /></div><div><div class="fw-semibold">{item}</div></div></div></div></div>)}
+    </div>
+    <div class="nb-philosophy mt-4">
+      <div class="d-flex align-items-start gap-2">
+        <div class="nb-icon-wrap" style="background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.2)"><IconBadge name="check" /></div>
+        <div><div class="fw-bold mb-1">Our business philosophy</div><div>{d.philosophy ?? "We combine next-gen design with dependable execution, treating your systems as mission-critical because they are. Our promise is simple: partnership, transparency, and outstanding work—before, during, and after every project."}</div></div>
       </div>
     </div>
   </div>
