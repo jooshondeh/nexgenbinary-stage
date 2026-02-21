@@ -1,5 +1,4 @@
-/* v17 final navbar/mobile stability layer (safe to keep separate from custom.css) */
-
+/* v18 nav stability + logo fallback */
 .nb-navbar{
   background:rgba(10,37,64,.94);
   backdrop-filter:blur(10px);
@@ -10,6 +9,15 @@
   width:44px;height:44px;min-width:44px;object-fit:contain;
   background:#fff;border-radius:10px;padding:4px;
   border:1px solid rgba(255,255,255,.55);
+  box-shadow:0 8px 18px rgba(0,0,0,.2);
+}
+.nb-logo-fallback{
+  width:44px;height:44px;min-width:44px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:10px;
+  background:linear-gradient(135deg,#f48824,#2487ce);
+  color:#fff;font-weight:800;font-size:.85rem;letter-spacing:.02em;
+  border:1px solid rgba(255,255,255,.35);
   box-shadow:0 8px 18px rgba(0,0,0,.2);
 }
 .nb-brand-text{color:#fff}
@@ -30,7 +38,6 @@
   }
   .navbar .nav-link{padding:.7rem .75rem!important;border-radius:10px}
 }
-
 .navbar .nav-link{
   color:rgba(255,255,255,.9)!important;
   font-weight:600;
@@ -47,16 +54,8 @@
   transform:scaleX(0); transform-origin:left;
   transition:transform .18s;
 }
-.navbar .nav-link:hover{
-  color:#fff!important;
-  background:rgba(255,255,255,.08);
-}
-.navbar .nav-link.active{
-  color:#fff!important;
-  background:linear-gradient(135deg,rgba(244,136,36,.24),rgba(36,135,206,.22));
-}
-.navbar .nav-link:hover::after,
-.navbar .nav-link.active::after{transform:scaleX(1)}
-
+.navbar .nav-link:hover{ color:#fff!important; background:rgba(255,255,255,.08); }
+.navbar .nav-link.active{ color:#fff!important; background:linear-gradient(135deg,rgba(244,136,36,.24),rgba(36,135,206,.22)); }
+.navbar .nav-link:hover::after,.navbar .nav-link.active::after{transform:scaleX(1)}
 .nb-btn-inlineicon{display:inline-flex;align-items:center;gap:.4rem}
 .nb-phone-dot{font-size:.95rem;line-height:1}

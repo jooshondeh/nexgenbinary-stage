@@ -13,13 +13,16 @@ const navItems = [
 <nav class="navbar navbar-expand-lg fixed-top nb-navbar" aria-label="Main navigation">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <span class="nb-logo-fallback" id="nbLogoFallback" aria-hidden="true">NB</span>
       <img
-        src="/Company_logo.png?v=17"
+        id="nbLogoImg"
+        src="/Company_logo.png?v=18"
         alt="NexGen Binary logo"
         class="nb-logo"
         width="44"
         height="44"
-        onerror="if(this.dataset.fallbackTried){this.style.display='none';}else{this.dataset.fallbackTried='1';this.src='/Company_logo.svg?v=17';}"
+        onload="document.getElementById('nbLogoFallback')?.classList.add('d-none')"
+        onerror="if(!this.dataset.triedSvg){this.dataset.triedSvg='1';this.src='/Company_logo.svg?v=18';}else{this.classList.add('d-none');document.getElementById('nbLogoFallback')?.classList.remove('d-none');}"
       />
       <span class="fw-bold fs-3 nb-brand-text">{site?.brand?.logoText ?? "NexGen Binary"}</span>
     </a>
@@ -61,7 +64,6 @@ const navItems = [
     const links = document.querySelectorAll("[data-nav-link]");
     const sectionLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
 
-    // Mobile menu close on selection
     links.forEach((link) => {
       link.addEventListener("click", () => {
         if (!nav || window.innerWidth >= 992 || !nav.classList.contains("show")) return;
@@ -74,29 +76,21 @@ const navItems = [
       });
     });
 
-    // Active section highlighting
-    const sections = sectionLinks
-      .map((a) => {
-        const href = a.getAttribute("href");
-        return href ? document.querySelector(href) : null;
-      })
-      .filter(Boolean);
+    const sections = sectionLinks.map((a) => {
+      const href = a.getAttribute("href");
+      return href ? document.querySelector(href) : null;
+    }).filter(Boolean);
 
     const setActive = () => {
       const y = window.scrollY + 120;
       let currentId = "#home";
-      sections.forEach((sec) => {
-        if (sec && sec.offsetTop <= y) currentId = "#" + sec.id;
-      });
-      sectionLinks.forEach((a) => {
-        a.classList.toggle("active", a.getAttribute("href") === currentId);
-      });
+      sections.forEach((sec) => { if (sec && sec.offsetTop <= y) currentId = "#" + sec.id; });
+      sectionLinks.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === currentId));
     };
 
     setActive();
     window.addEventListener("scroll", setActive, { passive: true });
 
-    // Fallback if bootstrap JS fails
     if (toggler && nav && !window.bootstrap?.Collapse) {
       toggler.addEventListener("click", () => {
         const isOpen = nav.classList.contains("show");
