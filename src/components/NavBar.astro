@@ -1,7 +1,6 @@
 ---
 const { site } = Astro.props;
 
-/* Ordered to match page sections top-to-bottom */
 const navItems = [
   { label: "Home", href: "#home" },
   { label: "Why Choose Us", href: "#why-choose-us" },
@@ -16,34 +15,24 @@ const navItems = [
   <div class="container">
     <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
       <img
-        src="/Company_logo.png?v=24"
+        src="/logo-mark.png?v=25"
         alt="NexGen Binary logo"
         class="nb-logo"
         width="44"
         height="44"
-        style="display:inline-block;visibility:visible;opacity:1;width:44px;height:44px;min-width:44px;object-fit:contain;background:#fff;border-radius:10px;padding:4px;border:1px solid rgba(255,255,255,.55);box-shadow:0 8px 18px rgba(0,0,0,.2)"
+        style="display:inline-block !important;visibility:visible !important;opacity:1 !important;width:44px !important;height:44px !important;min-width:44px !important;object-fit:contain !important;background:transparent !important;border:none !important;padding:0 !important;box-shadow:none !important;"
       />
       <span class="fw-bold fs-3 nb-brand-text">{site?.brand?.logoText ?? "NexGen Binary"}</span>
     </a>
 
-    <button
-      class="navbar-toggler border-0 shadow-none"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#nbNav"
-      aria-controls="nbNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#nbNav" aria-controls="nbNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="nbNav">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
         {navItems.map((item) => (
-          <li class="nav-item">
-            <a class="nav-link" href={item.href} data-nav-link>{item.label}</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href={item.href} data-nav-link>{item.label}</a></li>
         ))}
         <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
           <a class="btn nb-btn-primary nb-btn-inlineicon" href="#contact" data-nav-link aria-label="Call NexGen Binary 804-000-0000">
@@ -57,50 +46,41 @@ const navItems = [
 </nav>
 
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    const nav = document.getElementById("nbNav");
-    const toggler = document.querySelector(".navbar-toggler");
-    const links = document.querySelectorAll("[data-nav-link]");
-    const sectionLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.getElementById("nbNav");
+  const toggler = document.querySelector(".navbar-toggler");
+  const links = document.querySelectorAll("[data-nav-link]");
+  const sectionLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
 
-    links.forEach((link) => {
-      link.addEventListener("click", () => {
-        if (!nav || window.innerWidth >= 992 || !nav.classList.contains("show")) return;
-        if (window.bootstrap?.Collapse) {
-          window.bootstrap.Collapse.getOrCreateInstance(nav).hide();
-        } else {
-          nav.classList.remove("show");
-          toggler?.setAttribute("aria-expanded", "false");
-        }
-      });
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (!nav || window.innerWidth >= 992 || !nav.classList.contains("show")) return;
+      if (window.bootstrap?.Collapse) window.bootstrap.Collapse.getOrCreateInstance(nav).hide();
+      else { nav.classList.remove("show"); toggler?.setAttribute("aria-expanded","false"); }
     });
-
-    const sections = sectionLinks
-      .map((a) => {
-        const href = a.getAttribute("href");
-        const el = href ? document.querySelector(href) : null;
-        return el ? { href, el } : null;
-      })
-      .filter(Boolean);
-
-    const setActive = () => {
-      const y = window.scrollY + 130;
-      let currentId = "#home";
-      sections.forEach((s) => {
-        if (s.el.offsetTop <= y) currentId = s.href;
-      });
-      sectionLinks.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === currentId));
-    };
-
-    setActive();
-    window.addEventListener("scroll", setActive, { passive: true });
-
-    if (toggler && nav && !window.bootstrap?.Collapse) {
-      toggler.addEventListener("click", () => {
-        const isOpen = nav.classList.contains("show");
-        nav.classList.toggle("show", !isOpen);
-        toggler.setAttribute("aria-expanded", String(!isOpen));
-      });
-    }
   });
+
+  const sections = sectionLinks.map(a => {
+    const href = a.getAttribute("href");
+    const el = href ? document.querySelector(href) : null;
+    return el ? { href, el } : null;
+  }).filter(Boolean);
+
+  const setActive = () => {
+    const y = window.scrollY + 130;
+    let currentId = "#home";
+    sections.forEach(s => { if (s.el.offsetTop <= y) currentId = s.href; });
+    sectionLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === currentId));
+  };
+  setActive();
+  window.addEventListener("scroll", setActive, { passive: true });
+
+  if (toggler && nav && !window.bootstrap?.Collapse) {
+    toggler.addEventListener("click", () => {
+      const isOpen = nav.classList.contains("show");
+      nav.classList.toggle("show", !isOpen);
+      toggler.setAttribute("aria-expanded", String(!isOpen));
+    });
+  }
+});
 </script>
