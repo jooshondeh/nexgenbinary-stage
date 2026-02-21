@@ -1,13 +1,11 @@
 ---
 const { site } = Astro.props;
 
-// Order updated per request:
-// Home, Why Choose Us, Services, Service Plans, Who We Serve, About, Contact
 const navItems = [
   { label: "Home", href: "#home" },
-  { label: "Why Choose Us", href: "#why-choose-us" },
+  { label: "What We Do", href: "#what-we-do" },
   { label: "Services", href: "#services" },
-  { label: "Service Plans", href: "#pricing" },
+  { label: "Pricing", href: "#pricing" },
   { label: "Who We Serve", href: "#who-we-serve" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
@@ -34,9 +32,7 @@ const navItems = [
     <div class="collapse navbar-collapse" id="nbNav">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 nb-nav-nowrap">
         {navItems.map((item) => (
-          <li class="nav-item">
-            <a class="nav-link" href={item.href} data-nav-link>{item.label}</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href={item.href} data-nav-link>{item.label}</a></li>
         ))}
         <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
           <a class="btn nb-btn-primary nb-btn-inlineicon nb-call-btn" href="#contact" data-nav-link aria-label="Call NexGen Binary 804-000-0000">
