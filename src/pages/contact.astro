@@ -1,32 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
 ---
-<Layout title="Contact | NexGen Binary" active="contact">
+<Layout title="Contact | NexGen Binary" active="contact" includeFaqSchema=false>
 
-<main class="container page">
-  <div class="grid2">
-    <section class="panel">
-      <h1>Contact NexGen Binary</h1>
-      <ul class="bullet-list"><li>Richmond, VA & surrounding areas</li><li><a href="tel:+18040000000" class="track" data-event="call_click" data-label="contact_call">(804) 000-0000</a></li><li>Mon–Fri: 8:00 AM – 6:00 PM</li></ul>
-      <p class="notice">Please do not include patient data or sensitive information in web forms.</p>
-      <div class="inline-row">
-        <a href="/consultation#book" class="btn primary track" data-event="cta_click" data-label="contact_book"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
-        <a href="https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID" target="_blank" rel="noopener" class="btn ghost track" data-event="gbp_click" data-label="contact_gbp"><i class="fa-brands fa-google"></i> Google Business Profile</a>
-      </div>
-    </section>
-    <section class="panel">
-      <h2>Send Message</h2>
-      <form class="form message-form" action="https://formspree.io/f/REPLACE_CONTACT_FORM_ID" method="post" novalidate data-form-name="contact_message">
-        <input type="hidden" name="_subject" value="New NexGen Binary Contact Message">
-        <label>Name *<input type="text" name="name" required></label>
-        <label>Company / Practice<input type="text" name="company"></label>
-        <label>Email *<input type="email" name="email" required></label>
-        <label>Message *<textarea name="message" rows="6" required placeholder="General descriptions only (no patient data)"></textarea></label>
-        <div class="form-status" aria-live="polite"></div>
-        <button type="submit" class="btn primary"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
-      </form>
-    </section>
-  </div>
-</main>
+<main class="container page"><div class="grid2">
+<section class="panel"><h1>Contact</h1><p class="muted">Richmond-area service.</p>
+<div class="inline-row">
+<a href="/consultation#book" class="btn primary"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
+<a href="https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID" class="btn ghost" target="_blank"><i class="fa-brands fa-google"></i> Google Business Profile</a>
+</div></section>
+<section class="panel">
+<form class="form message-form" action="https://formspree.io/f/REPLACE_CONTACT_FORM_ID" method="post" novalidate>
+<label>Name *<input type="text" name="name" required></label>
+<label>Email *<input type="email" name="email" required></label>
+<label>Message *<textarea name="message" rows="6" required></textarea></label>
+<div class="form-status"></div>
+<button type="submit" class="btn primary"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+</form>
+</section></div></main>
 
 </Layout>

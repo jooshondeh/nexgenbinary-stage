@@ -1,126 +1,80 @@
 ---
 import Layout from "../layouts/Layout.astro";
 ---
-<Layout title="NexGen Binary | Managed IT for Dental & Healthcare Offices" active="home" includeFaqSchema={true}>
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow">Virginia-Based IT Support</span>
-          <h1>Managed IT for Dental & Healthcare Offices</h1>
-          <p class="lead">Responsive, security-focused support for Microsoft 365, devices, networking, and daily office operations—with fully managed and co-managed options.</p>
-          <div class="inline-row">
-            <a href="/consultation#book" class="btn primary track" data-event="cta_click" data-label="hero_book"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
-            <a href="/contact" class="btn ghost track" data-event="cta_click" data-label="hero_message"><i class="fa-solid fa-paper-plane"></i> Send Message</a>
-          </div>
-          <div class="pill-row big">
-            <span><i class="fa-brands fa-microsoft"></i> Microsoft 365 Support</span>
-            <span><i class="fa-solid fa-shield-halved"></i> Security-First IT</span>
-            <span><i class="fa-solid fa-location-dot"></i> Richmond Area Coverage</span>
-            <span><i class="fa-solid fa-tooth"></i> Dental & Healthcare Focus</span>
-          </div>
+<Layout title="NexGen Binary | Home" active="home" includeFaqSchema=true>
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Virginia-Based IT Support</span>
+        <h1>Managed IT for Dental & Healthcare Offices</h1>
+        <p class="lead">Responsive, security-focused support for Microsoft 365, devices, networking, and daily office operations.</p>
+        <div class="inline-row">
+          <a href="/consultation#book" class="btn primary track" data-event="cta_click" data-label="hero_book"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
+          <a href="/contact" class="btn ghost track" data-event="cta_click" data-label="hero_message"><i class="fa-solid fa-paper-plane"></i> Send Message</a>
         </div>
-        <aside class="panel">
-          <h3>Quick Start</h3>
-          <ul class="check-list">
-            <li>Book a consultation</li>
-            <li>Share your office size and IT priorities</li>
-            <li>Review Fully Managed or Co-Managed options</li>
-            <li>Plan the best next step</li>
+        <div class="pill-row">
+          <span><i class="fa-solid fa-network-wired"></i> Fully Managed IT</span>
+          <span><i class="fa-solid fa-map-location-dot"></i> Local & Responsive</span>
+          <span><i class="fa-brands fa-microsoft"></i> Microsoft 365</span>
+        </div>
+      </div>
+      <aside class="panel">
+        <h3>Quick Start</h3>
+        <ul class="check-list">
+          <li>Book a consultation</li><li>Share office size and IT priorities</li><li>Review service options</li><li>Plan next steps</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="section-head"><h2>Why Practices Choose NexGen Binary</h2></div>
+    <div class="grid3">
+      <article class="card"><div class="icon-box"><i class="fa-solid fa-network-wired icon"></i></div><h3>Fully Managed IT</h3><p>Proactive support and maintenance for day-to-day operations.</p></article>
+      <article class="card"><div class="icon-box"><i class="fa-solid fa-map-location-dot icon"></i></div><h3>Local & Responsive</h3><p>Richmond-area coverage with remote-first triage and onsite options.</p></article>
+      <article class="card"><div class="icon-box"><i class="fa-solid fa-shield-halved icon"></i></div><h3>Security-Focused</h3><p>Practical safeguards, MFA support, and backup checks.</p></article>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="section-head"><h2>Service Plans</h2><p class="muted">Two large plan bubbles with details.</p></div>
+    <div class="grid2">
+      <article class="panel plan-card">
+        <div class="plan-head">
+          <div class="plan-title">
+            <div class="icon-box"><i class="fa-solid fa-network-wired icon"></i></div>
+            <div><h3>Fully Managed IT</h3><p class="small muted">Complete outsourced support</p></div>
+          </div>
+          <button class="toggle-btn" type="button" aria-expanded="true"><i class="fa-solid fa-circle-info"></i> More Info</button>
+        </div>
+        <div class="toggle-content open">
+          <ul class="bullet-list">
+            <li>Monitoring and alerting</li><li>Remote helpdesk + onsite support</li><li>Patch management</li>
+            <li>Microsoft 365 administration</li><li>Backup checks</li><li>Network support</li>
           </ul>
-          <a href="/services" class="btn primary full track" data-event="cta_click" data-label="hero_explore_services"><i class="fa-solid fa-layer-group"></i> Explore Services</a>
-        </aside>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="section-head"><h2>Why Practices Choose NexGen Binary</h2></div>
-      <div class="grid3">
-        <article class="card"><div class="icon-box"><i class="fa-solid fa-network-wired icon"></i></div><h3>Fully Managed IT</h3><p>Proactive monitoring, patching, helpdesk support, and ongoing maintenance for office stability.</p></article>
-        <article class="card"><div class="icon-box"><i class="fa-solid fa-map-location-dot icon"></i></div><h3>Local & Responsive</h3><p>Richmond-area support with remote-first triage and onsite coverage when needed.</p></article>
-        <article class="card"><div class="icon-box"><i class="fa-solid fa-shield-halved icon"></i></div><h3>Security-Focused Support</h3><p>Practical safeguards, backup checks, MFA support, and documentation-driven service.</p></article>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="section-head"><h2>Service Plans</h2><p class="muted">Two large plan bubbles with names, info buttons, and full plan details.</p></div>
-      <div class="grid2">
-        <article class="panel plan-card">
-          <div class="plan-head">
-            <div class="plan-title">
-              <div class="icon-box"><i class="fa-solid fa-network-wired icon"></i></div>
-              <div><h3>Fully Managed IT</h3><p class="small muted">Complete outsourced support</p></div>
-            </div>
-            <button class="toggle-btn" type="button" aria-expanded="true"><i class="fa-solid fa-circle-info"></i> More Info</button>
+          <a href="/consultation#book" class="btn primary"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
+        </div>
+      </article>
+      <article class="panel plan-card">
+        <div class="plan-head">
+          <div class="plan-title">
+            <div class="icon-box"><i class="fa-solid fa-people-group icon"></i></div>
+            <div><h3>Co-Managed IT</h3><p class="small muted">Partner with internal IT</p></div>
           </div>
-          <div class="toggle-content open">
-            <p>Best for offices that want a single IT partner handling day-to-day support and stability.</p>
-            <ul class="bullet-list">
-              <li>Monitoring and alerting</li><li>Remote helpdesk + onsite support</li><li>Patch management</li><li>Microsoft 365 administration</li>
-              <li>Endpoint security support</li><li>Backup monitoring checks</li><li>Network / Wi-Fi support</li><li>Monthly support reviews</li>
-            </ul>
-            <a href="/consultation#book" class="btn primary track" data-event="cta_click" data-label="plan_fully"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
-          </div>
-        </article>
+          <button class="toggle-btn" type="button" aria-expanded="true"><i class="fa-solid fa-circle-info"></i> More Info</button>
+        </div>
+        <div class="toggle-content open">
+          <ul class="bullet-list">
+            <li>Escalation support</li><li>Project assistance</li><li>Vendor coordination</li>
+            <li>Cloud / M365 help</li><li>Documentation standards</li><li>Overflow coverage</li>
+          </ul>
+          <a href="/consultation#book" class="btn primary"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
 
-        <article class="panel plan-card">
-          <div class="plan-head">
-            <div class="plan-title">
-              <div class="icon-box"><i class="fa-solid fa-people-group icon"></i></div>
-              <div><h3>Co-Managed IT</h3><p class="small muted">Partner with internal IT</p></div>
-            </div>
-            <button class="toggle-btn" type="button" aria-expanded="true"><i class="fa-solid fa-circle-info"></i> More Info</button>
-          </div>
-          <div class="toggle-content open">
-            <p>Ideal for organizations with internal IT staff who need backup, escalation help, and project support.</p>
-            <ul class="bullet-list">
-              <li>Escalation support</li><li>Project support</li><li>Cloud and M365 assistance</li><li>Vendor coordination</li>
-              <li>Security reviews</li><li>Documentation standards</li><li>Overflow coverage</li><li>Flexible collaboration model</li>
-            </ul>
-            <a href="/consultation#book" class="btn primary track" data-event="cta_click" data-label="plan_comanaged"><i class="fa-solid fa-calendar-check"></i> Book a Consult</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="section-head"><h2>Who We Serve</h2></div>
-      <div class="grid3">
-        <div class="chip"><i class="fa-solid fa-tooth"></i> Dental Practices</div>
-        <div class="chip"><i class="fa-solid fa-stethoscope"></i> Medical Clinics</div>
-        <div class="chip"><i class="fa-solid fa-notes-medical"></i> Specialty Practices</div>
-        <div class="chip"><i class="fa-solid fa-building-circle-check"></i> Multi-Location Offices</div>
-        <div class="chip"><i class="fa-solid fa-user-gear"></i> Internal IT Teams</div>
-        <div class="chip"><i class="fa-solid fa-cloud"></i> Microsoft 365 Environments</div>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="section-head"><h2>Service Areas</h2></div>
-      <div class="grid3">
-        <a class="card link-card" href="/service-area-richmond"><div class="icon-box"><i class="fa-solid fa-city icon"></i></div><h3>Richmond</h3></a>
-        <a class="card link-card" href="/service-area-henrico"><div class="icon-box"><i class="fa-solid fa-map icon"></i></div><h3>Henrico</h3></a>
-        <a class="card link-card" href="/service-area-chesterfield"><div class="icon-box"><i class="fa-solid fa-location-dot icon"></i></div><h3>Chesterfield</h3></a>
-      </div>
-      <div class="inline-row top-gap"><a href="https://www.google.com/maps?cid=REPLACE_WITH_YOUR_GBP_ID" target="_blank" rel="noopener" class="btn ghost track" data-event="gbp_click" data-label="home_gbp"><i class="fa-brands fa-google"></i> View Google Business Profile</a></div>
-    </section>
-
-    <section class="container">
-      <div class="section-head"><h2>Client Feedback</h2></div>
-      <div class="grid3">
-        <div class="card"><p>“Add your first testimonial here.”</p><small>— Dental Practice (Placeholder)</small></div>
-        <div class="card"><p>“Add a short quote about responsiveness and support quality.”</p><small>— Office Manager (Placeholder)</small></div>
-        <div class="card"><p>“Add a quote about M365 or project support.”</p><small>— Healthcare Admin (Placeholder)</small></div>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="section-head"><h2>Frequently Asked Questions</h2></div>
-      <div class="faq">
-        <details><summary>Do you support dental and healthcare offices?</summary><p>Yes. That is the primary focus of the service model shown on this site.</p></details>
-        <details><summary>Do you offer onsite support in the Richmond region?</summary><p>Yes. Remote support is used for speed, and onsite support is available when needed.</p></details>
-        <details><summary>Can you work with our internal IT person?</summary><p>Yes. The Co-Managed IT plan is designed for that setup.</p></details>
-      </div>
-    </section>
-  </main>
 </Layout>
