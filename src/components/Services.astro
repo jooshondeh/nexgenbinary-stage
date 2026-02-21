@@ -4,9 +4,8 @@ import IconBadge from "./IconBadge.astro";
 const services = site.services ?? {};
 const groups = services.groups ?? [];
 const networkIdx = groups.findIndex(g => /network|wi-?fi|infrastructure|voip|camera/i.test(g.title ?? ""));
-const normalized = groups.map((g, idx)=> ({...g, _idx: idx}));
-const topGroups = normalized.filter((g, idx)=> idx !== networkIdx);
-const networkGroup = networkIdx >=0 ? normalized[networkIdx] : null;
+const networkGroup = networkIdx >= 0 ? groups[networkIdx] : null;
+const otherGroups = groups.filter((_, i) => i !== networkIdx);
 ---
 <section id="services" class="nb-anchor-offset nb-section" style="background:#f8fafc">
   <div class="container">
@@ -19,22 +18,22 @@ const networkGroup = networkIdx >=0 ? normalized[networkIdx] : null;
     </div>
 
     <div class="row g-3">
-      {topGroups.map((g) => {
-        let icon = "monitor";
+      {otherGroups.map((g) => {
         const t = (g.title ?? "").toLowerCase();
-        if (t.includes("security")) icon = "lockshield";
-        else if (t.includes("cloud") || t.includes("microsoft")) icon = "cloud";
+        let icon = "monitor";
+        if (t.includes("managed")) icon = "tools";
+        else if (t.includes("security")) icon = "lockshield";
+        else if (t.includes("microsoft") || t.includes("cloud")) icon = "cloud";
         else if (t.includes("emr") || t.includes("clinical")) icon = "people";
-        else if (t.includes("managed")) icon = "tools";
         return (
           <div class="col-lg-6">
             <div class="p-4 nb-card nb-pop h-100 bg-white">
               <div class="d-flex align-items-center gap-2 mb-3">
-                <div class="nb-icon-wrap" style="width:38px;height:38px;flex:0 0 38px"><IconBadge name={icon} /></div>
+                <div class="nb-icon-wrap" style="width:38px;height:38px;min-width:38px"><IconBadge name={icon} /></div>
                 <h3 class="h5 fw-semibold mb-0">{g.title}</h3>
               </div>
               <ul class="mb-0">
-                {(g.items ?? []).map((it) => (<li class="mb-2">{it}</li>))}
+                {(g.items ?? []).map((it) => <li class="mb-2">{it}</li>)}
               </ul>
             </div>
           </div>
@@ -43,9 +42,9 @@ const networkGroup = networkIdx >=0 ? normalized[networkIdx] : null;
 
       {networkGroup && (
         <div class="col-12">
-          <div class="nb-card nb-pop h-100 bg-white nb-service-wide">
+          <div class="nb-card nb-pop bg-white nb-service-wide h-100">
             <div class="d-flex align-items-center gap-2 mb-3">
-              <div class="nb-icon-wrap" style="width:40px;height:40px;flex:0 0 40px"><IconBadge name="wifi" /></div>
+              <div class="nb-icon-wrap" style="width:40px;height:40px;min-width:40px"><IconBadge name="wifi" /></div>
               <h3 class="h5 fw-semibold mb-0">{networkGroup.title}</h3>
             </div>
             <ul class="nb-service-grid2 mb-0">
