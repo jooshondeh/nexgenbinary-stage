@@ -1,4 +1,4 @@
-:root{--nb-navy:#0a2540;--nb-navy-2:#123a66;--nb-blue:#2487ce;--nb-orange:#f48824;--nb-text:#1f2d3d;--nb-muted:#5f6c7b;--nb-surface:#f6f9fc;--nb-border:#d7e1ec;--nb-shadow:0 12px 30px rgba(20,45,90,.08);--nb-shadow-lg:0 22px 48px rgba(20,45,90,.16)}
+:root{--nb-navy:#0a2540;--nb-navy-2:#123a66;--nb-blue:#2487ce;--nb-orange:#f48824;--nb-text:#1f2d3d;--nb-surface:#f6f9fc;--nb-border:#d7e1ec;--nb-shadow:0 12px 30px rgba(20,45,90,.08);--nb-shadow-lg:0 22px 48px rgba(20,45,90,.16)}
 html,body{overflow-x:hidden}
 body{color:var(--nb-text);font-family:"Inter",system-ui,sans-serif;background:#fff}
 h1,h2,h3,h4,.navbar-brand,.section-title{font-family:"Plus Jakarta Sans","Inter",sans-serif;letter-spacing:-.02em}
@@ -24,7 +24,7 @@ h1,h2,h3,h4,.navbar-brand,.section-title{font-family:"Plus Jakarta Sans","Inter"
 .nb-slogan{color:rgba(255,255,255,.95)} 
 .nb-hero-panel{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:1rem;box-shadow:0 16px 34px rgba(0,0,0,.18);backdrop-filter:blur(5px)}
 .nb-hero-panel h2{color:#fff!important}
-.nb-hero-panel .fw-semibold{color:#1f2d3d !important;} /* fix white titles in What We Do cards */
+.nb-hero-panel .fw-semibold{color:#1f2d3d !important;}
 .nb-hero-panel .text-secondary{color:#5f6c7b !important;}
 
 .nb-card{border:1px solid rgba(14,26,43,.08);border-radius:1rem;background:#fff;box-shadow:var(--nb-shadow);transition:transform .2s,box-shadow .2s,border-color .2s,background .2s;padding:1rem}
@@ -35,10 +35,24 @@ h1,h2,h3,h4,.navbar-brand,.section-title{font-family:"Plus Jakarta Sans","Inter"
 .nb-icon-row{display:flex;gap:.85rem;align-items:flex-start}
 .nb-icon-wrap{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex:0 0 44px;background:linear-gradient(135deg,rgba(36,135,206,.12),rgba(71,178,228,.16));color:#1e6ba3;border:1px solid rgba(36,135,206,.18);transition:transform .18s,background .18s,color .18s;box-shadow:0 6px 14px rgba(20,45,90,.06)}
 .nb-icon{display:inline-block;width:22px;height:22px;line-height:0}.nb-icon svg{width:22px;height:22px;display:block}.nb-icon-sm{width:18px;height:18px}.nb-icon-sm svg{width:18px;height:18px}
-.nb-checklist{display:grid;gap:.65rem}
-.nb-checkrow{display:flex;align-items:flex-start;gap:.6rem}
-.nb-checkrow .nb-icon-wrap{width:28px;height:28px;flex:0 0 28px;border-radius:999px;background:rgba(244,136,36,.12);border-color:rgba(244,136,36,.3);color:var(--nb-orange)}
-.nb-checkrow .nb-icon svg{width:16px;height:16px}
+
+/* Philosophy check rows: remove extra bubble/circle look */
+.nb-checklist{display:grid;gap:.7rem}
+.nb-checkrow{display:flex;align-items:flex-start;gap:.65rem}
+.nb-checkrow .nb-icon-wrap{
+  width:auto;height:auto;flex:0 0 auto;border:none;background:transparent;box-shadow:none;padding-top:.1rem
+}
+.nb-checkrow .nb-icon{width:18px;height:18px;color:var(--nb-orange)}
+.nb-checkrow .nb-icon svg{width:18px;height:18px}
+
+/* Why choose us cards larger to align with left content area */
+.nb-why-grid .nb-card{min-height:116px;padding:1.1rem 1rem}
+.nb-why-grid .fw-semibold{line-height:1.35}
+
+/* Services special 2-column list card */
+.nb-service-grid2{display:grid;grid-template-columns:1fr 1fr;gap:.35rem 1rem;margin:0;padding-left:1rem}
+.nb-service-grid2 li{margin-bottom:.35rem}
+@media (max-width:767px){.nb-service-grid2{grid-template-columns:1fr}}
 
 .nb-btn-primary,.btn-primary{border:0!important;color:#fff!important;font-weight:700;border-radius:999px;padding:.82rem 1.08rem;background:linear-gradient(135deg,#f59a3b 0%,var(--nb-orange) 55%,#e97707 100%)!important;box-shadow:0 12px 24px rgba(244,136,36,.28);transition:transform .15s,box-shadow .15s}
 .nb-btn-primary:hover,.btn-primary:hover{color:#fff!important;transform:translateY(-2px) scale(1.02);box-shadow:0 16px 28px rgba(244,136,36,.34)}
@@ -51,4 +65,18 @@ h1,h2,h3,h4,.navbar-brand,.section-title{font-family:"Plus Jakarta Sans","Inter"
 .nb-table-wrap{overflow-x:auto;border-radius:1rem;border:1px solid rgba(14,26,43,.10);box-shadow:var(--nb-shadow);background:#fff}.nb-table{margin:0;min-width:940px}.nb-table thead th{background:#d8e9f7;color:#17324f;font-weight:800}
 .form-control{border-radius:.8rem;border-color:var(--nb-border);padding:.72rem .85rem}.form-control:focus{border-color:#0d6efd;box-shadow:0 0 0 .2rem rgba(13,110,253,.12)}
 .nb-contact-item{display:flex;gap:.7rem;align-items:flex-start}.nb-contact-item .nb-icon-wrap{width:38px;height:38px;flex:0 0 38px;border-radius:10px}
+
+/* Footer separation + back-to-top highlight */
+.nb-footer{
+  background:linear-gradient(180deg,#071724,#0a1d2e);
+  color:#eaf4ff;
+  border-top:3px solid rgba(244,136,36,.85);
+  box-shadow:0 -10px 25px rgba(0,0,0,.12)
+}
+.nb-footer a{color:#eaf4ff!important;text-decoration:none;position:relative}
+.nb-footer a.nb-footer-toplink::after{
+  content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--nb-orange),#ffc183);transform:scaleX(1);transform-origin:left
+}
+.nb-footer a:hover{color:#fff!important}
 @media (max-width:991px){.nb-section{padding:4rem 0}}

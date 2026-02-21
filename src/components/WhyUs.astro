@@ -25,10 +25,10 @@ const icons = ["tools","chart","shield","people"];
         </div>
       </div>
       <div class="col-lg-7">
-        <div class="row g-3">
+        <div class="row g-3 nb-why-grid">
           {(why.bullets ?? []).map((b, i) => (
             <div class="col-md-6">
-              <div class="p-4 nb-card nb-pop h-100">
+              <div class="nb-card nb-pop h-100 d-flex align-items-start">
                 <div class="nb-icon-row">
                   <div class="nb-icon-wrap"><IconBadge name={icons[i % icons.length]} /></div>
                   <div class="fw-semibold">{b}</div>

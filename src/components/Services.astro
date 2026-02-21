@@ -15,19 +15,31 @@ const iconMap = ["monitor","shield","cloud","wifi","phone","camera","tools","peo
     </div>
 
     <div class="row g-3">
-      {(services.groups ?? []).map((g, idx) => (
-        <div class="col-lg-6">
-          <div class="p-4 nb-card nb-pop h-100 bg-white">
-            <div class="d-flex align-items-center gap-2 mb-3">
-              <div class="nb-icon-wrap" style="width:38px;height:38px;flex:0 0 38px"><IconBadge name={iconMap[idx % iconMap.length]} /></div>
-              <h3 class="h5 fw-semibold mb-0">{g.title}</h3>
+      {(services.groups ?? []).map((g, idx) => {
+        const title = (g.title ?? "").toLowerCase();
+        const isNetwork = title.includes("network") || title.includes("wi-fi") || title.includes("infrastructure");
+        const icon = isNetwork ? "wifi" : iconMap[idx % iconMap.length];
+        return (
+          <div class="col-lg-6">
+            <div class="p-4 nb-card nb-pop h-100 bg-white">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <div class="nb-icon-wrap" style="width:38px;height:38px;flex:0 0 38px"><IconBadge name={icon} /></div>
+                <h3 class="h5 fw-semibold mb-0">{g.title}</h3>
+              </div>
+
+              {isNetwork ? (
+                <ul class="nb-service-grid2 mb-0">
+                  {(g.items ?? []).map((it) => <li>{it}</li>)}
+                </ul>
+              ) : (
+                <ul class="mb-0">
+                  {(g.items ?? []).map((it) => (<li class="mb-2">{it}</li>))}
+                </ul>
+              )}
             </div>
-            <ul class="mb-0">
-              {(g.items ?? []).map((it) => (<li class="mb-2">{it}</li>))}
-            </ul>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 </section>
