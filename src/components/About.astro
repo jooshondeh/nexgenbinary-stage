@@ -1,0 +1,29 @@
+---
+const { site } = Astro.props;
+import IconBadge from "./IconBadge.astro";
+const a = site.about ?? {};
+---
+<section id="about" class="nb-anchor-offset nb-section" style="background:#f8fafc">
+  <div class="container">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-6 d-flex flex-column gap-3">
+        <h2 class="section-title fw-bold mb-0">{a.title ?? "About"}</h2>
+        <div class="p-4 nb-card nb-pop bg-white">
+          <div class="d-flex align-items-center gap-2 mb-2"><div class="nb-icon-wrap" style="width:38px;height:38px;flex:0 0 38px"><IconBadge name="people" /></div><div class="fw-semibold">{a.whoWeAreTitle ?? "Who We Are"}</div></div>
+          <p class="text-secondary mb-0 mt-2">{a.whoWeAre ?? ""}</p>
+        </div>
+        <div class="p-4 nb-card nb-pop bg-white">
+          <div class="d-flex align-items-center gap-2 mb-2"><div class="nb-icon-wrap" style="width:38px;height:38px;flex:0 0 38px"><IconBadge name="tools" /></div><div class="fw-semibold">{a.leadershipTitle ?? "Leadership & Team Experience"}</div></div>
+          <p class="text-secondary mb-0 mt-2">{a.leadership ?? ""}</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="p-4 nb-card nb-pop bg-white h-100">
+          <div class="d-flex align-items-center gap-2"><div class="nb-icon-wrap" style="width:38px;height:38px;flex:0 0 38px"><IconBadge name="shield" /></div><div class="fw-semibold">{a.securityTitle ?? "Security & Compliance-Aware by Design"}</div></div>
+          <ul class="mt-3">{(a.securityBullets ?? []).map((x) => (<li class="mb-2">{x}</li>))}</ul>
+          <div class="alert alert-primary mt-3 mb-0"><strong>{a.licensed ?? "Licensed and insured."}</strong> We build with documentation and accountability from day one.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

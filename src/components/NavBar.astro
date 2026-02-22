@@ -1,0 +1,94 @@
+---
+const { site } = Astro.props;
+const navItems = [
+  { label: "Home", href: "#home" },
+  { label: "Services", href: "#services" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Who We Serve", href: "#who-we-serve" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
+const embeddedLogo = "/brand/company-logo.png";
+---
+<nav class="navbar navbar-expand-lg fixed-top nb-navbar" aria-label="Main navigation">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
+      <span class="nb-logo-wrap" style="display:inline-flex !important;align-items:center;justify-content:center;width:44px;height:44px;min-width:44px;border-radius:10px;background:#fff;padding:4px;border:1px solid rgba(255,255,255,.55);box-shadow:0 8px 18px rgba(0,0,0,.20)">
+        <img src={embeddedLogo} alt="NexGen Binary logo" class="nb-logo" width="36" height="36"
+          style="display:block !important;visibility:visible !important;opacity:1 !important;width:36px !important;height:36px !important;object-fit:contain !important;background:transparent !important;" />
+      </span>
+      <span class="fw-bold fs-3 nb-brand-text">{site?.brand?.logoText ?? "NexGen Binary"}</span>
+    </a>
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#nbNav" aria-controls="nbNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nbNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 flex-nowrap nb-nav-nowrap">
+      <li class="nav-item"><a class="nav-link" href="#home" data-nav-target="home">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#services" data-nav-target="services">Services</a></li>
+      <li class="nav-item"><a class="nav-link" href="#pricing" data-nav-target="pricing">Pricing</a></li>
+      <li class="nav-item"><a class="nav-link" href="#who-we-serve" data-nav-target="who-we-serve">Who We Serve</a></li>
+      <li class="nav-item"><a class="nav-link" href="#about" data-nav-target="about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#contact" data-nav-target="contact">Contact</a></li>
+      <li class="nav-item ms-lg-2">
+        <a class="nav-link nb-callchip" href="#contact" aria-label="Call 804-000-0000">
+          <span class="nb-icon nb-icon-sm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.3 19.3 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.6a2 2 0 0 1-.45 2.11L8 9.66a16 16 0 0 0 6.34 6.34l1.23-1.23a2 2 0 0 1 2.11-.45c.83.29 1.7.5 2.6.62A2 2 0 0 1 22 16.92z"/></svg></span>
+          804-000-0000
+        </a>
+      </li>
+    </ul>
+    </div>
+  </div>
+</nav>
+
+<script is:inline>
+document.addEventListener("DOMContentLoaded", () => {
+  const nav = document.getElementById("nbNav");
+  const toggler = document.querySelector(".navbar-toggler");
+  const links = document.querySelectorAll("[data-nav-link]");
+  const sectionLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (!nav || window.innerWidth >= 992 || !nav.classList.contains("show")) return;
+      if (window.bootstrap?.Collapse) window.bootstrap.Collapse.getOrCreateInstance(nav).hide();
+      else { nav.classList.remove("show"); toggler?.setAttribute("aria-expanded","false"); }
+    });
+  });
+
+  const sections = sectionLinks.map((a) => {
+    const href = a.getAttribute("href");
+    const el = href ? document.querySelector(href) : null;
+    return el ? { href, el } : null;
+  }).filter(Boolean);
+
+  const setActive = () => {
+    const nearBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 24);
+    let currentId = "#home";
+
+    if (nearBottom && document.querySelector("#contact")) {
+      currentId = "#contact";
+    } else {
+      const y = window.scrollY + window.innerHeight * 0.35;
+      sections.forEach((s) => { if (s.el.offsetTop <= y) currentId = s.href; });
+      for (const s of sections) {
+        const r = s.el.getBoundingClientRect();
+        if (r.top <= 140 && r.bottom >= 140) { currentId = s.href; break; }
+      }
+    }
+    sectionLinks.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === currentId));
+  };
+
+  setActive();
+  window.addEventListener("scroll", setActive, { passive: true });
+  window.addEventListener("resize", setActive);
+
+  if (toggler && nav && !window.bootstrap?.Collapse) {
+    toggler.addEventListener("click", () => {
+      const isOpen = nav.classList.contains("show");
+      nav.classList.toggle("show", !isOpen);
+      toggler.setAttribute("aria-expanded", String(!isOpen));
+    });
+  }
+});
+</script>

@@ -1,0 +1,58 @@
+---
+const { site } = Astro.props;
+import IconBadge from "./IconBadge.astro";
+const services = site.services ?? {};
+const groups = services.groups ?? [];
+const networkIdx = groups.findIndex(g => /network|wi-?fi|infrastructure|voip|camera/i.test(g.title ?? ""));
+const networkGroup = networkIdx >= 0 ? groups[networkIdx] : null;
+const otherGroups = groups.filter((_, i) => i !== networkIdx);
+---
+<section id="services" class="nb-anchor-offset nb-section" style="background:#f8fafc">
+  <div class="container">
+    <div class="d-flex flex-column flex-lg-row align-items-lg-end justify-content-between gap-3 mb-4">
+      <div>
+        <h2 class="section-title fw-bold mb-1">{services.title ?? "Services"}</h2>
+        <p class="text-secondary mb-0">A complete set of IT capabilities tailored for dental practices.</p>
+      </div>
+      <a class="btn nb-btn-primary" href={site.bookings?.url} target="_blank" rel="noopener">Book a consult</a>
+    </div>
+
+    <div class="nb-services-grid">
+      {otherGroups.map((g) => {
+        const t = (g.title ?? "").toLowerCase();
+        let icon = "monitor";
+        if (t.includes("managed")) icon = "tools";
+        else if (t.includes("security")) icon = "lockshield";
+        else if (t.includes("microsoft") || t.includes("cloud")) icon = "cloud";
+        else if (t.includes("emr") || t.includes("clinical")) icon = "people";
+        return (
+          <div class="col-lg-6">
+            <div class="p-4 nb-card nb-pop h-100 bg-white">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <div class="nb-icon-wrap" style="width:38px;height:38px;min-width:38px"><IconBadge name={icon} /></div>
+                <h3 class="h5 fw-semibold mb-0">{g.title}</h3>
+              </div>
+              <ul class="mb-0">
+                {(g.items ?? []).map((it) => <li class="mb-2">{it}</li>)}
+              </ul>
+            </div>
+          </div>
+        );
+      })}
+
+      {networkGroup && (
+        <div class="col-12">
+          <div class="nb-card nb-pop bg-white h-100">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="nb-icon-wrap" style="width:40px;height:40px;min-width:40px"><IconBadge name="wifi" /></div>
+              <h3 class="h5 fw-semibold mb-0">{networkGroup.title}</h3>
+            </div>
+            <ul class="nb-service-grid2 mb-0">
+              {(networkGroup.items ?? []).map((it) => <li>{it}</li>)}
+            </ul>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
