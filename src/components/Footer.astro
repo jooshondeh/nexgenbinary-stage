@@ -1,0 +1,10 @@
+
+---
+const { site } = Astro.props;
+---
+<footer class="nb-footer">
+  <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <div>{site.footer?.copyright ?? '© NexGen Binary LLC. All rights reserved.'}</div>
+    <a href="#pageTop">Back to top</a>
+  </div>
+</footer>

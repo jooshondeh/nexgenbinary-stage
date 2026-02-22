@@ -1,0 +1,47 @@
+
+---
+import IconBadge from './IconBadge.astro';
+const { site } = Astro.props;
+const nav = site.nav ?? [];
+---
+<header class="nb-header" id="pageTop">
+  <div class="container nb-nav-wrap">
+    <a href="#home" class="nb-brand">
+      <img src="/Company_logo.png" alt="NexGen Binary logo" class="nb-brand-logo" />
+      <div class="nb-brand-text">
+        <div class="nb-brand-name">{site.brand?.name}</div>
+        <div class="nb-brand-slogan">{site.brand?.slogan}</div>
+      </div>
+    </a>
+    <button id="nbNavToggle" class="nb-nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="nbNavMenu" class="nb-nav-menu">
+      {nav.map((item) => <a class="nb-nav-link" href={item.href}>{item.label}</a>)}
+      <a class="nb-phone-pill" href={site.contact?.phoneHref ?? site.topbar?.phoneHref}>
+        <span class="nb-pill-icon"><IconBadge name="phone" /></span>
+        <span>{site.contact?.phoneText ?? '804-000-0000'}</span>
+      </a>
+    </nav>
+  </div>
+  <script>
+    const btn = document.getElementById('nbNavToggle');
+    const menu = document.getElementById('nbNavMenu');
+    btn?.addEventListener('click', () => {
+      menu?.classList.toggle('open');
+      btn.setAttribute('aria-expanded', menu?.classList.contains('open') ? 'true' : 'false');
+    });
+    menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=> menu.classList.remove('open')));
+    const sections = ['home','services','pricing','who-we-serve','about','contact'].map(id=>document.getElementById(id)).filter(Boolean);
+    const links = [...document.querySelectorAll('.nb-nav-link')];
+    const setActive = () => {
+      let current = 'home';
+      const offset = 140;
+      sections.forEach(sec => { if (window.scrollY + offset >= sec.offsetTop) current = sec.id; });
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${current}`));
+    };
+    window.addEventListener('scroll', setActive, {passive:true});
+    window.addEventListener('load', setActive);
+    if (location.hash === '') window.scrollTo({top:0, behavior:'auto'});
+  </script>
+</header>

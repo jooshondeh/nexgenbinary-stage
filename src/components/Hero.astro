@@ -1,0 +1,39 @@
+
+---
+import IconBadge from './IconBadge.astro';
+const { site } = Astro.props;
+const h = site.hero ?? {};
+const w = site.whatWeDo ?? {};
+const icons = ['tools','shield','people','cloud'];
+---
+<section id="home" class="nb-hero nb-anchor-offset">
+  <div class="container">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-7">
+        <div class="nb-eyebrow">{h.eyebrow}</div>
+        <h1 class="nb-hero-title">{h.headline}</h1>
+        <p class="nb-hero-sub">{h.subheadline}</p>
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <a class="btn nb-btn-primary" href={site.bookings?.url} target="_blank" rel="noopener"><span class="nb-btn-icon"><IconBadge name="calendar" /></span>{h.primaryCta}</a>
+          <a class="btn nb-btn-ghost" href="#contact"><span class="nb-btn-icon"><IconBadge name="phone" /></span>{h.secondaryCta}</a>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="nb-panel">
+          <h2 class="nb-panel-title">{w.title}</h2>
+          <div class="nb-stack">
+            {(w.items ?? []).map((item, i) => (
+              <div class="nb-mini-card nb-pop">
+                <div class="nb-icon-wrap"><IconBadge name={icons[i] ?? 'tools'} /></div>
+                <div>
+                  <div class="nb-mini-title">{item.title}</div>
+                  <div class="nb-mini-text">{item.text}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,6 @@
+If your Contact section is using the wrong phone icon, change the phone icon call to one of these:
+- <IconBadge name="phonecall" />
+or
+- <IconBadge name="phone" />
+
+This v18 package updates IconBadge so both names now use a proper phone handset icon.

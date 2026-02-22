@@ -1,0 +1,43 @@
+
+---
+import IconBadge from './IconBadge.astro';
+const { site } = Astro.props;
+const p = site.pricing ?? {};
+const rows = p.rows ?? [];
+const mark = (v='') => typeof v === 'string' && v.trim().startsWith('✔');
+---
+<section id="pricing" class="nb-section">
+  <div class="container">
+    <h2 class="section-title text-center">{p.title}</h2>
+    <p class="text-secondary text-center mt-2 mb-4">{p.subtitle}</p>
+    <div class="row g-3 mb-4">
+      {(p.plans ?? []).map(plan => (
+        <div class="col-lg-6">
+          <div class="nb-card p-4 h-100">
+            <div class="d-flex align-items-start justify-content-between gap-3 flex-wrap">
+              <div>
+                <div class="h4 m-0">{plan.name}</div>
+                <div class="text-secondary mt-2">{plan.monthly}</div>
+              </div>
+              <a class="btn nb-btn-primary" href="#contact"><span class="nb-btn-icon"><IconBadge name="calendar" /></span>Request more information</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="table-responsive nb-card p-2">
+      <table class="table nb-pricing-table align-middle mb-0">
+        <thead><tr><th>Feature</th><th>{p.plans?.[0]?.name}</th><th>{p.plans?.[1]?.name}</th></tr></thead>
+        <tbody>
+          {rows.map(r => (
+            <tr>
+              <td class="fw-semibold">{r.feature}</td>
+              <td class={mark(r.basic)?'nb-check':''}>{r.basic}</td>
+              <td class={mark(r.premium)?'nb-check':''}>{r.premium}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

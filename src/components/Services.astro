@@ -1,0 +1,33 @@
+
+---
+import IconBadge from './IconBadge.astro';
+const { site } = Astro.props;
+const s = site.services ?? {};
+const iconMap = ['tools','people','cloud','shield','chart'];
+---
+<section id="services" class="nb-section" style="background:#f8fafc">
+  <div class="container">
+    <h2 class="section-title">{s.title}</h2>
+    <div class="row g-4 mt-1">
+      {(s.groups ?? []).map((g, i) => (
+        <div class={i === 4 ? 'col-12' : 'col-lg-6'}>
+          <div class="nb-card nb-pop h-100 p-4">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <div class="nb-icon-wrap"><IconBadge name={iconMap[i] ?? 'tools'} /></div>
+              <h3 class="h5 m-0">{g.title}</h3>
+            </div>
+            {i === 4 ? (
+              <div class="row mt-2">
+                <div class="col-md-6"><ul class="mb-0">{g.items.slice(0,3).map(it => <li class="mb-2">{it}</li>)}</ul></div>
+                <div class="col-md-6"><ul class="mb-0">{g.items.slice(3).map(it => <li class="mb-2">{it}</li>)}</ul></div>
+              </div>
+            ) : (
+              <ul class="mt-2 mb-0">{g.items.map(it => <li class="mb-2">{it}</li>)}</ul>
+            )}
+            <div class="mt-3"><a class="btn nb-btn-soft" href="#contact">Request more information</a></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
