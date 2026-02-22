@@ -1,87 +1,75 @@
 ---
-import IconBadge from "./IconBadge.astro";
+import IconBadge from './IconBadge.astro';
 const { site } = Astro.props;
-const brand = site.brand ?? {};
-const phoneHref = site.contact?.phoneHref ?? "#contact";
-const phoneText = site.contact?.phoneText ?? "804-000-0000";
 const navItems = [
-  { id: "home", label: "Home" },
-  { id: "services", label: "Services" },
-  { id: "pricing", label: "Pricing" },
-  { id: "who-we-serve", label: "Who We Serve" },
-  { id: "about", label: "About" },
-  { id: "contact", label: "Contact" }
+  { href: '#home', label: 'Home' },
+  { href: '#services', label: 'Services' },
+  { href: '#pricing', label: 'Pricing' },
+  { href: '#who-we-serve', label: 'Who We Serve' },
+  { href: '#about', label: 'About' },
+  { href: '#contact', label: 'Contact' },
 ];
 ---
-<header class="fixed-top nb-navbar">
-  <nav class="navbar navbar-expand-lg py-2">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2 me-2" href="#home" aria-label={brand.name}>
-        <img class="nb-logo" src="/Company_logo.png" alt={brand.name + " logo"} width="44" height="44" />
-        <span class="d-flex flex-column justify-content-center lh-sm">
-          <span class="nb-brand-text fw-bold fs-4">{brand.name}</span>
-          <small class="nb-brand-text opacity-85 fw-semibold" style="font-size:.78rem;">{brand.slogan}</small>
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg nb-navbar py-2">
+    <div class="container-fluid px-3 px-lg-4 align-items-center">
+      <a class="navbar-brand d-flex align-items-center gap-2 me-3" href="#home" aria-label="NexGen Binary home">
+        <img src="/Company_logo.png?v=nb34" alt="NexGen Binary logo" class="nb-logo" width="44" height="44" />
+        <span class="d-flex flex-column lh-sm">
+          <span class="nb-brand-text fw-bold fs-4">NexGen Binary</span>
+          <small class="nb-slogan fw-semibold">Precision Built. People First. Always.</small>
         </span>
       </a>
 
       <button class="navbar-toggler border-0 shadow-none ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#nbNav" aria-controls="nbNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon" style="filter:invert(1) brightness(2);"></span>
+        <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="nbNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 mb-2 mb-lg-0">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
           {navItems.map((item) => (
-            <li class="nav-item">
-              <a class="nav-link" href={`#${item.id}`} data-nav-target={item.id}>{item.label}</a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href={item.href}>{item.label}</a></li>
           ))}
+          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+            <a class="btn nb-btn-primary nb-btn-inlineicon px-3 py-2" href="#contact" aria-label={`Call ${site.contact?.phoneText ?? '804-000-0000'}`}>
+              <span class="nb-icon"><IconBadge name="phonecall" /></span>
+              <span>{site.contact?.phoneText ?? '804-000-0000'}</span>
+            </a>
+          </li>
         </ul>
-        <a class="btn nb-btn-primary ms-lg-3 mt-2 mt-lg-0 d-inline-flex align-items-center gap-2" href="#contact">
-          <span class="nb-icon nb-icon-sm"><IconBadge name="phone" /></span>
-          <span>{phoneText}</span>
-        </a>
       </div>
     </div>
   </nav>
-
-  <script>
-    const collapseEl = document.getElementById('nbNav');
-    const toggler = document.querySelector('.navbar-toggler');
-    const links = Array.from(document.querySelectorAll('[data-nav-target]'));
-    const sectionIds = ['home','services','pricing','who-we-serve','about','contact'];
-    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
-
-    const closeMenu = () => {
-      if (window.innerWidth >= 992 || !collapseEl) return;
-      collapseEl.classList.remove('show');
-      toggler?.setAttribute('aria-expanded','false');
-    };
-
-    links.forEach(link => link.addEventListener('click', () => {
-      const target = link.getAttribute('href');
-      if (target?.startsWith('#')) {
-        const el = document.querySelector(target);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          closeMenu();
-        }
-      }
-    }));
-
-    const setActive = () => {
-      const y = window.scrollY + 120;
-      let active = 'home';
-      for (const sec of sections) {
-        if (sec.offsetTop <= y) active = sec.id;
-      }
-      links.forEach(link => {
-        link.classList.toggle('active', link.dataset.navTarget === active);
-      });
-    };
-
-    window.addEventListener('scroll', setActive, { passive: true });
-    window.addEventListener('resize', setActive);
-    window.addEventListener('load', setActive);
-    setActive();
-  </script>
 </header>
+
+<script>
+  const sections = ['home','services','pricing','who-we-serve','about','contact'];
+  const links = Array.from(document.querySelectorAll('.navbar .nav-link'));
+  const byId = new Map(links.map(l => [l.getAttribute('href')?.replace('#',''), l]));
+  const setActive = (id) => {
+    links.forEach(l => l.classList.remove('active'));
+    byId.get(id)?.classList.add('active');
+  };
+  setActive('home');
+
+  const obs = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (visible?.target?.id) setActive(visible.target.id);
+  }, { rootMargin: '-30% 0px -55% 0px', threshold: [0.1,0.2,0.35] });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+
+  links.forEach((link) => {
+    link.addEventListener('click', () => {
+      const collapse = document.getElementById('nbNav');
+      if (collapse?.classList.contains('show') && window.bootstrap) {
+        window.bootstrap.Collapse.getOrCreateInstance(collapse).hide();
+      }
+    });
+  });
+</script>

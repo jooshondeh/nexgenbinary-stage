@@ -1,39 +1,38 @@
 ---
-import IconBadge from "./IconBadge.astro";
+import IconBadge from './IconBadge.astro';
 const { site } = Astro.props;
-const h = site.home ?? {};
-const cards = h.whatWeDo ?? [];
+const hero = site.hero ?? {};
+const badges = site.whatWeDo?.items ?? [];
+const iconMap = ['monitor','lockshield','people','cloud'];
 ---
-<section id="home" class="nb-anchor-offset nb-hero pt-5">
-  <div class="container" style="padding-top: 6rem; padding-bottom: 3rem;">
-    <div class="row align-items-center g-4">
-      <div class="col-lg-7">
-        <div class="nb-pill mb-3">{h.eyebrow}</div>
-        <h1 class="display-2 fw-bold lh-1 mb-3">{h.titleLine1}<br />{h.titleLine2}</h1>
-        <p class="lead mb-4" style="color:rgba(240,247,255,.65)">{h.description}</p>
-        <div class="d-flex flex-wrap gap-2">
-          <a class="btn nb-btn-primary nb-btn-inlineicon" href="#contact">
+<section id="home" class="nb-hero nb-anchor-offset position-relative overflow-hidden">
+  <div class="container py-5">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-7 d-flex flex-column justify-content-center">
+        <div class="nb-hero-pill mb-3">{hero.eyebrow}</div>
+        <h1 class="display-3 fw-bold lh-1 text-white mb-3">{hero.title}</h1>
+        <p class="fs-3 text-light opacity-75 fw-light mb-4">{hero.subtitle}</p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href={site.bookings?.url || '#contact'} class="btn nb-btn-primary nb-btn-inlineicon" target={site.bookings?.url ? '_blank' : undefined} rel={site.bookings?.url ? 'noopener' : undefined}>
             <span class="nb-icon"><IconBadge name="calendar" /></span>
-            <span>Book a Consultation</span>
+            <span>{hero.ctaPrimaryText || 'Book a Consultation'}</span>
           </a>
-          <a class="btn nb-btn-ghost nb-btn-inlineicon" href="#contact">
-            <span class="nb-icon"><IconBadge name="phone" /></span>
-            <span>Call Us</span>
+          <a href="#contact" class="btn nb-btn-outline nb-btn-inlineicon nb-pop">
+            <span class="nb-icon"><IconBadge name="phonecall" /></span>
+            <span>{hero.ctaSecondaryText || 'Call Us'}</span>
           </a>
         </div>
       </div>
       <div class="col-lg-5">
-        <div class="nb-hero-panel p-3 p-md-4">
-          <h2 class="h2 fw-bold mb-3">What We Do</h2>
-          <div class="nb-hero-mini-list d-grid gap-2">
-            {cards.map((item, i) => (
-              <div class="nb-card nb-pop">
-                <div class="nb-icon-row">
-                  <div class="nb-icon-wrap"><IconBadge name={i === 0 ? "monitor" : item.icon} /></div>
-                  <div>
-                    <div class="fw-semibold">{item.title}</div>
-                    <div class="text-secondary">{item.text}</div>
-                  </div>
+        <div class="nb-card p-4 h-100 nb-glass">
+          <h2 class="text-white fw-bold mb-3">What We Do</h2>
+          <div class="d-grid gap-3">
+            {badges.map((item, i) => (
+              <div class="nb-mini-card nb-pop">
+                <div class="nb-mini-icon"><IconBadge name={iconMap[i] || 'shield'} /></div>
+                <div>
+                  <div class="fw-bold text-dark">{item.title}</div>
+                  <div class="text-secondary">{item.text}</div>
                 </div>
               </div>
             ))}
