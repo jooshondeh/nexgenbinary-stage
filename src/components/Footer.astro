@@ -1,9 +1,10 @@
+
 ---
 const { site } = Astro.props;
 ---
-<footer class="nb-footer py-4">
-  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
-    <div class="small nb-footer-copy">© {new Date().getFullYear()} {site.brand?.logoText ?? "NexGen Binary"}. All rights reserved.</div>
-    <a href="#home" class="nb-footer-toplink">Back to top</a>
+<footer class="nb-footer">
+  <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <div>{site.footer?.copyright ?? '© NexGen Binary LLC. All rights reserved.'}</div>
+    <a href="#pageTop">Back to top</a>
   </div>
 </footer>
