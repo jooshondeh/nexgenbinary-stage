@@ -71,13 +71,6 @@ h3{margin:10px 0 8px}
 .mobile-cta{display:none;position:fixed;left:10px;right:10px;bottom:10px;background:rgba(4,10,20,.92);border:1px solid var(--line);border-radius:14px;padding:8px;gap:8px;z-index:40}
 .mobile-cta a{flex:1;text-align:center;text-decoration:none;padding:10px 8px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.04);font-weight:700}
 .mobile-cta a:nth-child(2){background:linear-gradient(180deg,var(--blue),var(--blue2));border-color:rgba(125,198,255,.35)}
-
-.nav-phone{display:inline-flex;align-items:center;gap:6px;padding:7px 9px;border-radius:8px;text-decoration:none;color:#dce8f7;font-size:.92rem}
-.nav-phone i{font-size:.9rem}
-.nav-phone:hover{background:rgba(255,255,255,.06);color:#fff}
-.plan-card{position:relative;overflow:hidden}
-.plan-card h3{margin-top:0}
-.plan-card .bullet-list{margin-top:8px;margin-bottom:12px}
 @media (max-width:1000px){
   .nav{display:none;position:absolute;top:78px;left:16px;right:16px;flex-direction:column;align-items:stretch;background:rgba(6,16,32,.97);border:1px solid var(--line);border-radius:14px;padding:10px}
   .nav.open{display:flex}

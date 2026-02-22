@@ -14,7 +14,7 @@ const formEndpoint = c.formEndpoint ?? "";
           <div class="nb-contact-item mb-3"><div class="nb-icon-wrap"><IconBadge name="phone" /></div><div><div class="small text-secondary">{c.phoneLabel}</div><a href={c.phoneHref}>{c.phoneText}</a></div></div>
           <div class="nb-contact-item mb-3"><div class="nb-icon-wrap"><IconBadge name="mail" /></div><div><div class="small text-secondary">{c.emailLabel}</div><a href={c.emailHref}>{c.emailText}</a></div></div>
           <div class="nb-contact-item"><div class="nb-icon-wrap"><IconBadge name="clock" /></div><div><div class="small text-secondary">Hours of operation</div><div class="fw-semibold">Monday–Friday, 9:00 AM – 5:00 PM</div></div></div>
-          <a class="btn nb-btn-primary mt-3" href={site.bookings?.url} target="_blank" rel="noopener"><span class="nb-btn-icon"><IconBadge name="calendar" /></span>Book a consult</a>
+          <a class="btn nb-btn-primary mt-3" href={site.bookings?.url} target="_blank" rel="noopener">Book a consult</a>
         </div>
       </div>
       <div class="col-lg-7">
@@ -28,7 +28,7 @@ const formEndpoint = c.formEndpoint ?? "";
             <div class="col-md-6"><label class="form-label">Practice / Organization</label><input class="form-control" name="org" /></div>
             <div class="col-12"><label class="form-label">Message</label><textarea class="form-control" name="message" rows="5" required /></div>
             <div class="col-12 d-flex gap-2 flex-wrap align-items-center">
-              <button class="btn nb-btn-primary" type="submit"><span class="nb-btn-icon"><IconBadge name="send" /></span>Send message</button>
+              <button class="btn nb-btn-primary" type="submit">Send message</button>
               <a class="btn btn-outline-secondary rounded-pill" href={c.emailHref}>Email using my mail app</a>
               <span id="contactStatus" class="small text-secondary"></span>
             </div>
