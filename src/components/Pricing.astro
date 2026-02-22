@@ -1,43 +1,48 @@
-
 ---
-import IconBadge from './IconBadge.astro';
 const { site } = Astro.props;
-const p = site.pricing ?? {};
-const rows = p.rows ?? [];
-const mark = (v='') => typeof v === 'string' && v.trim().startsWith('✔');
+const pricing = site?.pricing || {};
+const plans = pricing.plans || [];
+const rows = pricing.rows || [];
+const fmt = (v) => String(v || '—');
+const planRows = [
+  { plan: plans[0] || {}, valuesKey: 'basic' },
+  { plan: plans[1] || {}, valuesKey: 'premium' },
+];
 ---
-<section id="pricing" class="nb-section">
-  <div class="container">
-    <h2 class="section-title text-center">{p.title}</h2>
-    <p class="text-secondary text-center mt-2 mb-4">{p.subtitle}</p>
-    <div class="row g-3 mb-4">
-      {(p.plans ?? []).map(plan => (
-        <div class="col-lg-6">
-          <div class="nb-card p-4 h-100">
-            <div class="d-flex align-items-start justify-content-between gap-3 flex-wrap">
-              <div>
-                <div class="h4 m-0">{plan.name}</div>
-                <div class="text-secondary mt-2">{plan.monthly}</div>
-              </div>
-              <a class="btn nb-btn-primary" href="#contact"><span class="nb-btn-icon"><IconBadge name="calendar" /></span>Request more information</a>
-            </div>
+<section id="pricing" class="nb-section nb-anchor-offset nb-pricing-wrap">
+  <div class="nb-shell">
+    <h2 class="nb-section-title nb-center">{pricing.title || 'Service Plan Comparison'}</h2>
+    {pricing.subtitle && <p class="nb-section-subtitle nb-center">{pricing.subtitle}</p>}
+
+    <div class="nb-plan-columns">
+      {planRows.map(({ plan, valuesKey }) => (
+        <article class="nb-plan-card nb-hover-pop">
+          <div class="nb-plan-intro-block">
+            <h3>{plan.name}</h3>
+            <p>{plan.monthly}</p>
+            <a class="nb-btn-primary nb-btn-small" href="#contact">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>Request more information</span>
+            </a>
           </div>
-        </div>
+          <div class="nb-plan-rows">
+            {rows.map((row) => {
+              const raw = fmt(row[valuesKey]);
+              const checked = raw.includes('✔');
+              const text = raw.replaceAll('✔', '').trim();
+              return (
+                <div class="nb-plan-row">
+                  <div class="nb-plan-feature">{row.feature}</div>
+                  <div class="nb-plan-value">
+                    {checked ? <span class="nb-check">✔</span> : null}
+                    {text || (!checked ? raw : '')}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </article>
       ))}
-    </div>
-    <div class="table-responsive nb-card p-2">
-      <table class="table nb-pricing-table align-middle mb-0">
-        <thead><tr><th>Feature</th><th>{p.plans?.[0]?.name}</th><th>{p.plans?.[1]?.name}</th></tr></thead>
-        <tbody>
-          {rows.map(r => (
-            <tr>
-              <td class="fw-semibold">{r.feature}</td>
-              <td class={mark(r.basic)?'nb-check':''}>{r.basic}</td>
-              <td class={mark(r.premium)?'nb-check':''}>{r.premium}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   </div>
 </section>

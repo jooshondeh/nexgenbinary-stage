@@ -1,39 +1,39 @@
-
 ---
 import IconBadge from './IconBadge.astro';
 const { site } = Astro.props;
-const h = site.hero ?? {};
-const w = site.whatWeDo ?? {};
-const icons = ['tools','shield','people','cloud'];
+const items = site?.whatWeDo?.items ?? [];
 ---
-<section id="home" class="nb-hero nb-anchor-offset">
-  <div class="container">
-    <div class="row g-4 align-items-start">
-      <div class="col-lg-7">
-        <div class="nb-eyebrow">{h.eyebrow}</div>
-        <h1 class="nb-hero-title">{h.headline}</h1>
-        <p class="nb-hero-sub">{h.subheadline}</p>
-        <div class="d-flex gap-3 flex-wrap mt-4">
-          <a class="btn nb-btn-primary" href={site.bookings?.url} target="_blank" rel="noopener"><span class="nb-btn-icon"><IconBadge name="calendar" /></span>{h.primaryCta}</a>
-          <a class="btn nb-btn-ghost" href="#contact"><span class="nb-btn-icon"><IconBadge name="phone" /></span>{h.secondaryCta}</a>
-        </div>
-      </div>
-      <div class="col-lg-5">
-        <div class="nb-panel">
-          <h2 class="nb-panel-title">{w.title}</h2>
-          <div class="nb-stack">
-            {(w.items ?? []).map((item, i) => (
-              <div class="nb-mini-card nb-pop">
-                <div class="nb-icon-wrap"><IconBadge name={icons[i] ?? 'tools'} /></div>
-                <div>
-                  <div class="nb-mini-title">{item.title}</div>
-                  <div class="nb-mini-text">{item.text}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+<section id="home" class="nb-hero-wrap nb-anchor-offset">
+  <div class="nb-shell nb-hero-grid">
+    <div class="nb-hero-copy">
+      <p class="nb-eyebrow">{site?.hero?.eyebrow}</p>
+      <h1 class="nb-hero-title">{site?.hero?.headline}</h1>
+      <p class="nb-hero-subtitle">{site?.hero?.subheadline}</p>
+      <div class="nb-hero-actions">
+        <a class="nb-btn-primary" href="#contact">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span>{site?.hero?.primaryCta || 'Book a Consultation'}</span>
+        </a>
+        <a class="nb-btn-ghost" href="#contact">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.44.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.19.19 2.34.55 3.44a1 1 0 0 1-.24 1l-2.2 2.86Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>{site?.hero?.secondaryCta || 'Call Us'}</span>
+        </a>
       </div>
     </div>
+
+    <aside class="nb-what-card" aria-label="What we do">
+      <h2>{site?.whatWeDo?.title || 'What We Do'}</h2>
+      <div class="nb-what-grid">
+        {items.map((item, idx) => (
+          <article class="nb-what-item" style={`--d:${idx * 40}ms`}>
+            <div class="nb-what-item-icon"><IconBadge icon={item.icon || (idx === 0 ? 'tools' : idx === 1 ? 'shield' : idx === 2 ? 'users' : 'map')} /></div>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </aside>
   </div>
 </section>

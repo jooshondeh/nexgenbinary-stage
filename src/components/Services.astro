@@ -1,33 +1,53 @@
-
 ---
 import IconBadge from './IconBadge.astro';
 const { site } = Astro.props;
-const s = site.services ?? {};
-const iconMap = ['tools','people','cloud','shield','chart'];
+const groups = site?.services?.groups ?? [];
+const mainGroups = groups.slice(0, 4);
+const networkGroup = groups[4];
+const iconFor = (title) => {
+  const t = (title || '').toLowerCase();
+  if (t.includes('managed')) return 'monitor';
+  if (t.includes('emr') || t.includes('clinical')) return 'users';
+  if (t.includes('microsoft') || t.includes('cloud')) return 'cloud';
+  if (t.includes('security')) return 'shield';
+  if (t.includes('network') || t.includes('wifi') || t.includes('voip')) return 'server';
+  return 'tools';
+};
 ---
-<section id="services" class="nb-section" style="background:#f8fafc">
-  <div class="container">
-    <h2 class="section-title">{s.title}</h2>
-    <div class="row g-4 mt-1">
-      {(s.groups ?? []).map((g, i) => (
-        <div class={i === 4 ? 'col-12' : 'col-lg-6'}>
-          <div class="nb-card nb-pop h-100 p-4">
-            <div class="d-flex align-items-center gap-2 mb-2">
-              <div class="nb-icon-wrap"><IconBadge name={iconMap[i] ?? 'tools'} /></div>
-              <h3 class="h5 m-0">{g.title}</h3>
-            </div>
-            {i === 4 ? (
-              <div class="row mt-2">
-                <div class="col-md-6"><ul class="mb-0">{g.items.slice(0,3).map(it => <li class="mb-2">{it}</li>)}</ul></div>
-                <div class="col-md-6"><ul class="mb-0">{g.items.slice(3).map(it => <li class="mb-2">{it}</li>)}</ul></div>
-              </div>
-            ) : (
-              <ul class="mt-2 mb-0">{g.items.map(it => <li class="mb-2">{it}</li>)}</ul>
-            )}
-            <div class="mt-3"><a class="btn nb-btn-soft" href="#contact">Request more information</a></div>
+<section id="services" class="nb-section nb-anchor-offset">
+  <div class="nb-shell">
+    <h2 class="nb-section-title">{site?.services?.title || 'Services'}</h2>
+    <div class="nb-services-grid">
+      {mainGroups.map((group) => (
+        <article class="nb-service-card nb-hover-pop">
+          <div class="nb-service-head">
+            <IconBadge icon={iconFor(group.title)} />
+            <h3>{group.title}</h3>
           </div>
-        </div>
+          <ul>
+            {group.items?.map((item) => <li>{item}</li>)}
+          </ul>
+          <a class="nb-service-link" href="#contact">Request more info</a>
+        </article>
       ))}
+
+      {networkGroup && (
+        <article class="nb-service-card nb-service-card-wide nb-hover-pop">
+          <div class="nb-service-head">
+            <IconBadge icon={iconFor(networkGroup.title)} />
+            <h3>{networkGroup.title}</h3>
+          </div>
+          <div class="nb-service-cols">
+            <ul>
+              {networkGroup.items?.slice(0, Math.ceil(networkGroup.items.length / 2)).map((item) => <li>{item}</li>)}
+            </ul>
+            <ul>
+              {networkGroup.items?.slice(Math.ceil(networkGroup.items.length / 2)).map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+          <a class="nb-service-link" href="#contact">Request more info</a>
+        </article>
+      )}
     </div>
   </div>
 </section>
