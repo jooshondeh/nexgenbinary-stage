@@ -2,6 +2,7 @@
 import IconBadge from './IconBadge.astro';
 const { site } = Astro.props;
 const items = site?.whatWeDo?.items ?? [];
+const whatIcons = ['monitor', 'lockshield', 'stethoscope', 'mappin'];
 ---
 <section id="home" class="nb-hero-wrap nb-anchor-offset">
   <div class="nb-shell nb-hero-grid">
@@ -26,7 +27,7 @@ const items = site?.whatWeDo?.items ?? [];
       <div class="nb-what-grid">
         {items.map((item, idx) => (
           <article class="nb-what-item" style={`--d:${idx * 40}ms`}>
-            <div class="nb-what-item-icon"><IconBadge icon={item.icon || (idx === 0 ? 'tools' : idx === 1 ? 'shield' : idx === 2 ? 'users' : 'map')} /></div>
+            <div class="nb-what-item-icon"><IconBadge name={item.icon || whatIcons[idx] || 'tools'} /></div>
             <div>
               <h3>{item.title}</h3>
               <p>{item.text}</p>

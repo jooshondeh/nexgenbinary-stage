@@ -326,3 +326,103 @@ html, body { scroll-behavior: smooth; }
 .nb-plan-intro-block .nb-btn-primary { text-decoration:none; }
 .nb-plan-value { display:flex; align-items:center; gap:4px; }
 .nb-card .nb-inline-icon { width:16px; height:16px; margin-right:6px; }
+
+
+/* v40 patch */
+.nb-brand-logo{
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  box-shadow: 0 8px 18px rgba(0,0,0,.18) !important;
+  object-fit: contain !important;
+}
+.nb-brand{align-items:center}
+.nb-brand-text{display:flex;flex-direction:column;justify-content:center}
+.nb-brand-slogan{margin-top:3px}
+.nb-phone-cta svg{display:block;width:18px;height:18px;opacity:1}
+
+/* restore hero decorative shapes */
+.nb-hero-wrap{
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.nb-hero-wrap::before,
+.nb-hero-wrap::after{
+  content:"";
+  position:absolute;
+  border-radius:999px;
+  filter: blur(1px);
+  z-index:-1;
+  pointer-events:none;
+}
+.nb-hero-wrap::before{
+  width: 360px; height: 360px;
+  right: -90px; top: 32px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.28), rgba(255,255,255,.02) 72%);
+  border: 1px solid rgba(255,255,255,.16);
+  opacity:.9;
+}
+.nb-hero-wrap::after{
+  width: 280px; height: 280px;
+  right: 160px; top: 120px;
+  background: radial-gradient(circle at 30% 30%, rgba(247,147,26,.22), rgba(247,147,26,.02) 75%);
+  border: 1px solid rgba(247,147,26,.22);
+  opacity:.95;
+}
+.nb-hero-grid, .nb-hero-copy, .nb-what-card{position:relative; z-index:1;}
+
+/* keep hero / services / pricing cards from stretching */
+.nb-what-card,
+.nb-what-item,
+.nb-service-card,
+.nb-plan-card{
+  width: auto !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+.nb-services-grid{
+  display:grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap:16px !important;
+  align-items: stretch;
+}
+.nb-service-card{
+  display:flex !important;
+  flex-direction:column !important;
+  align-self:stretch !important;
+}
+.nb-service-card-wide{grid-column:1 / -1 !important;}
+.nb-service-head .nb-icon{
+  width: 22px; height: 22px;
+  display:inline-block;
+}
+.nb-service-head .nb-icon-badge{
+  width:50px !important;height:50px !important;
+  display:inline-flex !important; align-items:center; justify-content:center;
+}
+
+/* what we do icons */
+.nb-what-item-icon .nb-icon-badge{
+  background: linear-gradient(180deg, #f8fbff, #edf4fb);
+  border: 1px solid #d6e6f6;
+  color: #1e5a92;
+  box-shadow: 0 6px 14px rgba(20,73,121,.08);
+}
+.nb-what-item:hover .nb-what-item-icon .nb-icon-badge{
+  background: linear-gradient(180deg, #fff6ed, #ffe8d3);
+  border-color: rgba(247,147,26,.35);
+  color: #db7a07;
+}
+
+/* hide service request buttons (if older markup still present) */
+#services .nb-service-link{display:none !important;}
+
+/* orange checks in pricing */
+#pricing .nb-check{color:#f7931a !important;}
+
+@media (max-width:1080px){
+  .nb-services-grid{grid-template-columns:1fr !important;}
+  .nb-brand-slogan{white-space:normal;}
+}
