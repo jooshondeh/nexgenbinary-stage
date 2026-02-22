@@ -1,29 +1,50 @@
 ---
+import IconBadge from "./IconBadge.astro";
 const { site } = Astro.props;
-import IconBadge from './IconBadge.astro';
 const s = site.services ?? {};
-const iconMap = ['monitor', 'server', 'cloud', 'lockshield', 'wifi'];
 ---
-<section id="services" class="nb-anchor-offset nb-section" style="background:#f8fafc">
+<section id="services" class="nb-anchor-offset nb-section">
   <div class="container">
-    <h2 class="section-title fw-bold text-center">{s.title}</h2>
-    <p class="text-center text-secondary mt-2 mb-4">{s.subtitle}</p>
-    <div class="row g-3">
-      {(s.cards ?? []).map((card, i) => (
-        <div class:list={["col-md-6", i === 4 && "col-12"]}>
-          <div class="p-4 nb-card nb-pop h-100">
-            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
-              <div class="nb-service-tag"><IconBadge name={iconMap[i] ?? 'checkcircle'} /><span>{card.title}</span></div>
-              <a class="nb-service-more" href="#contact">More info</a>
+    <div class="text-center mb-4">
+      <h2 class="section-title fw-bold">{s.title}</h2>
+    </div>
+    <div class="row g-4">
+      {(s.cards ?? []).map((card, idx) => (
+        <div class={idx === 4 ? "col-12" : "col-lg-6"}>
+          <div class={`nb-card nb-pop h-100 ${idx === 4 ? "nb-service-wide" : ""}`}>
+            <div class="nb-icon-row mb-2">
+              <div class="nb-icon-wrap">
+                <IconBadge name={
+                  idx === 0 ? "monitor" :
+                  idx === 1 ? "people" :
+                  idx === 2 ? "cloud" :
+                  idx === 3 ? "lockshield" :
+                  "wifi"
+                } />
+              </div>
+              <div>
+                <h3 class="h5 fw-bold mb-1">{card.title}</h3>
+              </div>
             </div>
-            {i === 4 ? (
-              <div class="row g-2">
-                <div class="col-md-6"><ul class="nb-list mb-0">{card.items.slice(0, Math.ceil(card.items.length/2)).map((item) => <li>{item}</li>)}</ul></div>
-                <div class="col-md-6"><ul class="nb-list mb-0">{card.items.slice(Math.ceil(card.items.length/2)).map((item) => <li>{item}</li>)}</ul></div>
+            {idx === 4 ? (
+              <div class="row">
+                <div class="col-md-6">
+                  <ul class="nb-service-grid2" style="display:block;padding-left:1.1rem;">
+                    {(card.bullets ?? []).slice(0, Math.ceil((card.bullets ?? []).length/2)).map((b) => <li>{b}</li>)}
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul class="nb-service-grid2" style="display:block;padding-left:1.1rem;">
+                    {(card.bullets ?? []).slice(Math.ceil((card.bullets ?? []).length/2)).map((b) => <li>{b}</li>)}
+                  </ul>
+                </div>
               </div>
             ) : (
-              <ul class="nb-list">{card.items.map((item) => <li>{item}</li>)}</ul>
+              <ul class="mb-0 ps-3">
+                {(card.bullets ?? []).map((b) => <li class="mb-2">{b}</li>)}
+              </ul>
             )}
+            <a class="btn btn-outline-secondary rounded-pill mt-3" href="#contact">More info</a>
           </div>
         </div>
       ))}

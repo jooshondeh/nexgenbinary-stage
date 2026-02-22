@@ -3,19 +3,42 @@ import IconBadge from "./IconBadge.astro";
 const { site } = Astro.props;
 const p = site.pricing ?? {};
 const rows = p.rows ?? [];
-const basicName = p.plans?.[0]?.name ?? "Basic Care Plan";
-const premiumName = p.plans?.[1]?.name ?? "Premium Care + Extended Warranty";
+const basicRows = rows.map(r => ({ feature: r.feature, value: r.basic }));
+const premiumRows = rows.map(r => ({ feature: r.feature, value: r.premium }));
+const plans = p.plans ?? [];
 ---
-<section id="pricing" class="nb-anchor-offset nb-section" style="background:#f8fafc">
+<section id="pricing" class="nb-anchor-offset nb-section" style="background:#f7fbff;">
   <div class="container">
     <div class="text-center mb-4">
-      <h2 class="section-title fw-bold">{p.title ?? "Service Plan Comparison"}</h2>
-      <p class="text-secondary">{p.subtitle ?? ""}</p>
+      <h2 class="section-title fw-bold">{p.title}</h2>
+      <p class="text-secondary">{p.subtitle}</p>
     </div>
-    <div class="row g-3 mb-4">
-      <div class="col-md-6"><div class="p-4 nb-card nb-pop h-100"><h3 class="h5 fw-bold">{basicName}</h3><div class="text-secondary">{p.plans?.[0]?.monthly ?? ""}</div><a class="btn nb-btn-primary btn-sm mt-3" href="#contact"><span class="d-inline-flex align-items-center gap-2"><IconBadge name="calendar" />Request more information</span></a></div></div>
-      <div class="col-md-6"><div class="p-4 nb-card nb-pop h-100"><h3 class="h5 fw-bold">{premiumName}</h3><div class="text-secondary">{p.plans?.[1]?.monthly ?? ""}</div><a class="btn nb-btn-primary btn-sm mt-3" href="#contact"><span class="d-inline-flex align-items-center gap-2"><IconBadge name="calendar" />Request more information</span></a></div></div>
+
+    <div class="row g-4">
+      {[{ plan: plans[0], rows: basicRows }, { plan: plans[1], rows: premiumRows }].map(({ plan, rows }) => (
+        <div class="col-lg-6">
+          <div class="nb-card h-100 p-0 overflow-hidden nb-pop">
+            <div class="p-4" style="background:linear-gradient(180deg,#ffffff,#f8fbff); border-bottom:1px solid rgba(14,26,43,.08);">
+              <h3 class="h4 fw-bold mb-2">{plan?.name}</h3>
+              <p class="text-secondary mb-3">{plan?.monthly}</p>
+              <a class="btn nb-btn-primary nb-btn-inlineicon" href="#contact">
+                <span class="nb-icon"><IconBadge name="calendar" /></span>
+                <span>Request more information</span>
+              </a>
+            </div>
+            <div class="p-3 p-md-4">
+              <div class="d-grid gap-2">
+                {rows.map((row) => (
+                  <div class="nb-card" style="padding:.7rem .85rem;">
+                    <div class="small text-secondary fw-semibold">{row.feature}</div>
+                    <div class="fw-semibold mt-1">{row.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
-    <div class="nb-table-wrap"><table class="table nb-table align-middle"><thead><tr><th>Feature</th><th>{basicName}</th><th>{premiumName}</th></tr></thead><tbody>{rows.map((r)=><tr><td><strong>{r.feature}</strong></td><td>{r.basic}</td><td>{r.premium}</td></tr>)}</tbody></table></div>
   </div>
 </section>

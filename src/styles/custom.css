@@ -96,13 +96,17 @@ h1,h2,h3,h4,.navbar-brand,.section-title{font-family:"Plus Jakarta Sans","Inter"
 .nb-footer .nb-footer-toplink::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--nb-orange),#ffc183)}
 .nb-footer .nb-footer-copy{color:#eaf4ff;opacity:.92}
 
-/* v32 targeted refinements */
-.nb-brand-stack{display:flex;flex-direction:column;line-height:1}
-.nb-brand-slogan{font-size:.72rem;color:#c8d5e8;margin-top:4px;font-weight:600;letter-spacing:.02em;white-space:nowrap}
-.nb-brand-logo{object-fit:contain;background:transparent}
-.nb-btn .nb-icon,.nb-btn-outline .nb-icon{width:18px;height:18px;display:inline-flex}
-.nb-service-tag{display:inline-flex;align-items:center;gap:.55rem;font-weight:700;color:#0f172a}
-.nb-service-tag .nb-icon{width:18px;height:18px}
-.nb-service-more{display:inline-flex;align-items:center;border:1px solid rgba(243,126,26,.35);background:#fff7ef;color:#c85f00;padding:.35rem .65rem;border-radius:999px;font-weight:700;font-size:.82rem;text-decoration:none}
-.nb-service-more:hover{background:#f37e1a;color:#fff}
-@media (max-width:991px){.nb-brand-slogan{display:none}}
+/* v34 fixes */
+.navbar-brand{flex:0 1 auto; min-width:0}
+.navbar-brand .nb-brand-text{white-space:nowrap}
+.navbar-brand small{white-space:nowrap}
+@media (max-width:1200px){
+  .navbar-brand .nb-brand-text{font-size:1.55rem!important}
+  .navbar-brand small{font-size:.72rem!important}
+  .navbar .nav-link{padding:.45rem .5rem!important}
+}
+@media (min-width:992px){
+  .navbar-nav{flex-wrap:nowrap}
+  .navbar-nav .nav-link{white-space:nowrap}
+}
+.nb-logo{background:transparent; padding:0; border:none; border-radius:0; box-shadow:none}
