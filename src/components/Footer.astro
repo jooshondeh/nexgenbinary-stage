@@ -3,7 +3,7 @@ const { site } = Astro.props;
 ---
 <footer class="nb-footer nb-footer-separated">
   <div class="nb-shell">
-    <div>© {new Date().getFullYear()} {site?.brand?.name ?? 'NexGen Binary'}. All rights reserved.</div>
-    <a href="#home" data-target="home">Back to top</a>
+    <div class="nb-footer-copy">© {new Date().getFullYear()} {site?.brand?.name ?? 'NexGen Binary'}. All rights reserved.</div>
+    <a class="nb-footer-toplink" href="#home" data-target="home">Back to top</a>
   </div>
 </footer>

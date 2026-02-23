@@ -426,3 +426,37 @@ html, body { scroll-behavior: smooth; }
 #contact .nb-card{
   overflow:hidden;
 }
+
+
+/* v49 targeted fixes */
+.nb-service-head .nb-icon-wrap{
+  width:50px !important;
+  height:50px !important;
+  min-width:50px !important;
+  border-radius:14px;
+}
+.nb-service-head .nb-icon-badge{
+  width:20px !important;
+  height:20px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.nb-service-head .nb-icon-badge svg{
+  width:20px;
+  height:20px;
+  display:block;
+}
+
+/* Stronger underline visibility for footer top link */
+.nb-footer .nb-footer-toplink{
+  display:inline-block;
+  padding-bottom:2px;
+}
+.nb-footer .nb-footer-toplink::after{
+  bottom:-2px;
+  height:2px;
+  opacity:1;
+  box-shadow: 0 0 10px rgba(255,193,131,0.55);
+}
