@@ -72,8 +72,8 @@ const { site } = Astro.props;
     z-index: 120;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px 10px;
+    gap: 8px;
+    padding: 10px 12px;
     border-radius: 999px;
     border: 1px solid rgba(71,178,228,.35);
     background: rgba(9,29,46,.92);
@@ -98,21 +98,21 @@ const { site } = Astro.props;
   .nb-float-top::after{
     content: "";
     position: absolute;
-    left: 10px;
-    right: 10px;
-    bottom: 5px;
+    left: 12px;
+    right: 12px;
+    bottom: 6px;
     height: 2px;
     border-radius: 2px;
     background: linear-gradient(90deg, var(--nb-orange), #ffc183);
     opacity: .95;
   }
   .nb-float-top__arrow{
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1;
     transform: translateY(-1px);
   }
   .nb-float-top__text{
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: .02em;
   }
@@ -120,7 +120,7 @@ const { site } = Astro.props;
     .nb-float-top{
       right: 12px;
       bottom: 12px;
-      padding: 8px 10px;
+      padding: 10px 12px;
     }
   }
 </style>
