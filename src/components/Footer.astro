@@ -1,9 +1,11 @@
 ---
 const { site } = Astro.props;
+const rawBrandName = site?.brand?.name ?? 'NexGen Binary';
+const footerBrandName = /\bLLC\b/i.test(rawBrandName) ? rawBrandName : `${rawBrandName} LLC`;
 ---
 <footer class="nb-footer nb-footer-separated">
   <div class="nb-shell">
-    <div class="nb-footer-copy">© {new Date().getFullYear()} {site?.brand?.name ?? 'NexGen Binary'}. All rights reserved.</div>
+    <div class="nb-footer-copy">© {new Date().getFullYear()} {footerBrandName}. All rights reserved.</div>
   </div>
 </footer>
 
