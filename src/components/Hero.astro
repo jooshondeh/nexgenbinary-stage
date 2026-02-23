@@ -2,7 +2,6 @@
 import IconBadge from './IconBadge.astro';
 const { site } = Astro.props;
 const items = site?.whatWeDo?.items ?? [];
-const fallbackIcons = ['monitor', 'lockshield', 'tools', 'mappin'];
 ---
 <section id="home" class="nb-hero-wrap nb-anchor-offset">
   <div class="nb-shell nb-hero-grid">
@@ -16,7 +15,7 @@ const fallbackIcons = ['monitor', 'lockshield', 'tools', 'mappin'];
           <span>{site?.hero?.primaryCta || 'Book a Consultation'}</span>
         </a>
         <a class="nb-btn-ghost" href="#contact">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.8 10.7a15.5 15.5 0 0 0 6.5 6.5l2.2-2.2a1 1 0 0 1 1-.24 11.1 11.1 0 0 0 3.45.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.9 21 3 13.1 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.19.18 2.34.54 3.44a1 1 0 0 1-.23 1l-2.01 2.26Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.44.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.19.19 2.34.55 3.44a1 1 0 0 1-.24 1l-2.2 2.86Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span>{site?.hero?.secondaryCta || 'Call Us'}</span>
         </a>
       </div>
@@ -26,10 +25,8 @@ const fallbackIcons = ['monitor', 'lockshield', 'tools', 'mappin'];
       <h2>{site?.whatWeDo?.title || 'What We Do'}</h2>
       <div class="nb-what-grid">
         {items.map((item, idx) => (
-          <article class="nb-what-item nb-hover-pop">
-            <div class="nb-icon-wrap nb-icon-wrap--hero">
-              <IconBadge name={item.icon || fallbackIcons[idx] || 'shield'} />
-            </div>
+          <article class="nb-what-item nb-hover-pop" style={`--d:${idx * 40}ms`}>
+            <div class="nb-what-item-icon"><IconBadge name={idx === 0 ? "tools" : idx === 1 ? "lockshield" : idx === 2 ? "people" : "cloud"} /></div>
             <div>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
