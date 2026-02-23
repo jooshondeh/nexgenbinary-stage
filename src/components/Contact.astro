@@ -8,35 +8,102 @@ const formEndpoint = c.formEndpoint ?? "";
   <div class="container">
     <div class="row g-4 align-items-stretch nb-contact-grid">
       <div class="col-lg-5 d-flex">
-        <div class="w-100">
+        <div class="w-100 d-flex flex-column">
           <h2 class="section-title fw-bold">{c.title}</h2>
           <p class="text-secondary mt-3">{c.lead}</p>
-          <div class="p-4 nb-card mt-3 h-100">
-            <div class="nb-contact-item mb-3"><div class="nb-icon-wrap"><IconBadge name="phone" /></div><div><div class="small text-secondary">{c.phoneLabel}</div><a href={c.phoneHref}>{c.phoneText}</a></div></div>
-            <div class="nb-contact-item mb-3"><div class="nb-icon-wrap"><IconBadge name="mail" /></div><div><div class="small text-secondary">{c.emailLabel}</div><a href={c.emailHref}>{c.emailText}</a></div></div>
-            <div class="nb-contact-item"><div class="nb-icon-wrap"><IconBadge name="clock" /></div><div><div class="small text-secondary">Hours of operation</div><div class="fw-semibold">Monday–Friday, 9:00 AM – 5:00 PM</div></div></div>
-            <a class="btn nb-btn-primary mt-3" href={site.bookings?.url} target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" class="nb-inline-icon"><rect x="3" y="5" width="18" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Book a consult</a>
+
+          <div class="p-4 nb-card mt-3 nb-contact-info-card d-flex flex-column w-100">
+            <div class="nb-contact-item mb-3">
+              <div class="nb-icon-wrap"><IconBadge name="phone" /></div>
+              <div>
+                <div class="small text-secondary">{c.phoneLabel}</div>
+                <a href={c.phoneHref}>{c.phoneText}</a>
+              </div>
+            </div>
+
+            <div class="nb-contact-item mb-3">
+              <div class="nb-icon-wrap"><IconBadge name="mail" /></div>
+              <div>
+                <div class="small text-secondary">{c.emailLabel}</div>
+                <a href={c.emailHref}>{c.emailText}</a>
+              </div>
+            </div>
+
+            <div class="nb-contact-item">
+              <div class="nb-icon-wrap"><IconBadge name="clock" /></div>
+              <div>
+                <div class="small text-secondary">Hours of operation</div>
+                <div class="fw-semibold">Monday–Friday, 9:00 AM – 5:00 PM</div>
+              </div>
+            </div>
+
+            <a
+              class="btn nb-btn-primary mt-3 align-self-start"
+              href={site.bookings?.url}
+              target="_blank"
+              rel="noopener"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="nb-inline-icon">
+                <rect x="3" y="5" width="18" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2" />
+                <path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              Book a consult
+            </a>
           </div>
         </div>
       </div>
+
       <div class="col-lg-7 d-flex">
-        <div class="p-4 nb-card h-100 w-100">
+        <div class="p-4 nb-card h-100 w-100 d-flex flex-column nb-contact-form-card">
           <h3 class="h5 fw-bold mb-3">Send a message</h3>
+
           <form id="contactForm" class="row g-3" novalidate>
             <input type="hidden" id="contactEndpoint" value={formEndpoint} />
-            <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="d-none" aria-hidden="true" />
-            <div class="col-md-6"><label class="form-label" for="contact-name">Name</label><input id="contact-name" class="form-control" name="name" required /></div>
-            <div class="col-md-6"><label class="form-label" for="contact-email">Email</label><input id="contact-email" class="form-control" name="email" type="email" required /></div>
-            <div class="col-md-6"><label class="form-label" for="contact-phone">Phone</label><input id="contact-phone" class="form-control" name="phone" type="tel" /></div>
-            <div class="col-md-6"><label class="form-label" for="contact-org">Practice / Organization</label><input id="contact-org" class="form-control" name="org" /></div>
-            <div class="col-12"><label class="form-label" for="contact-message">Message</label><textarea id="contact-message" class="form-control" name="message" rows="5" required></textarea></div>
-            <div class="col-12 d-flex gap-2 flex-wrap align-items-center">
+            <input
+              type="text"
+              name="company_website"
+              tabindex="-1"
+              autocomplete="off"
+              class="d-none"
+              aria-hidden="true"
+            />
+
+            <div class="col-md-6">
+              <label class="form-label" for="contact-name">Name</label>
+              <input id="contact-name" class="form-control" name="name" required />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label" for="contact-email">Email</label>
+              <input id="contact-email" class="form-control" name="email" type="email" required />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label" for="contact-phone">Phone</label>
+              <input id="contact-phone" class="form-control" name="phone" type="tel" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label" for="contact-org">Practice / Organization</label>
+              <input id="contact-org" class="form-control" name="org" />
+            </div>
+
+            <div class="col-12">
+              <label class="form-label" for="contact-message">Message</label>
+              <textarea id="contact-message" class="form-control" name="message" rows="5" required></textarea>
+            </div>
+
+            <div class="col-12 d-flex gap-2 flex-wrap align-items-center nb-contact-actions">
               <button id="contactSubmitBtn" class="btn nb-btn-primary" type="submit">
-                <svg viewBox="0 0 24 24" aria-hidden="true" class="nb-inline-icon"><path d="M3 11.5 21 3l-8.5 18-1.9-6.6L3 11.5Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M10.6 14.4 21 3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="nb-inline-icon">
+                  <path d="M3 11.5 21 3l-8.5 18-1.9-6.6L3 11.5Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" />
+                  <path d="M10.6 14.4 21 3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+                </svg>
                 <span id="contactSubmitLabel">Send message</span>
               </button>
               <a class="btn btn-outline-secondary rounded-pill" href={c.emailHref}>Email using my mail app</a>
             </div>
+
             <div class="col-12">
               <span id="contactStatus" class="small text-secondary" role="status" aria-live="polite"></span>
             </div>
@@ -45,6 +112,7 @@ const formEndpoint = c.formEndpoint ?? "";
       </div>
     </div>
   </div>
+
   <script>
     const form = document.getElementById('contactForm');
     const statusEl = document.getElementById('contactStatus');
@@ -63,7 +131,6 @@ const formEndpoint = c.formEndpoint ?? "";
 
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
-
       if (!form.reportValidity()) return;
 
       if (!endpoint || endpoint.includes('example.com') || endpoint.includes('PASTE-POWER-AUTOMATE')) {
@@ -85,12 +152,13 @@ const formEndpoint = c.formEndpoint ?? "";
 
       try {
         let response;
+
         if (/formspree\.io/i.test(endpoint)) {
           fd.append('_subject', 'New website message from NexGen Binary LLC');
           response = await fetch(endpoint, {
             method: 'POST',
             headers: { Accept: 'application/json' },
-            body: fd
+            body: fd,
           });
         } else {
           const payload = {
@@ -100,25 +168,24 @@ const formEndpoint = c.formEndpoint ?? "";
             organization: fd.get('org'),
             message: fd.get('message'),
             submittedAt: new Date().toISOString(),
-            source: 'nexgenbinary.com'
+            source: 'nexgenbinary.com',
           };
+
           response = await fetch(endpoint, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              Accept: 'application/json'
+              Accept: 'application/json',
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
           });
         }
 
-        if (!response.ok) {
-          throw new Error('submit_failed');
-        }
+        if (!response.ok) throw new Error('submit_failed');
 
         form.reset();
         setStatus('Thanks! Your message was sent.', 'success');
-      } catch (err) {
+      } catch {
         setStatus('Unable to send right now. Please try again or use the email button.', 'error');
       } finally {
         submitBtn?.removeAttribute('disabled');
@@ -126,4 +193,26 @@ const formEndpoint = c.formEndpoint ?? "";
       }
     });
   </script>
+
+  <style>
+    #contact .nb-contact-info-card,
+    #contact .nb-contact-form-card {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    #contact .nb-contact-actions {
+      row-gap: 0.5rem;
+    }
+
+    #contact .nb-contact-actions .btn {
+      max-width: 100%;
+    }
+
+    #contact .nb-contact-item a,
+    #contact .nb-contact-item .fw-semibold,
+    #contact #contactStatus {
+      overflow-wrap: anywhere;
+    }
+  </style>
 </section>
