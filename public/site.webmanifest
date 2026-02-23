@@ -3,17 +3,12 @@
   "short_name": "NexGen Binary",
   "icons": [
     {
-      "src": "/favicon-32x32.png?v=40",
+      "src": "/favicon-32x32.png?v=41",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/favicon-16x16.png?v=40",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "/apple-touch-icon.png?v=40",
+      "src": "/apple-touch-icon.png?v=41",
       "sizes": "180x180",
       "type": "image/png"
     }

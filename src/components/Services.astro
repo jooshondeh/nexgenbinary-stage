@@ -7,21 +7,23 @@ const networkGroup = groups[4];
 const iconFor = (title) => {
   const t = (title || '').toLowerCase();
   if (t.includes('managed')) return 'monitor';
-  if (t.includes('emr') || t.includes('clinical')) return 'stethoscope';
+  if (t.includes('emr') || t.includes('clinical')) return 'tools';
   if (t.includes('microsoft') || t.includes('cloud')) return 'cloud';
   if (t.includes('security')) return 'lockshield';
-  if (t.includes('network') || t.includes('wifi') || t.includes('voip')) return 'network';
-  return 'tools';
+  if (t.includes('network') || t.includes('wifi') || t.includes('voip')) return 'server';
+  return 'shield';
 };
 ---
 <section id="services" class="nb-section nb-anchor-offset">
   <div class="nb-shell">
     <h2 class="nb-section-title">{site?.services?.title || 'Services'}</h2>
+    <p class="nb-section-subtitle">Dental-focused IT support, security, cloud, and infrastructure services built for uptime and smooth practice operations.</p>
+
     <div class="nb-services-grid">
       {mainGroups.map((group) => (
         <article class="nb-service-card nb-hover-pop">
           <div class="nb-service-head">
-            <IconBadge name={iconFor(group.title)} />
+            <div class="nb-icon-wrap"><IconBadge name={iconFor(group.title)} /></div>
             <h3>{group.title}</h3>
           </div>
           <ul>
@@ -33,7 +35,7 @@ const iconFor = (title) => {
       {networkGroup && (
         <article class="nb-service-card nb-service-card-wide nb-hover-pop">
           <div class="nb-service-head">
-            <IconBadge name={iconFor(networkGroup.title)} />
+            <div class="nb-icon-wrap"><IconBadge name={iconFor(networkGroup.title)} /></div>
             <h3>{networkGroup.title}</h3>
           </div>
           <div class="nb-service-cols">
