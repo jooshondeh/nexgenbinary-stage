@@ -61,7 +61,7 @@ const formEndpoint = c.formEndpoint ?? "";
             <input type="hidden" id="contactEndpoint" value={formEndpoint} />
             <input
               type="text"
-              name="company_website"
+              name="_gotcha"
               tabindex="-1"
               autocomplete="off"
               class="d-none"
@@ -70,27 +70,27 @@ const formEndpoint = c.formEndpoint ?? "";
 
             <div class="col-md-6">
               <label class="form-label" for="contact-name">Name</label>
-              <input id="contact-name" class="form-control" name="name" required />
+              <input id="contact-name" class="form-control" name="name" autocomplete="name" maxlength="120" required />
             </div>
 
             <div class="col-md-6">
               <label class="form-label" for="contact-email">Email</label>
-              <input id="contact-email" class="form-control" name="email" type="email" required />
+              <input id="contact-email" class="form-control" name="email" type="email" inputmode="email" autocomplete="email" maxlength="160" required />
             </div>
 
             <div class="col-md-6">
               <label class="form-label" for="contact-phone">Phone</label>
-              <input id="contact-phone" class="form-control" name="phone" type="tel" />
+              <input id="contact-phone" class="form-control" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" />
             </div>
 
             <div class="col-md-6">
               <label class="form-label" for="contact-org">Practice / Organization</label>
-              <input id="contact-org" class="form-control" name="org" />
+              <input id="contact-org" class="form-control" name="org" autocomplete="organization" maxlength="160" />
             </div>
 
             <div class="col-12">
               <label class="form-label" for="contact-message">Message</label>
-              <textarea id="contact-message" class="form-control" name="message" rows="5" required></textarea>
+              <textarea id="contact-message" class="form-control" name="message" rows="5" maxlength="4000" required></textarea>
             </div>
 
             <div class="col-12 d-flex gap-2 flex-wrap align-items-center nb-contact-actions">
@@ -139,7 +139,7 @@ const formEndpoint = c.formEndpoint ?? "";
       }
 
       const fd = new FormData(form);
-      if ((fd.get('company_website') || '').toString().trim()) {
+      if ((fd.get('_gotcha') || '').toString().trim()) {
         form.reset();
         setStatus('Thanks! Your message was sent.', 'success');
         return;
@@ -154,6 +154,7 @@ const formEndpoint = c.formEndpoint ?? "";
         let response;
 
         if (/formspree\.io/i.test(endpoint)) {
+          // Spam filtering / rate limits are handled by Formspree. Optional CAPTCHA can be enabled in the Formspree dashboard.
           fd.append('_subject', 'New website message from NexGen Binary LLC');
           response = await fetch(endpoint, {
             method: 'POST',

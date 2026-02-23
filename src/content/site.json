@@ -38,8 +38,8 @@
   ],
   "hero": {
     "eyebrow": "Reliable IT for Dental Practices Across Virginia",
-    "headline": "Future‑ready systems. Human‑ready support.",
-    "subheadline": "We provide fully managed IT, security, cloud, and support services designed specifically for dental offices—so your practice stays secure, compliant, and running without disruption.",
+    "headline": "Future\u2011ready systems. Human\u2011ready support.",
+    "subheadline": "We provide fully managed IT, security, cloud, and support services designed specifically for dental offices\u2014so your practice stays secure, compliant, and running without disruption.",
     "primaryCta": "Book a Consultation",
     "secondaryCta": "Call Us"
   },
@@ -55,7 +55,7 @@
         "text": "Proactive support for workstations, servers, and networks."
       },
       {
-        "title": "Security & Compliance‑Aware",
+        "title": "Security & Compliance\u2011Aware",
         "text": "HIPAA-aware practices with modern cybersecurity controls."
       },
       {
@@ -79,7 +79,7 @@
     "philosophyTitle": "Our Business Philosophy",
     "philosophy": [
       "We combine next-gen design with dependable execution, treating your systems as mission-critical because they are.",
-      "Our promise is simple: partnership, transparency, and outstanding work—before, during, and after every project."
+      "Our promise is simple: partnership, transparency, and outstanding work\u2014before, during, and after every project."
     ]
   },
   "services": {
@@ -98,7 +98,7 @@
         "title": "Dental EMR & Clinical Systems Support",
         "items": [
           "EMR/EHR platform support and optimization",
-          "Imaging system coordination (X‑ray, scanners, vendor integrations)",
+          "Imaging system coordination (X\u2011ray, scanners, vendor integrations)",
           "Secure access for providers and staff",
           "Coordination with EMR vendors and dental software partners"
         ]
@@ -122,7 +122,7 @@
         ]
       },
       {
-        "title": "Networking, Wi‑Fi, Infrastructure, VoIP & Cameras",
+        "title": "Networking, Wi\u2011Fi, Infrastructure, VoIP & Cameras",
         "items": [
           "Secure wired and wireless network design",
           "VLAN segmentation for clinical and guest networks",
@@ -150,58 +150,58 @@
     "rows": [
       {
         "feature": "Monthly patching",
-        "basic": "✔",
-        "premium": "✔"
+        "basic": "\u2714",
+        "premium": "\u2714"
       },
       {
         "feature": "File & DB backups",
-        "basic": "✔",
-        "premium": "✔"
+        "basic": "\u2714",
+        "premium": "\u2714"
       },
       {
         "feature": "Backup monitoring",
-        "basic": "✔",
-        "premium": "✔"
+        "basic": "\u2714",
+        "premium": "\u2714"
       },
       {
         "feature": "Equipment & rack cleaning",
-        "basic": "✔",
-        "premium": "✔"
+        "basic": "\u2714",
+        "premium": "\u2714"
       },
       {
         "feature": "Standard support",
-        "basic": "✔",
-        "premium": "✔"
+        "basic": "\u2714",
+        "premium": "\u2714"
       },
       {
         "feature": "Priority support",
-        "basic": "— Business Hour",
-        "premium": "✔ After Hours"
+        "basic": "\u2014 Business Hour",
+        "premium": "\u2714 After Hours"
       },
       {
         "feature": "Loaner equipment",
-        "basic": "—",
-        "premium": "✔ (exclude Server)"
+        "basic": "\u2014",
+        "premium": "\u2714 (exclude Server)"
       },
       {
         "feature": "Annual technology review",
-        "basic": "—",
-        "premium": "✔ (include OS upgrade)"
+        "basic": "\u2014",
+        "premium": "\u2714 (include OS upgrade)"
       },
       {
         "feature": "Enhanced monitoring",
-        "basic": "—",
-        "premium": "✔"
+        "basic": "\u2014",
+        "premium": "\u2714"
       },
       {
         "feature": "Extended 3-year hardware warranty",
-        "basic": "—",
-        "premium": "✔ (equipment purchased from us)"
+        "basic": "\u2014",
+        "premium": "\u2714 (equipment purchased from us)"
       },
       {
         "feature": "Discounted hardware pricing",
-        "basic": "—",
-        "premium": "✔"
+        "basic": "\u2014",
+        "premium": "\u2714"
       },
       {
         "feature": "Best for",
@@ -211,8 +211,8 @@
     ]
   },
   "whoWeServe": {
-    "title": "Who We Serve — Dental Practices",
-    "lead": "We specialize in supporting dental practices of all sizes—from single-location offices to growing multi-site groups.",
+    "title": "Who We Serve \u2014 Dental Practices",
+    "lead": "We specialize in supporting dental practices of all sizes\u2014from single-location offices to growing multi-site groups.",
     "challengesTitle": "We Understand Dental IT Challenges",
     "challenges": [
       "Front desk uptime is critical",
@@ -246,16 +246,16 @@
   },
   "contact": {
     "title": "Contact",
-    "lead": "If you’re looking for reliable IT support that understands dental practices, we’d be happy to connect.",
+    "lead": "If you\u2019re looking for reliable IT support that understands dental practices, we\u2019d be happy to connect.",
     "phoneLabel": "Phone",
     "phoneText": "804-000-0000",
     "phoneHref": "tel:+18040000000",
     "emailLabel": "Email",
     "emailText": "info@nexgenbinary.com",
     "emailHref": "mailto:info@nexgenbinary.com",
-    "formEndpoint": "https://example.com/replace-with-your-form-endpoint"
+    "formEndpoint": "https://formspree.io/f/mdalpbzo"
   },
   "footer": {
-    "copyright": "© NexGen Binary LLC. All rights reserved."
+    "copyright": "\u00a9 NexGen Binary LLC. All rights reserved."
   }
 }
