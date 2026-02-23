@@ -4,6 +4,7 @@ const { site } = Astro.props;
 const groups = site?.services?.groups ?? [];
 const mainGroups = groups.slice(0, 4);
 const networkGroup = groups[4];
+
 const iconFor = (title = '') => {
   const t = title.toLowerCase();
   if (t.includes('managed')) return 'monitor';
@@ -13,6 +14,31 @@ const iconFor = (title = '') => {
   if (t.includes('network') || t.includes('wifi') || t.includes('voip') || t.includes('camera')) return 'network';
   return 'tools';
 };
+
+const serviceItemText = (item) => {
+  if (item == null) return '';
+  if (typeof item === 'string' || typeof item === 'number') return String(item);
+  if (Array.isArray(item)) {
+    return item.map(serviceItemText).filter(Boolean).join(' ');
+  }
+  if (typeof item === 'object') {
+    for (const key of ['text', 'label', 'title', 'name', 'value', 'description', 'desc']) {
+      if (typeof item[key] === 'string' || typeof item[key] === 'number') return String(item[key]);
+    }
+    const joined = Object.values(item)
+      .filter((v) => typeof v === 'string' || typeof v === 'number')
+      .map((v) => String(v).trim())
+      .filter(Boolean)
+      .join(' ');
+    return joined;
+  }
+  return String(item);
+};
+
+const normalizeItems = (items = []) => (items ?? []).map(serviceItemText).filter(Boolean);
+
+const networkItems = normalizeItems(networkGroup?.items ?? []);
+const networkSplit = Math.ceil(networkItems.length / 2);
 ---
 <section id="services" class="nb-section nb-anchor-offset">
   <div class="nb-shell">
@@ -25,7 +51,7 @@ const iconFor = (title = '') => {
             <h3>{group.title}</h3>
           </div>
           <ul>
-            {group.items?.map((item) => <li>{item}</li>)}
+            {normalizeItems(group.items ?? []).map((item) => <li>{item}</li>)}
           </ul>
         </article>
       ))}
@@ -38,10 +64,10 @@ const iconFor = (title = '') => {
           </div>
           <div class="nb-service-cols">
             <ul>
-              {networkGroup.items?.slice(0, Math.ceil(networkGroup.items.length / 2)).map((item) => <li>{item}</li>)}
+              {networkItems.slice(0, networkSplit).map((item) => <li>{item}</li>)}
             </ul>
             <ul>
-              {networkGroup.items?.slice(Math.ceil(networkGroup.items.length / 2)).map((item) => <li>{item}</li>)}
+              {networkItems.slice(networkSplit).map((item) => <li>{item}</li>)}
             </ul>
           </div>
         </article>
