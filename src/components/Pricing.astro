@@ -1,48 +1,49 @@
 ---
+import IconBadge from "./IconBadge.astro";
 const { site } = Astro.props;
-const pricing = site?.pricing || {};
-const plans = pricing.plans || [];
-const rows = pricing.rows || [];
-const fmt = (v) => String(v || '—');
-const planRows = [
-  { plan: plans[0] || {}, valuesKey: 'basic' },
-  { plan: plans[1] || {}, valuesKey: 'premium' },
-];
+const p = site.pricing ?? {};
+const plans = p.plans ?? [];
+const tableRows = (p.features ?? []).length
+  ? p.features.map((r) => ({ label: r.label, values: r.values }))
+  : (p.rows ?? []).map((r) => ({ label: r.feature, values: [r.basic, r.premium] }));
 ---
-<section id="pricing" class="nb-section nb-anchor-offset nb-pricing-wrap">
+<section id="pricing" class="nb-section">
   <div class="nb-shell">
-    <h2 class="nb-section-title nb-center">{pricing.title || 'Service Plan Comparison'}</h2>
-    {pricing.subtitle && <p class="nb-section-subtitle nb-center">{pricing.subtitle}</p>}
-
-    <div class="nb-plan-columns">
-      {planRows.map(({ plan, valuesKey }) => (
-        <article class="nb-plan-card nb-hover-pop">
-          <div class="nb-plan-intro-block">
-            <h3>{plan.name}</h3>
-            <p>{plan.monthly}</p>
-            <a class="nb-btn-primary nb-btn-small" href="#contact">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              <span>Request more information</span>
-            </a>
-          </div>
-          <div class="nb-plan-rows">
-            {rows.map((row) => {
-              const raw = fmt(row[valuesKey]);
-              const checked = raw.includes('✔');
-              const text = raw.replaceAll('✔', '').trim();
-              return (
-                <div class="nb-plan-row">
-                  <div class="nb-plan-feature">{row.feature}</div>
-                  <div class="nb-plan-value">
-                    {checked ? <span class="nb-check">✔</span> : null}
-                    {text || (!checked ? raw : '')}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+    <div class="nb-section-head center">
+      <h2>{p.title ?? 'Service Plan Comparison'}</h2>
+      {p.subtitle && <p>{p.subtitle}</p>}
+    </div>
+    <div class="nb-pricing-summary">
+      {plans.map((plan) => (
+        <article class="nb-plan-card nb-pop">
+          <h3>{plan.name}</h3>
+          <p>{plan.monthly}</p>
+          <a href="#contact" class="nb-btn nb-btn-primary nb-btn-small nb-pop" data-target="contact">
+            <IconBadge name="calendar" class="inline" />
+            <span>{plan.cta ?? 'Request more information'}</span>
+          </a>
         </article>
       ))}
+    </div>
+    <div class="nb-pricing-table-wrap nb-pop">
+      <table class="nb-pricing-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            {plans.map((plan) => <th>{plan.name}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {tableRows.map((row) => (
+            <tr>
+              <td>{row.label}</td>
+              {(row.values ?? []).map((v) => (
+                <td set:html={String(v ?? '').replaceAll('✔', '<span class="nb-check">✔</span>').replaceAll('✓', '<span class="nb-check">✓</span>')} />
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   </div>
 </section>

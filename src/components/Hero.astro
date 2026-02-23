@@ -1,32 +1,35 @@
 ---
-import IconBadge from './IconBadge.astro';
+import IconBadge from "./IconBadge.astro";
 const { site } = Astro.props;
-const items = site?.whatWeDo?.items ?? [];
+const h = site.hero ?? {};
+const what = site.whatWeDo ?? { items: [] };
+const kicker = h.kicker ?? h.eyebrow ?? "Reliable IT for Dental Practices Across Virginia";
+const title = h.title ?? h.headline ?? "Future-ready systems. Human-ready support.";
+const text = h.text ?? h.subheadline ?? "";
+const primaryCta = h.primaryCta ?? "Book a Consultation";
+const secondaryCta = h.secondaryCta ?? "Call Us";
 ---
-<section id="home" class="nb-hero-wrap nb-anchor-offset">
+<section id="home" class="nb-hero-wrap">
   <div class="nb-shell nb-hero-grid">
     <div class="nb-hero-copy">
-      <p class="nb-eyebrow">{site?.hero?.eyebrow}</p>
-      <h1 class="nb-hero-title">{site?.hero?.headline}</h1>
-      <p class="nb-hero-subtitle">{site?.hero?.subheadline}</p>
-      <div class="nb-hero-actions">
-        <a class="nb-btn-primary" href="#contact">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          <span>{site?.hero?.primaryCta || 'Book a Consultation'}</span>
+      <div class="nb-pill">{kicker}</div>
+      <h1 class="nb-hero-title">{title}</h1>
+      <p class="nb-hero-text">{text}</p>
+      <div class="nb-btn-row">
+        <a href="#contact" class="nb-btn nb-btn-primary nb-pop" data-target="contact">
+          <IconBadge name="calendar" class="inline" /><span>{primaryCta}</span>
         </a>
-        <a class="nb-btn-ghost" href="#contact">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.44.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.19.19 2.34.55 3.44a1 1 0 0 1-.24 1l-2.2 2.86Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span>{site?.hero?.secondaryCta || 'Call Us'}</span>
+        <a href="#contact" class="nb-btn nb-btn-ghost nb-pop" data-target="contact">
+          <IconBadge name="phone" class="inline" /><span>{secondaryCta}</span>
         </a>
       </div>
     </div>
-
-    <aside class="nb-what-card" aria-label="What we do">
-      <h2>{site?.whatWeDo?.title || 'What We Do'}</h2>
-      <div class="nb-what-grid">
-        {items.map((item, idx) => (
-          <article class="nb-what-item" style={`--d:${idx * 40}ms`}>
-            <div class="nb-what-item-icon"><IconBadge icon={item.icon || (idx === 0 ? 'tools' : idx === 1 ? 'shield' : idx === 2 ? 'users' : 'map')} /></div>
+    <div class="nb-hero-panel nb-pop">
+      <div class="nb-panel-title">{what.title ?? 'What We Do'}</div>
+      <div class="nb-hero-cards">
+        {(what.items ?? []).map((item) => (
+          <article class="nb-mini-card nb-pop">
+            <IconBadge name={item.icon} class="lg" />
             <div>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -34,6 +37,6 @@ const items = site?.whatWeDo?.items ?? [];
           </article>
         ))}
       </div>
-    </aside>
+    </div>
   </div>
 </section>
