@@ -4,7 +4,6 @@ const { site } = Astro.props;
 <footer class="nb-footer nb-footer-separated">
   <div class="nb-shell">
     <div class="nb-footer-copy">© {new Date().getFullYear()} {site?.brand?.name ?? 'NexGen Binary'}. All rights reserved.</div>
-    <a class="nb-footer-toplink" href="#home" data-target="home">Back to top</a>
   </div>
 </footer>
 
@@ -17,7 +16,7 @@ const { site } = Astro.props;
   title="Back to top"
 >
   <span class="nb-float-top__arrow" aria-hidden="true">↑</span>
-  <span class="nb-float-top__text">Top</span>
+  <span class="nb-float-top__text">Back to top</span>
 </a>
 
 <script is:inline>
