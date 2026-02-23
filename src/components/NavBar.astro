@@ -1,42 +1,42 @@
 ---
-import IconBadge from "./IconBadge.astro";
-
 const { site } = Astro.props;
-const brand = site?.brand ?? {};
-const phoneText = site?.contact?.phoneDisplay ?? "804-000-0000";
-const phoneHref = "#contact";
-
-const navItems = [
-  { id: "home", label: "Home" },
-  { id: "services", label: "Services" },
-  { id: "pricing", label: "Pricing" },
-  { id: "who-we-serve", label: "Who We Serve" },
-  { id: "about", label: "About" },
-  { id: "contact", label: "Contact" },
+const navItems = site?.nav ?? [
+  { label: 'Home', href: '#home' },
+  { label: 'Services', href: '#services' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Who We Serve', href: '#who-we-serve' },
+  { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
 ];
+const phoneHref = site?.contact?.phoneHref ?? '#contact';
+const phoneText = site?.contact?.phoneText ?? '804-000-0000';
+const brandName = site?.brand?.name ?? 'NexGen Binary';
+const slogan = site?.brand?.slogan ?? 'Precision Built. People First. Always.';
+const base = import.meta.env.BASE_URL || '/';
+const logoSrc = `${base}Company_logo.png?v=37`;
 ---
-<header class="nb-navbar-wrap">
-  <div class="nb-shell nb-navbar">
-    <a class="nb-brand" href="#home" aria-label={`${brand.name} home`}>
-      <img src="/Company_logo.png?v=32" alt="NexGen Binary logo" class="nb-brand-logo" width="48" height="48" />
+<header class="nb-nav-wrap">
+  <div class="nb-shell nb-nav-shell">
+    <a class="nb-brand" href="#home" aria-label="NexGen Binary home">
+      <img class="nb-brand-logo" src={logoSrc} alt="NexGen Binary logo" width="52" height="52" />
       <span class="nb-brand-text">
-        <span class="nb-brand-name">{brand.name}</span>
-        <span class="nb-brand-slogan">{brand.slogan}</span>
+        <span class="nb-brand-name">{brandName}</span>
+        <span class="nb-brand-slogan">{slogan}</span>
       </span>
     </a>
 
-    <button class="nb-nav-toggle" type="button" aria-expanded="false" aria-controls="nb-nav-menu" aria-label="Open menu">
+    <button class="nb-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nb-nav-menu">
       <span></span><span></span><span></span>
     </button>
 
-    <nav id="nb-nav-menu" class="nb-nav" aria-label="Primary">
-      <ul class="nb-nav-list">
+    <nav id="nb-nav-menu" class="nb-nav-menu" aria-label="Primary">
+      <ul class="nb-nav-links">
         {navItems.map((item) => (
-          <li><a class="nb-nav-link" href={`#${item.id}`} data-target={item.id}>{item.label}</a></li>
+          <li><a class="nb-nav-link" href={item.href}>{item.label}</a></li>
         ))}
       </ul>
-      <a class="nb-phone-btn nb-pop" href={phoneHref} data-target="contact">
-        <IconBadge name="phone" class="inline" />
+      <a class="nb-phone-cta" href={phoneHref}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.44.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.19.19 2.34.55 3.44a1 1 0 0 1-.24 1l-2.2 2.86Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>{phoneText}</span>
       </a>
     </nav>
@@ -45,68 +45,50 @@ const navItems = [
 
 <script is:inline>
   (() => {
-    const header = document.querySelector('.nb-navbar-wrap');
-    const nav = document.getElementById('nb-nav-menu');
+    const header = document.querySelector('.nb-nav-wrap');
     const toggle = document.querySelector('.nb-nav-toggle');
-    const links = Array.from(document.querySelectorAll('.nb-nav-link, .nb-phone-btn'));
-    if (!header || !nav || !toggle || !links.length) return;
-
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      document.body.classList.toggle('nb-menu-open', open);
-    });
+    const menu = document.querySelector('.nb-nav-menu');
+    const links = Array.from(document.querySelectorAll('.nb-nav-link'));
+    if (!header || !toggle || !menu || !links.length) return;
 
     const closeMenu = () => {
-      nav.classList.remove('is-open');
+      menu.classList.remove('is-open');
       toggle.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('nb-menu-open');
     };
 
-    const offset = () => (header instanceof HTMLElement ? header.offsetHeight : 76) + 10;
-
-    links.forEach((a) => {
-      a.addEventListener('click', (e) => {
-        const targetId = a.getAttribute('data-target');
-        if (!targetId) return;
-        const el = document.getElementById(targetId);
-        if (!el) return;
-        e.preventDefault();
-        const top = el.getBoundingClientRect().top + window.scrollY - offset();
-        window.history.replaceState(null, '', `#${targetId}`);
-        window.scrollTo({ top, behavior: 'smooth' });
-        closeMenu();
-      });
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
-    const sections = ['home', 'services', 'pricing', 'who-we-serve', 'about', 'contact']
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
+    links.forEach((link) => link.addEventListener('click', () => {
+      if (window.innerWidth < 1081) closeMenu();
+    }));
 
-    const setActive = (id) => {
-      links.forEach((a) => {
-        const match = a.getAttribute('data-target') === id;
-        a.classList.toggle('is-active', match);
-      });
-    };
-
-    const updateActive = () => {
-      const y = window.scrollY + offset() + 40;
-      let current = 'home';
-      for (const sec of sections) {
-        if (sec.offsetTop <= y) current = sec.id;
+    const setActive = () => {
+      const offset = (header.offsetHeight || 80) + 16;
+      const ids = links.map((l) => (l.getAttribute('href') || '').replace('#', '')).filter(Boolean);
+      let activeId = ids[0] || 'home';
+      for (const id of ids) {
+        const section = document.getElementById(id);
+        if (!section) continue;
+        const top = section.getBoundingClientRect().top + window.scrollY;
+        if (window.scrollY + offset >= top) activeId = id;
       }
-      setActive(current);
+      if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 4 && ids.length) {
+        activeId = ids[ids.length - 1];
+      }
+      links.forEach((link) => {
+        const id = (link.getAttribute('href') || '').replace('#', '');
+        link.classList.toggle('active', id === activeId);
+      });
     };
 
-    window.addEventListener('scroll', updateActive, { passive: true });
-    window.addEventListener('resize', updateActive);
-    window.addEventListener('hashchange', updateActive);
-    window.addEventListener('load', () => {
-      closeMenu();
-      if (!window.scrollY) setActive('home');
-      updateActive();
+    window.addEventListener('scroll', setActive, { passive: true });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1081) menu.classList.remove('is-open');
+      setActive();
     });
-    updateActive();
+    setActive();
   })();
 </script>

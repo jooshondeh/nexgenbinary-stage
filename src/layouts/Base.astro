@@ -1,17 +1,9 @@
 ---
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/custom.css";
-import "../styles/nav-stability-v17.css";
-
-interface Props {
-  title?: string;
-  description?: string;
-}
-
-const {
-  title = "NexGen Binary",
-  description = "Reliable IT for Dental Practices Across Virginia",
-} = Astro.props;
+import '../styles/custom.css';
+const { title = 'NexGen Binary', site } = Astro.props;
+const formEndpoint = site?.contact?.formEndpoint || '';
+const base = import.meta.env.BASE_URL || '/';
+const asset = (name) => `${base}${name}`;
 ---
 <!doctype html>
 <html lang="en">
@@ -19,21 +11,24 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=32" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=32" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=32" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=32" />
-    <meta name="theme-color" content="#0f2f52" />
+    <meta name="description" content="NexGen Binary provides dental-focused managed IT, security, cloud, and support services across Virginia." />
+    <link rel="shortcut icon" href={asset(`favicon.ico?v=37`)} />
+    <link rel="icon" type="image/x-icon" href={asset(`favicon.ico?v=37`)} />
+    <link rel="icon" type="image/png" sizes="32x32" href={asset(`favicon-32x32.png?v=37`)} />
+    <link rel="apple-touch-icon" href={asset(`apple-touch-icon.png?v=37`)} />
+    <link rel="manifest" href={asset(`site.webmanifest?v=37`)} />
+    <meta name="theme-color" content="#0b2f53" />
+    <script is:inline>
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.addEventListener('load', () => {
+        try { window.scrollTo({ top: 0, left: 0, behavior: 'auto' }); } catch { window.scrollTo(0, 0); }
+      });
+    </script>
   </head>
   <body>
     <slot />
-    <script is:inline>
-      // Always start at the top on hard refresh/reload for this one-page site
-      try { history.scrollRestoration = 'manual'; } catch {}
-      window.addEventListener('pageshow', () => {
-        if (!location.hash) window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-      });
+    <script is:inline define:vars={{ formEndpoint }}>
+      window.__NEXGEN_FORM_ENDPOINT__ = formEndpoint;
     </script>
   </body>
 </html>
