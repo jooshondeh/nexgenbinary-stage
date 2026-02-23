@@ -25,8 +25,8 @@ const items = site?.whatWeDo?.items ?? [];
       <h2>{site?.whatWeDo?.title || 'What We Do'}</h2>
       <div class="nb-what-grid">
         {items.map((item, idx) => (
-          <article class="nb-what-item nb-hover-pop" style={`--d:${idx * 40}ms`}>
-            <div class="nb-what-item-icon"><IconBadge name={idx === 0 ? "tools" : idx === 1 ? "lockshield" : idx === 2 ? "people" : "cloud"} /></div>
+          <article class="nb-what-item" style={`--d:${idx * 40}ms`}>
+            <div class="nb-what-item-icon"><IconBadge icon={item.icon || (idx === 0 ? 'tools' : idx === 1 ? 'shield' : idx === 2 ? 'users' : 'map')} /></div>
             <div>
               <h3>{item.title}</h3>
               <p>{item.text}</p>

@@ -12,17 +12,17 @@ const asset = (name) => `${base}${name}`;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content="NexGen Binary provides dental-focused managed IT, security, cloud, and support services across Virginia." />
-    <link rel="shortcut icon" href={asset(`favicon.ico?v=42`)} />
-    <link rel="icon" type="image/x-icon" href={asset(`favicon.ico?v=42`)} />
-    <link rel="icon" type="image/png" sizes="32x32" href={asset(`favicon-32x32.png?v=42`)} />
-    <link rel="apple-touch-icon" sizes="180x180" href={asset(`apple-touch-icon.png?v=42`)} />
-    <link rel="manifest" href={asset(`site.webmanifest?v=42`)} />
+    <link rel="shortcut icon" href={asset(`favicon.ico?v=43`)} />
+    <link rel="icon" type="image/x-icon" href={asset(`favicon.ico?v=43`)} />
+    <link rel="icon" type="image/png" sizes="32x32" href={asset(`favicon-32x32.png?v=43`)} />
+    <link rel="apple-touch-icon" href={asset(`apple-touch-icon.png?v=43`)} />
+    <link rel="manifest" href={asset(`site.webmanifest?v=43`)} />
     <meta name="theme-color" content="#0b2f53" />
     <script is:inline>
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      const reset = () => { try { window.scrollTo({ top: 0, left: 0, behavior: 'auto' }); } catch { window.scrollTo(0, 0); } };
-      window.addEventListener('load', reset);
-      window.addEventListener('pageshow', reset);
+      window.addEventListener('load', () => {
+        try { window.scrollTo({ top: 0, left: 0, behavior: 'auto' }); } catch { window.scrollTo(0, 0); }
+      });
     </script>
   </head>
   <body>

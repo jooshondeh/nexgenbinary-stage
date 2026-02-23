@@ -9,8 +9,8 @@ const iconFor = (title) => {
   if (t.includes('managed')) return 'monitor';
   if (t.includes('emr') || t.includes('clinical')) return 'users';
   if (t.includes('microsoft') || t.includes('cloud')) return 'cloud';
-  if (t.includes('security')) return 'lockshield';
-  if (t.includes('network') || t.includes('wifi') || t.includes('voip')) return 'wifi';
+  if (t.includes('security')) return 'shield';
+  if (t.includes('network') || t.includes('wifi') || t.includes('voip')) return 'server';
   return 'tools';
 };
 ---
@@ -21,19 +21,20 @@ const iconFor = (title) => {
       {mainGroups.map((group) => (
         <article class="nb-service-card nb-hover-pop">
           <div class="nb-service-head">
-            <IconBadge name={iconFor(group.title)} />
+            <IconBadge icon={iconFor(group.title)} />
             <h3>{group.title}</h3>
           </div>
           <ul>
             {group.items?.map((item) => <li>{item}</li>)}
           </ul>
+          <a class="nb-service-link" href="#contact">Request more info</a>
         </article>
       ))}
 
       {networkGroup && (
         <article class="nb-service-card nb-service-card-wide nb-hover-pop">
           <div class="nb-service-head">
-            <IconBadge name={iconFor(networkGroup.title)} />
+            <IconBadge icon={iconFor(networkGroup.title)} />
             <h3>{networkGroup.title}</h3>
           </div>
           <div class="nb-service-cols">
@@ -44,6 +45,7 @@ const iconFor = (title) => {
               {networkGroup.items?.slice(Math.ceil(networkGroup.items.length / 2)).map((item) => <li>{item}</li>)}
             </ul>
           </div>
+          <a class="nb-service-link" href="#contact">Request more info</a>
         </article>
       )}
     </div>

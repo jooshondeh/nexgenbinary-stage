@@ -327,96 +327,86 @@ html, body { scroll-behavior: smooth; }
 .nb-plan-value { display:flex; align-items:center; gap:4px; }
 .nb-card .nb-inline-icon { width:16px; height:16px; margin-right:6px; }
 
-
-/* === v42 hover + icon polish === */
-.nb-hover-pop,
+/* v43 stability + interactive refinements */
 .nb-what-item,
-.nb-phone-cta{
-  will-change: transform, box-shadow, border-color, background-color;
+.nb-service-card,
+.nb-plan-card,
+.nb-phone-cta {
+  will-change: transform;
 }
 
-.nb-hover-pop:hover,
-.nb-what-item:hover,
-.nb-phone-cta:hover{
-  transform: translateY(-6px) scale(1.012);
-  box-shadow: 0 16px 38px rgba(0,0,0,.22), 0 0 0 1px rgba(243,138,21,.22) inset;
-}
-
-.nb-what-item{
-  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background-color .22s ease;
-}
-
-.nb-what-item:hover{
-  border-color: rgba(243,138,21,.45);
-  background: #ffffff;
-}
-
-.nb-what-item .nb-icon{
-  width: 24px;
-  height: 24px;
-  color: var(--nb-navy);
-  transition: color .2s ease, transform .2s ease;
-}
-
-.nb-what-item .nb-icon-badge{
-  width: 56px;
-  height: 56px;
+.nb-what-item .nb-icon-badge,
+.nb-service-card .nb-icon-badge {
+  width: 58px;
+  height: 58px;
   border-radius: 14px;
-  background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(245,248,252,.96));
-  border: 1px solid rgba(11,42,73,.08);
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
-  transition: background-color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  transition: transform .22s ease, background-color .22s ease, color .22s ease, border-color .22s ease, box-shadow .22s ease;
 }
 
-.nb-what-item:hover .nb-icon-badge{
-  background: rgba(243,138,21,.12);
-  border-color: rgba(243,138,21,.35);
-  box-shadow: 0 10px 24px rgba(243,138,21,.18);
-  transform: translateY(-2px);
+.nb-what-item .nb-icon-badge svg,
+.nb-service-card .nb-icon-badge svg {
+  width: 28px;
+  height: 28px;
 }
 
-.nb-what-item:hover .nb-icon{
+.nb-what-item:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(245, 138, 15, 0.55);
+  box-shadow: 0 18px 38px rgba(15,39,65,.16), 0 0 0 1px rgba(245,138,15,.12) inset;
+}
+
+.nb-what-item:hover .nb-icon-badge {
+  background: linear-gradient(180deg, rgba(245,138,15,.18), rgba(245,138,15,.10));
+  border-color: rgba(245,138,15,.45);
   color: var(--nb-orange);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 10px 22px rgba(245,138,15,.18);
 }
 
-.nb-service-card:hover .nb-icon-badge,
-.nb-service-wide:hover .nb-icon-badge{
-  background: rgba(243,138,21,.12);
-  border-color: rgba(243,138,21,.35);
-  box-shadow: 0 10px 24px rgba(243,138,21,.16);
+.nb-service-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(245, 138, 15, 0.42);
+  box-shadow: 0 18px 34px rgba(15,39,65,.10), 0 0 0 1px rgba(245,138,15,.08) inset;
 }
 
-.nb-service-card:hover .nb-icon,
-.nb-service-wide:hover .nb-icon{
+.nb-service-card:hover .nb-icon-badge {
+  background: linear-gradient(180deg, rgba(245,138,15,.18), rgba(245,138,15,.10));
+  border-color: rgba(245,138,15,.45);
   color: var(--nb-orange);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 10px 22px rgba(245,138,15,.15);
 }
 
-.nb-plan-card:hover{
-  border-color: rgba(243,138,21,.30);
+.nb-plan-card {
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
 
-.nb-pricing-table .yes{
-  color: var(--nb-orange);
-  font-weight: 800;
+.nb-plan-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(245,138,15,.34);
+  box-shadow: 0 18px 34px rgba(15,39,65,.08), 0 0 0 1px rgba(245,138,15,.08) inset;
 }
 
-.nb-phone-cta{
-  text-decoration: none;
+.nb-phone-cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(245,138,15,.28);
 }
 
-.nb-phone-cta:hover{
-  color: #fff;
-  border-color: rgba(243,138,21,.55);
+.nb-phone-cta:focus-visible {
+  outline: 2px solid rgba(245,138,15,.65);
+  outline-offset: 2px;
 }
 
-.nb-phone-cta:hover .nb-phone-icon{
-  color: #fff;
+/* Ensure shape panels preserve intended card width/grid layout */
+.nb-shape-panel {
+  width: 100%;
+  max-width: 100%;
 }
-
-@media (max-width: 920px){
-  .nb-hover-pop:hover,
-  .nb-what-item:hover,
-  .nb-phone-cta:hover{
-    transform: none;
-  }
+.nb-services-grid,
+.nb-tile-grid,
+.nb-serve-grid,
+.nb-about-grid,
+.nb-contact-grid,
+.nb-pricing-grid {
+  align-items: stretch;
 }

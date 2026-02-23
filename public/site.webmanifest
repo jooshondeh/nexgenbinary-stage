@@ -3,17 +3,22 @@
   "short_name": "NexGen Binary",
   "icons": [
     {
-      "src": "/favicon-32x32.png?v=41",
+      "src": "/favicon-32x32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/apple-touch-icon.png?v=41",
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
     }
   ],
-  "theme_color": "#0b2f53",
-  "background_color": "#0b2f53",
+  "theme_color": "#0f2741",
+  "background_color": "#0f2741",
   "display": "standalone"
 }
