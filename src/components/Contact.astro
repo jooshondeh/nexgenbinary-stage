@@ -141,7 +141,9 @@ const formEndpoint = c.formEndpoint ?? "";
       const fd = new FormData(form);
       if ((fd.get('_gotcha') || '').toString().trim()) {
         form.reset();
-        setStatus('Thanks! Your message was sent.', 'success');
+        setStatus('', 'neutral');
+        alert('Thanks! Your message was sent successfully.');
+        window.location.reload();
         return;
       }
 
