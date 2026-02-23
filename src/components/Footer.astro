@@ -7,3 +7,121 @@ const { site } = Astro.props;
     <a class="nb-footer-toplink" href="#home" data-target="home">Back to top</a>
   </div>
 </footer>
+
+<a
+  id="nbFloatTop"
+  class="nb-float-top"
+  href="#home"
+  data-target="home"
+  aria-label="Back to top"
+  title="Back to top"
+>
+  <span class="nb-float-top__arrow" aria-hidden="true">↑</span>
+  <span class="nb-float-top__text">Top</span>
+</a>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById('nbFloatTop');
+    if (!btn) return;
+
+    const homeSection = document.getElementById('home');
+    const showButton = () => btn.classList.add('is-visible');
+    const hideButton = () => btn.classList.remove('is-visible');
+
+    const fallbackToggle = () => {
+      if (window.scrollY > Math.max(220, Math.round(window.innerHeight * 0.45))) {
+        showButton();
+      } else {
+        hideButton();
+      }
+    };
+
+    if (homeSection && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          if (!entry) return;
+          if (entry.isIntersecting) {
+            hideButton();
+          } else {
+            showButton();
+          }
+        },
+        {
+          root: null,
+          threshold: 0.2,
+        }
+      );
+      observer.observe(homeSection);
+      window.addEventListener('scroll', fallbackToggle, { passive: true });
+      window.addEventListener('resize', fallbackToggle);
+      fallbackToggle();
+    } else {
+      window.addEventListener('scroll', fallbackToggle, { passive: true });
+      window.addEventListener('resize', fallbackToggle);
+      fallbackToggle();
+    }
+  })();
+</script>
+
+<style>
+  .nb-float-top{
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 120;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(71,178,228,.35);
+    background: rgba(9,29,46,.92);
+    color: #eaf4ff;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(0,0,0,.18);
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    backdrop-filter: blur(6px);
+  }
+  .nb-float-top.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .nb-float-top:hover{
+    border-color: rgba(244,136,36,.55);
+    box-shadow: 0 12px 28px rgba(0,0,0,.22);
+  }
+  .nb-float-top::after{
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 5px;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--nb-orange), #ffc183);
+    opacity: .95;
+  }
+  .nb-float-top__arrow{
+    font-size: 14px;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+  .nb-float-top__text{
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .02em;
+  }
+  @media (max-width: 640px){
+    .nb-float-top{
+      right: 12px;
+      bottom: 12px;
+      padding: 8px 10px;
+    }
+  }
+</style>
