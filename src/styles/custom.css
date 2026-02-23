@@ -121,11 +121,13 @@ html, body { scroll-behavior: smooth; }
 .nb-nav-shell { display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:78px; }
 .nb-brand { display:flex; align-items:center; gap:12px; text-decoration:none; min-width:0; }
 .nb-brand-logo {
-  width: 52px; height: 52px; border-radius: 14px; object-fit: contain;
-  background: rgba(255,255,255,0.92);
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06), 0 10px 22px rgba(0,0,0,0.18);
-  padding: 5px;
+  width: 52px; height: 52px; object-fit: contain;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
   flex: 0 0 auto;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.18));
 }
 .nb-brand-text { display:flex; flex-direction:column; line-height:1.1; min-width:0; }
 .nb-brand-name { color:#fff; font-weight:800; font-size: clamp(1.15rem, 1.8vw, 1.7rem); letter-spacing:-0.02em; white-space:nowrap; }
@@ -328,68 +330,39 @@ html, body { scroll-behavior: smooth; }
 .nb-card .nb-inline-icon { width:16px; height:16px; margin-right:6px; }
 
 
+/* v47 targeted fixes */
+#contact .form-control{
+  background:#ffffff !important;
+  border:1px solid #c7d7ea !important;
+  color:#1f2d3d !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+}
+#contact .form-control::placeholder{ color:#6f7f92; opacity:1; }
+#contact .form-label{ color:#36506c; font-weight:600; }
+#contact textarea.form-control{ min-height: 140px; }
 
-/* --- v46 focused fixes: logo, icons, pricing cards, contact alignment --- */
-.nb-brand-logo{background:rgba(255,255,255,.98)!important;object-fit:contain!important;padding:4px!important}
-.nb-brand:hover .nb-brand-logo{transform:translateY(-1px) scale(1.02)}
-.nb-phone-cta{transition:transform .18s ease, box-shadow .18s ease}
-.nb-phone-cta:hover{transform:translateY(-2px) scale(1.02); box-shadow:0 16px 30px rgba(247,147,26,.30)}
-.nb-btn-primary .nb-icon, .nb-btn-ghost .nb-icon{width:18px;height:18px;display:inline-flex}
-.nb-btn-primary .nb-icon svg, .nb-btn-ghost .nb-icon svg{width:18px;height:18px}
-
-.nb-what-item{grid-template-columns:56px 1fr!important}
-.nb-what-icon-wrap{width:48px;height:48px;min-width:48px;border-radius:14px}
-.nb-what-icon-wrap .nb-icon, .nb-what-icon-wrap .nb-icon svg{width:22px;height:22px}
-.nb-what-item:hover .nb-what-icon-wrap{
-  background:linear-gradient(135deg,var(--nb-orange),#ffb36d)!important;
-  color:#fff!important;
-  border-color:rgba(244,136,36,.45)!important;
-  transform:scale(1.05);
+.nb-phone-cta{
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.nb-phone-cta:hover{
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 28px rgba(247,147,26,0.28);
+  filter: saturate(1.05);
 }
 
-.nb-service-head .nb-icon-wrap{width:46px;height:46px;min-width:46px;border-radius:12px}
-.nb-service-head .nb-icon, .nb-service-head .nb-icon svg{width:21px;height:21px}
-.nb-service-card.nb-hover-pop:hover .nb-icon-wrap{
-  background:linear-gradient(135deg,var(--nb-orange),#ffb36d);
+.nb-service-card .nb-icon-wrap{
+  background: linear-gradient(135deg, rgba(36,135,206,.12), rgba(71,178,228,.16));
+  color: #1e6ba3;
+  border:1px solid rgba(36,135,206,.18);
+  transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.nb-service-card:hover .nb-icon-wrap{
+  background: linear-gradient(135deg, var(--nb-orange), #ffb36d);
   color:#fff;
-  border-color:rgba(244,136,36,.45);
+  border-color: rgba(244,136,36,.35);
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(244,136,36,.28);
 }
-
-.nb-plan-columns{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important}
-.nb-plan-card{display:flex;flex-direction:column}
-.nb-plan-card:hover .nb-plan-intro-block{background:linear-gradient(180deg,#fff7ef,#fff)}
-.nb-plan-intro-block .nb-btn-primary{display:inline-flex;align-items:center;gap:8px;text-decoration:none}
-.nb-plan-intro-block .nb-btn-primary .nb-btn-inlineicon{display:inline-flex;align-items:center;gap:8px}
-.nb-plan-intro-block .nb-inline-icon-wrap{display:inline-flex;width:18px;height:18px}
-.nb-plan-intro-block .nb-inline-icon-wrap svg{width:18px;height:18px}
-.nb-check{color:var(--nb-orange)!important;font-weight:900}
-.nb-plan-value .nb-check{font-size:1rem;line-height:1}
-
-.nb-philosophy .nb-checkrow .nb-icon-wrap{
-  width:auto;height:auto;min-width:0;border:none!important;background:transparent!important;
-  box-shadow:none!important;padding-top:.1rem;
-}
-.nb-philosophy .nb-checkrow .nb-icon, .nb-philosophy .nb-checkrow .nb-icon svg{
-  width:18px;height:18px;color:var(--nb-orange)!important;
-}
-.nb-why-grid .nb-card:hover .nb-icon-wrap{
-  background:linear-gradient(135deg,var(--nb-orange),#ffb36d)!important;
-  color:#fff!important;
-  border-color:rgba(244,136,36,.45)!important;
-}
-
-.nb-contact-grid > .col-lg-5, .nb-contact-grid > .col-lg-7{display:flex}
-.nb-contact-grid .nb-card{width:100%}
-.nb-contact-grid .col-lg-5 > .w-100{display:flex;flex-direction:column}
-.nb-contact-grid .col-lg-5 .nb-card{display:flex;flex-direction:column}
-.nb-contact-grid .col-lg-5 .nb-card .nb-btn-primary{align-self:flex-start}
-#contact .nb-card{box-shadow:0 10px 24px rgba(14,46,77,.08)}
-#contact .nb-card:hover .nb-icon-wrap{
-  background:linear-gradient(135deg,var(--nb-orange),#ffb36d)!important;
-  color:#fff!important;
-  border-color:rgba(244,136,36,.45)!important;
-}
-
-@media (max-width:1080px){
-  .nb-plan-columns{grid-template-columns:1fr!important}
+.nb-service-card:hover .nb-icon svg{
+  stroke: currentColor;
 }
