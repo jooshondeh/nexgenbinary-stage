@@ -3,6 +3,10 @@ const { site } = Astro.props;
 import IconBadge from "./IconBadge.astro";
 const why = site.whyUs ?? {};
 const icons = ["tools","chart","shield","people"];
+const philosophy = why.philosophy ?? [
+  "We combine next-gen design with dependable execution, treating your systems as mission-critical because they are.",
+  "Our promise is simple: partnership, transparency, and outstanding work—before, during, and after every project."
+];
 ---
 <section id="why-choose-us" class="nb-anchor-offset nb-section" style="background:#ffffff">
   <div class="container">
@@ -11,24 +15,22 @@ const icons = ["tools","chart","shield","people"];
         <h2 class="section-title fw-bold">{why.title ?? "Why Dental Practices Choose Us"}</h2>
         <p class="text-secondary mt-3">Practical, proactive IT designed to keep your front desk and operatories running smoothly—without surprises.</p>
         <div class="nb-philosophy mt-3">
-          <div class="fw-semibold mb-2">Our business philosophy</div>
+          <div class="fw-semibold mb-2">{why.philosophyTitle ?? "Our Business Philosophy"}</div>
           <div class="nb-checklist">
-            <div class="nb-checkrow">
-              <div class="nb-icon-wrap"><IconBadge name="checkcircle" /></div>
-              <div>We combine next-gen design with dependable execution, treating your systems as mission-critical because they are.</div>
-            </div>
-            <div class="nb-checkrow">
-              <div class="nb-icon-wrap"><IconBadge name="checkcircle" /></div>
-              <div>Our promise is simple: partnership, transparency, and outstanding work—before, during, and after every project.</div>
-            </div>
+            {philosophy.map((line) => (
+              <div class="nb-checkrow">
+                <div class="nb-icon-wrap"><IconBadge name="checkcircle" /></div>
+                <div>{line}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
       <div class="col-lg-7">
         <div class="row g-3 nb-why-grid">
           {(why.bullets ?? []).map((b, i) => (
-            <div class="col-md-6">
-              <div class="nb-card nb-pop h-100 d-flex align-items-start">
+            <div class="col-md-6 d-flex">
+              <div class="nb-card nb-pop h-100 d-flex align-items-start w-100">
                 <div class="nb-icon-row">
                   <div class="nb-icon-wrap"><IconBadge name={icons[i % icons.length]} /></div>
                   <div class="fw-semibold">{b}</div>

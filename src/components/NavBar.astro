@@ -8,17 +8,16 @@ const navItems = site?.nav ?? [
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
-const phoneHref = site?.contact?.phoneHref ?? '#contact';
+const phoneHref = '#contact';
 const phoneText = site?.contact?.phoneText ?? '804-000-0000';
 const brandName = site?.brand?.name ?? 'NexGen Binary';
 const slogan = site?.brand?.slogan ?? 'Precision Built. People First. Always.';
-const base = import.meta.env.BASE_URL || '/';
-const logoSrc = `${base}Company_logo.png?v=37`;
+const logoSrc = './Company_logo.png?v=46';
 ---
 <header class="nb-nav-wrap">
   <div class="nb-shell nb-nav-shell">
     <a class="nb-brand" href="#home" aria-label="NexGen Binary home">
-      <img class="nb-brand-logo" src={logoSrc} alt="NexGen Binary logo" width="52" height="52" />
+      <img class="nb-brand-logo" src={logoSrc} alt="NexGen Binary logo" width="52" height="52" loading="eager" fetchpriority="high" decoding="sync" />
       <span class="nb-brand-text">
         <span class="nb-brand-name">{brandName}</span>
         <span class="nb-brand-slogan">{slogan}</span>
@@ -61,23 +60,31 @@ const logoSrc = `${base}Company_logo.png?v=37`;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 
-    links.forEach((link) => link.addEventListener('click', () => {
-      if (window.innerWidth < 1081) closeMenu();
-    }));
+    [...links, ...Array.from(document.querySelectorAll('.nb-phone-cta'))].forEach((link) =>
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 1081) closeMenu();
+      })
+    );
 
     const setActive = () => {
       const offset = (header.offsetHeight || 80) + 16;
       const ids = links.map((l) => (l.getAttribute('href') || '').replace('#', '')).filter(Boolean);
       let activeId = ids[0] || 'home';
-      for (const id of ids) {
-        const section = document.getElementById(id);
-        if (!section) continue;
-        const top = section.getBoundingClientRect().top + window.scrollY;
-        if (window.scrollY + offset >= top) activeId = id;
+
+      if (window.scrollY < 10) {
+        activeId = ids[0] || 'home';
+      } else {
+        for (const id of ids) {
+          const section = document.getElementById(id);
+          if (!section) continue;
+          const top = section.getBoundingClientRect().top + window.scrollY;
+          if (window.scrollY + offset >= top) activeId = id;
+        }
+        if (window.scrollY > 40 && (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 4 && ids.length) {
+          activeId = ids[ids.length - 1];
+        }
       }
-      if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 4 && ids.length) {
-        activeId = ids[ids.length - 1];
-      }
+
       links.forEach((link) => {
         const id = (link.getAttribute('href') || '').replace('#', '');
         link.classList.toggle('active', id === activeId);
@@ -89,6 +96,7 @@ const logoSrc = `${base}Company_logo.png?v=37`;
       if (window.innerWidth >= 1081) menu.classList.remove('is-open');
       setActive();
     });
+    window.addEventListener('load', setActive);
     setActive();
   })();
 </script>

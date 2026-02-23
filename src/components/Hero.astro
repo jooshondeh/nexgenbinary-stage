@@ -1,35 +1,33 @@
 ---
-import IconBadge from "./IconBadge.astro";
+import IconBadge from './IconBadge.astro';
 const { site } = Astro.props;
-const h = site.hero ?? {};
-const what = site.whatWeDo ?? { items: [] };
-const kicker = h.kicker ?? h.eyebrow ?? "Reliable IT for Dental Practices Across Virginia";
-const title = h.title ?? h.headline ?? "Future-ready systems. Human-ready support.";
-const text = h.text ?? h.subheadline ?? "";
-const primaryCta = h.primaryCta ?? "Book a Consultation";
-const secondaryCta = h.secondaryCta ?? "Call Us";
+const items = site?.whatWeDo?.items ?? [];
+const iconMap = ['monitor','lockshield','tools','pin'];
 ---
-<section id="home" class="nb-hero-wrap">
+<section id="home" class="nb-hero-wrap nb-anchor-offset">
   <div class="nb-shell nb-hero-grid">
     <div class="nb-hero-copy">
-      <div class="nb-pill">{kicker}</div>
-      <h1 class="nb-hero-title">{title}</h1>
-      <p class="nb-hero-text">{text}</p>
-      <div class="nb-btn-row">
-        <a href="#contact" class="nb-btn nb-btn-primary nb-pop" data-target="contact">
-          <IconBadge name="calendar" class="inline" /><span>{primaryCta}</span>
+      <p class="nb-eyebrow">{site?.hero?.eyebrow}</p>
+      <h1 class="nb-hero-title">{site?.hero?.headline}</h1>
+      <p class="nb-hero-subtitle">{site?.hero?.subheadline}</p>
+      <div class="nb-hero-actions">
+        <a class="nb-btn-primary" href="#contact">
+          <IconBadge name="calendar" />
+          <span>{site?.hero?.primaryCta || 'Book a Consultation'}</span>
         </a>
-        <a href="#contact" class="nb-btn nb-btn-ghost nb-pop" data-target="contact">
-          <IconBadge name="phone" class="inline" /><span>{secondaryCta}</span>
+        <a class="nb-btn-ghost" href="#contact">
+          <IconBadge name="phone" />
+          <span>{site?.hero?.secondaryCta || 'Call Us'}</span>
         </a>
       </div>
     </div>
-    <div class="nb-hero-panel nb-pop">
-      <div class="nb-panel-title">{what.title ?? 'What We Do'}</div>
-      <div class="nb-hero-cards">
-        {(what.items ?? []).map((item) => (
-          <article class="nb-mini-card nb-pop">
-            <IconBadge name={item.icon} class="lg" />
+
+    <aside class="nb-what-card" aria-label="What we do">
+      <h2>{site?.whatWeDo?.title || 'What We Do'}</h2>
+      <div class="nb-what-grid">
+        {items.map((item, idx) => (
+          <article class="nb-what-item nb-hover-pop" style={`--d:${idx * 40}ms`}>
+            <div class="nb-icon-wrap nb-what-icon-wrap"><IconBadge name={iconMap[idx] || 'tools'} /></div>
             <div>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -37,6 +35,6 @@ const secondaryCta = h.secondaryCta ?? "Call Us";
           </article>
         ))}
       </div>
-    </div>
+    </aside>
   </div>
 </section>
