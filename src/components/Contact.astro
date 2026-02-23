@@ -59,14 +59,7 @@ const formEndpoint = c.formEndpoint ?? "";
 
           <form id="contactForm" class="row g-3" novalidate>
             <input type="hidden" id="contactEndpoint" value={formEndpoint} />
-            <input
-              type="text"
-              name="_gotcha"
-              tabindex="-1"
-              autocomplete="off"
-              class="d-none"
-              aria-hidden="true"
-            />
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="d-none" aria-hidden="true" />
 
             <div class="col-md-6">
               <label class="form-label" for="contact-name">Name</label>
@@ -129,6 +122,16 @@ const formEndpoint = c.formEndpoint ?? "";
       else statusEl.classList.add('text-secondary');
     };
 
+    const getFormspreeErrorMessage = (data, fallbackStatus) => {
+      const list = Array.isArray(data?.errors)
+        ? data.errors.map((e) => e?.message).filter(Boolean)
+        : [];
+      const direct = typeof data?.error === 'string' ? [data.error] : [];
+      const detail = [...list, ...direct].join(' ').trim();
+      if (detail) return detail;
+      return fallbackStatus ? `Request failed (${fallbackStatus}).` : 'Request failed.';
+    };
+
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.reportValidity()) return;
@@ -154,15 +157,40 @@ const formEndpoint = c.formEndpoint ?? "";
 
       try {
         let response;
+        let errorMessage = '';
 
         if (/formspree\.io/i.test(endpoint)) {
-          // Spam filtering / rate limits are handled by Formspree. Optional CAPTCHA can be enabled in the Formspree dashboard.
-          fd.append('_subject', 'New website message from NexGen Binary LLC');
+          // JSON submit is the most reliable pattern for Formspree AJAX submissions.
+          const payload = {
+            name: (fd.get('name') || '').toString(),
+            email: (fd.get('email') || '').toString(),
+            _replyto: (fd.get('email') || '').toString(),
+            phone: (fd.get('phone') || '').toString(),
+            org: (fd.get('org') || '').toString(),
+            message: (fd.get('message') || '').toString(),
+            _subject: 'New website message from NexGen Binary LLC',
+            _gotcha: (fd.get('_gotcha') || '').toString(),
+          };
+
           response = await fetch(endpoint, {
             method: 'POST',
-            headers: { Accept: 'application/json' },
-            body: fd,
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify(payload),
           });
+
+          const contentType = response.headers.get('content-type') || '';
+          if (contentType.includes('application/json')) {
+            const data = await response.json();
+            if (!response.ok) {
+              errorMessage = getFormspreeErrorMessage(data, response.status);
+            }
+          } else if (!response.ok) {
+            const text = await response.text();
+            errorMessage = text?.trim() || `Request failed (${response.status}).`;
+          }
         } else {
           const payload = {
             name: fd.get('name'),
@@ -182,14 +210,29 @@ const formEndpoint = c.formEndpoint ?? "";
             },
             body: JSON.stringify(payload),
           });
+
+          if (!response.ok) {
+            errorMessage = `Request failed (${response.status}).`;
+          }
         }
 
-        if (!response.ok) throw new Error('submit_failed');
+        if (!response?.ok) throw new Error(errorMessage || 'submit_failed');
 
         form.reset();
-        setStatus('Thanks! Your message was sent.', 'success');
-      } catch {
-        setStatus('Unable to send right now. Please try again or use the email button.', 'error');
+        setStatus('', 'neutral');
+        alert('Thanks! Your message was sent successfully.');
+        window.location.reload();
+      } catch (err) {
+        const message = err instanceof Error ? err.message : '';
+        if (/spam/i.test(message)) {
+          setStatus('Formspree flagged this as spam. Enable CAPTCHA + Restrict to Domain in Formspree, then try again.', 'error');
+        } else if (/domain/i.test(message) || /origin/i.test(message)) {
+          setStatus('Form domain restriction blocked this submission. Check Formspree “Restrict to Domain” settings.', 'error');
+        } else {
+          setStatus('Unable to send right now. Please try again or use the email button.', 'error');
+        }
+        // Helpful while testing in the browser
+        console.error('Contact form submit failed:', message || err);
       } finally {
         submitBtn?.removeAttribute('disabled');
         if (submitLabel) submitLabel.textContent = originalLabel;
