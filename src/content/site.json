@@ -39,7 +39,7 @@
   "hero": {
     "eyebrow": "Reliable IT Support for Dental Practices Across Virginia",
     "headline": "Future-Ready Systems. Human-Ready Support.",
-    "subheadline": "Managed IT, security, cloud, and clinical technology support tailored for dental practices\u2014helping your office stay secure, compliant, and running smoothly every day.",
+    "subheadline": "Managed IT, security, cloud, and clinical technology support tailored for dental practices—helping your office stay secure, compliant, and running smoothly every day.",
     "primaryCta": "Book a Consultation",
     "secondaryCta": "Call Us"
   },
@@ -79,7 +79,7 @@
     "philosophyTitle": "Our Business Philosophy",
     "philosophy": [
       "We combine next-gen design with dependable execution, treating your systems as mission-critical because they are.",
-      "Our promise is simple: partnership, transparency, and outstanding work\u2014before, during, and after every project."
+      "Our promise is simple: partnership, transparency, and outstanding work—before, during, and after every project."
     ]
   },
   "services": {
@@ -122,7 +122,7 @@
         ]
       },
       {
-        "title": "Networking, Wi\u2011Fi, Infrastructure, VoIP & Cameras",
+        "title": "Networking, Wi‑Fi, Infrastructure, VoIP & Cameras",
         "items": [
           "Secure wired and wireless network design",
           "VLAN segmentation for clinical and guest traffic",
@@ -133,7 +133,7 @@
         ]
       }
     ],
-    "subtitle": "Comprehensive IT services tailored for dental practices across Virginia\u2014from daily support and cloud systems to security, networking, and clinical technology support."
+    "subtitle": "Comprehensive IT support tailored for dental practices across Virginia—from daily operations and cloud systems to security, networking, and clinical technology."
   },
   "pricing": {
     "title": "Pricing & Service Plans",
@@ -154,58 +154,58 @@
     "rows": [
       {
         "feature": "Monthly patching",
-        "basic": "\u2714",
-        "premium": "\u2714"
+        "basic": "✔",
+        "premium": "✔"
       },
       {
         "feature": "File & DB backups",
-        "basic": "\u2714",
-        "premium": "\u2714"
+        "basic": "✔",
+        "premium": "✔"
       },
       {
         "feature": "Backup monitoring",
-        "basic": "\u2714",
-        "premium": "\u2714"
+        "basic": "✔",
+        "premium": "✔"
       },
       {
         "feature": "Equipment & rack cleaning",
-        "basic": "\u2714",
-        "premium": "\u2714"
+        "basic": "✔",
+        "premium": "✔"
       },
       {
         "feature": "Standard support",
-        "basic": "\u2714",
-        "premium": "\u2714"
+        "basic": "✔",
+        "premium": "✔"
       },
       {
         "feature": "Priority support",
         "basic": "Business-hours support",
-        "premium": "\u2714 After-hours support"
+        "premium": "✔ After-hours support"
       },
       {
         "feature": "Loaner equipment",
         "basic": "Not included",
-        "premium": "\u2714 Included (excludes server)"
+        "premium": "✔ Included (excludes server)"
       },
       {
         "feature": "Annual technology review",
         "basic": "Not included",
-        "premium": "\u2714 Included (OS upgrades included)"
+        "premium": "✔ Included (OS upgrades included)"
       },
       {
         "feature": "Enhanced monitoring",
         "basic": "Not included",
-        "premium": "\u2714 Included"
+        "premium": "✔ Included"
       },
       {
         "feature": "Extended 3-year hardware warranty",
         "basic": "Not included",
-        "premium": "\u2714 Included (hardware purchased through us)"
+        "premium": "✔ Included (hardware purchased through us)"
       },
       {
         "feature": "Discounted hardware pricing",
         "basic": "Not included",
-        "premium": "\u2714 Included"
+        "premium": "✔ Included"
       },
       {
         "feature": "Best for",
@@ -216,7 +216,7 @@
   },
   "whoWeServe": {
     "title": "Who We Serve",
-    "lead": "We support dental practices of all sizes\u2014from single-location offices to growing multi-site groups. Our services are tailored to the workflows, uptime needs, and security expectations of modern clinical and administrative environments.",
+    "lead": "We support dental practices of all sizes—from single-location offices to growing multi-site groups. Our services are tailored to the workflows, uptime needs, and security expectations of modern clinical and administrative environments.",
     "challengesTitle": "We Understand Dental IT Challenges",
     "challenges": [
       "Front-desk uptime is critical during office hours",
@@ -240,7 +240,7 @@
     "whoWeAreTitle": "Who We Are",
     "whoWeAre": "NexGen Binary is a Virginia-based IT services company delivering secure, reliable, and people-first technology solutions for dental and healthcare practices. We partner with offices to strengthen operations, improve system performance, and provide responsive IT support built around real clinical and administrative workflows.",
     "leadershipTitle": "Leadership & Team Experience",
-    "leadership": "Our leadership brings over 20 years of IT experience across healthcare environments, with a strong foundation in secure systems, infrastructure, and operational support. Our team also brings experience serving dental practices, healthcare organizations, government agencies, and private-sector clients\u2014combining enterprise-level discipline with local responsiveness.",
+    "leadership": "Our leadership brings over 20 years of IT experience across healthcare environments, with a strong foundation in secure systems, infrastructure, and operational support. Our team also brings experience serving dental practices, healthcare organizations, government agencies, and private-sector clients—combining enterprise-level discipline with local responsiveness.",
     "securityTitle": "Security & Compliance by Design",
     "securityBullets": [
       "HIPAA-aware IT practices",
@@ -253,7 +253,7 @@
   },
   "contact": {
     "title": "Contact",
-    "lead": "We support dental practices across Virginia with secure, dependable IT services. Call, email, or send a message and we\u2019ll follow up with the right next steps for your office.",
+    "lead": "We support dental practices across Virginia with secure, dependable IT services. Call, email, or send a message and we’ll follow up with the right next steps for your office.",
     "phoneLabel": "Phone",
     "phoneText": "804-000-0000",
     "phoneHref": "tel:+18040000000",
@@ -262,11 +262,14 @@
     "emailHref": "mailto:info@nexgenbinary.com",
     "formEndpoint": "https://formspree.io/f/mdalpbzo",
     "hcaptchaSiteKey": "267e959c-42c0-45b2-a4d2-45621dbc4f28",
-    "googleBusinessLabel": "Find us on Google",
+    "googleBusiness": {
+      "label": "Find us on Google",
+      "url": "https://www.google.com/search?q=NexGen+Binary+LLC+Virginia"
+    },
     "googleBusinessUrl": "https://www.google.com/search?q=NexGen+Binary+LLC+Virginia",
-    "responseBadge": "Typical response: within 1 business day"
+    "googleBusinessLabel": "Find us on Google"
   },
   "footer": {
-    "copyright": "\u00a9 NexGen Binary LLC. All rights reserved."
+    "copyright": "© NexGen Binary LLC. All rights reserved."
   }
 }
