@@ -1288,7 +1288,7 @@ html, body { scroll-behavior: smooth; }
 }
 
 #pricing .nb-plan-columns {
-  align-items: start;
+  align-items: stretch;
   gap: 18px;
   margin-top: 16px;
 }
@@ -1307,7 +1307,7 @@ html, body { scroll-behavior: smooth; }
 
 #pricing .nb-plan-intro-block {
   padding: 16px 16px 14px;
-  min-height: 160px;
+  min-height: 172px;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #ecf1f7;
@@ -1338,7 +1338,7 @@ html, body { scroll-behavior: smooth; }
 }
 
 #pricing .nb-plan-row {
-  grid-template-columns: minmax(230px, 46%) minmax(0, 54%);
+  grid-template-columns: minmax(240px, 48%) minmax(0, 52%);
 }
 
 #pricing .nb-plan-row.is-alt .nb-plan-feature,
@@ -1357,8 +1357,9 @@ html, body { scroll-behavior: smooth; }
 
 #pricing .nb-plan-value {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
-  gap: 7px;
+  gap: 4px 7px;
   line-height: 1.24;
   min-width: 0;
 }
@@ -1375,6 +1376,9 @@ html, body { scroll-behavior: smooth; }
 #pricing .nb-plan-value-note {
   color: #607286;
   font-size: .92em;
+  display: block;
+  width: 100%;
+  margin-left: 0;
 }
 
 #pricing .nb-plan-row:last-child .nb-plan-feature,
@@ -1395,482 +1399,62 @@ html, body { scroll-behavior: smooth; }
   }
 }
 
-/* =========================================================
-   STAGING SITE-WIDE POLISH OVERRIDES (v85)
-   Clean clinical card system + alignment pass
-   ========================================================= */
 
-html, body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-.nb-section {
-  padding-top: clamp(2.75rem, 4vw, 4.25rem);
-  padding-bottom: clamp(2.75rem, 4vw, 4.25rem);
-}
-
-.nb-section .container {
-  max-width: 1320px;
-}
-
-.section-title,
-.nb-section-title {
-  letter-spacing: -0.02em;
-  line-height: 1.08;
-  color: var(--nb-navy);
-}
-
-.nb-section-subtitle,
-.nb-services-intro,
-.nb-pricing-intro {
-  display: block !important;
-  max-width: 980px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--nb-muted);
-  line-height: 1.45;
-  font-size: clamp(1rem, 1vw + 0.65rem, 1.22rem);
-}
-
-.nb-card,
-.nb-service-card,
-.nb-plan-card,
-.nb-contact-info-card,
-.nb-contact-form-card,
-.nb-about-card,
-.nb-who-card,
-.nb-why-card {
-  border-radius: 22px;
-  border: 1px solid rgba(18, 87, 154, 0.12);
-  box-shadow: 0 8px 24px rgba(12, 34, 62, 0.04);
-  background: rgba(255, 255, 255, 0.95);
-}
-
-.nb-service-card,
-.nb-about-card,
-.nb-who-card,
-.nb-why-card,
-.nb-contact-info-card,
-.nb-contact-form-card,
-.nb-plan-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.nb-service-card:hover,
-.nb-about-card:hover,
-.nb-who-card:hover,
-.nb-why-card:hover,
-.nb-plan-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(18, 87, 154, 0.2);
-  box-shadow: 0 14px 30px rgba(12, 34, 62, 0.07);
-}
-
-/* Navbar readability */
-.navbar .nav-link {
-  font-size: 0.98rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-
-@media (min-width: 1200px) {
-  .navbar .nav-link {
-    font-size: 1.02rem;
-  }
-}
-
-/* Hero polish */
-#home .nb-hero-eyebrow {
-  min-height: 48px;
-  display: inline-flex;
-  align-items: center;
-  padding-inline: 1.3rem;
-  border-color: rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.05);
-}
-
+/* --- v86 corrective polish overrides --- */
 #home .nb-hero-title {
-  letter-spacing: -0.025em;
-  line-height: 0.96;
-  text-wrap: balance;
+  font-size: clamp(2.35rem, 5.1vw, 4.55rem);
+  line-height: 0.95;
 }
 
-#home .nb-hero-copy {
-  max-width: 46ch;
-  line-height: 1.35;
+#home .nb-hero-lead {
+  font-size: 1.08rem;
+  max-width: 720px;
 }
 
-#home .nb-hero-actions {
-  align-items: center;
-}
-
-#home .nb-hero-whatwedo {
-  border-radius: 28px;
-  box-shadow: 0 16px 34px rgba(5, 19, 38, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-#home .nb-hero-mini-card {
-  min-height: 106px;
-  align-items: center;
-}
-
-#home .nb-hero-mini-card .nb-mini-content {
-  justify-content: center;
-}
-
-/* About / Who We Serve / Why Us alignment */
-#about .row,
-#who-we-serve .row,
-#why-us .row {
-  --bs-gutter-y: 1rem;
-}
-
-#about .nb-about-title,
-#who-we-serve .nb-who-title,
-#why-us .nb-why-title,
-#services .nb-service-card-title,
-#pricing .nb-plan-title,
-#contact h3 {
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-}
-
-#about .nb-about-card,
-#who-we-serve .nb-who-card,
-#why-us .nb-why-card {
-  padding: clamp(1rem, 1vw + 0.7rem, 1.4rem);
-}
-
-#why-us .nb-why-card {
-  min-height: 148px;
-  display: flex;
-  align-items: center;
-}
-
-#why-us .nb-why-card .nb-why-header {
-  align-items: center;
-}
-
-#why-us .nb-why-title {
-  margin-bottom: 0;
-}
-
-/* Services section */
-#services .section-title {
-  margin-bottom: 0.6rem;
-}
-
+#services .nb-section-subtitle,
 #services .nb-services-intro {
-  margin-bottom: 1.35rem !important;
+  display: block;
+  color: #5d7288 !important;
+  opacity: 1;
+  margin: 0 auto 1.1rem;
   text-align: center;
+  max-width: 920px;
 }
 
-#services .nb-service-grid {
-  --bs-gutter-x: 1rem;
-  --bs-gutter-y: 1rem;
-}
-
-#services .nb-service-card {
-  padding: clamp(1rem, 1vw + 0.7rem, 1.25rem);
-  min-height: 100%;
-}
-
-#services .nb-service-card-title {
-  font-size: clamp(1rem, 0.6vw + 0.9rem, 1.25rem);
-  margin-bottom: 0;
-}
-
-#services .nb-service-card-header {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-bottom: 0.75rem;
-}
-
-#services .nb-service-card.centered-header .nb-service-card-header {
-  justify-content: center;
+#pricing .nb-section-subtitle,
+#pricing .nb-pricing-intro {
+  display: block;
+  color: #5d7288 !important;
+  opacity: 1;
+  margin: 0 auto 1rem;
   text-align: center;
-  margin-bottom: 0.95rem;
+  max-width: 980px;
 }
 
-#services .nb-service-card ul {
-  margin-bottom: 0;
-  padding-left: 1.25rem;
-  color: var(--nb-muted);
+#pricing .nb-plan-columns {
+  align-items: stretch;
 }
 
-#services .nb-service-card li {
-  line-height: 1.35;
-  margin-bottom: 0.35rem;
+#pricing .nb-plan-intro-block {
+  min-height: 170px;
 }
 
-#services .nb-service-wide-card {
-  padding-top: 0.9rem;
+#pricing .nb-plan-row {
+  grid-template-columns: minmax(240px, 48%) minmax(0, 52%);
 }
 
-#services .nb-service-wide-card .nb-service-wide-list {
-  margin-top: 0.35rem;
-}
-
-#services .nb-service-wide-card .nb-service-wide-list li {
-  margin-bottom: 0.35rem;
-}
-
-/* Pricing alignment */
-#pricing .nb-pricing-grid {
-  --bs-gutter-x: 1rem;
-  --bs-gutter-y: 1rem;
-}
-
-#pricing .nb-plan-card {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-#pricing .nb-plan-header {
-  padding: 1rem 1rem 0.85rem;
-  border-bottom: 1px solid rgba(18, 87, 154, 0.08);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(249, 251, 255, 0.98));
-}
-
-#pricing .nb-plan-title {
-  font-size: 1.15rem;
-}
-
-#pricing .nb-plan-price {
-  color: var(--nb-muted);
-  font-weight: 600;
-}
-
-#pricing .nb-plan-note {
-  margin-top: 0.25rem;
-  color: var(--nb-muted);
-  font-size: 0.95rem;
-  line-height: 1.35;
-}
-
-#pricing .nb-plan-cta {
-  margin-top: 0.7rem;
-  align-self: flex-start;
-}
-
-#pricing .nb-plan-table-wrap {
-  flex: 1;
-}
-
-#pricing .nb-plan-table th,
-#pricing .nb-plan-table td {
-  vertical-align: top;
-  padding: 0.7rem 0.8rem;
-  border-color: rgba(18, 87, 154, 0.08);
-  background: transparent;
-}
-
-#pricing .nb-plan-table th {
-  width: 46%;
-  font-weight: 700;
-  color: var(--nb-navy);
-  line-height: 1.2;
-}
-
-#pricing .nb-plan-value-wrap {
-  display: grid;
-  grid-template-columns: 1.05rem minmax(0, 1fr);
-  align-items: start;
-  column-gap: 0.45rem;
-  row-gap: 0.06rem;
-}
-
-#pricing .nb-check {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1rem;
-  min-height: 1.2rem;
-  font-weight: 800;
-  color: transparent;
-}
-
-#pricing .nb-check.is-on {
-  color: var(--nb-accent);
-}
-
-#pricing .nb-plan-value-main {
-  color: var(--nb-muted);
-  line-height: 1.25;
-}
-
-#pricing .nb-plan-value-main.is-included {
-  color: var(--nb-navy);
-  font-weight: 600;
+#pricing .nb-plan-value {
+  flex-wrap: wrap;
+  gap: 4px 7px;
 }
 
 #pricing .nb-plan-value-note {
-  grid-column: 2;
-  color: var(--nb-muted);
-  opacity: 0.95;
-  line-height: 1.2;
+  display: block;
+  width: 100%;
+  margin-left: 0;
+  font-size: 0.9em;
 }
 
-/* Contact section */
-#contact .nb-contact-grid {
-  --bs-gutter-x: 1rem;
-  --bs-gutter-y: 1rem;
-}
-
-#contact .nb-contact-lead {
-  max-width: 46ch;
-  line-height: 1.35;
-}
-
-#contact .nb-contact-info-card,
-#contact .nb-contact-form-card {
-  padding: clamp(1rem, 1vw + 0.7rem, 1.4rem) !important;
-}
-
-#contact .nb-contact-item {
+#pricing .nb-plan-row:last-child .nb-plan-value {
   align-items: flex-start;
-}
-
-#contact .nb-contact-item a {
-  word-break: break-word;
-}
-
-#contact .nb-contact-booking-note {
-  margin-top: 0.5rem;
-  line-height: 1.3;
-  color: var(--nb-muted);
-}
-
-#contact .nb-contact-form-helper {
-  line-height: 1.3;
-}
-
-#contact .form-control,
-#contact textarea.form-control {
-  border-radius: 14px;
-  min-height: 46px;
-}
-
-#contact textarea.form-control {
-  min-height: 148px;
-  resize: vertical;
-}
-
-#contact .nb-contact-verify-wrap {
-  border-radius: 14px;
-  border: 1px solid rgba(18, 87, 154, 0.14);
-  background: rgba(249, 251, 255, 0.95);
-  padding: 0.55rem;
-  overflow-x: auto;
-}
-
-#contact .nb-contact-actions {
-  margin-top: 0.15rem;
-}
-
-#contact .nb-contact-actions .btn {
-  min-height: 46px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#contact .nb-btn-secondary {
-  border-radius: 999px;
-}
-
-/* Footer polish */
-.nb-footer {
-  padding: 0.95rem 0;
-  border-top: 1px solid rgba(18, 87, 154, 0.12);
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-}
-
-.nb-footer-left {
-  color: var(--nb-muted);
-}
-
-.nb-footer-sep {
-  opacity: 0.65;
-}
-
-.nb-footer-google-link {
-  color: var(--nb-primary);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.nb-footer-google-link:hover {
-  text-decoration: underline;
-}
-
-.nb-footer-toplink {
-  position: relative;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.nb-footer-toplink::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.18rem;
-  height: 2px;
-  border-radius: 999px;
-  background: rgba(18, 87, 154, 0.35);
-}
-
-/* Focus visibility (accessibility / compatibility) */
-:where(a, button, input, textarea, select):focus-visible {
-  outline: 2px solid rgba(18, 87, 154, 0.45);
-  outline-offset: 2px;
-}
-
-/* Mobile refinements */
-@media (max-width: 991.98px) {
-  #home .nb-hero-title {
-    letter-spacing: -0.02em;
-  }
-
-  #home .nb-hero-copy {
-    max-width: 100%;
-  }
-
-  #pricing .nb-plan-table th {
-    width: 42%;
-  }
-}
-
-@media (max-width: 767.98px) {
-  .section-title,
-  .nb-section-title {
-    letter-spacing: -0.015em;
-  }
-
-  #services .nb-service-card,
-  #pricing .nb-plan-header,
-  #contact .nb-contact-info-card,
-  #contact .nb-contact-form-card {
-    padding: 0.95rem !important;
-  }
-
-  #pricing .nb-plan-table th,
-  #pricing .nb-plan-table td {
-    padding: 0.6rem 0.65rem;
-  }
-
-  #pricing .nb-plan-table th {
-    width: 48%;
-  }
-
-  .nb-footer .d-flex {
-    align-items: flex-start !important;
-  }
 }
