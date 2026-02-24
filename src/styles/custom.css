@@ -915,3 +915,122 @@ html, body { scroll-behavior: smooth; }
     margin-bottom: .85rem;
   }
 }
+
+
+/* --- v77: Services alignment refinement (balanced cards, cleaner rhythm, wide card polish) --- */
+#services .nb-section-title {
+  margin-bottom: .35rem;
+}
+
+#services .nb-services-intro {
+  max-width: 860px;
+  margin: 0 auto 1.15rem;
+  line-height: 1.36;
+  letter-spacing: .01em;
+}
+
+#services .nb-services-grid {
+  gap: 20px;
+  align-items: stretch;
+}
+
+#services .nb-service-card {
+  border-radius: 20px;
+  padding: 1.1rem 1.15rem 1.05rem;
+}
+
+#services .nb-service-card-standard {
+  min-height: 238px;
+  display: flex;
+  flex-direction: column;
+}
+
+#services .nb-service-card-standard .nb-service-head {
+  min-height: 52px;
+  align-items: center;
+  margin-bottom: .1rem;
+}
+
+#services .nb-service-head .nb-icon-wrap {
+  flex: 0 0 auto;
+}
+
+#services .nb-service-head .nb-icon-badge {
+  width: 50px;
+  height: 50px;
+}
+
+#services .nb-service-head h3 {
+  margin: 0;
+  font-size: 1.01rem;
+  line-height: 1.2;
+  letter-spacing: -.005em;
+}
+
+#services .nb-service-card ul {
+  margin-top: .3rem;
+  padding-left: 1.2rem;
+  gap: 8px;
+}
+
+#services .nb-service-card li {
+  line-height: 1.33;
+}
+
+#services .nb-service-card-wide {
+  padding: .95rem 1.25rem 1rem;
+}
+
+#services .nb-service-card-wide .nb-service-head {
+  width: fit-content;
+  margin: 0 auto .55rem;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
+#services .nb-service-card-wide .nb-service-head h3 {
+  text-align: center;
+  font-size: 1.00rem;
+}
+
+#services .nb-service-card-wide .nb-service-head .nb-icon-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+}
+
+#services .nb-service-card-wide .nb-service-cols {
+  max-width: 1120px;
+  margin: 0 auto;
+  gap: 2.2rem;
+  align-items: start;
+}
+
+#services .nb-service-card-wide .nb-service-cols ul {
+  margin-top: .05rem;
+  padding-left: 1.18rem;
+}
+
+#services .nb-service-card-wide .nb-service-cols li {
+  line-height: 1.32;
+}
+
+@media (max-width: 991px) {
+  #services .nb-service-card-standard {
+    min-height: 0;
+  }
+
+  #services .nb-service-card-standard .nb-service-head {
+    min-height: 0;
+  }
+
+  #services .nb-service-card-wide .nb-service-head {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #services .nb-service-card-wide .nb-service-cols {
+    gap: .3rem;
+  }
+}

@@ -98,7 +98,7 @@
         "title": "Dental EMR & Clinical Systems Support",
         "items": [
           "EMR/EHR platform support and optimization",
-          "Imaging and device integration coordination (X-ray, scanners, sensors)",
+          "Imaging and device integration coordination (X-ray, scanners, and vendor-connected devices)",
           "Secure access setup for providers and staff",
           "Coordination with EMR vendors and dental software partners"
         ]
@@ -126,14 +126,14 @@
         "items": [
           "Secure wired and wireless network design",
           "VLAN segmentation for clinical and guest traffic",
-          "Firewall and network security management",
+          "Firewall management and network security hardening",
           "Performance monitoring and network optimization",
-          "Business phone systems (call routing and shared main lines)",
+          "VoIP systems (call routing and shared main lines)",
           "Security camera systems (on-site or compliant cloud-based)"
         ]
       }
     ],
-    "subtitle": "Comprehensive IT services tailored for dental practices across Virginia—from daily support and cloud systems to security, networking, and clinical technology support."
+    "subtitle": "Comprehensive IT support tailored for dental practices across Virginia—from daily operations and cloud systems to security, networking, and clinical technology."
   },
   "pricing": {
     "title": "Pricing & Service Plans",
