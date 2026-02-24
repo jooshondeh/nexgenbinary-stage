@@ -3,6 +3,7 @@ const { site } = Astro.props;
 import IconBadge from "./IconBadge.astro";
 const c = site.contact ?? {};
 const formEndpoint = c.formEndpoint ?? "";
+const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
 ---
 <section id="contact" class="nb-anchor-offset nb-section">
   <div class="container">
@@ -59,6 +60,7 @@ const formEndpoint = c.formEndpoint ?? "";
 
           <form id="contactForm" class="row g-3" novalidate>
             <input type="hidden" id="contactEndpoint" value={formEndpoint} />
+            <input type="hidden" id="contactHcaptchaSiteKey" value={hcaptchaSiteKey} />
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="d-none" aria-hidden="true" />
             <input type="hidden" name="_subject" value="New website message from NexGen Binary LLC" />
 
@@ -89,6 +91,14 @@ const formEndpoint = c.formEndpoint ?? "";
               <textarea id="contact-message" class="form-control" name="message" rows="5" maxlength="4000" required aria-required="true" aria-describedby="contact-message-error"></textarea>
               <div id="contact-message-error" class="small text-danger mt-1" hidden></div>
             </div>
+
+            {hcaptchaSiteKey && (
+              <div class="col-12">
+                <div class="form-label mb-2">Verification <span class="text-danger" aria-hidden="true">*</span></div>
+                <div class="h-captcha" data-sitekey={hcaptchaSiteKey}></div>
+                <div id="contact-captcha-error" class="small text-danger mt-1" hidden></div>
+              </div>
+            )}
 
             <div class="col-12 d-flex gap-2 flex-wrap align-items-center nb-contact-actions">
               <button id="contactSubmitBtn" class="btn nb-btn-primary" type="submit">
@@ -122,6 +132,8 @@ const formEndpoint = c.formEndpoint ?? "";
     </div>
   </div>
 
+  {hcaptchaSiteKey && <script src="https://js.hcaptcha.com/1/api.js" async defer></script>}
+
   <script>
     const form = document.getElementById('contactForm');
     const statusEl = document.getElementById('contactStatus');
@@ -130,6 +142,9 @@ const formEndpoint = c.formEndpoint ?? "";
     const submitLabel = document.getElementById('contactSubmitLabel');
     const successModal = document.getElementById('contactSuccessModal');
     const successModalOk = document.getElementById('contactSuccessOk');
+    const hcaptchaSiteKey = (document.getElementById('contactHcaptchaSiteKey')?.value || '').trim();
+    const captchaErrorEl = document.getElementById('contact-captcha-error');
+
 
     const openSuccessModal = () => {
       if (!successModal) {
@@ -161,6 +176,23 @@ const formEndpoint = c.formEndpoint ?? "";
       if (kind === 'success') statusEl.classList.add('text-success');
       else if (kind === 'error') statusEl.classList.add('text-danger');
       else statusEl.classList.add('text-secondary');
+    };
+
+    const clearCaptchaError = () => {
+      if (!captchaErrorEl) return;
+      captchaErrorEl.textContent = '';
+      captchaErrorEl.hidden = true;
+    };
+
+    const showCaptchaError = (message) => {
+      if (!captchaErrorEl) return;
+      captchaErrorEl.textContent = message;
+      captchaErrorEl.hidden = false;
+    };
+
+    const getHcaptchaToken = () => {
+      const tokenEl = form?.querySelector('textarea[name="h-captcha-response"], input[name="h-captcha-response"]');
+      return (tokenEl?.value || '').toString().trim();
     };
 
     const requiredFieldLabels = {
@@ -286,7 +318,20 @@ const formEndpoint = c.formEndpoint ?? "";
         return;
       }
 
+      clearCaptchaError();
+      const hasHcaptchaWidget = !!form.querySelector('.h-captcha');
+      if (hasHcaptchaWidget && !hcaptchaSiteKey) {
+        setStatus('hCaptcha site key is missing in site settings. Add your hCaptcha Site Key and try again.', 'error');
+        showCaptchaError('hCaptcha site key is missing.');
+        return;
+      }
+
       const fd = new FormData(form);
+      if (hasHcaptchaWidget && !getHcaptchaToken()) {
+        setStatus('Please complete the CAPTCHA before sending.', 'error');
+        showCaptchaError('Please complete the CAPTCHA before sending.');
+        return;
+      }
       if ((fd.get('_gotcha') || '').toString().trim()) {
         form.reset();
         setStatus('', 'neutral');
@@ -362,13 +407,24 @@ const formEndpoint = c.formEndpoint ?? "";
           const input = document.getElementById(fieldId);
           clearFieldError(input);
         });
+        clearCaptchaError();
+        if (window.hcaptcha && typeof window.hcaptcha.reset === 'function') {
+          try { window.hcaptcha.reset(); } catch {}
+        }
         setStatus('', 'neutral');
         openSuccessModal();
       } catch (err) {
         const message = err instanceof Error ? err.message : '';
         const uiMessage = cleanUiError(message);
-        if (/spam|captcha/i.test(message)) {
-          setStatus('Formspree flagged this submission. Please complete CAPTCHA (if shown) and try again, or use the email button.', 'error');
+        if (/secret/i.test(message) && /captcha|hcaptcha/i.test(message)) {
+          setStatus('hCaptcha is enabled, but the hCaptcha Secret Key is still missing in Formspree CAPTCHA settings.', 'error');
+          showCaptchaError('Form configuration incomplete (missing hCaptcha secret key).');
+        } else if (/(site\s*key|sitekey)/i.test(message) && /captcha|hcaptcha/i.test(message)) {
+          setStatus('hCaptcha site key is missing or invalid in the website settings. Add the hCaptcha Site Key and try again.', 'error');
+          showCaptchaError('hCaptcha site key is missing or invalid.');
+        } else if (/spam|captcha/i.test(message)) {
+          setStatus('Formspree flagged this submission. Complete the hCaptcha check and try again, or use the email button.', 'error');
+          showCaptchaError('Please complete the CAPTCHA and submit again.');
         } else if (/domain|origin|referer|referrer/i.test(message)) {
           setStatus('Form domain restriction blocked this submission. Check Formspree Project Settings → Restrict to Domain.', 'error');
         } else if (/inactive|confirm|verify/i.test(message)) {
@@ -400,6 +456,11 @@ const formEndpoint = c.formEndpoint ?? "";
 
     #contact .nb-contact-actions .btn {
       max-width: 100%;
+    }
+
+    #contact .h-captcha {
+      max-width: 100%;
+      overflow-x: auto;
     }
 
     #contact .nb-contact-item a,
