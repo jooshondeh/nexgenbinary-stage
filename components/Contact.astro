@@ -1,0 +1,808 @@
+---
+const { site } = Astro.props;
+import IconBadge from "./IconBadge.astro";
+const c = site.contact ?? {};
+const formEndpoint = c.formEndpoint ?? "";
+const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
+const googleBusinessUrl = c.googleBusinessUrl || 'https://www.google.com/search?q=NexGen+Binary+LLC+Virginia';
+const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
+---
+<section id="contact" class="nb-anchor-offset nb-section">
+  <div class="container">
+    <div class="row g-4 align-items-stretch nb-contact-grid">
+      <div class="col-lg-5 d-flex nb-contact-left-col">
+        <div class="w-100 d-flex flex-column nb-contact-sticky">
+          <h2 class="section-title fw-bold mb-0">{c.title}</h2>
+          <p class="text-secondary mt-3 mb-0 nb-contact-lead">{c.lead}</p>
+          <div class="nb-contact-response-pill mt-2">Typical response: within 1 business day</div>
+
+          <div class="p-4 nb-card mt-3 nb-contact-info-card d-flex flex-column w-100">
+            <div class="nb-contact-panel-label">Direct contact</div>
+            <div class="nb-contact-item mb-3">
+              <div class="nb-icon-wrap nb-contact-item-icon"><IconBadge name="phone" /></div>
+              <div class="nb-contact-item-body">
+                <div class="small text-secondary">{c.phoneLabel}</div>
+                <a href={c.phoneHref}>{c.phoneText}</a>
+              </div>
+            </div>
+
+            <div class="nb-contact-item mb-3">
+              <div class="nb-icon-wrap nb-contact-item-icon"><IconBadge name="mail" /></div>
+              <div class="nb-contact-item-body">
+                <div class="small text-secondary">{c.emailLabel}</div>
+                <a href={c.emailHref}>{c.emailText}</a>
+              </div>
+            </div>
+
+            <div class="nb-contact-item">
+              <div class="nb-icon-wrap nb-contact-item-icon"><IconBadge name="clock" /></div>
+              <div class="nb-contact-item-body">
+                <div class="small text-secondary">Hours of operation</div>
+                <div class="fw-semibold nb-contact-hours">Monday–Friday, 9:00 AM – 5:00 PM</div>
+              </div>
+            </div>
+
+            <div class="nb-contact-item">
+              <div class="nb-icon-wrap nb-contact-item-icon"><IconBadge name="location" /></div>
+              <div class="nb-contact-item-body">
+                <div class="small text-secondary">Google business page</div>
+                <a href={googleBusinessUrl} target="_blank" rel="noopener">{googleBusinessLabel}</a>
+              </div>
+            </div>
+
+            <a
+              class="btn nb-btn-primary mt-3 align-self-start nb-contact-booking"
+              href={site.bookings?.url}
+              target="_blank"
+              rel="noopener"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="nb-inline-icon">
+                <rect x="3" y="5" width="18" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2" />
+                <path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              Book a consult
+            </a>
+            <p class="nb-contact-booking-note mb-0">Prefer a scheduled conversation? Use booking to pick a time that works for your office.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7 d-flex">
+        <div class="p-4 nb-card h-100 w-100 d-flex flex-column nb-contact-form-card">
+          <h3 class="h5 fw-bold mb-1">Send a message</h3>
+          <p class="nb-contact-form-helper text-secondary mb-3">Tell us about your practice, systems, or support needs. Required fields are marked with <span class="text-danger">*</span>.</p>
+
+          <form id="contactForm" class="row g-3" novalidate>
+            <input type="hidden" id="contactEndpoint" value={formEndpoint} />
+            <input type="hidden" id="contactHcaptchaSiteKey" value={hcaptchaSiteKey} />
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="d-none" aria-hidden="true" />
+            <input type="hidden" name="_subject" value="New website message from NexGen Binary LLC" />
+
+            <div class="col-md-6">
+              <label class="form-label" for="contact-name">Name <span class="text-danger" aria-hidden="true">*</span></label>
+              <input id="contact-name" class="form-control" name="name" autocomplete="name" maxlength="120" required aria-required="true" aria-describedby="contact-name-error" />
+              <div id="contact-name-error" class="small text-danger mt-1" hidden></div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label" for="contact-email">Email <span class="text-danger" aria-hidden="true">*</span></label>
+              <input id="contact-email" class="form-control" name="email" type="email" inputmode="email" autocomplete="email" maxlength="160" required aria-required="true" aria-describedby="contact-email-error" />
+              <div id="contact-email-error" class="small text-danger mt-1" hidden></div>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label" for="contact-phone">Phone</label>
+              <input id="contact-phone" class="form-control" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label" for="contact-org">Practice / Organization</label>
+              <input id="contact-org" class="form-control" name="org" autocomplete="organization" maxlength="160" />
+            </div>
+
+            <div class="col-12">
+              <label class="form-label" for="contact-message">Message <span class="text-danger" aria-hidden="true">*</span></label>
+              <textarea id="contact-message" class="form-control" name="message" rows="5" maxlength="4000" required aria-required="true" aria-describedby="contact-message-error"></textarea>
+              <div id="contact-message-error" class="small text-danger mt-1" hidden></div>
+            </div>
+
+            {hcaptchaSiteKey && (
+              <div class="col-12">
+                <div class="form-label mb-2">Verification <span class="text-danger" aria-hidden="true">*</span></div>
+                <div class="nb-contact-verify-wrap">
+                  <div id="contactHcaptchaWidget" class="h-captcha" data-sitekey={hcaptchaSiteKey}></div>
+                </div>
+                <div id="contact-captcha-error" class="small text-danger mt-1" hidden></div>
+              </div>
+            )}
+
+            <div class="col-12 d-flex gap-2 flex-wrap align-items-center nb-contact-actions">
+              <button id="contactSubmitBtn" class="btn nb-btn-primary nb-contact-submit-btn" type="submit">
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="nb-inline-icon">
+                  <path d="M3 11.5 21 3l-8.5 18-1.9-6.6L3 11.5Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" />
+                  <path d="M10.6 14.4 21 3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+                </svg>
+                <span id="contactSubmitLabel">Send message</span>
+              </button>
+              <a class="btn btn-outline-secondary rounded-pill nb-contact-mail-btn" href={c.emailHref}>Email using my mail app</a>
+            </div>
+
+            <div class="col-12">
+              <span id="contactStatus" class="small text-secondary nb-contact-status-wrap" role="status" aria-live="polite"></span>
+            </div>
+
+            <div id="contactSuccessModal" class="nb-contact-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="contactSuccessTitle">
+              <div class="nb-contact-modal__backdrop"></div>
+              <div class="nb-contact-modal__panel" role="document">
+                <h4 id="contactSuccessTitle" class="h6 fw-bold mb-2">Message sent</h4>
+                <p class="mb-3 text-secondary">Thanks! Your message was sent successfully.</p>
+                <div class="d-flex justify-content-end">
+                  <button id="contactSuccessOk" type="button" class="btn nb-btn-primary">OK</button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('contactStatus');
+    const endpoint = (document.getElementById('contactEndpoint')?.value || '').trim();
+    const submitBtn = document.getElementById('contactSubmitBtn');
+    const submitLabel = document.getElementById('contactSubmitLabel');
+    const successModal = document.getElementById('contactSuccessModal');
+    const successModalOk = document.getElementById('contactSuccessOk');
+    const hcaptchaSiteKey = (document.getElementById('contactHcaptchaSiteKey')?.value || '').trim();
+    const captchaErrorEl = document.getElementById('contact-captcha-error');
+    const hcaptchaWidgetEl = document.getElementById('contactHcaptchaWidget');
+    let hcaptchaWidgetId = null;
+    let hcaptchaReadyPromise = null;
+
+
+    const openSuccessModal = () => {
+      if (!successModal) {
+        alert('Thanks! Your message was sent successfully.');
+        window.location.reload();
+        return;
+      }
+      successModal.hidden = false;
+      successModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('nb-contact-modal-open');
+      requestAnimationFrame(() => successModal.classList.add('is-open'));
+      successModalOk?.focus();
+    };
+
+    const closeSuccessModalAndRefresh = () => {
+      if (successModal) {
+        successModal.classList.remove('is-open');
+        successModal.setAttribute('aria-hidden', 'true');
+        successModal.hidden = true;
+      }
+      document.body.classList.remove('nb-contact-modal-open');
+      window.location.reload();
+    };
+
+    const setStatus = (message, kind = 'neutral') => {
+      if (!statusEl) return;
+      statusEl.textContent = message;
+      statusEl.classList.remove('text-secondary', 'text-success', 'text-danger');
+      if (kind === 'success') statusEl.classList.add('text-success');
+      else if (kind === 'error') statusEl.classList.add('text-danger');
+      else statusEl.classList.add('text-secondary');
+    };
+
+    const clearCaptchaError = () => {
+      if (!captchaErrorEl) return;
+      captchaErrorEl.textContent = '';
+      captchaErrorEl.hidden = true;
+    };
+
+    const showCaptchaError = (message) => {
+      if (!captchaErrorEl) return;
+      captchaErrorEl.textContent = message;
+      captchaErrorEl.hidden = false;
+    };
+
+    const getHcaptchaToken = () => {
+      const tokenEl = form?.querySelector('textarea[name="h-captcha-response"], input[name="h-captcha-response"]');
+      return (tokenEl?.value || '').toString().trim();
+    };
+
+    const ensureHcaptchaLoaded = () => {
+      if (!hcaptchaSiteKey || !hcaptchaWidgetEl) return Promise.resolve(false);
+      if (window.hcaptcha && typeof window.hcaptcha.render === 'function') return Promise.resolve(true);
+      if (hcaptchaReadyPromise) return hcaptchaReadyPromise;
+
+      hcaptchaReadyPromise = new Promise((resolve, reject) => {
+        const existing = document.querySelector('script[data-nb-hcaptcha="1"]');
+        if (existing) {
+          existing.addEventListener('load', () => resolve(true), { once: true });
+          existing.addEventListener('error', () => reject(new Error('hcaptcha_script_failed')), { once: true });
+          return;
+        }
+
+        const script = document.createElement('script');
+        script.src = 'https://js.hcaptcha.com/1/api.js?render=explicit';
+        script.async = true;
+        script.defer = true;
+        script.setAttribute('data-nb-hcaptcha', '1');
+        script.onload = () => resolve(true);
+        script.onerror = () => reject(new Error('hcaptcha_script_failed'));
+        document.head.appendChild(script);
+      });
+
+      return hcaptchaReadyPromise;
+    };
+
+    const renderHcaptchaWidget = async () => {
+      if (!hcaptchaSiteKey || !hcaptchaWidgetEl) return;
+      if (hcaptchaWidgetId !== null) return;
+      try {
+        await ensureHcaptchaLoaded();
+        if (!(window.hcaptcha && typeof window.hcaptcha.render === 'function')) {
+          throw new Error('hcaptcha_unavailable');
+        }
+        hcaptchaWidgetId = window.hcaptcha.render(hcaptchaWidgetEl, {
+          sitekey: hcaptchaSiteKey,
+          callback: () => {
+            clearCaptchaError();
+            setStatus('', 'neutral');
+          },
+          'expired-callback': () => {
+            showCaptchaError('Verification expired. Please complete the CAPTCHA again.');
+          },
+          'error-callback': () => {
+            showCaptchaError('Verification could not load. Refresh the page and try again.');
+          }
+        });
+      } catch (err) {
+        console.error('hCaptcha failed to load:', err);
+        showCaptchaError('Verification could not load. Refresh the page and try again.');
+      }
+    };
+
+    if (hcaptchaSiteKey && hcaptchaWidgetEl) {
+      renderHcaptchaWidget();
+    }
+
+    const requiredFieldLabels = {
+      'contact-name': 'Name',
+      'contact-email': 'Email',
+      'contact-message': 'Message',
+    };
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const getFieldErrorEl = (input) => {
+      if (!input?.id) return null;
+      return document.getElementById(`${input.id}-error`);
+    };
+
+    const clearFieldError = (input) => {
+      if (!input) return;
+      const errorEl = getFieldErrorEl(input);
+      if (errorEl) {
+        errorEl.textContent = '';
+        errorEl.hidden = true;
+      }
+      input.removeAttribute('aria-invalid');
+      input.classList.remove('is-invalid');
+    };
+
+    const showFieldError = (input, message) => {
+      if (!input) return;
+      const errorEl = getFieldErrorEl(input);
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+      }
+      input.setAttribute('aria-invalid', 'true');
+      input.classList.add('is-invalid');
+    };
+
+    const validateField = (input) => {
+      if (!input) return true;
+      const fieldLabel = requiredFieldLabels[input.id] || 'This field';
+      const value = (input.value || '').trim();
+
+      if (input.hasAttribute('required') && !value) {
+        showFieldError(input, `${fieldLabel} is required.`);
+        return false;
+      }
+
+      if (input.type === 'email' && value && !emailPattern.test(value)) {
+        showFieldError(input, 'Enter a valid email address.');
+        return false;
+      }
+
+      clearFieldError(input);
+      return true;
+    };
+
+    const validateForm = () => {
+      let firstInvalid = null;
+      let allValid = true;
+
+      Object.keys(requiredFieldLabels).forEach((fieldId) => {
+        const input = document.getElementById(fieldId);
+        const valid = validateField(input);
+        if (!valid) {
+          allValid = false;
+          if (!firstInvalid) firstInvalid = input;
+        }
+      });
+
+      if (!allValid && firstInvalid) firstInvalid.focus();
+      return allValid;
+    };
+
+    Object.keys(requiredFieldLabels).forEach((fieldId) => {
+      const input = document.getElementById(fieldId);
+      if (!input) return;
+      input.addEventListener('blur', () => validateField(input));
+      input.addEventListener('input', () => {
+        const hasValue = (input.value || '').trim().length > 0;
+        if (input.type === 'email' || hasValue || input.classList.contains('is-invalid')) {
+          validateField(input);
+        } else {
+          clearFieldError(input);
+        }
+      });
+    });
+
+    successModalOk?.addEventListener('click', () => {
+      closeSuccessModalAndRefresh();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && successModal && !successModal.hidden) {
+        closeSuccessModalAndRefresh();
+      }
+    });
+
+    const getFormspreeErrorMessage = (data, fallbackStatus) => {
+      const list = Array.isArray(data?.errors)
+        ? data.errors.map((e) => e?.message).filter(Boolean)
+        : [];
+      const direct = typeof data?.error === 'string' ? [data.error] : [];
+      const detail = [...list, ...direct].join(' ').trim();
+      if (detail) return detail;
+      return fallbackStatus ? `Request failed (${fallbackStatus}).` : 'Request failed.';
+    };
+
+
+    const cleanUiError = (value) => {
+      const text = (value || '').toString().replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+      return text.slice(0, 180);
+    };
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validateForm()) {
+        setStatus('Please fill in the required fields and try again.', 'error');
+        return;
+      }
+
+      if (!endpoint || endpoint.includes('example.com') || endpoint.includes('PASTE-POWER-AUTOMATE')) {
+        setStatus('Contact form is not connected yet. Please use the email button for now.', 'error');
+        return;
+      }
+
+      clearCaptchaError();
+      const hasHcaptchaWidget = !!form.querySelector('.h-captcha');
+      if (hasHcaptchaWidget && !hcaptchaSiteKey) {
+        setStatus('hCaptcha site key is missing in site settings. Add your hCaptcha Site Key and try again.', 'error');
+        showCaptchaError('hCaptcha site key is missing.');
+        return;
+      }
+
+      if (hasHcaptchaWidget) {
+        await renderHcaptchaWidget();
+        if (!(window.hcaptcha && typeof window.hcaptcha.getResponse === 'function')) {
+          setStatus('Verification could not load. Refresh the page and try again, or use the email button.', 'error');
+          showCaptchaError('Verification could not load.');
+          return;
+        }
+      }
+
+      const fd = new FormData(form);
+      if (hasHcaptchaWidget && !getHcaptchaToken()) {
+        setStatus('Please complete the hCaptcha checkbox before sending.', 'error');
+        showCaptchaError('Please complete the hCaptcha checkbox before sending.');
+        return;
+      }
+      if ((fd.get('_gotcha') || '').toString().trim()) {
+        form.reset();
+        setStatus('', 'neutral');
+        openSuccessModal();
+        return;
+      }
+
+      const originalLabel = submitLabel?.textContent || 'Send message';
+      submitBtn?.setAttribute('disabled', 'disabled');
+      if (submitLabel) submitLabel.textContent = 'Sending...';
+      setStatus('Sending your message...', 'neutral');
+
+      try {
+        let response;
+        let errorMessage = '';
+
+        if (/formspree\.io/i.test(endpoint)) {
+          // Use FormData + Accept JSON for Formspree (avoids extra CORS preflight and matches their standard form-post flow).
+          fd.set('_replyto', (fd.get('email') || '').toString());
+          fd.set('_subject', 'New website message from NexGen Binary LLC');
+
+          response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+            },
+            body: fd,
+          });
+
+          const contentType = response.headers.get('content-type') || '';
+          if (contentType.includes('application/json')) {
+            const data = await response.json();
+            if (!response.ok) {
+              errorMessage = getFormspreeErrorMessage(data, response.status);
+            }
+          } else if (!response.ok) {
+            const text = await response.text();
+            errorMessage = text?.trim() || `Request failed (${response.status}).`;
+          }
+
+          if (!response.ok && !errorMessage && response.status === 429) {
+            errorMessage = 'Too many submissions. Please wait a moment and try again.';
+          }
+        } else {
+          const payload = {
+            name: fd.get('name'),
+            email: fd.get('email'),
+            phone: fd.get('phone'),
+            organization: fd.get('org'),
+            message: fd.get('message'),
+            submittedAt: new Date().toISOString(),
+            source: 'nexgenbinary.com',
+          };
+
+          response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            errorMessage = `Request failed (${response.status}).`;
+          }
+        }
+
+        if (!response?.ok) throw new Error(errorMessage || 'submit_failed');
+
+        form.reset();
+        Object.keys(requiredFieldLabels).forEach((fieldId) => {
+          const input = document.getElementById(fieldId);
+          clearFieldError(input);
+        });
+        clearCaptchaError();
+        if (window.hcaptcha && typeof window.hcaptcha.reset === 'function') {
+          try {
+            if (hcaptchaWidgetId !== null) window.hcaptcha.reset(hcaptchaWidgetId);
+            else window.hcaptcha.reset();
+          } catch {}
+        }
+        setStatus('', 'neutral');
+        openSuccessModal();
+      } catch (err) {
+        const message = err instanceof Error ? err.message : '';
+        const uiMessage = cleanUiError(message);
+        if (/secret/i.test(message) && /captcha|hcaptcha/i.test(message)) {
+          setStatus('hCaptcha is enabled, but the hCaptcha Secret Key is still missing in Formspree CAPTCHA settings.', 'error');
+          showCaptchaError('Form configuration incomplete (missing hCaptcha secret key).');
+        } else if (/(site\s*key|sitekey)/i.test(message) && /captcha|hcaptcha/i.test(message)) {
+          setStatus('hCaptcha site key is missing or invalid in the website settings. Add the hCaptcha Site Key and try again.', 'error');
+          showCaptchaError('hCaptcha site key is missing or invalid.');
+        } else if (/spam|captcha/i.test(message)) {
+          setStatus('Formspree flagged this submission. Complete the hCaptcha check and try again, or use the email button.', 'error');
+          showCaptchaError('Please complete the CAPTCHA and submit again.');
+        } else if (/domain|origin|referer|referrer/i.test(message)) {
+          setStatus('Form domain restriction blocked this submission. Check Formspree Project Settings → Restrict to Domain.', 'error');
+        } else if (/inactive|confirm|verify/i.test(message)) {
+          setStatus('Formspree form setup is not fully activated yet. Confirm/verify the form in Formspree, then try again.', 'error');
+        } else if (uiMessage) {
+          setStatus(`Unable to send: ${uiMessage}`, 'error');
+        } else {
+          setStatus('Unable to send right now. Please try again or use the email button.', 'error');
+        }
+        // Helpful while testing in the browser
+        console.error('Contact form submit failed:', message || err);
+      } finally {
+        submitBtn?.removeAttribute('disabled');
+        if (submitLabel) submitLabel.textContent = originalLabel;
+      }
+    });
+  </script>
+
+  <style>
+    #contact .nb-contact-info-card,
+    #contact .nb-contact-form-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid rgba(16, 52, 86, 0.08);
+      box-shadow: 0 16px 32px rgba(15, 42, 72, 0.06);
+      border-radius: 1.05rem;
+      background: #fff;
+    }
+
+    #contact .nb-contact-left-col {
+      display: flex;
+      align-items: flex-start;
+      min-width: 0;
+    }
+
+    #contact .nb-contact-sticky {
+      min-width: 0;
+      width: 100%;
+      max-width: 430px;
+    }
+
+    #contact .nb-contact-lead {
+      max-width: 25.5rem;
+      line-height: 1.46;
+      font-size: 1.02rem;
+      color: #5c7187 !important;
+      margin-bottom: 0.15rem;
+    }
+
+    #contact .nb-contact-response-pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(22, 111, 187, 0.15);
+      background: rgba(22, 111, 187, 0.06);
+      color: #2f5f8f;
+      border-radius: 999px;
+      padding: 0.28rem 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      width: fit-content;
+      margin-bottom: 0.05rem;
+    }
+
+    #contact .nb-contact-panel-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #5f7489;
+      margin-bottom: 0.9rem;
+    }
+
+    #contact .nb-contact-item {
+      gap: 0.85rem;
+      padding: 0.2rem 0;
+      align-items: flex-start !important;
+    }
+
+    #contact .nb-contact-item-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 0.9rem;
+      flex: 0 0 46px;
+      display: grid;
+      place-items: center;
+      margin-top: 1px;
+    }
+
+    #contact .nb-contact-item-body {
+      min-width: 0;
+      padding-top: 1px;
+    }
+
+    #contact .nb-contact-item + .nb-contact-item {
+      border-top: 1px solid #ebf1f7;
+      padding-top: 0.95rem;
+      margin-top: 0.15rem;
+    }
+
+    #contact .nb-contact-item .small {
+      color: #62788d !important;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    #contact .nb-contact-item a {
+      color: #0b63ce;
+      font-weight: 700;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 2px;
+    }
+
+    #contact .nb-contact-hours {
+      line-height: 1.28;
+      color: #23384f;
+    }
+
+    #contact .nb-contact-booking {
+      margin-top: 1rem !important;
+    }
+
+    #contact .nb-contact-booking-note {
+      margin-top: 0.35rem;
+      color: #6a7f93;
+      font-size: 0.88rem;
+      line-height: 1.35;
+      max-width: 34ch;
+    }
+
+    #contact .nb-contact-form-card > .h5 {
+      color: #17324f;
+      letter-spacing: -0.01em;
+    }
+
+    #contact .nb-contact-form-helper {
+      line-height: 1.35;
+      font-size: 0.92rem;
+    }
+
+    #contact .form-label {
+      font-weight: 700 !important;
+      color: #2a4866 !important;
+      margin-bottom: 0.38rem;
+    }
+
+    #contact .form-control {
+      min-height: 54px;
+      border-radius: 0.9rem !important;
+    }
+
+    #contact textarea.form-control {
+      min-height: 168px !important;
+      resize: vertical;
+    }
+
+    #contact .form-control.is-invalid {
+      border-color: #dc3545 !important;
+      box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.12);
+    }
+
+    #contact .nb-contact-verify-wrap {
+      display: inline-block;
+      max-width: 100%;
+      padding: 0.55rem;
+      border-radius: 0.85rem;
+      border: 1px solid #e3ecf6;
+      background: #fbfdff;
+    }
+
+    #contact .nb-contact-actions {
+      row-gap: 0.55rem;
+      column-gap: 0.55rem;
+      margin-top: 0.15rem;
+    }
+
+    #contact .nb-contact-actions .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    #contact .nb-contact-mail-btn {
+      padding-inline: 1rem;
+      white-space: nowrap;
+    }
+
+    #contact .nb-contact-status-wrap {
+      display: block;
+      min-height: 1.15rem;
+      line-height: 1.2;
+    }
+
+    @media (min-width: 992px) {
+      #contact .nb-contact-sticky {
+        position: sticky;
+        top: 98px;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      #contact .nb-contact-actions .btn {
+        width: 100%;
+      }
+
+      #contact .nb-contact-lead {
+        max-width: none;
+      }
+
+      #contact .nb-contact-form-card,
+      #contact .nb-contact-info-card {
+        padding: 1rem !important;
+      }
+    }
+
+    #contact .nb-contact-actions {
+      row-gap: 0.5rem;
+    }
+
+    #contact .nb-contact-actions .btn {
+      max-width: 100%;
+    }
+
+    #contact .h-captcha {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    #contact .nb-contact-item a,
+    #contact .nb-contact-item .fw-semibold,
+    #contact #contactStatus {
+      overflow-wrap: anywhere;
+    }
+
+    #contact .nb-contact-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease;
+      padding: 1rem;
+    }
+
+    #contact .nb-contact-modal.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #contact .nb-contact-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 20, 40, 0.55);
+    }
+
+    #contact .nb-contact-modal__panel {
+      position: relative;
+      width: min(420px, 100%);
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 18px 50px rgba(10, 25, 48, 0.22);
+      border: 1px solid rgba(18, 110, 184, 0.15);
+      padding: 1rem 1rem 0.875rem;
+      transform: translateY(8px) scale(0.98);
+      transition: transform 0.18s ease;
+    }
+
+    #contact .nb-contact-modal.is-open .nb-contact-modal__panel {
+      transform: translateY(0) scale(1);
+    }
+
+    #contact .nb-contact-modal__panel .btn {
+      min-width: 90px;
+    }
+
+    #contact #contactSuccessOk {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 96px;
+      min-height: 44px;
+      line-height: 1;
+      text-align: center;
+      padding: 0.65rem 1.25rem;
+    }
+
+    :global(body.nb-contact-modal-open) {
+      overflow: hidden;
+    }
+  </style>
+</section>
