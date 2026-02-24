@@ -3,7 +3,7 @@ const { site } = Astro.props;
 const pricing = site?.pricing || {};
 const plans = pricing.plans || [];
 const rows = pricing.rows || [];
-const fmt = (v) => String(v || '—');
+const fmt = (v) => String(v ?? '—');
 const parsePlanValue = (raw) => {
   const v = String(raw || '').trim();
   const checked = v.includes('✔');
@@ -25,10 +25,9 @@ const parsePlanValue = (raw) => {
         const plan = plans[idx] || {};
         const key = idx === 0 ? 'basic' : 'premium';
         return (
-          <article class={`nb-plan-card nb-hover-pop ${idx === 1 ? 'is-featured' : ''}`}>
+          <article class={`nb-plan-card nb-hover-pop ${plan.featured ? 'is-featured' : ''}`}>
             <div class="nb-plan-intro-block">
-              {plan.badge && <span class="nb-plan-badge">{plan.badge}</span>}
-              <h3>{plan.name}</h3>
+                            <h3>{plan.name}</h3>
               <p>{plan.monthly}</p>
               {plan.note && <p class="nb-plan-note">{plan.note}</p>}
               <a class="nb-btn-primary nb-btn-small" href="#contact">
@@ -38,12 +37,14 @@ const parsePlanValue = (raw) => {
             <div class="nb-plan-rows">
               {rows.map((row, rowIndex) => {
                 const parsed = parsePlanValue(fmt(row[key]));
+                const displayMain = parsed.main || (!parsed.checked ? '—' : '');
+                const checkOnly = parsed.checked && !displayMain && !parsed.note;
                 return (
                   <div class={`nb-plan-row ${rowIndex % 2 ? 'is-alt' : ''}`}>
                     <div class="nb-plan-feature">{row.feature}</div>
-                    <div class="nb-plan-value">
+                    <div class={`nb-plan-value ${checkOnly ? 'is-check-only' : ''}`}>
                       {parsed.checked && <span class="nb-check">✔</span>}
-                      <span class="nb-plan-value-main">{parsed.main || '—'}</span>
+                      {displayMain && <span class="nb-plan-value-main">{displayMain}</span>}
                       {parsed.note && <span class="nb-plan-value-note">{parsed.note}</span>}
                     </div>
                   </div>

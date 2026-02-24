@@ -37,9 +37,9 @@
     }
   ],
   "hero": {
-    "eyebrow": "Reliable IT for Dental Practices Across Virginia",
-    "headline": "Future‑ready systems. Human‑ready support.",
-    "subheadline": "We provide fully managed IT, security, cloud, and support services designed specifically for dental offices—so your practice stays secure, compliant, and running without disruption.",
+    "eyebrow": "Reliable IT Support for Dental Practices Across Virginia",
+    "headline": "Future-Ready Systems. Human-Ready Support.",
+    "subheadline": "Managed IT, security, cloud, and clinical technology support tailored for dental practices\u2014helping your office stay secure, compliant, and running smoothly every day.",
     "primaryCta": "Book a Consultation",
     "secondaryCta": "Call Us"
   },
@@ -52,19 +52,19 @@
     "items": [
       {
         "title": "Fully Managed IT",
-        "text": "Proactive support for workstations, servers, and networks."
+        "text": "Proactive support for workstations, servers, networks, and day-to-day operations."
       },
       {
-        "title": "Security & Compliance‑Aware",
-        "text": "HIPAA-aware practices with modern cybersecurity controls."
+        "title": "Security & Compliance by Design",
+        "text": "HIPAA-aware security controls, endpoint protection, and secure access practices."
       },
       {
-        "title": "Dental-Focused Expertise",
-        "text": "EMR, imaging, front desk, and operatory workflow support."
+        "title": "Dental Workflow Support",
+        "text": "EMR/EHR, imaging, front desk, and operatory systems support."
       },
       {
         "title": "Local & Responsive",
-        "text": "Serving Richmond, NOVA, and statewide Virginia."
+        "text": "Serving Richmond, Northern Virginia, and dental practices across Virginia."
       }
     ]
   },
@@ -79,7 +79,7 @@
     "philosophyTitle": "Our Business Philosophy",
     "philosophy": [
       "We combine next-gen design with dependable execution, treating your systems as mission-critical because they are.",
-      "Our promise is simple: partnership, transparency, and outstanding work—before, during, and after every project."
+      "Our promise is simple: partnership, transparency, and outstanding work\u2014before, during, and after every project."
     ]
   },
   "services": {
@@ -89,27 +89,27 @@
         "title": "Fully Managed IT Services",
         "items": [
           "Workstation and server management (local or cloud)",
-          "Patch management and monitoring",
-          "Backup and disaster recovery",
-          "Proactive maintenance and reporting"
+          "Patch management, monitoring, and maintenance",
+          "Backup and disaster recovery readiness",
+          "Proactive support reporting and system reviews"
         ]
       },
       {
         "title": "Dental EMR & Clinical Systems Support",
         "items": [
           "EMR/EHR platform support and optimization",
-          "Imaging system coordination (X‑ray, scanners, vendor integrations)",
-          "Secure access for providers and staff",
+          "Imaging and device integration coordination (X-ray, scanners, and vendor-connected devices)",
+          "Secure access setup for providers and staff",
           "Coordination with EMR vendors and dental software partners"
         ]
       },
       {
         "title": "Microsoft 365 & Cloud Solutions",
         "items": [
-          "Microsoft 365 setup, licensing, and management",
-          "Email security and data protection",
-          "SharePoint and Teams collaboration",
-          "Cloud migration and hybrid environments"
+          "Microsoft 365 setup, licensing, and administration",
+          "Email security, data protection, and mailbox support",
+          "SharePoint and Teams collaboration support",
+          "Cloud migration and hybrid environment planning"
         ]
       },
       {
@@ -117,26 +117,27 @@
         "items": [
           "Endpoint protection and device encryption",
           "Email security and phishing protection",
-          "Secure remote access",
-          "Backup integrity and ransomware preparedness"
+          "Secure remote access for staff and providers",
+          "Backup integrity checks and ransomware preparedness"
         ]
       },
       {
-        "title": "Networking, Wi‑Fi, Infrastructure, VoIP & Cameras",
+        "title": "Networking, Wi\u2011Fi, Infrastructure, VoIP & Cameras",
         "items": [
           "Secure wired and wireless network design",
-          "VLAN segmentation for clinical and guest networks",
-          "Firewall and network security management",
-          "Performance monitoring and optimization",
-          "Business phone systems (call routing and shared main lines)",
-          "Security cameras (on-site or compliant cloud-based systems)"
+          "VLAN segmentation for clinical and guest traffic",
+          "Firewall management and network security hardening",
+          "Performance monitoring and network optimization",
+          "VoIP systems (call routing and shared main lines)",
+          "Security camera systems (on-site or compliant cloud-based)"
         ]
       }
-    ]
+    ],
+    "subtitle": "Comprehensive IT support tailored for dental practices across Virginia\u2014from daily operations and cloud systems to security, networking, and clinical technology."
   },
   "pricing": {
     "title": "Pricing & Service Plans",
-    "subtitle": "Pricing and service plans are tailored to your dental practice’s needs, including office size, devices, and clinical systems. We build each plan to deliver dependable support, security, and performance at fair, competitive pricing across Virginia.",
+    "subtitle": "Pricing and service plans are tailored to your dental practice's needs, including office size, devices, and clinical systems. We build each plan to deliver dependable support, security, and performance at fair, competitive pricing across Virginia.",
     "plans": [
       {
         "name": "Basic Care Plan",
@@ -146,119 +147,123 @@
       {
         "name": "Premium Care + Extended Warranty",
         "monthly": "Monthly pricing: custom quote by office size",
-        "badge": "Most Popular",
-        "note": "Most practices receive a tailored quote after a short consultation."
+        "note": "Most practices receive a tailored quote after a short consultation.",
+        "featured": true
       }
     ],
     "rows": [
       {
         "feature": "Monthly patching",
-        "basic": "✔",
-        "premium": "✔"
+        "basic": "\u2714",
+        "premium": "\u2714"
       },
       {
         "feature": "File & DB backups",
-        "basic": "✔",
-        "premium": "✔"
+        "basic": "\u2714",
+        "premium": "\u2714"
       },
       {
         "feature": "Backup monitoring",
-        "basic": "✔",
-        "premium": "✔"
+        "basic": "\u2714",
+        "premium": "\u2714"
       },
       {
         "feature": "Equipment & rack cleaning",
-        "basic": "✔",
-        "premium": "✔"
+        "basic": "\u2714",
+        "premium": "\u2714"
       },
       {
         "feature": "Standard support",
-        "basic": "✔",
-        "premium": "✔"
+        "basic": "\u2714",
+        "premium": "\u2714"
       },
       {
         "feature": "Priority support",
         "basic": "Business-hours support",
-        "premium": "✔ After-hours support"
+        "premium": "\u2714 After-hours support"
       },
       {
         "feature": "Loaner equipment",
         "basic": "Not included",
-        "premium": "✔ Included (excluding server)"
+        "premium": "\u2714 Included (excludes server)"
       },
       {
         "feature": "Annual technology review",
         "basic": "Not included",
-        "premium": "✔ Included (OS upgrades included)"
+        "premium": "\u2714 Included (OS upgrades included)"
       },
       {
         "feature": "Enhanced monitoring",
         "basic": "Not included",
-        "premium": "✔ Included"
+        "premium": "\u2714 Included"
       },
       {
         "feature": "Extended 3-year hardware warranty",
         "basic": "Not included",
-        "premium": "✔ Included (for equipment purchased from us)"
+        "premium": "\u2714 Included (hardware purchased through us)"
       },
       {
         "feature": "Discounted hardware pricing",
         "basic": "Not included",
-        "premium": "✔ Included"
+        "premium": "\u2714 Included"
       },
       {
         "feature": "Best for",
         "basic": "Small to mid-size offices needing reliable maintenance and support",
-        "premium": "Practices that want broader protection, faster support, and predictable IT costs"
+        "premium": "Practices wanting broader protection, faster support, and predictable IT costs"
       }
     ]
   },
   "whoWeServe": {
-    "title": "Who We Serve — Dental Practices",
-    "lead": "We specialize in supporting dental practices of all sizes—from single-location offices to growing multi-site groups.",
+    "title": "Who We Serve",
+    "lead": "We support dental practices of all sizes\u2014from single-location offices to growing multi-site groups. Our services are tailored to the workflows, uptime needs, and security expectations of modern clinical and administrative environments.",
     "challengesTitle": "We Understand Dental IT Challenges",
     "challenges": [
-      "Front desk uptime is critical",
-      "Operatories depend on reliable workstations and imaging",
-      "EMR systems must stay available and secure",
+      "Front-desk uptime is critical during office hours",
+      "Operatories depend on reliable workstations, imaging, and network performance",
+      "EMR/EHR and imaging systems must remain available and secure",
       "Compliance and patient data protection are non-negotiable"
     ],
     "approachTitle": "Our Approach",
     "approach": [
-      "Support aligned with clinical workflows",
-      "Minimal disruption during office hours",
-      "After-hours maintenance when needed",
-      "Clear communication with staff and vendors"
+      "Support aligned with clinical and administrative workflows",
+      "Proactive maintenance with minimal disruption during office hours",
+      "After-hours maintenance and updates when needed",
+      "Clear communication with staff, vendors, and practice leadership"
     ],
-    "serviceArea": "Service Area: Richmond, NOVA, and statewide Virginia"
+    "serviceArea": "Richmond, Northern Virginia, and statewide Virginia support",
+    "subtitle": "Dental Practices Across Virginia",
+    "serviceAreaBody": "Remote-friendly support with on-site capability when needed."
   },
   "about": {
     "title": "About",
     "whoWeAreTitle": "Who We Are",
-    "whoWeAre": "NexGen Binary is a Virginia-based IT services company focused on delivering secure, reliable, and people-first technology solutions for dental and healthcare environments.",
+    "whoWeAre": "NexGen Binary is a Virginia-based IT services company delivering secure, reliable, and people-first technology solutions for dental and healthcare practices. We partner with offices to strengthen operations, improve system performance, and provide responsive IT support built around real clinical and administrative workflows.",
     "leadershipTitle": "Leadership & Team Experience",
-    "leadership": "Our CEO Shayan Mirhashemi has over 20 years of experience in information technology across major healthcare organizations. Our team also brings experience supporting healthcare and dental offices, government agencies, and private-sector organizations, giving us enterprise-level discipline with local responsiveness.",
-    "securityTitle": "Security & Compliance-Aware by Design",
+    "leadership": "Our leadership brings over 20 years of IT experience across healthcare environments, with a strong foundation in secure systems, infrastructure, and operational support. Our team also brings experience serving dental practices, healthcare organizations, government agencies, and private-sector clients\u2014combining enterprise-level discipline with local responsiveness.",
+    "securityTitle": "Security & Compliance by Design",
     "securityBullets": [
       "HIPAA-aware IT practices",
       "Secure access controls and encryption",
-      "Vendor accountability and documentation",
-      "Industry-standard cybersecurity tools"
+      "Documented vendor and system accountability",
+      "Industry-standard cybersecurity protections"
     ],
-    "licensed": "Licensed and insured."
+    "licensed": "Licensed and insured.",
+    "licensedBody": "We deliver with documentation, accountability, and clear communication from day one."
   },
   "contact": {
     "title": "Contact",
-    "lead": "If you’re looking for reliable IT support that understands dental practices, we’d be happy to connect.",
+    "lead": "If you\u2019re looking for reliable IT support that understands dental practices, we\u2019d be happy to connect.",
     "phoneLabel": "Phone",
     "phoneText": "804-000-0000",
     "phoneHref": "tel:+18040000000",
     "emailLabel": "Email",
     "emailText": "info@nexgenbinary.com",
     "emailHref": "mailto:info@nexgenbinary.com",
-    "formEndpoint": "https://formspree.io/f/mdalpbzo"
+    "formEndpoint": "https://formspree.io/f/mdalpbzo",
+    "hcaptchaSiteKey": "267e959c-42c0-45b2-a4d2-45621dbc4f28"
   },
   "footer": {
-    "copyright": "© NexGen Binary LLC. All rights reserved."
+    "copyright": "\u00a9 NexGen Binary LLC. All rights reserved."
   }
 }
