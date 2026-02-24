@@ -461,3 +461,26 @@ html, body { scroll-behavior: smooth; }
   opacity:1;
   box-shadow: 0 0 10px rgba(255,193,131,0.55);
 }
+
+/* --- v63: slogan size, centered services title, mail app button color --- */
+.nb-brand-slogan {
+  font-size: .82rem;
+}
+
+#services .nb-section-title {
+  text-align: center;
+}
+
+#contact .nb-contact-actions .btn.btn-outline-secondary {
+  background: #eaf3ff;
+  border-color: #b8d5ff;
+  color: #0a56b5;
+  font-weight: 700;
+}
+
+#contact .nb-contact-actions .btn.btn-outline-secondary:hover,
+#contact .nb-contact-actions .btn.btn-outline-secondary:focus {
+  background: #dcebff;
+  border-color: #93bfff;
+  color: #08479a;
+}
