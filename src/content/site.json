@@ -135,8 +135,8 @@
     ]
   },
   "pricing": {
-    "title": "Service Plan Comparison",
-    "subtitle": "Two monthly support options tailored for dental offices. Pricing is customized by office size, devices, and clinical software footprint.",
+    "title": "Pricing & Service Plans",
+    "subtitle": "Our pricing and service plans are tailored to the specific needs of your dental practice—from office size and devices to clinical systems and daily workflow. We build each plan to deliver dependable support, security, and performance at fair, competitive pricing that aligns with today’s market for practices across Virginia.",
     "plans": [
       {
         "name": "Basic Care Plan",
@@ -253,8 +253,7 @@
     "emailLabel": "Email",
     "emailText": "info@nexgenbinary.com",
     "emailHref": "mailto:info@nexgenbinary.com",
-    "formEndpoint": "https://formspree.io/f/mdalpbzo",
-    "hcaptchaSiteKey": "c0ce9862-9a8a-4f50-a344-5d6ada0ead00"
+    "formEndpoint": "https://formspree.io/f/mdalpbzo"
   },
   "footer": {
     "copyright": "© NexGen Binary LLC. All rights reserved."
