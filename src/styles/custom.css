@@ -490,3 +490,26 @@ html, body { scroll-behavior: smooth; }
 .nb-service-card-wide .nb-service-head {
   justify-content: center;
 }
+
+
+/* v69: tighten wide networking service bubble header alignment */
+.nb-service-card-wide .nb-service-head {
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+.nb-service-card-wide .nb-service-head .nb-icon-wrap {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  border-radius: 12px;
+}
+.nb-service-card-wide .nb-service-head .nb-icon-badge,
+.nb-service-card-wide .nb-service-head .nb-icon-badge svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+.nb-service-card-wide .nb-service-head h3 {
+  font-size: 1rem;
+  line-height: 1.25;
+}
