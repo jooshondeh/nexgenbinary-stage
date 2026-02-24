@@ -513,3 +513,32 @@ html, body { scroll-behavior: smooth; }
   font-size: 1rem;
   line-height: 1.25;
 }
+
+/* v72: center and align Why Choose Us bubble contents */
+.nb-why-grid .nb-card {
+  min-height: 138px;
+  align-items: center !important;
+  justify-content: center;
+  padding: 1.05rem 1rem;
+}
+
+.nb-why-grid .nb-icon-row {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: .85rem;
+}
+
+.nb-why-grid .nb-icon-row .fw-semibold {
+  line-height: 1.22;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .nb-why-grid .nb-card {
+    min-height: 112px;
+  }
+  .nb-why-grid .nb-icon-row {
+    justify-content: flex-start;
+  }
+}
