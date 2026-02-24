@@ -37,9 +37,9 @@
     }
   ],
   "hero": {
-    "eyebrow": "Reliable IT for Dental Practices Across Virginia",
-    "headline": "Future‑ready systems. Human‑ready support.",
-    "subheadline": "We provide fully managed IT, security, cloud, and support services designed specifically for dental offices—so your practice stays secure, compliant, and running without disruption.",
+    "eyebrow": "Reliable IT Support for Dental Practices Across Virginia",
+    "headline": "Future-Ready Systems. Human-Ready Support.",
+    "subheadline": "Managed IT, security, cloud, and clinical technology support tailored for dental practices— helping your office stay secure, compliant, and running smoothly every day.",
     "primaryCta": "Book a Consultation",
     "secondaryCta": "Call Us"
   },
@@ -52,19 +52,19 @@
     "items": [
       {
         "title": "Fully Managed IT",
-        "text": "Proactive support for workstations, servers, and networks."
+        "text": "Proactive support for workstations, servers, networks, and day-to-day operations."
       },
       {
-        "title": "Security & Compliance‑Aware",
-        "text": "HIPAA-aware practices with modern cybersecurity controls."
+        "title": "Security & Compliance by Design",
+        "text": "HIPAA-aware security controls, endpoint protection, and secure access practices."
       },
       {
-        "title": "Dental-Focused Expertise",
-        "text": "EMR, imaging, front desk, and operatory workflow support."
+        "title": "Dental Workflow Support",
+        "text": "EMR/EHR, imaging, front desk, and operatory systems support."
       },
       {
         "title": "Local & Responsive",
-        "text": "Serving Richmond, NOVA, and statewide Virginia."
+        "text": "Serving Richmond, Northern Virginia, and practices across Virginia."
       }
     ]
   },
@@ -89,27 +89,27 @@
         "title": "Fully Managed IT Services",
         "items": [
           "Workstation and server management (local or cloud)",
-          "Patch management, monitoring, and maintenance",
-          "Backup and disaster recovery readiness",
-          "Proactive support reporting and system reviews"
+          "Patch management and monitoring",
+          "Backup and disaster recovery",
+          "Proactive maintenance and reporting"
         ]
       },
       {
         "title": "Dental EMR & Clinical Systems Support",
         "items": [
           "EMR/EHR platform support and optimization",
-          "Imaging and device integration coordination (X-ray, scanners, and vendor-connected devices)",
-          "Secure access setup for providers and staff",
+          "Imaging system coordination (X‑ray, scanners, vendor integrations)",
+          "Secure access for providers and staff",
           "Coordination with EMR vendors and dental software partners"
         ]
       },
       {
         "title": "Microsoft 365 & Cloud Solutions",
         "items": [
-          "Microsoft 365 setup, licensing, and administration",
-          "Email security, data protection, and mailbox support",
-          "SharePoint and Teams collaboration support",
-          "Cloud migration and hybrid environment planning"
+          "Microsoft 365 setup, licensing, and management",
+          "Email security and data protection",
+          "SharePoint and Teams collaboration",
+          "Cloud migration and hybrid environments"
         ]
       },
       {
@@ -117,23 +117,22 @@
         "items": [
           "Endpoint protection and device encryption",
           "Email security and phishing protection",
-          "Secure remote access for staff and providers",
-          "Backup integrity checks and ransomware preparedness"
+          "Secure remote access",
+          "Backup integrity and ransomware preparedness"
         ]
       },
       {
         "title": "Networking, Wi‑Fi, Infrastructure, VoIP & Cameras",
         "items": [
           "Secure wired and wireless network design",
-          "VLAN segmentation for clinical and guest traffic",
-          "Firewall management and network security hardening",
-          "Performance monitoring and network optimization",
-          "VoIP systems (call routing and shared main lines)",
-          "Security camera systems (on-site or compliant cloud-based)"
+          "VLAN segmentation for clinical and guest networks",
+          "Firewall and network security management",
+          "Performance monitoring and optimization",
+          "Business phone systems (call routing and shared main lines)",
+          "Security cameras (on-site or compliant cloud-based systems)"
         ]
       }
-    ],
-    "subtitle": "Comprehensive IT support tailored for dental practices across Virginia—from daily operations and cloud systems to security, networking, and clinical technology."
+    ]
   },
   "pricing": {
     "title": "Pricing & Service Plans",
@@ -212,25 +211,23 @@
     ]
   },
   "whoWeServe": {
-    "title": "Who We Serve",
-    "lead": "We support dental practices of all sizes—from single-location offices to growing multi-site groups. Our services are tailored to the workflows, uptime needs, and security expectations of modern clinical and administrative environments.",
+    "title": "Who We Serve — Dental Practices",
+    "lead": "We specialize in supporting dental practices of all sizes—from single-location offices to growing multi-site groups.",
     "challengesTitle": "We Understand Dental IT Challenges",
     "challenges": [
-      "Front-desk uptime is critical during office hours",
-      "Operatories depend on reliable workstations, imaging, and network performance",
-      "EMR/EHR and imaging systems must remain available and secure",
+      "Front desk uptime is critical",
+      "Operatories depend on reliable workstations and imaging",
+      "EMR systems must stay available and secure",
       "Compliance and patient data protection are non-negotiable"
     ],
     "approachTitle": "Our Approach",
     "approach": [
-      "Support aligned with clinical and administrative workflows",
-      "Proactive maintenance with minimal disruption during office hours",
-      "After-hours maintenance and updates when needed",
-      "Clear communication with staff, vendors, and practice leadership"
+      "Support aligned with clinical workflows",
+      "Minimal disruption during office hours",
+      "After-hours maintenance when needed",
+      "Clear communication with staff and vendors"
     ],
-    "serviceArea": "Richmond, Northern Virginia, and statewide Virginia support",
-    "subtitle": "Dental Practices Across Virginia",
-    "serviceAreaBody": "Remote-friendly support with on-site capability when needed."
+    "serviceArea": "Service Area: Richmond, NOVA, and statewide Virginia"
   },
   "about": {
     "title": "About",
