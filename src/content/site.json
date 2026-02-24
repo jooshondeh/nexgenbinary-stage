@@ -232,17 +232,18 @@
   "about": {
     "title": "About",
     "whoWeAreTitle": "Who We Are",
-    "whoWeAre": "NexGen Binary is a Virginia-based IT services company focused on delivering secure, reliable, and people-first technology solutions for dental and healthcare environments.",
+    "whoWeAre": "NexGen Binary is a Virginia-based IT services company delivering secure, reliable, and people-first technology solutions for dental and healthcare practices. We partner with offices to strengthen operations, improve system performance, and provide responsive IT support built around real clinical and administrative workflows.",
     "leadershipTitle": "Leadership & Team Experience",
-    "leadership": "Our CEO Shayan Mirhashemi has over 20 years of experience in information technology across major healthcare organizations. Our team also brings experience supporting healthcare and dental offices, government agencies, and private-sector organizations, giving us enterprise-level discipline with local responsiveness.",
-    "securityTitle": "Security & Compliance-Aware by Design",
+    "leadership": "Our leadership brings over 20 years of IT experience across healthcare environments, with a strong foundation in secure systems, infrastructure, and operational support. Our team also brings experience serving dental practices, healthcare organizations, government agencies, and private-sector clients—combining enterprise-level discipline with local responsiveness.",
+    "securityTitle": "Security & Compliance by Design",
     "securityBullets": [
       "HIPAA-aware IT practices",
       "Secure access controls and encryption",
-      "Vendor accountability and documentation",
-      "Industry-standard cybersecurity tools"
+      "Documented vendor and system accountability",
+      "Industry-standard cybersecurity protections"
     ],
-    "licensed": "Licensed and insured."
+    "licensed": "Licensed and insured.",
+    "licensedBody": "We deliver with documentation, accountability, and clear communication from day one."
   },
   "contact": {
     "title": "Contact",
