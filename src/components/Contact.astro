@@ -9,11 +9,13 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
   <div class="container">
     <div class="row g-4 align-items-stretch nb-contact-grid">
       <div class="col-lg-5 d-flex">
-        <div class="w-100 d-flex flex-column">
-          <h2 class="section-title fw-bold">{c.title}</h2>
-          <p class="text-secondary mt-3">{c.lead}</p>
+        <div class="w-100 d-flex flex-column nb-contact-sticky">
+          <h2 class="section-title fw-bold mb-0">{c.title}</h2>
+          <p class="text-secondary mt-3 mb-0 nb-contact-lead">{c.lead}</p>
+          <div class="nb-contact-response-pill mt-2">Typical response: within 1 business day</div>
 
           <div class="p-4 nb-card mt-3 nb-contact-info-card d-flex flex-column w-100">
+            <div class="nb-contact-panel-label">Direct contact</div>
             <div class="nb-contact-item mb-3">
               <div class="nb-icon-wrap"><IconBadge name="phone" /></div>
               <div>
@@ -34,12 +36,12 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
               <div class="nb-icon-wrap"><IconBadge name="clock" /></div>
               <div>
                 <div class="small text-secondary">Hours of operation</div>
-                <div class="fw-semibold">Monday–Friday, 9:00 AM – 5:00 PM</div>
+                <div class="fw-semibold nb-contact-hours">Monday–Friday, 9:00 AM – 5:00 PM</div>
               </div>
             </div>
 
             <a
-              class="btn nb-btn-primary mt-3 align-self-start"
+              class="btn nb-btn-primary mt-3 align-self-start nb-contact-booking"
               href={site.bookings?.url}
               target="_blank"
               rel="noopener"
@@ -50,13 +52,15 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
               </svg>
               Book a consult
             </a>
+            <p class="nb-contact-booking-note mb-0">Prefer a scheduled conversation? Use booking to pick a time that works for your office.</p>
           </div>
         </div>
       </div>
 
       <div class="col-lg-7 d-flex">
         <div class="p-4 nb-card h-100 w-100 d-flex flex-column nb-contact-form-card">
-          <h3 class="h5 fw-bold mb-3">Send a message</h3>
+          <h3 class="h5 fw-bold mb-1">Send a message</h3>
+          <p class="nb-contact-form-helper text-secondary mb-3">Tell us about your practice, systems, or support needs. Required fields are marked with <span class="text-danger">*</span>.</p>
 
           <form id="contactForm" class="row g-3" novalidate>
             <input type="hidden" id="contactEndpoint" value={formEndpoint} />
@@ -95,24 +99,26 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
             {hcaptchaSiteKey && (
               <div class="col-12">
                 <div class="form-label mb-2">Verification <span class="text-danger" aria-hidden="true">*</span></div>
-                <div id="contactHcaptchaWidget" class="h-captcha" data-sitekey={hcaptchaSiteKey}></div>
+                <div class="nb-contact-verify-wrap">
+                  <div id="contactHcaptchaWidget" class="h-captcha" data-sitekey={hcaptchaSiteKey}></div>
+                </div>
                 <div id="contact-captcha-error" class="small text-danger mt-1" hidden></div>
               </div>
             )}
 
             <div class="col-12 d-flex gap-2 flex-wrap align-items-center nb-contact-actions">
-              <button id="contactSubmitBtn" class="btn nb-btn-primary" type="submit">
+              <button id="contactSubmitBtn" class="btn nb-btn-primary nb-contact-submit-btn" type="submit">
                 <svg viewBox="0 0 24 24" aria-hidden="true" class="nb-inline-icon">
                   <path d="M3 11.5 21 3l-8.5 18-1.9-6.6L3 11.5Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" />
                   <path d="M10.6 14.4 21 3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
                 </svg>
                 <span id="contactSubmitLabel">Send message</span>
               </button>
-              <a class="btn btn-outline-secondary rounded-pill" href={c.emailHref}>Email using my mail app</a>
+              <a class="btn btn-outline-secondary rounded-pill nb-contact-mail-btn" href={c.emailHref}>Email using my mail app</a>
             </div>
 
             <div class="col-12">
-              <span id="contactStatus" class="small text-secondary" role="status" aria-live="polite"></span>
+              <span id="contactStatus" class="small text-secondary nb-contact-status-wrap" role="status" aria-live="polite"></span>
             </div>
 
             <div id="contactSuccessModal" class="nb-contact-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="contactSuccessTitle">
@@ -519,6 +525,171 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
     #contact .nb-contact-form-card {
       min-width: 0;
       overflow: hidden;
+      border: 1px solid rgba(16, 52, 86, 0.08);
+      box-shadow: 0 16px 32px rgba(15, 42, 72, 0.06);
+      border-radius: 1.05rem;
+      background: #fff;
+    }
+
+    #contact .nb-contact-sticky {
+      min-width: 0;
+    }
+
+    #contact .nb-contact-lead {
+      max-width: 32ch;
+      line-height: 1.45;
+      font-size: 1.02rem;
+      color: #5c7187 !important;
+    }
+
+    #contact .nb-contact-response-pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(22, 111, 187, 0.15);
+      background: rgba(22, 111, 187, 0.06);
+      color: #2f5f8f;
+      border-radius: 999px;
+      padding: 0.28rem 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      width: fit-content;
+    }
+
+    #contact .nb-contact-panel-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #5f7489;
+      margin-bottom: 0.9rem;
+    }
+
+    #contact .nb-contact-item {
+      gap: 0.85rem;
+      padding: 0.2rem 0;
+    }
+
+    #contact .nb-contact-item + .nb-contact-item {
+      border-top: 1px solid #ebf1f7;
+      padding-top: 0.95rem;
+      margin-top: 0.15rem;
+    }
+
+    #contact .nb-contact-item .small {
+      color: #62788d !important;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    #contact .nb-contact-item a {
+      color: #0b63ce;
+      font-weight: 700;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 2px;
+    }
+
+    #contact .nb-contact-hours {
+      line-height: 1.28;
+      color: #23384f;
+    }
+
+    #contact .nb-contact-booking {
+      margin-top: 1rem !important;
+    }
+
+    #contact .nb-contact-booking-note {
+      margin-top: 0.55rem;
+      color: #6a7f93;
+      font-size: 0.88rem;
+      line-height: 1.35;
+      max-width: 34ch;
+    }
+
+    #contact .nb-contact-form-card > .h5 {
+      color: #17324f;
+      letter-spacing: -0.01em;
+    }
+
+    #contact .nb-contact-form-helper {
+      line-height: 1.35;
+      font-size: 0.92rem;
+    }
+
+    #contact .form-label {
+      font-weight: 700 !important;
+      color: #2a4866 !important;
+      margin-bottom: 0.38rem;
+    }
+
+    #contact .form-control {
+      min-height: 54px;
+      border-radius: 0.9rem !important;
+    }
+
+    #contact textarea.form-control {
+      min-height: 168px !important;
+      resize: vertical;
+    }
+
+    #contact .form-control.is-invalid {
+      border-color: #dc3545 !important;
+      box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.12);
+    }
+
+    #contact .nb-contact-verify-wrap {
+      display: inline-block;
+      max-width: 100%;
+      padding: 0.55rem;
+      border-radius: 0.85rem;
+      border: 1px solid #e3ecf6;
+      background: #fbfdff;
+    }
+
+    #contact .nb-contact-actions {
+      row-gap: 0.55rem;
+      column-gap: 0.55rem;
+      margin-top: 0.15rem;
+    }
+
+    #contact .nb-contact-actions .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    #contact .nb-contact-mail-btn {
+      padding-inline: 1rem;
+      white-space: nowrap;
+    }
+
+    #contact .nb-contact-status-wrap {
+      display: block;
+      min-height: 1.15rem;
+      line-height: 1.2;
+    }
+
+    @media (min-width: 992px) {
+      #contact .nb-contact-sticky {
+        position: sticky;
+        top: 98px;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      #contact .nb-contact-actions .btn {
+        width: 100%;
+      }
+
+      #contact .nb-contact-lead {
+        max-width: none;
+      }
+
+      #contact .nb-contact-form-card,
+      #contact .nb-contact-info-card {
+        padding: 1rem !important;
+      }
     }
 
     #contact .nb-contact-actions {
