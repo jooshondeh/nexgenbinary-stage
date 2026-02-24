@@ -43,9 +43,10 @@ const networkSplit = Math.ceil(networkItems.length / 2);
 <section id="services" class="nb-section nb-anchor-offset">
   <div class="nb-shell">
     <h2 class="nb-section-title">{site?.services?.title || 'Services'}</h2>
+    {site?.services?.subtitle && <p class="nb-section-subtitle nb-services-intro">{site.services.subtitle}</p>}
     <div class="nb-services-grid">
       {mainGroups.map((group) => (
-        <article class="nb-service-card nb-hover-pop">
+        <article class="nb-service-card nb-hover-pop nb-service-card-standard">
           <div class="nb-service-head">
             <div class="nb-icon-wrap"><IconBadge name={iconFor(group.title)} /></div>
             <h3>{group.title}</h3>

@@ -825,3 +825,93 @@ html, body { scroll-behavior: smooth; }
     align-items: flex-start;
   }
 }
+
+
+/* --- v76: Services section polish (intro text, consistent spacing, wide card alignment) --- */
+#services .nb-shell {
+  display: block;
+}
+
+#services .nb-section-title {
+  margin-bottom: .45rem;
+}
+
+#services .nb-services-intro {
+  max-width: 900px;
+  margin: 0 auto 1rem;
+  text-align: center;
+  line-height: 1.4;
+  color: #5f7185;
+}
+
+#services .nb-services-grid {
+  margin-top: .35rem;
+  gap: 18px;
+  align-items: stretch;
+}
+
+#services .nb-service-card {
+  border-radius: 20px;
+  padding: 1.05rem 1.1rem 1rem;
+}
+
+#services .nb-service-card-standard {
+  min-height: 226px;
+}
+
+#services .nb-service-head {
+  align-items: center;
+  gap: 12px;
+  margin-bottom: .2rem;
+}
+
+#services .nb-service-head h3 {
+  line-height: 1.22;
+  font-size: 1.02rem;
+}
+
+#services .nb-service-card ul {
+  margin-top: .15rem;
+  padding-left: 1.15rem;
+  gap: 7px;
+}
+
+#services .nb-service-card li {
+  line-height: 1.35;
+}
+
+#services .nb-service-card li::marker {
+  color: #4c6177;
+}
+
+#services .nb-service-card-wide {
+  padding-top: .95rem;
+}
+
+#services .nb-service-card-wide .nb-service-head {
+  margin-bottom: .35rem;
+}
+
+#services .nb-service-card-wide .nb-service-cols {
+  gap: 1.35rem;
+  align-items: start;
+}
+
+#services .nb-service-card-wide .nb-service-cols ul {
+  padding-left: 1.15rem;
+}
+
+#services .nb-service-card-wide .nb-service-cols ul:first-child,
+#services .nb-service-card-wide .nb-service-cols ul:last-child {
+  margin-top: 0;
+}
+
+@media (max-width: 991px) {
+  #services .nb-service-card-standard {
+    min-height: 0;
+  }
+
+  #services .nb-services-intro {
+    margin-bottom: .85rem;
+  }
+}

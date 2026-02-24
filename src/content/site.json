@@ -89,27 +89,27 @@
         "title": "Fully Managed IT Services",
         "items": [
           "Workstation and server management (local or cloud)",
-          "Patch management and monitoring",
-          "Backup and disaster recovery",
-          "Proactive maintenance and reporting"
+          "Patch management, monitoring, and maintenance",
+          "Backup and disaster recovery readiness",
+          "Proactive support reporting and system reviews"
         ]
       },
       {
         "title": "Dental EMR & Clinical Systems Support",
         "items": [
           "EMR/EHR platform support and optimization",
-          "Imaging system coordination (X‑ray, scanners, vendor integrations)",
-          "Secure access for providers and staff",
+          "Imaging and device integration coordination (X-ray, scanners, sensors)",
+          "Secure access setup for providers and staff",
           "Coordination with EMR vendors and dental software partners"
         ]
       },
       {
         "title": "Microsoft 365 & Cloud Solutions",
         "items": [
-          "Microsoft 365 setup, licensing, and management",
-          "Email security and data protection",
-          "SharePoint and Teams collaboration",
-          "Cloud migration and hybrid environments"
+          "Microsoft 365 setup, licensing, and administration",
+          "Email security, data protection, and mailbox support",
+          "SharePoint and Teams collaboration support",
+          "Cloud migration and hybrid environment planning"
         ]
       },
       {
@@ -117,22 +117,23 @@
         "items": [
           "Endpoint protection and device encryption",
           "Email security and phishing protection",
-          "Secure remote access",
-          "Backup integrity and ransomware preparedness"
+          "Secure remote access for staff and providers",
+          "Backup integrity checks and ransomware preparedness"
         ]
       },
       {
         "title": "Networking, Wi‑Fi, Infrastructure, VoIP & Cameras",
         "items": [
           "Secure wired and wireless network design",
-          "VLAN segmentation for clinical and guest networks",
+          "VLAN segmentation for clinical and guest traffic",
           "Firewall and network security management",
-          "Performance monitoring and optimization",
+          "Performance monitoring and network optimization",
           "Business phone systems (call routing and shared main lines)",
-          "Security cameras (on-site or compliant cloud-based systems)"
+          "Security camera systems (on-site or compliant cloud-based)"
         ]
       }
-    ]
+    ],
+    "subtitle": "Comprehensive IT services tailored for dental practices across Virginia—from daily support and cloud systems to security, networking, and clinical technology support."
   },
   "pricing": {
     "title": "Pricing & Service Plans",
