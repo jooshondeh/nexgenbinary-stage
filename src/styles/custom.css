@@ -1259,3 +1259,16 @@ html, body { scroll-behavior: smooth; }
     font-size: .9rem;
   }
 }
+
+
+/* --- v80: Home hero layout fix + final polish (prevents row-collapse overlap) --- */
+#home .nb-hero-copy{display:flex !important; flex-direction:column !important; align-items:flex-start !important; justify-content:center !important; min-width:0;}
+#home .nb-hero-grid{align-items:center !important;}
+#home .nb-hero-title{max-width:10.1ch !important; margin-right:0 !important;}
+#home .nb-hero-subtitle{max-width:34ch !important;}
+#home .nb-eyebrow{white-space:normal !important;}
+#home .nb-what-card{max-width:760px; width:100%; margin-left:auto;}
+#home .nb-what-item{align-items:center !important;}
+#home .nb-what-item > div:last-child{min-width:0;}
+#home .nb-what-item h3{margin-bottom:3px !important;}
+@media (max-width:1080px){#home .nb-hero-copy{justify-content:flex-start !important;} #home .nb-hero-subtitle{max-width:100% !important;} #home .nb-what-card{margin-left:0;}}
