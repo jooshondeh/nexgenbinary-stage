@@ -95,7 +95,7 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
             {hcaptchaSiteKey && (
               <div class="col-12">
                 <div class="form-label mb-2">Verification <span class="text-danger" aria-hidden="true">*</span></div>
-                <div class="h-captcha" data-sitekey={hcaptchaSiteKey}></div>
+                <div id="contactHcaptchaWidget" class="h-captcha" data-sitekey={hcaptchaSiteKey}></div>
                 <div id="contact-captcha-error" class="small text-danger mt-1" hidden></div>
               </div>
             )}
@@ -132,7 +132,6 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
     </div>
   </div>
 
-  {hcaptchaSiteKey && <script src="https://js.hcaptcha.com/1/api.js" async defer></script>}
 
   <script>
     const form = document.getElementById('contactForm');
@@ -144,6 +143,9 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
     const successModalOk = document.getElementById('contactSuccessOk');
     const hcaptchaSiteKey = (document.getElementById('contactHcaptchaSiteKey')?.value || '').trim();
     const captchaErrorEl = document.getElementById('contact-captcha-error');
+    const hcaptchaWidgetEl = document.getElementById('contactHcaptchaWidget');
+    let hcaptchaWidgetId = null;
+    let hcaptchaReadyPromise = null;
 
 
     const openSuccessModal = () => {
@@ -194,6 +196,63 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
       const tokenEl = form?.querySelector('textarea[name="h-captcha-response"], input[name="h-captcha-response"]');
       return (tokenEl?.value || '').toString().trim();
     };
+
+    const ensureHcaptchaLoaded = () => {
+      if (!hcaptchaSiteKey || !hcaptchaWidgetEl) return Promise.resolve(false);
+      if (window.hcaptcha && typeof window.hcaptcha.render === 'function') return Promise.resolve(true);
+      if (hcaptchaReadyPromise) return hcaptchaReadyPromise;
+
+      hcaptchaReadyPromise = new Promise((resolve, reject) => {
+        const existing = document.querySelector('script[data-nb-hcaptcha="1"]');
+        if (existing) {
+          existing.addEventListener('load', () => resolve(true), { once: true });
+          existing.addEventListener('error', () => reject(new Error('hcaptcha_script_failed')), { once: true });
+          return;
+        }
+
+        const script = document.createElement('script');
+        script.src = 'https://js.hcaptcha.com/1/api.js?render=explicit';
+        script.async = true;
+        script.defer = true;
+        script.setAttribute('data-nb-hcaptcha', '1');
+        script.onload = () => resolve(true);
+        script.onerror = () => reject(new Error('hcaptcha_script_failed'));
+        document.head.appendChild(script);
+      });
+
+      return hcaptchaReadyPromise;
+    };
+
+    const renderHcaptchaWidget = async () => {
+      if (!hcaptchaSiteKey || !hcaptchaWidgetEl) return;
+      if (hcaptchaWidgetId !== null) return;
+      try {
+        await ensureHcaptchaLoaded();
+        if (!(window.hcaptcha && typeof window.hcaptcha.render === 'function')) {
+          throw new Error('hcaptcha_unavailable');
+        }
+        hcaptchaWidgetId = window.hcaptcha.render(hcaptchaWidgetEl, {
+          sitekey: hcaptchaSiteKey,
+          callback: () => {
+            clearCaptchaError();
+            setStatus('', 'neutral');
+          },
+          'expired-callback': () => {
+            showCaptchaError('Verification expired. Please complete the CAPTCHA again.');
+          },
+          'error-callback': () => {
+            showCaptchaError('Verification could not load. Refresh the page and try again.');
+          }
+        });
+      } catch (err) {
+        console.error('hCaptcha failed to load:', err);
+        showCaptchaError('Verification could not load. Refresh the page and try again.');
+      }
+    };
+
+    if (hcaptchaSiteKey && hcaptchaWidgetEl) {
+      renderHcaptchaWidget();
+    }
 
     const requiredFieldLabels = {
       'contact-name': 'Name',
@@ -326,10 +385,19 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
         return;
       }
 
+      if (hasHcaptchaWidget) {
+        await renderHcaptchaWidget();
+        if (!(window.hcaptcha && typeof window.hcaptcha.getResponse === 'function')) {
+          setStatus('Verification could not load. Refresh the page and try again, or use the email button.', 'error');
+          showCaptchaError('Verification could not load.');
+          return;
+        }
+      }
+
       const fd = new FormData(form);
       if (hasHcaptchaWidget && !getHcaptchaToken()) {
-        setStatus('Please complete the CAPTCHA before sending.', 'error');
-        showCaptchaError('Please complete the CAPTCHA before sending.');
+        setStatus('Please complete the hCaptcha checkbox before sending.', 'error');
+        showCaptchaError('Please complete the hCaptcha checkbox before sending.');
         return;
       }
       if ((fd.get('_gotcha') || '').toString().trim()) {
@@ -409,7 +477,10 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
         });
         clearCaptchaError();
         if (window.hcaptcha && typeof window.hcaptcha.reset === 'function') {
-          try { window.hcaptcha.reset(); } catch {}
+          try {
+            if (hcaptchaWidgetId !== null) window.hcaptcha.reset(hcaptchaWidgetId);
+            else window.hcaptcha.reset();
+          } catch {}
         }
         setStatus('', 'neutral');
         openSuccessModal();

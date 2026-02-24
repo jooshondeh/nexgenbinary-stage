@@ -484,3 +484,9 @@ html, body { scroll-behavior: smooth; }
   border-color: #93bfff;
   color: #08479a;
 }
+
+
+/* Center the wide networking services bubble title + icon */
+.nb-service-card-wide .nb-service-head {
+  justify-content: center;
+}
