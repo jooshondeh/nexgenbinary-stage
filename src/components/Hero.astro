@@ -3,6 +3,7 @@ import IconBadge from './IconBadge.astro';
 const { site } = Astro.props;
 const items = site?.whatWeDo?.items ?? [];
 const iconMap = ['monitor','lockshield','tools','pin'];
+const callHref = site?.contact?.phoneHref ?? site?.topbar?.phoneHref ?? '#contact';
 ---
 <section id="home" class="nb-hero-wrap nb-anchor-offset">
   <div class="nb-shell nb-hero-grid">
@@ -15,7 +16,7 @@ const iconMap = ['monitor','lockshield','tools','pin'];
           <IconBadge name="calendar" />
           <span>{site?.hero?.primaryCta || 'Book a Consultation'}</span>
         </a>
-        <a class="nb-btn-ghost" href="#contact">
+        <a class="nb-btn-ghost" href={callHref}>
           <IconBadge name="phone" />
           <span>{site?.hero?.secondaryCta || 'Call Us'}</span>
         </a>

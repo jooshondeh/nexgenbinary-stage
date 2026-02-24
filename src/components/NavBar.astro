@@ -9,7 +9,7 @@ const navItems = site?.nav ?? [
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
-const phoneHref = '#contact';
+const phoneHref = site?.contact?.phoneHref ?? site?.topbar?.phoneHref ?? '#contact';
 const phoneText = site?.contact?.phoneText ?? '804-000-0000';
 const brandName = site?.brand?.name ?? 'NexGen Binary';
 const slogan = site?.brand?.slogan ?? 'Precision Built. People First. Always.';

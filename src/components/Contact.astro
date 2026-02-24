@@ -62,13 +62,15 @@ const formEndpoint = c.formEndpoint ?? "";
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="d-none" aria-hidden="true" />
 
             <div class="col-md-6">
-              <label class="form-label" for="contact-name">Name</label>
-              <input id="contact-name" class="form-control" name="name" autocomplete="name" maxlength="120" required />
+              <label class="form-label" for="contact-name">Name <span class="text-danger" aria-hidden="true">*</span></label>
+              <input id="contact-name" class="form-control" name="name" autocomplete="name" maxlength="120" required aria-required="true" aria-describedby="contact-name-error" />
+              <div id="contact-name-error" class="small text-danger mt-1" hidden></div>
             </div>
 
             <div class="col-md-6">
-              <label class="form-label" for="contact-email">Email</label>
-              <input id="contact-email" class="form-control" name="email" type="email" inputmode="email" autocomplete="email" maxlength="160" required />
+              <label class="form-label" for="contact-email">Email <span class="text-danger" aria-hidden="true">*</span></label>
+              <input id="contact-email" class="form-control" name="email" type="email" inputmode="email" autocomplete="email" maxlength="160" required aria-required="true" aria-describedby="contact-email-error" />
+              <div id="contact-email-error" class="small text-danger mt-1" hidden></div>
             </div>
 
             <div class="col-md-6">
@@ -82,8 +84,9 @@ const formEndpoint = c.formEndpoint ?? "";
             </div>
 
             <div class="col-12">
-              <label class="form-label" for="contact-message">Message</label>
-              <textarea id="contact-message" class="form-control" name="message" rows="5" maxlength="4000" required></textarea>
+              <label class="form-label" for="contact-message">Message <span class="text-danger" aria-hidden="true">*</span></label>
+              <textarea id="contact-message" class="form-control" name="message" rows="5" maxlength="4000" required aria-required="true" aria-describedby="contact-message-error"></textarea>
+              <div id="contact-message-error" class="small text-danger mt-1" hidden></div>
             </div>
 
             <div class="col-12 d-flex gap-2 flex-wrap align-items-center nb-contact-actions">
@@ -159,6 +162,91 @@ const formEndpoint = c.formEndpoint ?? "";
       else statusEl.classList.add('text-secondary');
     };
 
+    const requiredFieldLabels = {
+      'contact-name': 'Name',
+      'contact-email': 'Email',
+      'contact-message': 'Message',
+    };
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const getFieldErrorEl = (input) => {
+      if (!input?.id) return null;
+      return document.getElementById(`${input.id}-error`);
+    };
+
+    const clearFieldError = (input) => {
+      if (!input) return;
+      const errorEl = getFieldErrorEl(input);
+      if (errorEl) {
+        errorEl.textContent = '';
+        errorEl.hidden = true;
+      }
+      input.removeAttribute('aria-invalid');
+      input.classList.remove('is-invalid');
+    };
+
+    const showFieldError = (input, message) => {
+      if (!input) return;
+      const errorEl = getFieldErrorEl(input);
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+      }
+      input.setAttribute('aria-invalid', 'true');
+      input.classList.add('is-invalid');
+    };
+
+    const validateField = (input) => {
+      if (!input) return true;
+      const fieldLabel = requiredFieldLabels[input.id] || 'This field';
+      const value = (input.value || '').trim();
+
+      if (input.hasAttribute('required') && !value) {
+        showFieldError(input, `${fieldLabel} is required.`);
+        return false;
+      }
+
+      if (input.type === 'email' && value && !emailPattern.test(value)) {
+        showFieldError(input, 'Enter a valid email address.');
+        return false;
+      }
+
+      clearFieldError(input);
+      return true;
+    };
+
+    const validateForm = () => {
+      let firstInvalid = null;
+      let allValid = true;
+
+      Object.keys(requiredFieldLabels).forEach((fieldId) => {
+        const input = document.getElementById(fieldId);
+        const valid = validateField(input);
+        if (!valid) {
+          allValid = false;
+          if (!firstInvalid) firstInvalid = input;
+        }
+      });
+
+      if (!allValid && firstInvalid) firstInvalid.focus();
+      return allValid;
+    };
+
+    Object.keys(requiredFieldLabels).forEach((fieldId) => {
+      const input = document.getElementById(fieldId);
+      if (!input) return;
+      input.addEventListener('blur', () => validateField(input));
+      input.addEventListener('input', () => {
+        const hasValue = (input.value || '').trim().length > 0;
+        if (input.type === 'email' || hasValue || input.classList.contains('is-invalid')) {
+          validateField(input);
+        } else {
+          clearFieldError(input);
+        }
+      });
+    });
+
     successModalOk?.addEventListener('click', () => {
       closeSuccessModalAndRefresh();
     });
@@ -181,7 +269,10 @@ const formEndpoint = c.formEndpoint ?? "";
 
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
-      if (!form.reportValidity()) return;
+      if (!validateForm()) {
+        setStatus('Please fill in the required fields and try again.', 'error');
+        return;
+      }
 
       if (!endpoint || endpoint.includes('example.com') || endpoint.includes('PASTE-POWER-AUTOMATE')) {
         setStatus('Contact form is not connected yet. Please use the email button for now.', 'error');
@@ -265,9 +356,12 @@ const formEndpoint = c.formEndpoint ?? "";
         if (!response?.ok) throw new Error(errorMessage || 'submit_failed');
 
         form.reset();
+        Object.keys(requiredFieldLabels).forEach((fieldId) => {
+          const input = document.getElementById(fieldId);
+          clearFieldError(input);
+        });
         setStatus('', 'neutral');
-        alert('Thanks! Your message was sent successfully.');
-        window.location.reload();
+        openSuccessModal();
       } catch (err) {
         const message = err instanceof Error ? err.message : '';
         if (/spam/i.test(message)) {
