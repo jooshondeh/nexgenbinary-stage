@@ -60,6 +60,7 @@ const formEndpoint = c.formEndpoint ?? "";
           <form id="contactForm" class="row g-3" novalidate>
             <input type="hidden" id="contactEndpoint" value={formEndpoint} />
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="d-none" aria-hidden="true" />
+            <input type="hidden" name="_subject" value="New website message from NexGen Binary LLC" />
 
             <div class="col-md-6">
               <label class="form-label" for="contact-name">Name <span class="text-danger" aria-hidden="true">*</span></label>
@@ -267,6 +268,12 @@ const formEndpoint = c.formEndpoint ?? "";
       return fallbackStatus ? `Request failed (${fallbackStatus}).` : 'Request failed.';
     };
 
+
+    const cleanUiError = (value) => {
+      const text = (value || '').toString().replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+      return text.slice(0, 180);
+    };
+
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!validateForm()) {
@@ -297,25 +304,16 @@ const formEndpoint = c.formEndpoint ?? "";
         let errorMessage = '';
 
         if (/formspree\.io/i.test(endpoint)) {
-          // JSON submit is the most reliable pattern for Formspree AJAX submissions.
-          const payload = {
-            name: (fd.get('name') || '').toString(),
-            email: (fd.get('email') || '').toString(),
-            _replyto: (fd.get('email') || '').toString(),
-            phone: (fd.get('phone') || '').toString(),
-            org: (fd.get('org') || '').toString(),
-            message: (fd.get('message') || '').toString(),
-            _subject: 'New website message from NexGen Binary LLC',
-            _gotcha: (fd.get('_gotcha') || '').toString(),
-          };
+          // Use FormData + Accept JSON for Formspree (avoids extra CORS preflight and matches their standard form-post flow).
+          fd.set('_replyto', (fd.get('email') || '').toString());
+          fd.set('_subject', 'New website message from NexGen Binary LLC');
 
           response = await fetch(endpoint, {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
               Accept: 'application/json',
             },
-            body: JSON.stringify(payload),
+            body: fd,
           });
 
           const contentType = response.headers.get('content-type') || '';
@@ -327,6 +325,10 @@ const formEndpoint = c.formEndpoint ?? "";
           } else if (!response.ok) {
             const text = await response.text();
             errorMessage = text?.trim() || `Request failed (${response.status}).`;
+          }
+
+          if (!response.ok && !errorMessage && response.status === 429) {
+            errorMessage = 'Too many submissions. Please wait a moment and try again.';
           }
         } else {
           const payload = {
@@ -364,10 +366,15 @@ const formEndpoint = c.formEndpoint ?? "";
         openSuccessModal();
       } catch (err) {
         const message = err instanceof Error ? err.message : '';
-        if (/spam/i.test(message)) {
-          setStatus('Formspree flagged this as spam. Enable CAPTCHA + Restrict to Domain in Formspree, then try again.', 'error');
-        } else if (/domain/i.test(message) || /origin/i.test(message)) {
-          setStatus('Form domain restriction blocked this submission. Check Formspree “Restrict to Domain” settings.', 'error');
+        const uiMessage = cleanUiError(message);
+        if (/spam|captcha/i.test(message)) {
+          setStatus('Formspree flagged this submission. Please complete CAPTCHA (if shown) and try again, or use the email button.', 'error');
+        } else if (/domain|origin|referer|referrer/i.test(message)) {
+          setStatus('Form domain restriction blocked this submission. Check Formspree Project Settings → Restrict to Domain.', 'error');
+        } else if (/inactive|confirm|verify/i.test(message)) {
+          setStatus('Formspree form setup is not fully activated yet. Confirm/verify the form in Formspree, then try again.', 'error');
+        } else if (uiMessage) {
+          setStatus(`Unable to send: ${uiMessage}`, 'error');
         } else {
           setStatus('Unable to send right now. Please try again or use the email button.', 'error');
         }
