@@ -1,59 +1,91 @@
 ---
 const { site } = Astro.props;
-const pricing = site?.pricing || {};
-const plans = pricing.plans || [];
-const rows = pricing.rows || [];
-const fmt = (v) => String(v ?? '—');
-const parsePlanValue = (raw) => {
-  const v = String(raw || '').trim();
-  const checked = v.includes('✔');
-  const noCheck = v.replaceAll('✔', '').trim();
-  const match = noCheck.match(/^(.*?)(\s*\([^)]*\))$/);
-  if (match) {
-    return { checked, main: match[1].trim(), note: match[2].trim() };
-  }
-  return { checked, main: noCheck, note: '' };
-};
----
-<section id="pricing" class="nb-section nb-anchor-offset nb-pricing-wrap">
-  <div class="nb-shell">
-    <h2 class="nb-section-title nb-center">{pricing.title || 'Service Plan Comparison'}</h2>
-    {pricing.subtitle && <p class="nb-section-subtitle nb-center">{pricing.subtitle}</p>}
+import IconBadge from "./IconBadge.astro";
+const pricing = site.pricing ?? {};
+const rows = pricing.rows ?? [];
+const plans = pricing.plans ?? [];
 
-    <div class="nb-plan-columns">
-      {[0,1].map((idx) => {
-        const plan = plans[idx] || {};
-        const key = idx === 0 ? 'basic' : 'premium';
-        return (
-          <article class={`nb-plan-card nb-hover-pop ${plan.featured ? 'is-featured' : ''}`}>
-            <div class="nb-plan-intro-block">
-                            <h3>{plan.name}</h3>
-              <p>{plan.monthly}</p>
-              {plan.note && <p class="nb-plan-note">{plan.note}</p>}
-              <a class="nb-btn-primary nb-btn-small" href="#contact">
-                <span class="nb-btn-inlineicon"><span class="nb-inline-icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>Request more information</span>
+function parsePlanValue(raw) {
+  const value = String(raw ?? "").trim();
+  if (!value) return { included: false, text: "—", note: "" };
+
+  const included = value.startsWith("✔");
+  let body = value.replace(/^✔\s*/, "").trim();
+  if (!body) {
+    return { included: true, text: "Included", note: "" };
+  }
+
+  if (body.startsWith("—")) body = body.replace(/^—\s*/, "").trim();
+
+  const parenMatch = body.match(/^(.*?)(\s*\([^)]*\))$/);
+  if (parenMatch) {
+    return {
+      included,
+      text: (parenMatch[1] || "").trim() || (included ? "Included" : "—"),
+      note: (parenMatch[2] || "").trim(),
+    };
+  }
+
+  return { included, text: body, note: "" };
+}
+---
+<section id="pricing" class="nb-anchor-offset nb-section">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="section-title fw-bold mb-2">{pricing.title}</h2>
+      {pricing.subtitle && <p class="nb-section-subtitle nb-pricing-intro mb-0">{pricing.subtitle}</p>}
+    </div>
+
+    <div class="row g-3 g-xl-4 align-items-stretch nb-pricing-grid">
+      {plans.map((plan) => (
+        <div class="col-lg-6 d-flex">
+          <article class={`nb-card w-100 nb-plan-card ${plan.featured ? "is-featured" : ""}`}>
+            <header class="nb-plan-header">
+              <div class="nb-plan-header-copy">
+                <h3 class="h4 mb-1 nb-plan-title">{plan.name}</h3>
+                <p class="nb-plan-price mb-0">Monthly pricing: {plan.priceNote}</p>
+                {plan.subtitle && <p class="nb-plan-note mb-0">{plan.subtitle}</p>}
+              </div>
+              <a
+                class="btn nb-btn-primary nb-plan-cta"
+                href={site.bookings?.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" class="nb-inline-icon">
+                  <rect x="3" y="5" width="18" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2" />
+                  <path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                Request more information
               </a>
-            </div>
-            <div class="nb-plan-rows">
-              {rows.map((row, rowIndex) => {
-                const parsed = parsePlanValue(fmt(row[key]));
-                const displayMain = parsed.main || (!parsed.checked ? '—' : '');
-                const checkOnly = parsed.checked && !displayMain && !parsed.note;
-                return (
-                  <div class={`nb-plan-row ${rowIndex % 2 ? 'is-alt' : ''}`}>
-                    <div class="nb-plan-feature">{row.feature}</div>
-                    <div class={`nb-plan-value ${checkOnly ? 'is-check-only' : ''}`}>
-                      {parsed.checked && <span class="nb-check">✔</span>}
-                      {displayMain && <span class="nb-plan-value-main">{displayMain}</span>}
-                      {parsed.note && <span class="nb-plan-value-note">{parsed.note}</span>}
-                    </div>
-                  </div>
-                );
-              })}
+            </header>
+
+            <div class="nb-plan-table-wrap">
+              <table class="table mb-0 nb-plan-table">
+                <tbody>
+                  {rows.map((r) => {
+                    const parsed = parsePlanValue(plan.values?.[r.key]);
+                    return (
+                      <tr>
+                        <th scope="row">{r.label}</th>
+                        <td>
+                          <div class="nb-plan-value-wrap">
+                            <span class={`nb-check ${parsed.included ? "is-on" : "is-off"}`} aria-hidden="true">
+                              {parsed.included ? "✓" : ""}
+                            </span>
+                            <span class={`nb-plan-value-main ${parsed.included ? "is-included" : ""}`}>{parsed.text}</span>
+                            {parsed.note && <span class="nb-plan-value-note">{parsed.note}</span>}
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           </article>
-        );
-      })}
+        </div>
+      ))}
     </div>
   </div>
 </section>

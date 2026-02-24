@@ -133,7 +133,7 @@
         ]
       }
     ],
-    "subtitle": "Comprehensive IT support tailored for dental practices across Virginia—from daily operations and cloud systems to security, networking, and clinical technology."
+    "subtitle": "Comprehensive IT services tailored for dental practices across Virginia—from daily support and cloud systems to security, networking, and clinical technology support."
   },
   "pricing": {
     "title": "Pricing & Service Plans",
@@ -261,7 +261,9 @@
     "emailText": "info@nexgenbinary.com",
     "emailHref": "mailto:info@nexgenbinary.com",
     "formEndpoint": "https://formspree.io/f/mdalpbzo",
-    "hcaptchaSiteKey": "267e959c-42c0-45b2-a4d2-45621dbc4f28"
+    "hcaptchaSiteKey": "267e959c-42c0-45b2-a4d2-45621dbc4f28",
+    "googleBusinessLabel": "Find us on Google",
+    "googleBusinessUrl": "https://www.google.com/search?q=NexGen+Binary+LLC+Virginia"
   },
   "footer": {
     "copyright": "© NexGen Binary LLC. All rights reserved."
