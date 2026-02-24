@@ -632,3 +632,86 @@ html, body { scroll-behavior: smooth; }
     width: 100%;
   }
 }
+
+
+/* --- v74: About section layout alignment refresh --- */
+#about .container > .section-title {
+  margin-bottom: 1rem !important;
+}
+
+#about .nb-about-grid-row {
+  align-items: flex-start;
+}
+
+#about .nb-about-left-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+#about .nb-about-card {
+  border-radius: 18px;
+  padding: 1.25rem 1.25rem 1.15rem !important;
+}
+
+#about .nb-about-story-card,
+#about .nb-about-lead-card {
+  min-height: 0 !important;
+}
+
+#about .nb-about-security-card {
+  display: flex;
+  flex-direction: column;
+}
+
+#about .nb-about-head {
+  gap: .75rem;
+  margin-bottom: .85rem;
+}
+
+#about .nb-about-icon {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+}
+
+#about .nb-about-head-title {
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+#about .nb-about-story-card p,
+#about .nb-about-lead-card p {
+  margin-top: .1rem;
+  max-width: 95%;
+}
+
+#about .nb-about-bullets {
+  margin: .15rem 0 .35rem;
+  padding-left: 1.15rem;
+}
+
+#about .nb-about-bullets li {
+  margin-bottom: .6rem;
+}
+
+#about .nb-about-callout {
+  width: 100% !important;
+  max-width: 640px;
+  margin-top: .35rem;
+  border-radius: .75rem;
+}
+
+#about .nb-about-security-card .nb-about-callout {
+  align-self: flex-start;
+}
+
+@media (max-width: 991px) {
+  #about .container > .section-title {
+    margin-bottom: .75rem !important;
+  }
+
+  #about .nb-about-story-card p,
+  #about .nb-about-lead-card p {
+    max-width: 100%;
+  }
+}

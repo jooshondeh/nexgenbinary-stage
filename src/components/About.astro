@@ -5,11 +5,12 @@ const a = site.about ?? {};
 ---
 <section id="about" class="nb-anchor-offset nb-section nb-about-section" style="background:#f8fafc">
   <div class="container">
-    <div class="row g-4">
-      <div class="col-lg-6 d-flex flex-column gap-3">
-        <h2 class="section-title fw-bold mb-0">{a.title ?? "About"}</h2>
+    <h2 class="section-title fw-bold mb-0">{a.title ?? "About"}</h2>
 
-        <div class="nb-card nb-pop bg-white nb-about-card nb-about-story-card">
+    <div class="row g-4 nb-about-grid-row">
+      <div class="col-lg-6">
+        <div class="nb-about-left-stack">
+          <div class="nb-card nb-pop bg-white nb-about-card nb-about-story-card">
           <div class="nb-about-head">
             <div class="nb-icon-wrap nb-about-icon"><IconBadge name="people" /></div>
             <div class="nb-about-head-title">{a.whoWeAreTitle ?? "Who We Are"}</div>
@@ -17,12 +18,13 @@ const a = site.about ?? {};
           <p class="text-secondary mb-0">{a.whoWeAre ?? ""}</p>
         </div>
 
-        <div class="nb-card nb-pop bg-white nb-about-card nb-about-lead-card">
+          <div class="nb-card nb-pop bg-white nb-about-card nb-about-lead-card">
           <div class="nb-about-head">
             <div class="nb-icon-wrap nb-about-icon"><IconBadge name="tools" /></div>
             <div class="nb-about-head-title">{a.leadershipTitle ?? "Leadership & Team Experience"}</div>
           </div>
           <p class="text-secondary mb-0">{a.leadership ?? ""}</p>
+          </div>
         </div>
       </div>
 
