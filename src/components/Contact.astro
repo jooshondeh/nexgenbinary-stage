@@ -9,7 +9,7 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
 ---
 <section id="contact" class="nb-anchor-offset nb-section">
   <div class="container">
-    <div class="row g-4 align-items-stretch nb-contact-grid">
+    <div class="row g-4 align-items-start nb-contact-grid">
       <div class="col-lg-5 d-flex nb-contact-left-col">
         <div class="w-100 d-flex flex-column nb-contact-sticky">
           <h2 class="section-title fw-bold mb-0">{c.title}</h2>
@@ -68,11 +68,11 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
       </div>
 
       <div class="col-lg-7 d-flex">
-        <div class="p-4 nb-card h-100 w-100 d-flex flex-column nb-contact-form-card">
+        <div class="p-4 nb-card w-100 d-flex flex-column nb-contact-form-card">
           <h3 class="h5 fw-bold mb-1">Send a message</h3>
           <p class="nb-contact-form-helper text-secondary mb-3">Tell us about your practice, systems, or support needs. Required fields are marked with <span class="text-danger">*</span>.</p>
 
-          <form id="contactForm" class="row g-3" novalidate>
+          <form id="contactForm" class="row g-3 nb-contact-form-grid" novalidate>
             <input type="hidden" id="contactEndpoint" value={formEndpoint} />
             <input type="hidden" id="contactHcaptchaSiteKey" value={hcaptchaSiteKey} />
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="d-none" aria-hidden="true" />
@@ -608,7 +608,7 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
     #contact .nb-contact-item + .nb-contact-item {
       border-top: 1px solid #ebf1f7;
       padding-top: 0.95rem;
-      margin-top: 0.15rem;
+      margin-top: 0.05rem;
     }
 
     #contact .nb-contact-item .small {
@@ -641,6 +641,15 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
       max-width: 34ch;
     }
 
+    #contact .nb-contact-form-card {
+      padding-bottom: 1.05rem !important;
+    }
+
+    #contact .nb-contact-form-grid {
+      --bs-gutter-x: 0.9rem;
+      --bs-gutter-y: 0.8rem;
+    }
+
     #contact .nb-contact-form-card > .h5 {
       color: #17324f;
       letter-spacing: -0.01em;
@@ -649,6 +658,15 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
     #contact .nb-contact-form-helper {
       line-height: 1.35;
       font-size: 0.92rem;
+      margin-bottom: 0.15rem !important;
+    }
+
+    #contact .nb-contact-form-card .mb-3 {
+      margin-bottom: 0.72rem !important;
+    }
+
+    #contact .nb-contact-form-card .mb-4 {
+      margin-bottom: 0.9rem !important;
     }
 
     #contact .form-label {
@@ -658,12 +676,12 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
     }
 
     #contact .form-control {
-      min-height: 54px;
+      min-height: 52px;
       border-radius: 0.9rem !important;
     }
 
     #contact textarea.form-control {
-      min-height: 168px !important;
+      min-height: 152px !important;
       resize: vertical;
     }
 
@@ -675,7 +693,7 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
     #contact .nb-contact-verify-wrap {
       display: inline-block;
       max-width: 100%;
-      padding: 0.55rem;
+      padding: 0.45rem;
       border-radius: 0.85rem;
       border: 1px solid #e3ecf6;
       background: #fbfdff;
@@ -684,7 +702,7 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
     #contact .nb-contact-actions {
       row-gap: 0.55rem;
       column-gap: 0.55rem;
-      margin-top: 0.15rem;
+      margin-top: 0.05rem;
     }
 
     #contact .nb-contact-actions .btn {
@@ -710,6 +728,21 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
       #contact .nb-contact-sticky {
         position: sticky;
         top: 98px;
+      }
+    }
+
+
+    @media (min-width: 992px) {
+      #contact .nb-contact-info-card {
+        padding: 1.15rem 1.15rem 1rem !important;
+      }
+
+      #contact .nb-contact-form-card {
+        padding: 1.2rem 1.2rem 1rem !important;
+      }
+
+      #contact .nb-contact-booking-note {
+        margin-top: 0.28rem;
       }
     }
 
