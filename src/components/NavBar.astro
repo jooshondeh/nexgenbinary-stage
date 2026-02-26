@@ -89,7 +89,10 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
       applyActive(activeId);
     };
 
-    toggle.addEventListener('click', () => {
+    const isMobileNav = () => window.matchMedia('(max-width: 1080px)').matches;
+
+    toggle.addEventListener('click', (event) => {
+      event.stopPropagation();
       const open = menu.classList.toggle('is-open');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
@@ -97,13 +100,29 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
     links.forEach((link) => link.addEventListener('click', () => {
       const id = (link.getAttribute('href') || '').replace('#', '').trim();
       if (id) applyActive(id);
-      if (window.innerWidth < 1081) closeMenu();
+      if (isMobileNav()) closeMenu();
       requestAnimationFrame(() => setTimeout(setActive, 60));
     }));
 
-    window.addEventListener('scroll', setActive, { passive: true });
+    const handleOutsideClose = (event) => {
+      if (!isMobileNav() || !menu.classList.contains('is-open')) return;
+      const target = event.target;
+      if (header.contains(target)) return;
+      closeMenu();
+    };
+
+    document.addEventListener('click', handleOutsideClose, true);
+    document.addEventListener('touchstart', handleOutsideClose, { passive: true, capture: true });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMenu();
+    });
+
+    window.addEventListener('scroll', () => {
+      if (isMobileNav() && menu.classList.contains('is-open')) closeMenu();
+      setActive();
+    }, { passive: true });
     window.addEventListener('resize', () => {
-      if (window.innerWidth >= 1081) menu.classList.remove('is-open');
+      if (!isMobileNav()) closeMenu();
       setActive();
     });
     window.addEventListener('load', () => {
