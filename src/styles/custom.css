@@ -1474,3 +1474,79 @@ html, body { scroll-behavior: smooth; }
   #home .nb-hero-title{ font-size: clamp(36px, 11vw, 48px) !important; }
   #home .nb-hero-subtitle{ font-size: 15px !important; }
 }
+
+/* --- v97: Home hero compactness + Edge/Windows scaling stability --- */
+/* Goal: remove desktop min-height and use px-based clamps so Edge/Windows text scaling doesn't blow up the hero */
+#home.nb-hero-wrap{
+  padding: clamp(20px, 3vw, 28px) 0 clamp(26px, 3.6vw, 34px) !important;
+}
+
+#home .nb-hero-grid{
+  min-height: unset !important;
+  align-items: center !important;
+  gap: clamp(20px, 3vw, 30px) !important;
+}
+
+#home .nb-eyebrow{
+  margin-bottom: 14px !important;
+  padding: 9px 18px !important;
+  font-size: 15px !important;
+}
+
+#home .nb-hero-title{
+  /* px-based clamp keeps sizing consistent across Edge/Chrome even when OS/browser font scaling differs */
+  font-size: clamp(56px, 5.1vw, 84px) !important;
+  line-height: 0.92 !important;
+  max-width: 11ch !important;
+}
+
+#home .nb-hero-subtitle{
+  margin-top: 16px !important;
+  font-size: clamp(16px, 1.35vw, 18px) !important;
+  line-height: 1.36 !important;
+  max-width: 42ch !important;
+}
+
+#home .nb-hero-actions{
+  margin-top: 20px !important;
+  gap: 12px !important;
+}
+
+#home .nb-btn-primary,
+#home .nb-btn-ghost{
+  min-height: 54px !important;
+  padding: 12px 20px !important;
+}
+
+#home .nb-what-card{
+  padding: 18px !important;
+  border-radius: 20px !important;
+}
+
+#home .nb-what-card h2{
+  font-size: clamp(30px, 2.4vw, 40px) !important;
+  margin-bottom: 12px !important;
+}
+
+#home .nb-what-grid{
+  gap: 10px !important;
+}
+
+#home .nb-what-item{
+  padding: 12px 12px !important;
+  grid-template-columns: 56px 1fr !important;
+}
+
+#home .nb-what-item h3{ font-size: 16px !important; }
+#home .nb-what-item p{ font-size: 14px !important; max-width: 48ch !important; }
+
+@media (max-width: 1200px){
+  #home .nb-hero-title{ font-size: clamp(52px, 6vw, 76px) !important; }
+}
+
+@media (max-width: 640px){
+  #home .nb-hero-title{ font-size: clamp(40px, 10.5vw, 54px) !important; }
+  #home .nb-hero-subtitle{ font-size: 15px !important; }
+  #home .nb-btn-primary,
+  #home .nb-btn-ghost{ min-height: 50px !important; padding: 11px 16px !important; }
+}
