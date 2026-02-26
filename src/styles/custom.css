@@ -1260,38 +1260,6 @@ html, body { scroll-behavior: smooth; }
   }
 }
 
-/* --- v94: Home hero cross-browser stability ---
-   Some desktop browsers / Windows display scaling can render slightly different font metrics,
-   which made the hero appear "extended" due to fixed min-heights.
-   Make the hero height content-driven while preserving the same visual rhythm.
-*/
-#home.nb-hero-wrap{
-  padding-top: clamp(22px, 3vh, 34px) !important;
-  padding-bottom: clamp(26px, 3.5vh, 42px) !important;
-}
-
-#home .nb-hero-grid{
-  /* Remove desktop fixed min-heights so the section doesn't look oversized on some browsers */
-  min-height: 0 !important;
-  height: auto !important;
-  align-items: center !important;
-}
-
-#home .nb-hero-copy,
-#home .nb-what-card{
-  min-width: 0;
-}
-
-#home .nb-what-card{
-  width: 100%;
-  max-width: min(760px, 100%);
-}
-
-@media (max-width: 1080px){
-  /* Keep mobile/tablet stacking behavior predictable */
-  #home .nb-hero-grid{ align-items: initial !important; }
-}
-
 
 /* --- v80: Home hero layout fix + final polish (prevents row-collapse overlap) --- */
 #home .nb-hero-copy{display:flex !important; flex-direction:column !important; align-items:flex-start !important; justify-content:center !important; min-width:0;}
@@ -1425,4 +1393,42 @@ html, body { scroll-behavior: smooth; }
     width: 100%;
     justify-content: center;
   }
+}
+
+/* === Hero cross-browser height/scale stability (Edge/Windows scaling) ===
+   Goal: prevent fixed min-heights from making the hero feel "extended" on some browsers.
+   Keep layout consistent across Chrome/Edge/Firefox and mobile.
+*/
+#home .nb-hero-grid{
+  min-height: unset !important;
+  align-items: center !important;
+}
+#home.nb-hero-wrap{
+  padding-top: clamp(24px, 4vw, 38px) !important;
+  padding-bottom: clamp(30px, 4.5vw, 44px) !important;
+}
+/* Cap hero headline/subtitle widths to avoid awkward wrapping under different font metrics */
+#home .nb-hero-title{
+  max-width: 10.2ch !important;
+  font-size: clamp(2.55rem, 4.7vw, 4.15rem) !important;
+}
+#home .nb-hero-subtitle{
+  max-width: 44ch !important;
+}
+/* Ensure CTA row wraps cleanly without pushing layout taller */
+#home .nb-hero-actions{
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+}
+@media (max-width: 1080px){
+  #home .nb-hero-title{ max-width: 12ch !important; }
+  #home .nb-hero-subtitle{ max-width: 48ch !important; }
+}
+@media (max-width: 640px){
+  #home .nb-hero-title{
+    font-size: clamp(2.25rem, 8.3vw, 3.1rem) !important;
+    max-width: 11ch !important;
+  }
+  #home .nb-hero-subtitle{ max-width: 100% !important; }
 }
