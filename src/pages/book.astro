@@ -1,0 +1,152 @@
+---
+import Base from "../layouts/Base.astro";
+import site from "../content/site.json";
+import brandLogo from "../assets/company-logo-navbar.png";
+
+const base = import.meta.env.BASE_URL;
+const homeHref = `${base}#home`;
+const contactHref = `${base}#contact`;
+const fallbackHref = site?.bookings?.url ?? "#";
+const rawEmbedUrl = site?.bookings?.embedUrl ?? "";
+const embedUrl = rawEmbedUrl && !rawEmbedUrl.includes("PASTE-YOUR-EMBED-LINK") ? rawEmbedUrl : fallbackHref;
+const phoneHref = site?.contact?.phoneHref ?? site?.topbar?.phoneHref ?? "#";
+const emailHref = site?.contact?.emailHref ?? "mailto:info@nexgenbinary.com";
+const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
+---
+<Base title={`Book a Consultation | ${site.brand?.name ?? "NexGen Binary"}`} site={site}>
+  <main class="nb-book-page">
+    <section class="nb-book-hero">
+      <div class="nb-shell nb-book-hero__inner">
+        <a class="nb-book-brand" href={homeHref} aria-label="Return to NexGen Binary home">
+          <img src={logoSrc} alt="NexGen Binary logo" width="48" height="48" />
+          <span>
+            <strong>{site.brand?.name ?? "NexGen Binary"}</strong>
+            <small>Dental IT services across Virginia</small>
+          </span>
+        </a>
+
+        <div class="nb-book-hero__actions">
+          <a class="nb-book-link" href={homeHref}>Back to website</a>
+          <a class="nb-book-link" href={phoneHref}>Call us</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="nb-book-intro">
+      <div class="nb-shell nb-book-intro__grid">
+        <div class="nb-book-copy">
+          <p class="nb-book-eyebrow">Book a consultation</p>
+          <h1>Schedule a 30-minute dental IT consultation.</h1>
+          <p class="nb-book-lead">Discuss your current systems, security, cloud setup, and support needs for your dental practice. Choose a time that works for you, and we’ll follow up with practical next steps.</p>
+
+          <div class="nb-book-points">
+            <div class="nb-book-point">
+              <strong>Best for</strong>
+              <span>Managed IT, security, Microsoft 365, networking, Wi‑Fi, VoIP, and clinical workflow questions.</span>
+            </div>
+            <div class="nb-book-point">
+              <strong>What to prepare</strong>
+              <span>Your practice name, number of locations or operatories, and the main reason for the consultation.</span>
+            </div>
+            <div class="nb-book-point">
+              <strong>Need a different time?</strong>
+              <span><a href={contactHref}>Send us a message</a> or <a href={emailHref}>email us</a> and we’ll help coordinate.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="nb-book-sidecard" aria-label="Booking guidance">
+          <h2>Before you book</h2>
+          <ul>
+            <li>Use your work email if possible.</li>
+            <li>Add your practice or organization name in the notes.</li>
+            <li>Include any urgent support topic so we can prepare.</li>
+          </ul>
+          <a class="nb-book-sidecard__cta" href={fallbackHref} target="_blank" rel="noopener">Open the booking page in a new tab</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="nb-book-frame-section">
+      <div class="nb-shell">
+        <div class="nb-book-frame-card">
+          <div class="nb-book-frame-card__head">
+            <div>
+              <h2>Book a Consultation with NexGen Binary</h2>
+              <p>If the embedded calendar doesn’t load in your browser, use the backup link below.</p>
+            </div>
+            <a class="nb-book-link nb-book-link--strong" href={fallbackHref} target="_blank" rel="noopener">Open in a new tab</a>
+          </div>
+
+          <div class="nb-book-iframe-wrap">
+            <iframe
+              src={embedUrl}
+              title="NexGen Binary booking page"
+              loading="eager"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allow="fullscreen"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .nb-book-page{background:#f6f9fc; min-height:100vh;}
+  .nb-book-hero{
+    background: radial-gradient(880px 340px at 90% 0%, rgba(255,255,255,.14), transparent 60%), linear-gradient(180deg,#0b2f53 0%,#13406f 100%);
+    color:#fff;
+    padding:18px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nb-book-hero__inner{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .nb-book-brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:#fff; min-width:0;}
+  .nb-book-brand img{display:block; width:48px; height:48px; object-fit:contain; filter:drop-shadow(0 6px 14px rgba(0,0,0,.18));}
+  .nb-book-brand strong{display:block; font-size:1.1rem; letter-spacing:-.02em;}
+  .nb-book-brand small{display:block; color:rgba(255,255,255,.78); margin-top:2px;}
+  .nb-book-hero__actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .nb-book-link{display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:0 14px; border-radius:999px; text-decoration:none; font-weight:700; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14);}
+  .nb-book-link:hover{color:#fff; background:rgba(255,255,255,.14);}
+  .nb-book-link--strong{background:linear-gradient(135deg,#f59a3b 0%,#f48824 55%,#e97707 100%); border-color:transparent; box-shadow:0 10px 22px rgba(244,136,36,.22);}
+
+  .nb-book-intro{padding:32px 0 18px;}
+  .nb-book-intro__grid{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(300px,.72fr); gap:24px; align-items:start;}
+  .nb-book-copy{background:#fff; border:1px solid rgba(14,26,43,.08); border-radius:24px; padding:28px; box-shadow:0 18px 42px rgba(20,45,90,.08);}
+  .nb-book-eyebrow{display:inline-flex; align-items:center; margin:0 0 12px; padding:8px 14px; border-radius:999px; background:rgba(36,135,206,.1); color:#1e5f94; font-weight:800;}
+  .nb-book-copy h1{margin:0 0 12px; color:#17324f; font-size:clamp(2rem,4vw,3.2rem); line-height:1.02; letter-spacing:-.03em;}
+  .nb-book-lead{margin:0; color:#4f6377; font-size:1.06rem; line-height:1.72; max-width:64ch;}
+  .nb-book-points{display:grid; gap:14px; margin-top:22px;}
+  .nb-book-point{padding:16px 18px; border-radius:18px; background:linear-gradient(180deg,#f8fbff,#eef5fb); border:1px solid #d7e6f3;}
+  .nb-book-point strong{display:block; color:#17324f; margin-bottom:6px; font-size:1rem;}
+  .nb-book-point span{display:block; color:#56697b; line-height:1.65;}
+  .nb-book-point a{color:#0d63ce; font-weight:700; text-decoration:none;}
+  .nb-book-point a:hover{text-decoration:underline;}
+
+  .nb-book-sidecard{background:#0b2f53; color:#fff; border-radius:24px; padding:24px; box-shadow:0 18px 42px rgba(20,45,90,.14);}
+  .nb-book-sidecard h2{margin:0 0 12px; font-size:1.25rem;}
+  .nb-book-sidecard ul{margin:0; padding-left:1.1rem; color:rgba(255,255,255,.86); line-height:1.75;}
+  .nb-book-sidecard__cta{display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 16px; margin-top:18px; border-radius:999px; text-decoration:none; font-weight:800; color:#fff; background:linear-gradient(135deg,#f59a3b 0%,#f48824 55%,#e97707 100%);}
+
+  .nb-book-frame-section{padding:8px 0 48px;}
+  .nb-book-frame-card{background:#fff; border:1px solid rgba(14,26,43,.08); border-radius:28px; box-shadow:0 18px 42px rgba(20,45,90,.08); padding:18px;}
+  .nb-book-frame-card__head{display:flex; align-items:flex-start; justify-content:space-between; gap:16px; padding:8px 8px 16px;}
+  .nb-book-frame-card__head h2{margin:0; color:#17324f; font-size:1.3rem;}
+  .nb-book-frame-card__head p{margin:6px 0 0; color:#64778a;}
+  .nb-book-iframe-wrap{border:1px solid #d9e3ee; border-radius:22px; overflow:hidden; background:#fff; min-height:1500px;}
+  .nb-book-iframe-wrap iframe{display:block; width:100%; min-height:1500px; border:0; background:#fff;}
+
+  @media (max-width: 980px){
+    .nb-book-intro__grid{grid-template-columns:1fr;}
+    .nb-book-frame-card__head{flex-direction:column; align-items:flex-start;}
+  }
+  @media (max-width: 768px){
+    .nb-book-hero__inner{flex-direction:column; align-items:flex-start;}
+    .nb-book-copy, .nb-book-sidecard, .nb-book-frame-card{border-radius:20px;}
+    .nb-book-copy{padding:22px 18px;}
+    .nb-book-sidecard{padding:20px 18px;}
+    .nb-book-frame-card{padding:14px;}
+    .nb-book-iframe-wrap, .nb-book-iframe-wrap iframe{min-height:1650px;}
+  }
+</style>
