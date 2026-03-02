@@ -1,0 +1,174 @@
+---
+const { site } = Astro.props;
+const bookingUrl = site?.bookings?.embedUrl || site?.bookings?.url || '';
+---
+
+<div id="nb-booking-modal" class="nb-booking-modal" aria-hidden="true">
+  <div class="nb-booking-backdrop" data-nb-booking-close></div>
+
+  <div class="nb-booking-dialog" role="dialog" aria-modal="true" aria-label="Book a consultation">
+    <div class="nb-booking-header">
+      <div class="nb-booking-title">Book a Consultation</div>
+      <button class="nb-booking-close" type="button" aria-label="Close booking" data-nb-booking-close>
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <div class="nb-booking-body">
+      <iframe
+        id="nb-booking-iframe"
+        title="NexGen Binary booking"
+        src={bookingUrl}
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="camera; microphone; geolocation; clipboard-read; clipboard-write"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const modal = document.getElementById('nb-booking-modal');
+    const iframe = document.getElementById('nb-booking-iframe');
+    if (!modal || !iframe) return;
+
+    const openers = () => Array.from(document.querySelectorAll('[data-nb-booking-open]'));
+    const closers = () => Array.from(modal.querySelectorAll('[data-nb-booking-close]'));
+
+    const open = (evt) => {
+      if (evt) evt.preventDefault();
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('nb-modal-open');
+      document.body.classList.add('nb-modal-open');
+      // Focus close button for accessibility
+      const closeBtn = modal.querySelector('[data-nb-booking-close]');
+      if (closeBtn) closeBtn.focus({ preventScroll: true });
+    };
+
+    const close = (evt) => {
+      if (evt) evt.preventDefault();
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('nb-modal-open');
+      document.body.classList.remove('nb-modal-open');
+    };
+
+    // Wire openers (including dynamically loaded)
+    const bindOpeners = () => {
+      openers().forEach((el) => {
+        if (el.__nbBookingBound) return;
+        el.__nbBookingBound = true;
+        el.addEventListener('click', open);
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') open(e);
+        });
+      });
+    };
+
+    bindOpeners();
+    // Safety: re-bind after load in case of late-rendered nodes
+    window.addEventListener('load', bindOpeners);
+
+    closers().forEach((el) => el.addEventListener('click', close));
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) close(e);
+    });
+  })();
+</script>
+
+<style>
+  .nb-booking-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+  }
+
+  .nb-booking-modal.is-open {
+    display: block;
+  }
+
+  .nb-booking-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 18, 26, 0.72);
+    backdrop-filter: blur(2px);
+  }
+
+  .nb-booking-dialog {
+    position: relative;
+    width: min(980px, calc(100vw - 24px));
+    height: min(820px, calc(100vh - 24px));
+    margin: 12px auto;
+    background: #ffffff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.35);
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+
+  .nb-booking-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(10, 18, 26, 0.08);
+    background: linear-gradient(180deg, rgba(11, 47, 83, 0.06), rgba(11, 47, 83, 0));
+  }
+
+  .nb-booking-title {
+    font-weight: 700;
+    color: #0b2f53;
+    letter-spacing: 0.2px;
+  }
+
+  .nb-booking-close {
+    border: none;
+    background: rgba(11, 47, 83, 0.08);
+    color: #0b2f53;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .nb-booking-close:focus-visible {
+    outline: 3px solid rgba(11, 47, 83, 0.35);
+    outline-offset: 2px;
+  }
+
+  .nb-booking-body {
+    height: 100%;
+  }
+
+  .nb-booking-body iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #ffffff;
+  }
+
+  :global(html.nb-modal-open),
+  :global(body.nb-modal-open) {
+    overflow: hidden !important;
+  }
+
+  @media (max-width: 575.98px) {
+    .nb-booking-dialog {
+      width: calc(100vw - 16px);
+      height: calc(100vh - 16px);
+      margin: 8px auto;
+      border-radius: 16px;
+    }
+    .nb-booking-title {
+      font-size: 0.95rem;
+    }
+  }
+</style>

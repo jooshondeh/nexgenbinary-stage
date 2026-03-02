@@ -4,7 +4,6 @@ const { site } = Astro.props;
 const items = site?.whatWeDo?.items ?? [];
 const iconMap = ['monitor','lockshield','tools','pin'];
 const callHref = site?.contact?.phoneHref ?? site?.topbar?.phoneHref ?? '#contact';
-const bookHref = `${import.meta.env.BASE_URL}book/`;
 ---
 <section id="home" class="nb-hero-wrap nb-anchor-offset">
   <div class="nb-shell nb-hero-grid">
@@ -13,7 +12,7 @@ const bookHref = `${import.meta.env.BASE_URL}book/`;
       <h1 class="nb-hero-title">{site?.hero?.headline}</h1>
       <p class="nb-hero-subtitle">{site?.hero?.subheadline}</p>
       <div class="nb-hero-actions">
-        <a class="nb-btn-primary" href={bookHref}>
+        <a class="nb-btn-primary" href="#booking" data-nb-booking-open>
           <IconBadge name="calendar" />
           <span>{site?.hero?.primaryCta || 'Book a Consultation'}</span>
         </a>
