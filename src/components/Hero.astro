@@ -4,12 +4,23 @@ const { site } = Astro.props;
 const items = site?.whatWeDo?.items ?? [];
 const iconMap = ['monitor','lockshield','tools','pin'];
 const callHref = site?.contact?.phoneHref ?? site?.topbar?.phoneHref ?? '#contact';
+const rawHeadline = site?.hero?.headline ?? 'Future-Ready Systems. Human-Ready Support.';
+const headlineLines = rawHeadline === 'Future-Ready Systems. Human-Ready Support.'
+  ? ['Future‑Ready', 'Systems.', 'Human‑Ready', 'Support.']
+  : rawHeadline
+      .replaceAll('-', '‑')
+      .split(/\n+/)
+      .filter(Boolean);
 ---
 <section id="home" class="nb-hero-wrap nb-anchor-offset">
   <div class="nb-shell nb-hero-grid">
     <div class="nb-hero-copy">
       <p class="nb-eyebrow">{site?.hero?.eyebrow}</p>
-      <h1 class="nb-hero-title">{site?.hero?.headline}</h1>
+      <h1 class="nb-hero-title">
+        {headlineLines.map((line) => (
+          <span class="nb-hero-title-line">{line}</span>
+        ))}
+      </h1>
       <p class="nb-hero-subtitle">{site?.hero?.subheadline}</p>
       <div class="nb-hero-actions">
         <a class="nb-btn-primary" href="#booking" data-nb-booking-open>
