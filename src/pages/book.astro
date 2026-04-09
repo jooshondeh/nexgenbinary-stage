@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
 import site from "../content/site.json";
 import brandLogo from "../assets/company-logo-navbar.png";
 
@@ -11,10 +12,16 @@ const rawEmbedUrl = site?.bookings?.embedUrl ?? "";
 const embedUrl = rawEmbedUrl && !rawEmbedUrl.includes("PASTE-YOUR-EMBED-LINK") ? rawEmbedUrl : fallbackHref;
 const phoneHref = site?.contact?.phoneHref ?? site?.topbar?.phoneHref ?? "#";
 const emailHref = site?.contact?.emailHref ?? "mailto:info@nexgenbinary.com";
+const privacyHref = `${base}privacy`;
+const termsHref = `${base}terms`;
 const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
 ---
-<Base title={`Book a Consultation | ${site.brand?.name ?? "NexGen Binary"}`} site={site}>
-  <main class="nb-book-page">
+<Base
+  title={`Book a Consultation | ${site.brand?.name ?? "NexGen Binary"}`}
+  description="Schedule a consultation with NexGen Binary for dental IT, security, Microsoft 365, networking, and support services across Virginia."
+  site={site}
+>
+  <main id="top" class="nb-book-page">
     <section class="nb-book-hero">
       <div class="nb-shell nb-book-hero__inner">
         <a class="nb-book-brand" href={homeHref} aria-label="Return to NexGen Binary home">
@@ -42,7 +49,7 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
           <div class="nb-book-points">
             <div class="nb-book-point">
               <strong>Best for</strong>
-              <span>Managed IT, security, Microsoft 365, networking, Wi‑Fi, VoIP, and clinical workflow questions.</span>
+              <span>Managed IT, security, Microsoft 365, networking, Wi-Fi, VoIP, and clinical workflow questions.</span>
             </div>
             <div class="nb-book-point">
               <strong>What to prepare</strong>
@@ -60,7 +67,7 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
           <ul>
             <li>Use your work email if possible.</li>
             <li>Add your practice or organization name in the notes.</li>
-            <li>Include any urgent support topic so we can prepare.</li>
+            <li>Do not include patient information or other protected health information in booking notes.</li>
           </ul>
           <a class="nb-book-sidecard__cta" href={fallbackHref} target="_blank" rel="noopener">Open the booking page in a new tab</a>
         </aside>
@@ -87,10 +94,20 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
               allow="fullscreen"
             ></iframe>
           </div>
+
+          <p class="nb-book-legal-note">
+            By scheduling, you acknowledge our
+            <a href={privacyHref}>Privacy Policy</a>
+            and
+            <a href={termsHref}>Terms of Use</a>.
+            Please do not include patient information or other protected health information in booking notes.
+          </p>
         </div>
       </div>
     </section>
   </main>
+
+  <Footer site={site} topTarget="top" />
 </Base>
 
 <style>
@@ -137,10 +154,29 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
   .nb-book-iframe-wrap{border:1px solid #d9e3ee; border-radius:22px; overflow:hidden; background:#fff; min-height:1500px;}
   .nb-book-iframe-wrap iframe{display:block; width:100%; min-height:1500px; border:0; background:#fff;}
 
+  .nb-book-legal-note{
+    margin:14px 6px 0;
+    color:#64778a;
+    font-size:.95rem;
+    line-height:1.68;
+    max-width:72ch;
+  }
+
+  .nb-book-legal-note a{
+    color:#0d63ce;
+    font-weight:700;
+    text-decoration:none;
+  }
+
+  .nb-book-legal-note a:hover{
+    text-decoration:underline;
+  }
+
   @media (max-width: 980px){
     .nb-book-intro__grid{grid-template-columns:1fr;}
     .nb-book-frame-card__head{flex-direction:column; align-items:flex-start;}
   }
+
   @media (max-width: 768px){
     .nb-book-hero__inner{flex-direction:column; align-items:flex-start;}
     .nb-book-copy, .nb-book-sidecard, .nb-book-frame-card{border-radius:20px;}

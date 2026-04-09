@@ -1,0 +1,219 @@
+---
+import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
+import site from "../content/site.json";
+import brandLogo from "../assets/company-logo-navbar.png";
+
+const base = import.meta.env.BASE_URL;
+const homeHref = `${base}#home`;
+const privacyHref = `${base}privacy`;
+const contactHref = `${base}#contact`;
+const bookHref = `${base}book`;
+const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
+const emailText = site?.contact?.emailText ?? "info@nexgenbinary.com";
+const emailHref = site?.contact?.emailHref ?? "mailto:info@nexgenbinary.com";
+const phoneText = site?.contact?.phoneText ?? "804-000-0000";
+const phoneHref = site?.contact?.phoneHref ?? "tel:+18040000000";
+const lastUpdated = "April 8, 2026";
+---
+<Base
+  title={`Terms of Use | ${site.brand?.name ?? "NexGen Binary"}`}
+  description="Terms of Use for the NexGen Binary website."
+  site={site}
+>
+  <main id="top" class="nb-legal-page">
+    <section class="nb-legal-hero">
+      <div class="nb-shell nb-legal-hero__inner">
+        <a class="nb-legal-brand" href={homeHref} aria-label="Return to NexGen Binary home">
+          <img src={logoSrc} alt="NexGen Binary logo" width="48" height="48" />
+          <span>
+            <strong>{site.brand?.name ?? "NexGen Binary"}</strong>
+            <small>Terms of Use</small>
+          </span>
+        </a>
+
+        <div class="nb-legal-hero__actions">
+          <a class="nb-legal-link" href={homeHref}>Back to website</a>
+          <a class="nb-legal-link" href={privacyHref}>View Privacy Policy</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="nb-legal-body">
+      <div class="nb-shell">
+        <article class="nb-legal-card">
+          <p class="nb-legal-updated">Last updated: {lastUpdated}</p>
+
+          <h1>Terms of Use</h1>
+          <p>
+            These Terms of Use govern your access to and use of the NexGen Binary LLC website.
+            By using this website, you agree to these terms.
+          </p>
+
+          <h2>Website purpose</h2>
+          <p>
+            This website is provided for general informational purposes and to help prospective
+            and existing business clients learn about NexGen Binary’s services, submit inquiries,
+            and request consultations.
+          </p>
+
+          <h2>No emergency or urgent support through the website</h2>
+          <p>
+            This website, including the contact form and booking tools, is not intended for emergency,
+            life-safety, or time-critical technical support. If you require urgent support under an
+            active service relationship, use your designated support channel.
+          </p>
+
+          <h2>No patient or protected health information submissions</h2>
+          <p>
+            Do not submit patient records, treatment details, insurance data, payment card information,
+            Social Security numbers, or other protected health information through this website, public
+            contact forms, or booking notes.
+          </p>
+
+          <h2>Quotes, pricing, and service scope</h2>
+          <p>
+            Information on this website is general in nature. Any pricing examples, service descriptions,
+            timelines, or feature references are subject to change and do not create a binding offer.
+          </p>
+          <p>
+            Actual services, deliverables, support levels, responsibilities, and legal obligations are
+            governed only by signed client agreements, statements of work, proposals, or other approved
+            written documents between NexGen Binary and the client.
+          </p>
+
+          <h2>Permitted use</h2>
+          <p>
+            You may use this website only for lawful business purposes. You agree not to misuse the site,
+            interfere with its operation, attempt unauthorized access, submit malicious code, or use the
+            site in a way that could harm NexGen Binary or other users.
+          </p>
+
+          <h2>Intellectual property</h2>
+          <p>
+            Website content, design, branding, copy, graphics, and other materials on this site are
+            owned by or used with permission by NexGen Binary and may not be copied, republished,
+            distributed, or reused without prior written permission, except as allowed by law.
+          </p>
+
+          <h2>Third-party services and links</h2>
+          <p>
+            This website may link to or embed third-party services, including scheduling platforms,
+            email links, spam-prevention tools, and other external websites. NexGen Binary is not
+            responsible for the content, availability, or practices of third-party services.
+          </p>
+
+          <h2>Disclaimer</h2>
+          <p>
+            This website and its content are provided “as is” and “as available” without warranties
+            of any kind, whether express or implied, to the fullest extent permitted by law.
+          </p>
+          <p>
+            We do not guarantee that the website will always be available, uninterrupted, error-free,
+            or suitable for every user or every technical environment.
+          </p>
+
+          <h2>Limitation of liability</h2>
+          <p>
+            To the fullest extent permitted by law, NexGen Binary will not be liable for indirect,
+            incidental, consequential, special, exemplary, or punitive damages arising from or related
+            to your use of this website.
+          </p>
+
+          <h2>Changes to these terms</h2>
+          <p>
+            We may update these Terms of Use from time to time. The updated version will be posted on
+            this page with a revised “Last updated” date.
+          </p>
+
+          <h2>Contact us</h2>
+          <p>
+            If you have questions about these Terms of Use, contact:
+          </p>
+          <p class="nb-legal-contact">
+            <strong>NexGen Binary LLC</strong><br />
+            <a href={emailHref}>{emailText}</a><br />
+            <a href={phoneHref}>{phoneText}</a><br />
+            <a href={contactHref}>Website contact form</a><br />
+            <a href={bookHref}>Book a consultation</a>
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <Footer site={site} topTarget="top" />
+</Base>
+
+<style>
+  .nb-legal-page{background:#f6f9fc; min-height:100vh;}
+  .nb-legal-hero{
+    background: radial-gradient(880px 340px at 90% 0%, rgba(255,255,255,.14), transparent 60%), linear-gradient(180deg,#0b2f53 0%,#13406f 100%);
+    color:#fff;
+    padding:18px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nb-legal-hero__inner{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .nb-legal-brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:#fff; min-width:0;}
+  .nb-legal-brand img{display:block; width:48px; height:48px; object-fit:contain; filter:drop-shadow(0 6px 14px rgba(0,0,0,.18));}
+  .nb-legal-brand strong{display:block; font-size:1.1rem; letter-spacing:-.02em;}
+  .nb-legal-brand small{display:block; color:rgba(255,255,255,.78); margin-top:2px;}
+  .nb-legal-hero__actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .nb-legal-link{display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:0 14px; border-radius:999px; text-decoration:none; font-weight:700; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14);}
+  .nb-legal-link:hover{color:#fff; background:rgba(255,255,255,.14);}
+
+  .nb-legal-body{padding:34px 0 56px;}
+  .nb-legal-card{
+    background:#fff;
+    border:1px solid rgba(14,26,43,.08);
+    border-radius:24px;
+    box-shadow:0 18px 42px rgba(20,45,90,.08);
+    padding:30px;
+  }
+
+  .nb-legal-updated{
+    margin:0 0 10px;
+    color:#6c7f93;
+    font-size:.95rem;
+    font-weight:700;
+  }
+
+  .nb-legal-card h1{
+    margin:0 0 16px;
+    color:#17324f;
+    font-size:clamp(2rem,4vw,3rem);
+    line-height:1.02;
+    letter-spacing:-.03em;
+  }
+
+  .nb-legal-card h2{
+    margin:28px 0 10px;
+    color:#17324f;
+    font-size:1.22rem;
+  }
+
+  .nb-legal-card p{
+    color:#516579;
+    line-height:1.78;
+    font-size:1rem;
+  }
+
+  .nb-legal-card a{
+    color:#0d63ce;
+    font-weight:700;
+    text-decoration:none;
+  }
+
+  .nb-legal-card a:hover{
+    text-decoration:underline;
+  }
+
+  .nb-legal-contact{
+    margin-top:8px;
+  }
+
+  @media (max-width: 768px){
+    .nb-legal-hero__inner{flex-direction:column; align-items:flex-start;}
+    .nb-legal-card{padding:22px 18px; border-radius:20px;}
+  }
+</style>

@@ -6,6 +6,9 @@ const formEndpoint = c.formEndpoint ?? "";
 const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
 const googleBusinessUrl = c.googleBusinessUrl || 'https://www.google.com/search?q=NexGen+Binary+LLC+Virginia';
 const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
+const base = import.meta.env.BASE_URL;
+const privacyHref = `${base}privacy`;
+const termsHref = `${base}terms`;
 ---
 <section id="contact" class="nb-anchor-offset nb-section">
   <div class="container">
@@ -125,6 +128,28 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
               </button>
               <a class="btn btn-outline-secondary rounded-pill nb-contact-mail-btn" href={c.emailHref}>Email using my mail app</a>
             </div>
+
+            <div class="col-12">
+              <p class="nb-contact-legal-note mb-0">
+                By submitting this form, you acknowledge our
+                <a href={privacyHref}>Privacy Policy</a>
+                and
+                <a href={termsHref}>Terms of Use</a>.
+                Please do not include patient information, treatment details, insurance information, or other protected health information in this form.
+              </p>
+            </div>
+
+            {hcaptchaSiteKey && (
+              <div class="col-12">
+                <p class="nb-contact-captcha-note mb-0">
+                  This site is protected by hCaptcha and its
+                  <a href="https://www.hcaptcha.com/privacy" target="_blank" rel="noopener">Privacy Policy</a>
+                  and
+                  <a href="https://www.hcaptcha.com/terms" target="_blank" rel="noopener">Terms of Service</a>
+                  apply.
+                </p>
+              </div>
+            )}
 
             <div class="col-12">
               <span id="contactStatus" class="small text-secondary nb-contact-status-wrap" role="status" aria-live="polite"></span>
@@ -777,6 +802,26 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
     #contact .nb-contact-item .fw-semibold,
     #contact #contactStatus {
       overflow-wrap: anywhere;
+    }
+
+    #contact .nb-contact-legal-note,
+    #contact .nb-contact-captcha-note {
+      font-size: .92rem;
+      line-height: 1.65;
+      color: #607080;
+      max-width: 70ch;
+    }
+
+    #contact .nb-contact-legal-note a,
+    #contact .nb-contact-captcha-note a {
+      color: #0d63ce;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    #contact .nb-contact-legal-note a:hover,
+    #contact .nb-contact-captcha-note a:hover {
+      text-decoration: underline;
     }
 
     #contact .nb-contact-modal {

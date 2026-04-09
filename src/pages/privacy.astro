@@ -1,0 +1,228 @@
+---
+import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
+import site from "../content/site.json";
+import brandLogo from "../assets/company-logo-navbar.png";
+
+const base = import.meta.env.BASE_URL;
+const homeHref = `${base}#home`;
+const contactHref = `${base}#contact`;
+const bookHref = `${base}book`;
+const termsHref = `${base}terms`;
+const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
+const emailText = site?.contact?.emailText ?? "info@nexgenbinary.com";
+const emailHref = site?.contact?.emailHref ?? "mailto:info@nexgenbinary.com";
+const phoneText = site?.contact?.phoneText ?? "804-000-0000";
+const phoneHref = site?.contact?.phoneHref ?? "tel:+18040000000";
+const lastUpdated = "April 8, 2026";
+---
+<Base
+  title={`Privacy Policy | ${site.brand?.name ?? "NexGen Binary"}`}
+  description="Privacy Policy for NexGen Binary website visitors, contact form submissions, and booking requests."
+  site={site}
+>
+  <main id="top" class="nb-legal-page">
+    <section class="nb-legal-hero">
+      <div class="nb-shell nb-legal-hero__inner">
+        <a class="nb-legal-brand" href={homeHref} aria-label="Return to NexGen Binary home">
+          <img src={logoSrc} alt="NexGen Binary logo" width="48" height="48" />
+          <span>
+            <strong>{site.brand?.name ?? "NexGen Binary"}</strong>
+            <small>Privacy Policy</small>
+          </span>
+        </a>
+
+        <div class="nb-legal-hero__actions">
+          <a class="nb-legal-link" href={homeHref}>Back to website</a>
+          <a class="nb-legal-link" href={termsHref}>View Terms</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="nb-legal-body">
+      <div class="nb-shell">
+        <article class="nb-legal-card">
+          <p class="nb-legal-updated">Last updated: {lastUpdated}</p>
+
+          <h1>Privacy Policy</h1>
+          <p>
+            This Privacy Policy explains how NexGen Binary LLC (“NexGen Binary,” “we,” “our,” or “us”)
+            collects, uses, and protects information submitted through this website, including contact
+            form inquiries and consultation booking requests.
+          </p>
+          <p>
+            This website is intended for business inquiries related to managed IT, cybersecurity,
+            Microsoft 365, networking, cloud, and support services for dental and healthcare offices.
+          </p>
+
+          <h2>Information we collect</h2>
+          <p>We may collect the following information when you use this website:</p>
+          <ul>
+            <li>Name</li>
+            <li>Email address</li>
+            <li>Phone number</li>
+            <li>Practice or organization name</li>
+            <li>Message details you choose to submit</li>
+            <li>Appointment and scheduling details submitted through our booking page</li>
+            <li>Technical information needed for spam prevention, security, and website operations</li>
+          </ul>
+
+          <h2>How we use information</h2>
+          <p>We use submitted information to:</p>
+          <ul>
+            <li>Respond to inquiries and requested consultations</li>
+            <li>Communicate about services, availability, and next steps</li>
+            <li>Schedule and manage consultation appointments</li>
+            <li>Protect the website against spam, abuse, and fraudulent submissions</li>
+            <li>Maintain and improve website performance and service delivery</li>
+          </ul>
+
+          <h2>Booking and third-party services</h2>
+          <p>
+            Our website may use third-party tools to operate certain features. These may include a website
+            form processing provider, a scheduling platform for consultations, and spam-prevention or
+            human-verification services such as hCaptcha.
+          </p>
+          <p>
+            When you use those features, the information you submit may be processed through those third-party
+            services as necessary to complete your request.
+          </p>
+
+          <h2>What not to send through this website</h2>
+          <p>
+            Please do not submit patient records, treatment details, insurance information, Social Security
+            numbers, payment card numbers, or other protected health information (“PHI”) through this public
+            website, contact form, or booking notes.
+          </p>
+          <p>
+            If secure document exchange is needed during a client engagement, we will provide an appropriate
+            business-approved method separately.
+          </p>
+
+          <h2>How we share information</h2>
+          <p>
+            We do not sell personal information submitted through this website. We may share information
+            only as reasonably necessary to operate the website, process submissions, schedule appointments,
+            communicate with you, comply with legal obligations, or protect our business and users.
+          </p>
+
+          <h2>Data retention and security</h2>
+          <p>
+            We retain submitted information for as long as reasonably necessary to respond to inquiries,
+            manage consultations, maintain business records, and meet legal or operational obligations.
+          </p>
+          <p>
+            We use reasonable administrative, technical, and organizational measures to protect information,
+            but no website or electronic transmission can be guaranteed to be completely secure.
+          </p>
+
+          <h2>Your choices</h2>
+          <p>
+            You may choose not to provide information through this website, but some features may not work
+            without it. If you would like us to update or remove a prior website inquiry where reasonably
+            possible, contact us using the information below.
+          </p>
+
+          <h2>Updates to this policy</h2>
+          <p>
+            We may update this Privacy Policy from time to time. The updated version will be posted on this
+            page with a revised “Last updated” date.
+          </p>
+
+          <h2>Contact us</h2>
+          <p>
+            If you have questions about this Privacy Policy or a website submission, contact:
+          </p>
+          <p class="nb-legal-contact">
+            <strong>NexGen Binary LLC</strong><br />
+            <a href={emailHref}>{emailText}</a><br />
+            <a href={phoneHref}>{phoneText}</a><br />
+            <a href={contactHref}>Website contact form</a><br />
+            <a href={bookHref}>Book a consultation</a>
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <Footer site={site} topTarget="top" />
+</Base>
+
+<style>
+  .nb-legal-page{background:#f6f9fc; min-height:100vh;}
+  .nb-legal-hero{
+    background: radial-gradient(880px 340px at 90% 0%, rgba(255,255,255,.14), transparent 60%), linear-gradient(180deg,#0b2f53 0%,#13406f 100%);
+    color:#fff;
+    padding:18px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nb-legal-hero__inner{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .nb-legal-brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:#fff; min-width:0;}
+  .nb-legal-brand img{display:block; width:48px; height:48px; object-fit:contain; filter:drop-shadow(0 6px 14px rgba(0,0,0,.18));}
+  .nb-legal-brand strong{display:block; font-size:1.1rem; letter-spacing:-.02em;}
+  .nb-legal-brand small{display:block; color:rgba(255,255,255,.78); margin-top:2px;}
+  .nb-legal-hero__actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .nb-legal-link{display:inline-flex; align-items:center; justify-content:center; min-height:42px; padding:0 14px; border-radius:999px; text-decoration:none; font-weight:700; color:#fff; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14);}
+  .nb-legal-link:hover{color:#fff; background:rgba(255,255,255,.14);}
+
+  .nb-legal-body{padding:34px 0 56px;}
+  .nb-legal-card{
+    background:#fff;
+    border:1px solid rgba(14,26,43,.08);
+    border-radius:24px;
+    box-shadow:0 18px 42px rgba(20,45,90,.08);
+    padding:30px;
+  }
+
+  .nb-legal-updated{
+    margin:0 0 10px;
+    color:#6c7f93;
+    font-size:.95rem;
+    font-weight:700;
+  }
+
+  .nb-legal-card h1{
+    margin:0 0 16px;
+    color:#17324f;
+    font-size:clamp(2rem,4vw,3rem);
+    line-height:1.02;
+    letter-spacing:-.03em;
+  }
+
+  .nb-legal-card h2{
+    margin:28px 0 10px;
+    color:#17324f;
+    font-size:1.22rem;
+  }
+
+  .nb-legal-card p,
+  .nb-legal-card li{
+    color:#516579;
+    line-height:1.78;
+    font-size:1rem;
+  }
+
+  .nb-legal-card ul{
+    margin:0;
+    padding-left:1.2rem;
+  }
+
+  .nb-legal-card a{
+    color:#0d63ce;
+    font-weight:700;
+    text-decoration:none;
+  }
+
+  .nb-legal-card a:hover{
+    text-decoration:underline;
+  }
+
+  .nb-legal-contact{
+    margin-top:8px;
+  }
+
+  @media (max-width: 768px){
+    .nb-legal-hero__inner{flex-direction:column; align-items:flex-start;}
+    .nb-legal-card{padding:22px 18px; border-radius:20px;}
+  }
+</style>
