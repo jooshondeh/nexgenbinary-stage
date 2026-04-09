@@ -4,16 +4,16 @@ import Footer from "../components/Footer.astro";
 import site from "../content/site.json";
 import brandLogo from "../assets/company-logo-navbar.png";
 
-const base = import.meta.env.BASE_URL;
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/?$/, '/');
 const homeHref = `${base}#home`;
 const contactHref = `${base}#contact`;
+const privacyHref = `${base}privacy`;
+const termsHref = `${base}terms`;
 const fallbackHref = site?.bookings?.url ?? "#";
 const rawEmbedUrl = site?.bookings?.embedUrl ?? "";
 const embedUrl = rawEmbedUrl && !rawEmbedUrl.includes("PASTE-YOUR-EMBED-LINK") ? rawEmbedUrl : fallbackHref;
 const phoneHref = site?.contact?.phoneHref ?? site?.topbar?.phoneHref ?? "#";
 const emailHref = site?.contact?.emailHref ?? "mailto:info@nexgenbinary.com";
-const privacyHref = `${base}privacy`;
-const termsHref = `${base}terms`;
 const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
 ---
 <Base

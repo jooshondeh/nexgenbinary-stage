@@ -3,7 +3,7 @@ const { site, topTarget = 'home' } = Astro.props;
 const rawBrandName = site?.brand?.name ?? 'NexGen Binary';
 const footerBrandName = /\bLLC\b/i.test(rawBrandName) ? rawBrandName : `${rawBrandName} LLC`;
 const safeTopTarget = (topTarget || 'home').replace(/^#/, '') || 'home';
-const base = import.meta.env.BASE_URL;
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/?$/, '/');
 const privacyHref = `${base}privacy`;
 const termsHref = `${base}terms`;
 ---

@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 import site from "../content/site.json";
 import brandLogo from "../assets/company-logo-navbar.png";
 
-const base = import.meta.env.BASE_URL;
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/?$/, '/');
 const homeHref = `${base}#home`;
 const privacyHref = `${base}privacy`;
 const contactHref = `${base}#contact`;
