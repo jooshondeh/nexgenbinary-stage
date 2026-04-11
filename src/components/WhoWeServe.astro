@@ -1,52 +1,158 @@
 ---
 const { site } = Astro.props;
 import IconBadge from "./IconBadge.astro";
+
 const w = site.whoWeServe ?? {};
+
+const intro =
+  w.intro ??
+  "We support dental practices across Virginia with IT services aligned to clinical workflows, front-office uptime, security expectations, and day-to-day practice operations.";
+
+const defaultCards = [
+  {
+    icon: "people",
+    title: "Practices We Support",
+    items: [
+      "Single-location dental offices seeking dependable day-to-day IT support",
+      "Growing multi-provider and multi-site practices that need scalable systems",
+      "New and expanding offices planning infrastructure, cloud, or technology upgrades",
+      "Practices that want one accountable partner across IT, security, and vendor coordination",
+    ],
+  },
+  {
+    icon: "tools",
+    title: "Clinical & Office Environments",
+    items: [
+      "Front-desk, scheduling, billing, and administrative workstations",
+      "Operatories, provider work areas, and shared clinical devices",
+      "Imaging-connected environments that rely on stable networks and secure access",
+      "Microsoft 365, collaboration, and cloud tools that support office operations",
+    ],
+  },
+  {
+    icon: "shield",
+    title: "How We Support Practices",
+    items: [
+      "Workflow-aware support designed to minimize disruption during office hours",
+      "Proactive maintenance and monitoring that help reduce avoidable downtime",
+      "Secure remote support with on-site capability when needed",
+      "Clear coordination with staff, vendors, and practice leadership",
+    ],
+  },
+  {
+    icon: "pin",
+    title: "Virginia Coverage & Delivery Model",
+    items: [
+      "Richmond-area support with service coverage across Virginia",
+      "Remote-friendly service for fast response and efficient issue resolution",
+      "On-site visits for projects, upgrades, assessments, and critical needs when required",
+      "Ongoing partnership built around responsiveness, documentation, and follow-through",
+    ],
+  },
+];
+
+const cards = Array.isArray(w.cards) && w.cards.length ? w.cards : defaultCards;
 ---
-<section id="who-we-serve" class="nb-anchor-offset nb-section" style="background:#ffffff">
+<section id="who-we-serve" class="nb-anchor-offset nb-section nb-who-section" style="background:#ffffff">
   <div class="container">
-    <div class="nb-who-header mb-4">
-      <h2 class="section-title fw-bold mb-1">{w.title ?? "Who We Serve"}</h2>
-      <div class="nb-who-subtitle fw-semibold">{w.subtitle ?? "Dental Practices Across Virginia"}</div>
-      <p class="text-secondary mt-3 mb-0 nb-who-lead">
-        {w.lead ?? ""}
-      </p>
+    <div class="nb-who-header">
+      <h2 class="section-title fw-bold mb-0">{w.title ?? "Who We Serve"}</h2>
+      <p class="nb-who-intro mb-0">{intro}</p>
     </div>
 
-    <div class="row g-4 nb-who-main-row">
-      <div class="col-lg-6">
-        <div class="nb-card nb-pop nb-who-card h-100">
-          <div class="nb-who-head">
-            <div class="nb-icon-wrap nb-who-icon"><IconBadge name="shield" /></div>
-            <div class="nb-who-head-title">{w.challengesTitle ?? "We Understand Dental IT Challenges"}</div>
-          </div>
-          <ul class="nb-who-bullets mb-0">
-            {(w.challenges ?? []).map((x) => (<li>{x}</li>))}
-          </ul>
-        </div>
-      </div>
+    <div class="row g-4 nb-who-grid">
+      {cards.map((card) => (
+        <div class="col-lg-6">
+          <article class="nb-card nb-pop bg-white nb-who-panel">
+            <div class="nb-who-panel__head">
+              <div class="nb-icon-wrap nb-who-panel__icon"><IconBadge name={card.icon} /></div>
+              <h3 class="nb-who-panel__title">{card.title}</h3>
+            </div>
 
-      <div class="col-lg-6">
-        <div class="nb-card nb-pop nb-who-card h-100">
-          <div class="nb-who-head">
-            <div class="nb-icon-wrap nb-who-icon"><IconBadge name="people" /></div>
-            <div class="nb-who-head-title">{w.approachTitle ?? "Our Approach"}</div>
-          </div>
-          <ul class="nb-who-bullets mb-0">
-            {(w.approach ?? []).map((x) => (<li>{x}</li>))}
-          </ul>
+            <ul class="nb-who-panel__list">
+              {(card.items ?? []).map((item) => <li>{item}</li>)}
+            </ul>
+          </article>
         </div>
-      </div>
-    </div>
-
-    <div class="mt-3">
-      <div class="nb-card nb-pop nb-who-service-strip">
-        <div class="nb-icon-wrap nb-who-icon nb-who-service-icon"><IconBadge name="pin" /></div>
-        <div class="nb-who-service-copy">
-          <div class="nb-who-service-title fw-semibold">{w.serviceArea ?? ""}</div>
-          <div class="text-secondary small">{w.serviceAreaBody ?? "Remote-friendly support with on-site capability when needed."}</div>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
+
+<style>
+  .nb-who-header {
+    margin-bottom: 1rem;
+  }
+
+  .nb-who-intro {
+    max-width: 860px;
+    color: #5b6f84;
+    font-size: clamp(1.02rem, 1.1vw, 1.16rem);
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  .nb-who-grid {
+    align-items: stretch;
+  }
+
+  .nb-who-panel {
+    height: 100%;
+    min-height: 236px;
+    border-radius: 20px;
+    padding: 1.15rem 1.15rem 1.05rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nb-who-panel__head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.35rem;
+  }
+
+  .nb-who-panel__icon {
+    flex: 0 0 auto;
+  }
+
+  .nb-who-panel__icon :global(.nb-icon-badge) {
+    width: 50px;
+    height: 50px;
+  }
+
+  .nb-who-panel__title {
+    margin: 0;
+    color: #163659;
+    font-size: 1.02rem;
+    line-height: 1.22;
+    letter-spacing: -0.005em;
+    font-weight: 700;
+  }
+
+  .nb-who-panel__list {
+    margin: 0.35rem 0 0;
+    padding-left: 1.18rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .nb-who-panel__list li {
+    color: #4f6377;
+    line-height: 1.38;
+  }
+
+  .nb-who-panel__list li::marker {
+    color: #4c6177;
+  }
+
+  @media (max-width: 991px) {
+    .nb-who-header {
+      margin-bottom: 0.85rem;
+    }
+
+    .nb-who-panel {
+      min-height: 0;
+    }
+  }
+</style>
