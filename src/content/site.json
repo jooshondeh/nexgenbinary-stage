@@ -122,6 +122,17 @@
         ]
       },
       {
+        "title": "Website, Hosting & Digital Presence",
+        "description": "Modern, secure, and fully managed websites designed for dental practices.",
+        "recommended": true,
+        "items": [
+          "Customizable, mobile-friendly website design",
+          "Secure hosting with backups and monitoring",
+          "Ongoing maintenance and performance tuning",
+          "Content updates and website support"
+        ]
+      },
+      {
         "title": "Networking, Wi\u2011Fi, Infrastructure, VoIP & Cameras",
         "items": [
           "Secure wired and wireless network design",
