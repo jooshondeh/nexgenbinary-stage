@@ -1,50 +1,158 @@
 ---
 const { site } = Astro.props;
 import IconBadge from "./IconBadge.astro";
+
 const a = site.about ?? {};
+
+const intro =
+  a.intro ??
+  "Practical IT partnership for dental and healthcare practices that need secure systems, dependable support, and clear communication.";
+
+const defaultCards = [
+  {
+    icon: "people",
+    title: "Who We Are",
+    items: [
+      "Virginia-based IT partner for dental and healthcare practices",
+      "People-first support centered on responsiveness, reliability, and trust",
+      "Technology guidance shaped around real clinical and office workflows",
+      "Long-term partnership focused on practical results, not unnecessary complexity",
+    ],
+  },
+  {
+    icon: "tools",
+    title: "Healthcare & Dental Focus",
+    items: [
+      "Support for front-office, clinical, and administrative technology environments",
+      "Coordination across providers, office managers, and third-party vendors",
+      "Planning that helps reduce disruption during upgrades, transitions, and issues",
+      "Solutions tailored to practice operations, growth, and day-to-day usability",
+    ],
+  },
+  {
+    icon: "shield",
+    title: "Security & Compliance by Design",
+    items: [
+      "HIPAA-aware IT practices and security-minded system planning",
+      "Secure access controls, encryption, backup strategy, and device protection",
+      "Documented configurations, vendor coordination, and change accountability",
+      "Industry-standard cybersecurity safeguards aligned to business risk",
+    ],
+  },
+  {
+    icon: "checkcircle",
+    title: "Leadership & Delivery Experience",
+    items: [
+      "Over 20 years of combined IT leadership and delivery experience",
+      "Structured onboarding, clear recommendations, and documented next steps",
+      "Licensed and insured service backed by professionalism and accountability",
+      "Enterprise-level discipline delivered with local responsiveness and support",
+    ],
+  },
+];
+
+const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
 ---
 <section id="about" class="nb-anchor-offset nb-section nb-about-section" style="background:#f8fafc">
   <div class="container">
-    <h2 class="section-title fw-bold mb-0">{a.title ?? "About"}</h2>
+    <div class="nb-about-header">
+      <h2 class="section-title fw-bold mb-0">{a.title ?? "About"}</h2>
+      <p class="nb-about-intro mb-0">{intro}</p>
+    </div>
 
-    <div class="row g-4 nb-about-grid-row">
-      <div class="col-lg-6">
-        <div class="nb-about-left-stack">
-          <div class="nb-card nb-pop bg-white nb-about-card nb-about-story-card">
-          <div class="nb-about-head">
-            <div class="nb-icon-wrap nb-about-icon"><IconBadge name="people" /></div>
-            <div class="nb-about-head-title">{a.whoWeAreTitle ?? "Who We Are"}</div>
-          </div>
-          <p class="text-secondary mb-0">{a.whoWeAre ?? ""}</p>
+    <div class="row g-4 nb-about-grid">
+      {cards.map((card) => (
+        <div class="col-lg-6">
+          <article class="nb-card nb-pop bg-white nb-about-panel">
+            <div class="nb-about-panel__head">
+              <div class="nb-icon-wrap nb-about-panel__icon"><IconBadge name={card.icon} /></div>
+              <h3 class="nb-about-panel__title">{card.title}</h3>
+            </div>
+
+            <ul class="nb-about-panel__list">
+              {(card.items ?? []).map((item) => <li>{item}</li>)}
+            </ul>
+          </article>
         </div>
-
-          <div class="nb-card nb-pop bg-white nb-about-card nb-about-lead-card">
-          <div class="nb-about-head">
-            <div class="nb-icon-wrap nb-about-icon"><IconBadge name="tools" /></div>
-            <div class="nb-about-head-title">{a.leadershipTitle ?? "Leadership & Team Experience"}</div>
-          </div>
-          <p class="text-secondary mb-0">{a.leadership ?? ""}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="nb-card nb-pop bg-white nb-about-card nb-about-security-card">
-          <div class="nb-about-head">
-            <div class="nb-icon-wrap nb-about-icon"><IconBadge name="shield" /></div>
-            <div class="nb-about-head-title">{a.securityTitle ?? "Security & Compliance by Design"}</div>
-          </div>
-
-          <ul class="nb-about-bullets">
-            {(a.securityBullets ?? []).map((x) => (<li>{x}</li>))}
-          </ul>
-
-          <div class="nb-about-callout">
-            <strong>{a.licensed ?? "Licensed and insured."}</strong>
-            <span> {a.licensedBody ?? "We deliver with documentation, accountability, and clear communication from day one."}</span>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
+
+<style>
+  .nb-about-header {
+    margin-bottom: 1rem;
+  }
+
+  .nb-about-intro {
+    max-width: 860px;
+    color: #5b6f84;
+    font-size: clamp(1.02rem, 1.1vw, 1.16rem);
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  .nb-about-grid {
+    align-items: stretch;
+  }
+
+  .nb-about-panel {
+    height: 100%;
+    min-height: 236px;
+    border-radius: 20px;
+    padding: 1.15rem 1.15rem 1.05rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nb-about-panel__head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 0.35rem;
+  }
+
+  .nb-about-panel__icon {
+    flex: 0 0 auto;
+  }
+
+  .nb-about-panel__icon :global(.nb-icon-badge) {
+    width: 50px;
+    height: 50px;
+  }
+
+  .nb-about-panel__title {
+    margin: 0;
+    color: #163659;
+    font-size: 1.02rem;
+    line-height: 1.22;
+    letter-spacing: -0.005em;
+    font-weight: 700;
+  }
+
+  .nb-about-panel__list {
+    margin: 0.35rem 0 0;
+    padding-left: 1.18rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .nb-about-panel__list li {
+    color: #4f6377;
+    line-height: 1.38;
+  }
+
+  .nb-about-panel__list li::marker {
+    color: #4c6177;
+  }
+
+  @media (max-width: 991px) {
+    .nb-about-header {
+      margin-bottom: 0.85rem;
+    }
+
+    .nb-about-panel {
+      min-height: 0;
+    }
+  }
+</style>
