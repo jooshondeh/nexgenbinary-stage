@@ -6,7 +6,7 @@ const a = site.about ?? {};
 
 const intro =
   a.intro ??
-  "NexGen Binary delivers practical IT support for dental and healthcare practices that value secure systems, responsive service, and clear communication.";
+  "NexGen Binary supports dental and healthcare practices with secure systems, responsive service, and practical IT guidance shaped around daily operations.";
 
 const defaultCards = [
   {
@@ -14,16 +14,16 @@ const defaultCards = [
     title: "Who We Are",
     items: [
       "Virginia-based IT partner serving dental and healthcare practices across Virginia",
-      "People-first support grounded in responsiveness, reliability, and follow-through",
+      "People-first support built on responsiveness, reliability, and follow-through",
       "Practical guidance shaped by clinical, front-office, and administrative workflows",
-      "Long-term partnerships focused on stability, clarity, and usable results",
+      "Long-term partnerships focused on stability, clarity, and usable outcomes",
     ],
   },
   {
     icon: "tools",
     title: "Dental & Healthcare Focus",
     items: [
-      "Support for front-office, clinical, and administrative technology environments",
+      "Support across front-office, clinical, and administrative technology environments",
       "Coordination with providers, office managers, and third-party vendors",
       "Planning that helps reduce disruption during upgrades, transitions, and change",
       "Solutions aligned to daily operations, growth, and patient-facing service",
@@ -60,20 +60,18 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
       <p class="nb-section-subtitle nb-about-intro">{intro}</p>
     </div>
 
-    <div class="row g-4 nb-about-grid">
+    <div class="nb-about-grid">
       {cards.map((card) => (
-        <div class="col-lg-6">
-          <article class="nb-card nb-pop bg-white nb-about-panel">
-            <div class="nb-about-panel__head">
-              <div class="nb-icon-wrap nb-about-panel__icon"><IconBadge name={card.icon} /></div>
-              <h3 class="nb-about-panel__title">{card.title}</h3>
-            </div>
+        <article class="nb-card nb-pop bg-white nb-about-panel">
+          <div class="nb-about-panel__head">
+            <div class="nb-icon-wrap nb-about-panel__icon"><IconBadge name={card.icon} /></div>
+            <h3 class="nb-about-panel__title">{card.title}</h3>
+          </div>
 
-            <ul class="nb-about-panel__list">
-              {(card.items ?? []).map((item) => <li>{item}</li>)}
-            </ul>
-          </article>
-        </div>
+          <ul class="nb-about-panel__list">
+            {(card.items ?? []).map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
       ))}
     </div>
   </div>
@@ -81,35 +79,38 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
 
 <style>
   .nb-about-header {
-    margin-bottom: 1.05rem;
+    margin-bottom: 1rem;
   }
 
   .nb-about-intro {
-    max-width: 900px;
+    max-width: 920px;
     color: #5b6f84;
-    font-size: clamp(1.01rem, 1.02vw, 1.12rem);
-    line-height: 1.5;
-    letter-spacing: 0.005em;
+    font-size: clamp(1rem, 1.02vw, 1.1rem);
+    line-height: 1.48;
+    letter-spacing: 0.004em;
   }
 
   .nb-about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
     align-items: stretch;
   }
 
   .nb-about-panel {
-    height: 100%;
-    min-height: 248px;
+    min-height: 325px;
     border-radius: 22px;
-    padding: 1.2rem 1.2rem 1.08rem;
+    padding: 1.22rem 1.2rem 1.08rem;
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
 
   .nb-about-panel__head {
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 0.42rem;
+    margin-bottom: 0.46rem;
   }
 
   .nb-about-panel__icon {
@@ -139,15 +140,15 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
   }
 
   .nb-about-panel__list {
-    margin: 0.48rem 0 0;
+    margin: 0.52rem 0 0;
     padding-left: 1.18rem;
     display: grid;
-    gap: 0.5rem;
+    gap: 0.54rem;
   }
 
   .nb-about-panel__list li {
     color: #4f6377;
-    line-height: 1.44;
+    line-height: 1.42;
   }
 
   .nb-about-panel__list li::marker {
@@ -157,6 +158,10 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
   @media (max-width: 991px) {
     .nb-about-header {
       margin-bottom: .95rem;
+    }
+
+    .nb-about-grid {
+      grid-template-columns: 1fr;
     }
 
     .nb-about-panel {
