@@ -9,27 +9,24 @@ const iconFor = (title = '') => {
   if (t.includes('emr') || t.includes('clinical')) return 'tools';
   if (t.includes('microsoft') || t.includes('cloud')) return 'cloud';
   if (t.includes('security')) return 'lockshield';
-  if (t.includes('network') || t.includes('wifi') || t.includes('voip') || t.includes('camera')) return 'network';
   if (t.includes('website') || t.includes('hosting') || t.includes('digital presence')) return 'globe';
+  if (t.includes('network') || t.includes('wifi') || t.includes('wi‑fi') || t.includes('voip') || t.includes('camera')) return 'network';
   return 'tools';
 };
 
 const serviceItemText = (item) => {
   if (item == null) return '';
   if (typeof item === 'string' || typeof item === 'number') return String(item);
-  if (Array.isArray(item)) {
-    return item.map(serviceItemText).filter(Boolean).join(' ');
-  }
+  if (Array.isArray(item)) return item.map(serviceItemText).filter(Boolean).join(' ');
   if (typeof item === 'object') {
     for (const key of ['text', 'label', 'title', 'name', 'value', 'description', 'desc']) {
       if (typeof item[key] === 'string' || typeof item[key] === 'number') return String(item[key]);
     }
-    const joined = Object.values(item)
+    return Object.values(item)
       .filter((v) => typeof v === 'string' || typeof v === 'number')
       .map((v) => String(v).trim())
       .filter(Boolean)
       .join(' ');
-    return joined;
   }
   return String(item);
 };
@@ -42,15 +39,10 @@ const normalizeItems = (items = []) => (items ?? []).map(serviceItemText).filter
     {site?.services?.subtitle && <p class="nb-section-subtitle nb-services-intro">{site.services.subtitle}</p>}
     <div class="nb-services-grid">
       {groups.map((group) => (
-        <article class={`nb-service-card nb-hover-pop nb-service-card-standard`}>
+        <article class="nb-service-card nb-hover-pop nb-service-card-standard">
           <div class="nb-service-head">
             <div class="nb-icon-wrap"><IconBadge name={iconFor(group.title)} /></div>
-            <div class="nb-service-head-copy">
-              <div class="nb-service-title-row">
-                <h3>{group.title}</h3>
-              </div>
-              {group?.description && <p class="nb-service-desc">{group.description}</p>}
-            </div>
+            <h3>{group.title}</h3>
           </div>
           <ul>
             {normalizeItems(group.items ?? []).map((item) => <li>{item}</li>)}
