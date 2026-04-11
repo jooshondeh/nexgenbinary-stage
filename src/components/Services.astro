@@ -10,7 +10,7 @@ const iconFor = (title = '') => {
   if (t.includes('microsoft') || t.includes('cloud')) return 'cloud';
   if (t.includes('security')) return 'lockshield';
   if (t.includes('network') || t.includes('wifi') || t.includes('voip') || t.includes('camera')) return 'network';
-  if (t.includes('website') || t.includes('hosting') || t.includes('digital presence')) return 'monitor';
+  if (t.includes('website') || t.includes('hosting') || t.includes('digital presence')) return 'globe';
   return 'tools';
 };
 
@@ -42,13 +42,12 @@ const normalizeItems = (items = []) => (items ?? []).map(serviceItemText).filter
     {site?.services?.subtitle && <p class="nb-section-subtitle nb-services-intro">{site.services.subtitle}</p>}
     <div class="nb-services-grid">
       {groups.map((group) => (
-        <article class={`nb-service-card nb-hover-pop nb-service-card-standard${group?.recommended ? ' nb-service-card-recommended' : ''}`}>
+        <article class={`nb-service-card nb-hover-pop nb-service-card-standard`}>
           <div class="nb-service-head">
             <div class="nb-icon-wrap"><IconBadge name={iconFor(group.title)} /></div>
             <div class="nb-service-head-copy">
               <div class="nb-service-title-row">
                 <h3>{group.title}</h3>
-                {group?.recommended && <span class="nb-service-badge">Recommended</span>}
               </div>
               {group?.description && <p class="nb-service-desc">{group.description}</p>}
             </div>
