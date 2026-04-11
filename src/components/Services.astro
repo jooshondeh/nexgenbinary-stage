@@ -2,6 +2,9 @@
 import IconBadge from './IconBadge.astro';
 const { site } = Astro.props;
 const groups = site?.services?.groups ?? [];
+const servicesIntro =
+  site?.services?.subtitle ||
+  'Managed IT, security, cloud, networking, and website support tailored to the day-to-day needs of modern dental practices across Virginia.';
 
 const iconFor = (title = '') => {
   const t = title.toLowerCase();
@@ -35,8 +38,11 @@ const normalizeItems = (items = []) => (items ?? []).map(serviceItemText).filter
 ---
 <section id="services" class="nb-section nb-anchor-offset">
   <div class="nb-shell">
-    <h2 class="nb-section-title">{site?.services?.title || 'Services'}</h2>
-    {site?.services?.subtitle && <p class="nb-section-subtitle nb-services-intro">{site.services.subtitle}</p>}
+    <div class="nb-section-header nb-section-header--left">
+      <h2 class="nb-section-title">{site?.services?.title || 'Services'}</h2>
+      <p class="nb-section-subtitle nb-services-intro">{servicesIntro}</p>
+    </div>
+
     <div class="nb-services-grid">
       {groups.map((group) => (
         <article class="nb-service-card nb-hover-pop nb-service-card-standard">

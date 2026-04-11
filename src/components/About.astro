@@ -6,17 +6,17 @@ const a = site.about ?? {};
 
 const intro =
   a.intro ??
-  "Practical IT partnership for dental and healthcare practices that value secure systems, reliable support, and clear communication.";
+  "NexGen Binary delivers practical IT support for dental and healthcare practices that value secure systems, responsive service, and clear communication.";
 
 const defaultCards = [
   {
     icon: "people",
     title: "Who We Are",
     items: [
-      "Virginia-based IT partner serving dental and healthcare practices throughout Virginia",
-      "People-first support built on responsiveness, reliability, and follow-through",
-      "Practical guidance shaped by real clinical, front-office, and administrative workflows",
-      "Long-term partnerships focused on stability, clarity, and usable outcomes",
+      "Virginia-based IT partner serving dental and healthcare practices across Virginia",
+      "People-first support grounded in responsiveness, reliability, and follow-through",
+      "Practical guidance shaped by clinical, front-office, and administrative workflows",
+      "Long-term partnerships focused on stability, clarity, and usable results",
     ],
   },
   {
@@ -26,14 +26,14 @@ const defaultCards = [
       "Support for front-office, clinical, and administrative technology environments",
       "Coordination with providers, office managers, and third-party vendors",
       "Planning that helps reduce disruption during upgrades, transitions, and change",
-      "Solutions aligned to practice operations, growth, and patient-facing service",
+      "Solutions aligned to daily operations, growth, and patient-facing service",
     ],
   },
   {
     icon: "shield",
     title: "Security & Compliance by Design",
     items: [
-      "HIPAA-aware IT practices supported by security-minded system planning",
+      "HIPAA-aware IT practices supported by security-minded planning",
       "Secure access, encryption, backup strategy, and device protection",
       "Documented configurations, vendor coordination, and accountable change management",
       "Cybersecurity safeguards aligned to operational risk and business continuity",
@@ -54,10 +54,10 @@ const defaultCards = [
 const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
 ---
 <section id="about" class="nb-anchor-offset nb-section nb-about-section" style="background:#f8fafc">
-  <div class="container">
-    <div class="nb-about-header">
-      <h2 class="section-title fw-bold mb-0">{a.title ?? "About"}</h2>
-      <p class="nb-about-intro mb-0">{intro}</p>
+  <div class="nb-shell">
+    <div class="nb-section-header nb-section-header--left nb-about-header">
+      <h2 class="nb-section-title">{a.title ?? "About"}</h2>
+      <p class="nb-section-subtitle nb-about-intro">{intro}</p>
     </div>
 
     <div class="row g-4 nb-about-grid">
@@ -81,15 +81,15 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
 
 <style>
   .nb-about-header {
-    margin-bottom: 1.15rem;
+    margin-bottom: 1.05rem;
   }
 
   .nb-about-intro {
-    max-width: 860px;
+    max-width: 900px;
     color: #5b6f84;
-    font-size: clamp(1.02rem, 1.08vw, 1.14rem);
+    font-size: clamp(1.01rem, 1.02vw, 1.12rem);
     line-height: 1.5;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.005em;
   }
 
   .nb-about-grid {
@@ -98,9 +98,9 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
 
   .nb-about-panel {
     height: 100%;
-    min-height: 250px;
+    min-height: 248px;
     border-radius: 22px;
-    padding: 1.2rem 1.2rem 1.1rem;
+    padding: 1.2rem 1.2rem 1.08rem;
     display: flex;
     flex-direction: column;
   }
@@ -109,7 +109,7 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.42rem;
   }
 
   .nb-about-panel__icon {
@@ -122,14 +122,10 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
     line-height: 0;
   }
 
-  .nb-about-panel__icon :global(.nb-icon-badge) {
-    width: 24px;
-    height: 24px;
-  }
-
+  .nb-about-panel__icon :global(.nb-icon-badge),
   .nb-about-panel__icon :global(.nb-icon-badge svg) {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     display: block;
   }
 
@@ -143,7 +139,7 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
   }
 
   .nb-about-panel__list {
-    margin: 0.45rem 0 0;
+    margin: 0.48rem 0 0;
     padding-left: 1.18rem;
     display: grid;
     gap: 0.5rem;
@@ -160,7 +156,7 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
 
   @media (max-width: 991px) {
     .nb-about-header {
-      margin-bottom: 1rem;
+      margin-bottom: .95rem;
     }
 
     .nb-about-panel {

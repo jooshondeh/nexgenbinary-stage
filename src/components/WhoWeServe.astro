@@ -6,17 +6,17 @@ const w = site.whoWeServe ?? {};
 
 const intro =
   w.intro ??
-  "We support dental practices across Virginia with IT services aligned to clinical workflows, front-office uptime, security expectations, and everyday practice operations.";
+  "We support dental practices across Virginia with IT services built around clinical workflows, front-desk uptime, secure access, and dependable day-to-day operations.";
 
 const defaultCards = [
   {
     icon: "people",
     title: "Practices We Support",
     items: [
-      "Single-location offices that need dependable day-to-day IT support",
-      "Growing multi-provider and multi-site practices preparing to scale systems and support",
-      "New and expanding offices planning cloud, infrastructure, or technology rollouts",
-      "Practices seeking one accountable partner across IT, security, and vendor coordination",
+      "Single-location practices seeking dependable day-to-day IT support",
+      "Growing multi-provider and multi-site offices preparing to scale systems and workflows",
+      "New and expanding practices planning infrastructure, cloud, or technology upgrades",
+      "Offices that want one accountable partner across support, security, and vendor coordination",
     ],
   },
   {
@@ -26,15 +26,15 @@ const defaultCards = [
       "Front-desk, scheduling, billing, and administrative workstations",
       "Operatories, provider work areas, and shared clinical devices",
       "Imaging-connected environments that rely on stable networks and secure access",
-      "Microsoft 365, cloud, and collaboration tools that keep office operations moving",
+      "Microsoft 365, collaboration, and cloud tools that support office operations",
     ],
   },
   {
     icon: "shield",
     title: "How We Support Practices",
     items: [
-      "Workflow-aware support designed to minimize disruption during office hours",
-      "Proactive maintenance and monitoring that reduce avoidable downtime",
+      "Workflow-aware support designed to reduce disruption during office hours",
+      "Proactive maintenance and monitoring that help prevent avoidable downtime",
       "Secure remote support with on-site capability when needed",
       "Clear coordination with staff, vendors, and practice leadership",
     ],
@@ -44,9 +44,9 @@ const defaultCards = [
     title: "Virginia Coverage & Delivery Model",
     items: [
       "Richmond-based support with service coverage across Virginia",
-      "Remote-friendly service for fast response and efficient issue resolution",
+      "Remote-friendly service for faster response and efficient issue resolution",
       "On-site visits for projects, upgrades, assessments, and higher-priority needs",
-      "Long-term partnership built on responsiveness, documentation, and follow-through",
+      "Long-term partnership backed by responsiveness, documentation, and follow-through",
     ],
   },
 ];
@@ -54,10 +54,10 @@ const defaultCards = [
 const cards = Array.isArray(w.cards) && w.cards.length ? w.cards : defaultCards;
 ---
 <section id="who-we-serve" class="nb-anchor-offset nb-section nb-who-section" style="background:#ffffff">
-  <div class="container">
-    <div class="nb-who-header">
-      <h2 class="section-title fw-bold mb-0">{w.title ?? "Who We Serve"}</h2>
-      <p class="nb-who-intro mb-0">{intro}</p>
+  <div class="nb-shell">
+    <div class="nb-section-header nb-section-header--left nb-who-header">
+      <h2 class="nb-section-title">{w.title ?? "Who We Serve"}</h2>
+      <p class="nb-section-subtitle nb-who-intro">{intro}</p>
     </div>
 
     <div class="row g-4 nb-who-grid">
@@ -81,15 +81,15 @@ const cards = Array.isArray(w.cards) && w.cards.length ? w.cards : defaultCards;
 
 <style>
   .nb-who-header {
-    margin-bottom: 1.15rem;
+    margin-bottom: 1.05rem;
   }
 
   .nb-who-intro {
-    max-width: 860px;
+    max-width: 900px;
     color: #5b6f84;
-    font-size: clamp(1.02rem, 1.08vw, 1.14rem);
+    font-size: clamp(1.01rem, 1.02vw, 1.12rem);
     line-height: 1.5;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.005em;
   }
 
   .nb-who-grid {
@@ -98,9 +98,9 @@ const cards = Array.isArray(w.cards) && w.cards.length ? w.cards : defaultCards;
 
   .nb-who-panel {
     height: 100%;
-    min-height: 250px;
+    min-height: 248px;
     border-radius: 22px;
-    padding: 1.2rem 1.2rem 1.1rem;
+    padding: 1.2rem 1.2rem 1.08rem;
     display: flex;
     flex-direction: column;
   }
@@ -109,7 +109,7 @@ const cards = Array.isArray(w.cards) && w.cards.length ? w.cards : defaultCards;
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.42rem;
   }
 
   .nb-who-panel__icon {
@@ -122,14 +122,10 @@ const cards = Array.isArray(w.cards) && w.cards.length ? w.cards : defaultCards;
     line-height: 0;
   }
 
-  .nb-who-panel__icon :global(.nb-icon-badge) {
-    width: 24px;
-    height: 24px;
-  }
-
+  .nb-who-panel__icon :global(.nb-icon-badge),
   .nb-who-panel__icon :global(.nb-icon-badge svg) {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     display: block;
   }
 
@@ -143,7 +139,7 @@ const cards = Array.isArray(w.cards) && w.cards.length ? w.cards : defaultCards;
   }
 
   .nb-who-panel__list {
-    margin: 0.45rem 0 0;
+    margin: 0.48rem 0 0;
     padding-left: 1.18rem;
     display: grid;
     gap: 0.5rem;
@@ -160,7 +156,7 @@ const cards = Array.isArray(w.cards) && w.cards.length ? w.cards : defaultCards;
 
   @media (max-width: 991px) {
     .nb-who-header {
-      margin-bottom: 1rem;
+      margin-bottom: .95rem;
     }
 
     .nb-who-panel {

@@ -1689,3 +1689,70 @@ html, body { scroll-behavior: smooth; }
   display: flex;
   align-items: center;
 }
+
+
+/* --- v83: Section heading alignment unification (services, pricing, who we serve, about) --- */
+.nb-section-header--left {
+  max-width: 920px;
+  margin: 0 0 1.1rem;
+}
+
+#services .nb-section-title,
+#pricing .nb-section-title,
+#who-we-serve .nb-section-title,
+#about .nb-section-title,
+#pricing .nb-section-title.nb-center {
+  text-align: left !important;
+  margin-bottom: .35rem !important;
+}
+
+#services .nb-section-subtitle,
+#pricing .nb-section-subtitle,
+#who-we-serve .nb-section-subtitle,
+#about .nb-section-subtitle,
+#pricing .nb-section-subtitle.nb-center,
+#services .nb-services-intro {
+  text-align: left !important;
+  margin: 0 0 1.05rem !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: 900px !important;
+  line-height: 1.48 !important;
+  color: #5b6f84 !important;
+}
+
+#services .nb-services-intro,
+#pricing .nb-pricing-intro,
+#who-we-serve .nb-who-intro,
+#about .nb-about-intro {
+  letter-spacing: .005em;
+}
+
+#services .nb-service-head {
+  align-items: center !important;
+}
+
+#services .nb-service-head h3 {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+}
+
+#pricing .nb-plan-columns {
+  margin-top: .2rem;
+}
+
+@media (max-width: 991px) {
+  .nb-section-header--left {
+    margin-bottom: .95rem;
+  }
+
+  #services .nb-section-subtitle,
+  #pricing .nb-section-subtitle,
+  #who-we-serve .nb-section-subtitle,
+  #about .nb-section-subtitle,
+  #pricing .nb-section-subtitle.nb-center,
+  #services .nb-services-intro {
+    margin-bottom: .9rem !important;
+  }
+}

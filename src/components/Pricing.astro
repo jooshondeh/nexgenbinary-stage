@@ -3,6 +3,9 @@ const { site } = Astro.props;
 const pricing = site?.pricing || {};
 const plans = pricing.plans || [];
 const rows = pricing.rows || [];
+const pricingIntro =
+  pricing.subtitle ||
+  "Service plans are tailored to your practice's size, systems, and support priorities. Every quote is built around dependable coverage, security, and practical day-to-day support for dental offices across Virginia.";
 const fmt = (v) => String(v ?? '—');
 const parsePlanValue = (raw) => {
   const v = String(raw || '').trim();
@@ -17,8 +20,10 @@ const parsePlanValue = (raw) => {
 ---
 <section id="pricing" class="nb-section nb-anchor-offset nb-pricing-wrap">
   <div class="nb-shell">
-    <h2 class="nb-section-title nb-center">{pricing.title || 'Service Plan Comparison'}</h2>
-    {pricing.subtitle && <p class="nb-section-subtitle nb-center">{pricing.subtitle}</p>}
+    <div class="nb-section-header nb-section-header--left">
+      <h2 class="nb-section-title">{pricing.title || 'Service Plan Comparison'}</h2>
+      <p class="nb-section-subtitle nb-pricing-intro">{pricingIntro}</p>
+    </div>
 
     <div class="nb-plan-columns">
       {[0,1].map((idx) => {
@@ -27,7 +32,7 @@ const parsePlanValue = (raw) => {
         return (
           <article class={`nb-plan-card nb-hover-pop ${plan.featured ? 'is-featured' : ''}`}>
             <div class="nb-plan-intro-block">
-                            <h3>{plan.name}</h3>
+              <h3>{plan.name}</h3>
               <p>{plan.monthly}</p>
               {plan.note && <p class="nb-plan-note">{plan.note}</p>}
               <a class="nb-btn-primary nb-btn-small" href="#contact">
