@@ -8,8 +8,8 @@ const googleBusinessUrl = c.googleBusinessUrl || 'https://www.google.com/search?
 const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
 ---
 <section id="contact" class="nb-anchor-offset nb-section">
-  <div class="container">
-    <div class="row g-4 align-items-start nb-contact-grid">
+  <div class="nb-shell">
+    <div class="row g-3 align-items-start nb-contact-grid">
       <div class="col-lg-5 d-flex nb-contact-left-col">
         <div class="w-100 d-flex flex-column nb-contact-sticky">
           <h2 class="section-title fw-bold mb-0">{c.title}</h2>
@@ -540,6 +540,12 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
       background: #fff;
     }
 
+#contact .nb-contact-grid {
+  --bs-gutter-x: 1rem;
+  --bs-gutter-y: 1rem;
+  align-items: flex-start;
+}
+
     #contact .nb-contact-left-col {
       display: flex;
       align-items: flex-start;
@@ -724,6 +730,10 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
     }
 
     @media (min-width: 992px) {
+      #contact .nb-contact-grid {
+        --bs-gutter-x: 0.95rem;
+      }
+
       #contact .nb-contact-sticky {
         position: sticky;
         top: 98px;

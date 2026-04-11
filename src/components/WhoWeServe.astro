@@ -6,15 +6,15 @@ const w = site.whoWeServe ?? {};
 
 const intro =
   w.intro ??
-  "We support dental practices across Virginia with IT services built around clinical workflows, front-desk uptime, secure access, and dependable operations.";
+  "We support dental practices across Virginia with IT services built around clinical workflows, front-desk uptime, secure access, and reliable daily operations.";
 
 const defaultCards = [
   {
     icon: "people",
     title: "Practices We Support",
     items: [
-      "Single-location offices needing dependable daily IT support",
-      "Growing multi-provider or multi-site practices needing scalable systems",
+      "Single-location offices needing dependable day-to-day IT",
+      "Growing multi-provider or multi-site practices needing scalable IT",
       "New or expanding offices planning cloud, infrastructure, or upgrades",
       "Practices seeking one accountable IT and security partner",
     ],
@@ -24,8 +24,8 @@ const defaultCards = [
     title: "Clinical & Office Environments",
     items: [
       "Front-desk, scheduling, billing, and admin workstations",
-      "Operatories, provider work areas, and shared clinical devices",
-      "Imaging-connected environments needing stable networks and secure access",
+      "Operatories, provider areas, and shared clinical devices",
+      "Imaging-connected environments needing stable, secure networks",
       "Microsoft 365 and cloud tools that support office operations",
     ],
   },
@@ -33,9 +33,9 @@ const defaultCards = [
     icon: "shield",
     title: "How We Support Practices",
     items: [
-      "Workflow-aware support designed to reduce disruption",
+      "Workflow-aware support designed to reduce office disruption",
       "Proactive maintenance and monitoring that help prevent downtime",
-      "Secure remote support with on-site capability when needed",
+      "Secure remote support with on-site help when needed",
       "Clear coordination with staff, vendors, and practice leadership",
     ],
   },
@@ -43,9 +43,9 @@ const defaultCards = [
     icon: "pin",
     title: "Virginia Coverage & Delivery Model",
     items: [
-      "Richmond-based support with coverage across Virginia",
+      "Richmond-based support with service across Virginia",
       "Remote-friendly service for faster response and resolution",
-      "On-site visits for projects, upgrades, assessments, and critical needs",
+      "On-site visits for projects, upgrades, assessments, and urgent needs",
       "Ongoing partnership built on responsiveness and follow-through",
     ],
   },
@@ -79,28 +79,29 @@ const cards = Array.isArray(w.cards) && w.cards.length ? w.cards : defaultCards;
 
 <style>
   .nb-who-header {
-    margin-bottom: 1.05rem;
+    margin-bottom: 1rem;
   }
 
   .nb-who-intro {
-    max-width: 900px;
+    max-width: 880px;
     color: #5b6f84;
     font-size: clamp(1rem, 1.02vw, 1.1rem);
-    line-height: 1.48;
+    line-height: 1.46;
     letter-spacing: 0.004em;
   }
 
   .nb-who-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.2rem;
+    gap: 1rem;
     align-items: stretch;
+    grid-auto-rows: 1fr;
   }
 
   .nb-who-panel {
-    min-height: 280px;
+    min-height: 272px;
     border-radius: 22px;
-    padding: 1.18rem 1.2rem 1.05rem;
+    padding: 1.16rem 1.18rem 1.04rem;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -141,14 +142,14 @@ const cards = Array.isArray(w.cards) && w.cards.length ? w.cards : defaultCards;
 
   .nb-who-panel__list {
     margin: 0.48rem 0 0;
-    padding-left: 1.16rem;
+    padding-left: 1.14rem;
     display: grid;
-    gap: 0.48rem;
+    gap: 0.46rem;
   }
 
   .nb-who-panel__list li {
     color: #4f6377;
-    line-height: 1.4;
+    line-height: 1.38;
   }
 
   .nb-who-panel__list li::marker {
@@ -158,6 +159,7 @@ const cards = Array.isArray(w.cards) && w.cards.length ? w.cards : defaultCards;
   @media (max-width: 991px) {
     .nb-who-grid {
       grid-template-columns: 1fr;
+      gap: 1rem;
     }
 
     .nb-who-panel {
