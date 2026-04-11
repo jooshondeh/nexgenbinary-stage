@@ -88,10 +88,10 @@
       {
         "title": "Fully Managed IT Services",
         "items": [
-          "Workstation, server, and device management across your office",
+          "Workstation, server, and device management across your practice",
           "Proactive patching, monitoring, and routine maintenance",
           "Backup oversight and recovery readiness planning",
-          "Responsive support with clear reporting and technology reviews"
+          "Responsive support with clear reporting and reviews"
         ]
       },
       {
@@ -109,13 +109,13 @@
           "Microsoft 365 setup, licensing, and ongoing administration",
           "Email security, mailbox support, and data protection guidance",
           "Teams and SharePoint support for collaboration and file access",
-          "Cloud migration planning for modern, scalable office operations"
+          "Cloud migration planning for modern, scalable operations"
         ]
       },
       {
         "title": "Security & Cyber Protection",
         "items": [
-          "Endpoint protection, device encryption, and security baseline hardening",
+          "Endpoint protection, device encryption, and security hardening",
           "Email security and phishing defense for office staff",
           "Secure remote access for providers, staff, and approved vendors",
           "Backup integrity checks and ransomware readiness planning"
@@ -125,7 +125,7 @@
         "title": "Website, Hosting & Digital Presence",
         "items": [
           "Custom website design aligned to your practice and brand",
-          "Mobile-friendly pages optimized for speed, usability, and trust",
+          "Mobile-friendly pages built for speed, usability, and trust",
           "Secure hosting with backups, monitoring, and routine maintenance",
           "Ongoing content updates and website support as your practice grows"
         ]
@@ -133,14 +133,14 @@
       {
         "title": "Networking, Wi‑Fi, Infrastructure, VoIP & Cameras",
         "items": [
-          "Secure wired and wireless network design for front and back office",
+          "Secure wired and wireless network design for your office",
           "Segmented Wi‑Fi for staff, clinical systems, and guest access",
           "Firewall hardening, performance tuning, and network monitoring",
-          "VoIP and camera solutions planned for coverage, reliability, and growth"
+          "VoIP and camera solutions planned for coverage and reliability"
         ]
       }
     ],
-    "subtitle": "Managed IT, security, cloud, networking, and website support tailored to the day-to-day needs of modern dental practices across Virginia."
+    "subtitle": "Managed IT, security, cloud, networking, and web support for modern dental practices across Virginia."
   },
   "pricing": {
     "title": "Pricing & Service Plans",
