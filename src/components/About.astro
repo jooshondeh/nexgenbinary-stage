@@ -6,26 +6,26 @@ const a = site.about ?? {};
 
 const intro =
   a.intro ??
-  "NexGen Binary delivers practical IT support for dental and healthcare practices that value secure systems, responsive service, and clear communication.";
+  "NexGen Binary helps dental and healthcare practices keep systems secure, support responsive, and day-to-day operations running smoothly.";
 
 const defaultCards = [
   {
     icon: "people",
     title: "Who We Are",
     items: [
-      "Virginia-based IT partner for dental and healthcare practices across Virginia",
+      "Virginia-based IT partner for dental and healthcare practices",
       "People-first support built on responsiveness, reliability, and follow-through",
-      "Practical guidance shaped by clinical, front-office, and admin workflows",
-      "Long-term partnerships focused on stability, clarity, and useful results",
+      "Guidance shaped by clinical, front-office, and admin workflows",
+      "Long-term partnerships focused on clarity, stability, and results",
     ],
   },
   {
     icon: "tools",
     title: "Dental & Healthcare Focus",
     items: [
-      "Support for front-office, clinical, and admin technology environments",
+      "Support across front-office, clinical, and admin systems",
       "Coordination with providers, office managers, and key vendors",
-      "Planning that reduces disruption during upgrades, transitions, and change",
+      "Planning that reduces disruption during upgrades and transitions",
       "Solutions aligned to daily operations, growth, and patient service",
     ],
   },
@@ -33,9 +33,9 @@ const defaultCards = [
     icon: "shield",
     title: "Security & Compliance by Design",
     items: [
-      "HIPAA-aware IT practices guided by security-minded planning",
+      "HIPAA-aware IT practices shaped by security-minded planning",
       "Secure access, encryption, backup strategy, and device protection",
-      "Documented configurations, vendor coordination, and accountable change management",
+      "Documented changes, vendor coordination, and clear accountability",
       "Cybersecurity safeguards aligned to risk, uptime, and continuity",
     ],
   },
@@ -43,10 +43,10 @@ const defaultCards = [
     icon: "checkcircle",
     title: "Leadership & Delivery Experience",
     items: [
-      "More than 20 years of combined IT leadership and service delivery",
-      "Structured onboarding, clear recommendations, and documented next steps",
+      "More than 20 years of combined IT leadership and delivery experience",
+      "Structured onboarding, clear recommendations, and next steps",
       "Licensed and insured service backed by professionalism and accountability",
-      "Enterprise discipline delivered with local responsiveness and support",
+      "Enterprise discipline delivered with local responsiveness",
     ],
   },
 ];
@@ -60,20 +60,18 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
       <p class="nb-section-subtitle nb-about-intro">{intro}</p>
     </div>
 
-    <div class="row g-4 nb-about-grid">
+    <div class="nb-about-grid">
       {cards.map((card) => (
-        <div class="col-lg-6">
-          <article class="nb-card nb-pop bg-white nb-about-panel">
-            <div class="nb-about-panel__head">
-              <div class="nb-icon-wrap nb-about-panel__icon"><IconBadge name={card.icon} /></div>
-              <h3 class="nb-about-panel__title">{card.title}</h3>
-            </div>
+        <article class="nb-card nb-pop bg-white nb-about-panel">
+          <div class="nb-about-panel__head">
+            <div class="nb-icon-wrap nb-about-panel__icon"><IconBadge name={card.icon} /></div>
+            <h3 class="nb-about-panel__title">{card.title}</h3>
+          </div>
 
-            <ul class="nb-about-panel__list">
-              {(card.items ?? []).map((item) => <li>{item}</li>)}
-            </ul>
-          </article>
-        </div>
+          <ul class="nb-about-panel__list">
+            {(card.items ?? []).map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
       ))}
     </div>
   </div>
@@ -87,29 +85,32 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
   .nb-about-intro {
     max-width: 900px;
     color: #5b6f84;
-    font-size: clamp(1.01rem, 1.02vw, 1.12rem);
-    line-height: 1.5;
-    letter-spacing: 0.005em;
+    font-size: clamp(1rem, 1.02vw, 1.1rem);
+    line-height: 1.48;
+    letter-spacing: 0.004em;
   }
 
   .nb-about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
     align-items: stretch;
   }
 
   .nb-about-panel {
-    height: 100%;
-    min-height: 248px;
+    min-height: 280px;
     border-radius: 22px;
-    padding: 1.2rem 1.2rem 1.08rem;
+    padding: 1.18rem 1.2rem 1.05rem;
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
 
   .nb-about-panel__head {
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 0.42rem;
+    margin-bottom: 0.44rem;
   }
 
   .nb-about-panel__icon {
@@ -140,14 +141,14 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
 
   .nb-about-panel__list {
     margin: 0.48rem 0 0;
-    padding-left: 1.18rem;
+    padding-left: 1.16rem;
     display: grid;
-    gap: 0.5rem;
+    gap: 0.48rem;
   }
 
   .nb-about-panel__list li {
     color: #4f6377;
-    line-height: 1.44;
+    line-height: 1.4;
   }
 
   .nb-about-panel__list li::marker {
@@ -155,8 +156,8 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
   }
 
   @media (max-width: 991px) {
-    .nb-about-header {
-      margin-bottom: .95rem;
+    .nb-about-grid {
+      grid-template-columns: 1fr;
     }
 
     .nb-about-panel {
