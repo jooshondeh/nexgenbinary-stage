@@ -6,17 +6,17 @@ const a = site.about ?? {};
 
 const intro =
   a.intro ??
-  "Practical IT partnership for dental and healthcare practices that value secure systems, dependable support, and clear communication.";
+  "Practical IT partnership for dental and healthcare practices that value secure systems, reliable support, and clear communication.";
 
 const defaultCards = [
   {
     icon: "people",
     title: "Who We Are",
     items: [
-      "Virginia-based IT partner serving dental and healthcare practices across Virginia",
-      "People-first support grounded in reliability, responsiveness, and follow-through",
+      "Virginia-based IT partner serving dental and healthcare practices throughout Virginia",
+      "People-first support built on responsiveness, reliability, and follow-through",
       "Practical guidance shaped by real clinical, front-office, and administrative workflows",
-      "Long-term relationships focused on stability, clarity, and usable outcomes",
+      "Long-term partnerships focused on stability, clarity, and usable outcomes",
     ],
   },
   {
@@ -26,14 +26,14 @@ const defaultCards = [
       "Support for front-office, clinical, and administrative technology environments",
       "Coordination with providers, office managers, and third-party vendors",
       "Planning that helps reduce disruption during upgrades, transitions, and change",
-      "Solutions tailored to practice operations, growth, and patient-facing service",
+      "Solutions aligned to practice operations, growth, and patient-facing service",
     ],
   },
   {
     icon: "shield",
     title: "Security & Compliance by Design",
     items: [
-      "HIPAA-aware IT practices and security-minded system planning",
+      "HIPAA-aware IT practices supported by security-minded system planning",
       "Secure access, encryption, backup strategy, and device protection",
       "Documented configurations, vendor coordination, and accountable change management",
       "Cybersecurity safeguards aligned to operational risk and business continuity",
@@ -81,14 +81,14 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
 
 <style>
   .nb-about-header {
-    margin-bottom: 1.1rem;
+    margin-bottom: 1.15rem;
   }
 
   .nb-about-intro {
     max-width: 860px;
     color: #5b6f84;
     font-size: clamp(1.02rem, 1.08vw, 1.14rem);
-    line-height: 1.48;
+    line-height: 1.5;
     letter-spacing: 0.01em;
   }
 
@@ -98,7 +98,7 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
 
   .nb-about-panel {
     height: 100%;
-    min-height: 246px;
+    min-height: 250px;
     border-radius: 22px;
     padding: 1.2rem 1.2rem 1.1rem;
     display: flex;
@@ -123,13 +123,13 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
   }
 
   .nb-about-panel__icon :global(.nb-icon-badge) {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 
   .nb-about-panel__icon :global(.nb-icon-badge svg) {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: block;
   }
 
@@ -137,7 +137,7 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
     margin: 0;
     color: #163659;
     font-size: 1.04rem;
-    line-height: 1.22;
+    line-height: 1.24;
     letter-spacing: -0.005em;
     font-weight: 700;
   }
@@ -146,12 +146,12 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
     margin: 0.45rem 0 0;
     padding-left: 1.18rem;
     display: grid;
-    gap: 0.48rem;
+    gap: 0.5rem;
   }
 
   .nb-about-panel__list li {
     color: #4f6377;
-    line-height: 1.42;
+    line-height: 1.44;
   }
 
   .nb-about-panel__list li::marker {
@@ -160,7 +160,7 @@ const cards = Array.isArray(a.cards) && a.cards.length ? a.cards : defaultCards;
 
   @media (max-width: 991px) {
     .nb-about-header {
-      margin-bottom: 0.95rem;
+      margin-bottom: 1rem;
     }
 
     .nb-about-panel {
