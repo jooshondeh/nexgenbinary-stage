@@ -1,60 +1,183 @@
 ---
 import IconBadge from './IconBadge.astro';
-const { site } = Astro.props;
-const groups = site?.services?.groups ?? [];
-const servicesIntro =
-  site?.services?.subtitle ||
-  'Managed IT, security, cloud, networking, and website support tailored to the day-to-day needs of modern dental practices across Virginia.';
 
-const iconFor = (title = '') => {
-  const t = title.toLowerCase();
-  if (t.includes('managed')) return 'monitor';
-  if (t.includes('emr') || t.includes('clinical')) return 'tools';
-  if (t.includes('microsoft') || t.includes('cloud')) return 'cloud';
-  if (t.includes('security')) return 'lockshield';
-  if (t.includes('website') || t.includes('hosting') || t.includes('digital presence')) return 'globe';
-  if (t.includes('network') || t.includes('wifi') || t.includes('wi‑fi') || t.includes('voip') || t.includes('camera')) return 'network';
-  return 'tools';
-};
+const sectionTitle = "Services";
+const sectionSubtitle =
+  "Managed IT, security, Microsoft 365, networking, and website support designed for modern dental practices across Virginia.";
 
-const serviceItemText = (item) => {
-  if (item == null) return '';
-  if (typeof item === 'string' || typeof item === 'number') return String(item);
-  if (Array.isArray(item)) return item.map(serviceItemText).filter(Boolean).join(' ');
-  if (typeof item === 'object') {
-    for (const key of ['text', 'label', 'title', 'name', 'value', 'description', 'desc']) {
-      if (typeof item[key] === 'string' || typeof item[key] === 'number') return String(item[key]);
-    }
-    return Object.values(item)
-      .filter((v) => typeof v === 'string' || typeof v === 'number')
-      .map((v) => String(v).trim())
-      .filter(Boolean)
-      .join(' ');
-  }
-  return String(item);
-};
-
-const normalizeItems = (items = []) => (items ?? []).map(serviceItemText).filter(Boolean);
+const services = [
+  {
+    icon: "monitor",
+    title: "Fully Managed IT Services",
+    items: [
+      "Workstation, server, and device management across your practice",
+      "Proactive patching, monitoring, and routine maintenance",
+      "Backup oversight and recovery readiness planning",
+      "Responsive support with clear reporting and reviews",
+    ],
+  },
+  {
+    icon: "tools",
+    title: "Dental EMR & Clinical Systems Support",
+    items: [
+      "EMR and dental software support, optimization, and troubleshooting",
+      "Coordination for imaging, scanners, sensors, and connected devices",
+      "Secure provider and staff access across clinical systems",
+      "Vendor coordination for upgrades, issues, and system changes",
+    ],
+  },
+  {
+    icon: "cloud",
+    title: "Microsoft 365 & Cloud Solutions",
+    items: [
+      "Microsoft 365 setup, licensing, and ongoing administration",
+      "Email security, mailbox support, and data protection guidance",
+      "Teams and SharePoint support for collaboration and file access",
+      "Cloud migration planning for secure, scalable operations",
+    ],
+  },
+  {
+    icon: "lockshield",
+    title: "Security & Cyber Protection",
+    items: [
+      "Endpoint protection, device encryption, and security hardening",
+      "Email security and phishing defense for office staff",
+      "Secure remote access for providers, staff, and approved vendors",
+      "Backup integrity checks and ransomware readiness planning",
+    ],
+  },
+  {
+    icon: "globe",
+    title: "Website, Hosting & Digital Presence",
+    items: [
+      "Custom website design aligned to your practice and brand",
+      "Mobile-friendly pages built for speed, usability, and trust",
+      "Secure hosting with backups, monitoring, and routine maintenance",
+      "Ongoing content updates and website support as your practice grows",
+    ],
+  },
+  {
+    icon: "network",
+    title: "Networking, Wi-Fi, Infrastructure, VoIP & Cameras",
+    items: [
+      "Secure wired and wireless network design for your office",
+      "Segmented Wi-Fi for staff, clinical systems, and guest access",
+      "Firewall hardening, performance tuning, and network monitoring",
+      "VoIP and camera solutions planned for coverage and reliability",
+    ],
+  },
+];
 ---
 <section id="services" class="nb-section nb-anchor-offset">
   <div class="nb-shell">
-    <div class="nb-section-header nb-section-header--left">
-      <h2 class="nb-section-title">{site?.services?.title || 'Services'}</h2>
-      <p class="nb-section-subtitle nb-services-intro">{servicesIntro}</p>
+    <div class="nb-section-header nb-section-header--left nb-services-header">
+      <h2 class="nb-section-title">{sectionTitle}</h2>
+      <p class="nb-section-subtitle nb-services-intro">{sectionSubtitle}</p>
     </div>
 
     <div class="nb-services-grid">
-      {groups.map((group) => (
-        <article class="nb-service-card nb-hover-pop nb-service-card-standard">
+      {services.map((service) => (
+        <article class="nb-card nb-pop bg-white nb-service-card">
           <div class="nb-service-head">
-            <div class="nb-icon-wrap"><IconBadge name={iconFor(group.title)} /></div>
-            <h3>{group.title}</h3>
+            <div class="nb-icon-wrap nb-service-icon"><IconBadge name={service.icon} /></div>
+            <h3>{service.title}</h3>
           </div>
-          <ul>
-            {normalizeItems(group.items ?? []).map((item) => <li>{item}</li>)}
+
+          <ul class="nb-service-list">
+            {service.items.map((item) => <li>{item}</li>)}
           </ul>
         </article>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  #services .nb-services-header {
+    margin-bottom: 1rem;
+  }
+
+  #services .nb-services-intro {
+    max-width: 900px;
+    color: #5b6f84;
+    font-size: clamp(1rem, 1.02vw, 1.08rem);
+    line-height: 1.46;
+    letter-spacing: 0.004em;
+  }
+
+  #services .nb-services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: stretch;
+    grid-auto-rows: 1fr;
+  }
+
+  #services .nb-service-card {
+    min-height: 260px;
+    border-radius: 22px;
+    padding: 1.2rem 1.22rem 1.12rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  #services .nb-service-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 0.7rem;
+  }
+
+  #services .nb-service-icon {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
+
+  #services .nb-service-icon :global(.nb-icon-badge),
+  #services .nb-service-icon :global(.nb-icon-badge svg) {
+    width: 27px;
+    height: 27px;
+    display: block;
+  }
+
+  #services .nb-service-head h3 {
+    margin: 0;
+    color: #163659;
+    font-size: 1.08rem;
+    line-height: 1.26;
+    letter-spacing: -0.005em;
+    font-weight: 700;
+  }
+
+  #services .nb-service-list {
+    margin: 0;
+    padding-left: 1.16rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  #services .nb-service-list li {
+    color: #4f6377;
+    line-height: 1.4;
+  }
+
+  #services .nb-service-list li::marker {
+    color: #4c6177;
+  }
+
+  @media (max-width: 991px) {
+    #services .nb-services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    #services .nb-service-card {
+      min-height: 0;
+    }
+  }
+</style>
