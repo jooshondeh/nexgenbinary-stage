@@ -7,14 +7,19 @@ const w = site.whoWeServe ?? {};
 const title = w.title ?? "Who We Serve";
 const intro =
   w.intro ??
-  "We support dental practices across Virginia with IT services built around clinical workflows, front-desk uptime, secure access, and reliable daily operations.";
+  "We support dental practices across Virginia with IT services shaped around clinical workflows, office uptime, secure access, and dependable day-to-day operations.";
 
 const cards = [
   {
     icon: "people",
     title: "Practices We Support",
     lede:
-      "We work with single-location dental offices, growing multi-provider teams, and expanding practices that need dependable day-to-day support as well as clear technology planning.",
+      "We work with independent offices, growing multi-provider teams, and expanding practices that need dependable support and practical technology planning.",
+    bullets: [
+      "Single-location offices seeking reliable day-to-day IT",
+      "Multi-provider and multi-site practices needing scalable support",
+      "New or expanding offices planning cloud, infrastructure, or upgrades",
+    ],
   },
   {
     icon: "tools",
@@ -22,7 +27,7 @@ const cards = [
     bullets: [
       "Front-desk, scheduling, billing, and admin workstations",
       "Operatories, provider areas, and shared clinical devices",
-      "Imaging-connected environments that need stable, secure access",
+      "Imaging-connected environments requiring stable, secure networks",
       "Microsoft 365 and cloud tools that support office operations",
     ],
   },
@@ -41,7 +46,12 @@ const cards = [
     icon: "pin",
     title: "Virginia Coverage & Delivery Model",
     lede:
-      "We provide Richmond-based support with coverage across Virginia, combining remote-friendly service for fast response with on-site visits for projects, assessments, upgrades, and urgent needs.",
+      "We provide Richmond-based support with service across Virginia, combining remote-friendly response with on-site visits when projects or urgent needs require it.",
+    bullets: [
+      "Fast remote support for common issues and follow-up",
+      "On-site visits for upgrades, assessments, and critical needs",
+      "Partnership built on responsiveness, documentation, and follow-through",
+    ],
   },
 ];
 ---
@@ -81,9 +91,9 @@ const cards = [
   }
 
   .nb-who-intro {
-    max-width: 880px;
+    max-width: 900px;
     color: #5b6f84;
-    font-size: clamp(1rem, 1.02vw, 1.1rem);
+    font-size: clamp(1rem, 1.02vw, 1.08rem);
     line-height: 1.46;
     letter-spacing: 0.004em;
   }
@@ -97,9 +107,9 @@ const cards = [
   }
 
   .nb-who-panel {
-    min-height: 292px;
+    min-height: 250px;
     border-radius: 22px;
-    padding: 1.18rem 1.2rem 1.08rem;
+    padding: 1.15rem 1.2rem 1.08rem;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -109,7 +119,7 @@ const cards = [
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.48rem;
   }
 
   .nb-who-panel__icon {
@@ -141,25 +151,25 @@ const cards = [
   .nb-who-panel__body {
     display: flex;
     flex-direction: column;
-    gap: 0.58rem;
+    gap: 0.55rem;
   }
 
   .nb-who-panel__lede {
     margin: 0;
     color: #4f6377;
-    line-height: 1.5;
+    line-height: 1.48;
   }
 
   .nb-who-panel__list {
     margin: 0;
     padding-left: 1.14rem;
     display: grid;
-    gap: 0.48rem;
+    gap: 0.44rem;
   }
 
   .nb-who-panel__list li {
     color: #4f6377;
-    line-height: 1.4;
+    line-height: 1.38;
   }
 
   .nb-who-panel__list li::marker {

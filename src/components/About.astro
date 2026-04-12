@@ -14,7 +14,11 @@ const cards = [
     icon: "people",
     title: "Who We Are",
     lede:
-      "We are a Virginia-based IT partner supporting dental and healthcare practices with dependable service, practical guidance, and a people-first approach. Our work is shaped around real front-office, clinical, and administrative needs rather than one-size-fits-all solutions.",
+      "We are a Virginia-based IT partner serving dental and healthcare practices with dependable support, practical guidance, and a people-first approach.",
+    bullets: [
+      "Support shaped around clinical, front-office, and admin workflows",
+      "Long-term relationships built on clarity, reliability, and follow-through",
+    ],
   },
   {
     icon: "tools",
@@ -22,29 +26,30 @@ const cards = [
     lede:
       "Our support is designed for environments where uptime, coordination, and everyday usability matter.",
     bullets: [
-      "Support across front-office, clinical, and administrative systems",
+      "Support across front-office, clinical, and admin systems",
       "Coordination with providers, office managers, and vendors",
-      "Planning that helps reduce disruption during upgrades and transitions",
+      "Planning that reduces disruption during upgrades and transitions",
     ],
   },
   {
     icon: "shield",
     title: "Security & Compliance by Design",
     bullets: [
-      "HIPAA-aware IT practices supported by security-minded planning",
+      "HIPAA-aware IT practices backed by security-minded planning",
       "Secure access, encryption, backups, and device protection",
       "Documented changes, vendor coordination, and accountability",
-      "Cybersecurity safeguards aligned to uptime and business continuity",
+      "Cybersecurity safeguards aligned to uptime and continuity",
     ],
   },
   {
     icon: "checkcircle",
     title: "Leadership & Delivery Experience",
     lede:
-      "Our team brings more than 20 years of combined IT leadership and delivery experience, with structured onboarding, clear recommendations, and follow-through at every step.",
+      "Our team brings more than 20 years of combined IT leadership and delivery experience, with structured onboarding and clear next steps.",
     bullets: [
       "Licensed and insured service backed by professionalism",
       "Enterprise discipline delivered with local responsiveness",
+      "Recommendations supported by documentation and follow-through",
     ],
   },
 ];
@@ -85,9 +90,9 @@ const cards = [
   }
 
   .nb-about-intro {
-    max-width: 880px;
+    max-width: 900px;
     color: #5b6f84;
-    font-size: clamp(1rem, 1.02vw, 1.1rem);
+    font-size: clamp(1rem, 1.02vw, 1.08rem);
     line-height: 1.46;
     letter-spacing: 0.004em;
   }
@@ -101,9 +106,9 @@ const cards = [
   }
 
   .nb-about-panel {
-    min-height: 292px;
+    min-height: 250px;
     border-radius: 22px;
-    padding: 1.18rem 1.2rem 1.08rem;
+    padding: 1.15rem 1.2rem 1.08rem;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -113,7 +118,7 @@ const cards = [
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.48rem;
   }
 
   .nb-about-panel__icon {
@@ -145,25 +150,25 @@ const cards = [
   .nb-about-panel__body {
     display: flex;
     flex-direction: column;
-    gap: 0.58rem;
+    gap: 0.55rem;
   }
 
   .nb-about-panel__lede {
     margin: 0;
     color: #4f6377;
-    line-height: 1.5;
+    line-height: 1.48;
   }
 
   .nb-about-panel__list {
     margin: 0;
     padding-left: 1.14rem;
     display: grid;
-    gap: 0.48rem;
+    gap: 0.44rem;
   }
 
   .nb-about-panel__list li {
     color: #4f6377;
-    line-height: 1.4;
+    line-height: 1.38;
   }
 
   .nb-about-panel__list li::marker {
