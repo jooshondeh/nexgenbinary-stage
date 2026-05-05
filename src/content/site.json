@@ -2,7 +2,7 @@
   "brand": {
     "name": "NexGen Binary",
     "logoText": "NexGen Binary",
-    "slogan": "Precision Built. People First. Always."
+    "slogan": "Virginia’s Trusted IT Partner"
   },
   "topbar": {
     "phoneText": "Call 804-000-0000",
@@ -88,63 +88,56 @@
       {
         "title": "Fully Managed IT Services",
         "items": [
-          "Workstation, server, and device management across your practice",
-          "Proactive patching, monitoring, and routine maintenance",
-          "Backup oversight and recovery readiness planning",
-          "Responsive support with clear reporting and reviews"
+          "Workstation and server management (local or cloud)",
+          "Patch management, monitoring, and maintenance",
+          "Backup and disaster recovery readiness",
+          "Proactive support reporting and system reviews"
         ]
       },
       {
         "title": "Dental EMR & Clinical Systems Support",
         "items": [
-          "EMR and dental software support, optimization, and troubleshooting",
-          "Coordination for imaging, scanners, sensors, and connected devices",
-          "Secure provider and staff access across clinical systems",
-          "Vendor coordination for upgrades, issues, and system changes"
+          "EMR/EHR platform support and optimization",
+          "Imaging and device integration coordination (X-ray, scanners, and vendor-connected devices)",
+          "Secure access setup for providers and staff",
+          "Coordination with EMR vendors and dental software partners"
         ]
       },
       {
         "title": "Microsoft 365 & Cloud Solutions",
         "items": [
-          "Microsoft 365 setup, licensing, and ongoing administration",
-          "Email security, mailbox support, and data protection guidance",
-          "Teams and SharePoint support for collaboration and file access",
-          "Cloud migration planning for modern, scalable operations"
+          "Microsoft 365 setup, licensing, and administration",
+          "Email security, data protection, and mailbox support",
+          "SharePoint and Teams collaboration support",
+          "Cloud migration and hybrid environment planning"
         ]
       },
       {
         "title": "Security & Cyber Protection",
         "items": [
-          "Endpoint protection, device encryption, and security hardening",
-          "Email security and phishing defense for office staff",
-          "Secure remote access for providers, staff, and approved vendors",
-          "Backup integrity checks and ransomware readiness planning"
-        ]
-      },
-      {
-        "title": "Website, Hosting & Digital Presence",
-        "items": [
-          "Custom website design aligned to your practice and brand",
-          "Mobile-friendly pages built for speed, usability, and trust",
-          "Secure hosting with backups, monitoring, and routine maintenance",
-          "Ongoing content updates and website support as your practice grows"
+          "Endpoint protection and device encryption",
+          "Email security and phishing protection",
+          "Secure remote access for staff and providers",
+          "Backup integrity checks and ransomware preparedness"
         ]
       },
       {
         "title": "Networking, Wi‑Fi, Infrastructure, VoIP & Cameras",
         "items": [
-          "Secure wired and wireless network design for your office",
-          "Segmented Wi‑Fi for staff, clinical systems, and guest access",
-          "Firewall hardening, performance tuning, and network monitoring",
-          "VoIP and camera solutions planned for coverage and reliability"
+          "Secure wired and wireless network design",
+          "VLAN segmentation for clinical and guest traffic",
+          "Firewall management and network security hardening",
+          "Performance monitoring and network optimization",
+          "VoIP systems (call routing and shared main lines)",
+          "Security camera systems (on-site or compliant cloud-based)"
         ]
       }
     ],
-    "subtitle": "Managed IT, security, cloud, networking, and web support for modern dental practices across Virginia."
+    "subtitle": "Comprehensive IT support tailored for dental practices across Virginia—from daily operations and cloud systems to security, networking, and clinical technology."
   },
   "pricing": {
     "title": "Pricing & Service Plans",
-    "subtitle": "Service plans are tailored to your practice's size, systems, and support priorities. Every quote is built around dependable coverage, security, and practical day-to-day support for dental offices across Virginia.",
+    "subtitle": "Pricing and service plans are tailored to your dental practice's needs, including office size, devices, and clinical systems. We build each plan to deliver dependable support, security, and performance at fair, competitive pricing across Virginia.",
     "plans": [
       {
         "name": "Basic Care Plan",

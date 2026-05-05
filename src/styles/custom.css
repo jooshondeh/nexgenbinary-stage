@@ -133,7 +133,7 @@ html, body { scroll-behavior: smooth; }
 .nb-brand-text { display:flex; flex-direction:column; line-height:1.1; min-width:0; }
 .nb-brand-name { font-weight:800; font-size: clamp(1.15rem, 1.8vw, 1.7rem); letter-spacing:-0.02em; white-space:nowrap; }
 .nb-brand-accent{color:var(--nb-orange)}
-.nb-brand-dark{color:#163659}
+.nb-brand-dark{color:#000}
 .nb-brand-slogan { color:#163659; font-size: .72rem; font-weight:700; margin-top:4px; white-space:nowrap; }
 
 .nb-nav-toggle {
