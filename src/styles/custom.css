@@ -114,9 +114,10 @@ html, body { scroll-behavior: smooth; }
 
 .nb-nav-wrap {
   position: sticky; top: 0; z-index: 1000;
-  background: rgba(7,31,55,0.93);
+  background: linear-gradient(180deg, rgba(224,240,248,0.97) 0%, rgba(220,236,248,0.96) 100%);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(36,135,206,0.18);
+  box-shadow: 0 10px 24px rgba(19,59,100,0.08);
 }
 .nb-nav-shell { display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:78px; }
 .nb-brand { display:flex; align-items:center; gap:12px; text-decoration:none; min-width:0; }
@@ -130,19 +131,19 @@ html, body { scroll-behavior: smooth; }
   filter: drop-shadow(0 6px 14px rgba(0,0,0,0.18));
 }
 .nb-brand-text { display:flex; flex-direction:column; line-height:1.1; min-width:0; }
-.nb-brand-name { color:#fff; font-weight:800; font-size: clamp(1.15rem, 1.8vw, 1.7rem); letter-spacing:-0.02em; white-space:nowrap; }
-.nb-brand-slogan { color: rgba(255,255,255,0.92); font-size: .72rem; font-weight:700; margin-top:4px; white-space:nowrap; }
+.nb-brand-name { color:#163659; font-weight:800; font-size: clamp(1.15rem, 1.8vw, 1.7rem); letter-spacing:-0.02em; white-space:nowrap; }
+.nb-brand-slogan { color: #5b6f84; font-size: .72rem; font-weight:700; margin-top:4px; white-space:nowrap; }
 
 .nb-nav-toggle {
-  display:none; width:42px; height:42px; border:1px solid rgba(255,255,255,0.22); border-radius:12px;
-  background: rgba(255,255,255,0.06); padding:0; align-items:center; justify-content:center; flex-direction:column; gap:5px;
+  display:none; width:42px; height:42px; border:1px solid rgba(36,135,206,0.22); border-radius:12px;
+  background: rgba(255,255,255,0.55); padding:0; align-items:center; justify-content:center; flex-direction:column; gap:5px;
 }
-.nb-nav-toggle span { width:20px; height:2px; background:#fff; border-radius:2px; display:block; }
+.nb-nav-toggle span { width:20px; height:2px; background:#163659; border-radius:2px; display:block; }
 
 .nb-nav-menu { display:flex; align-items:center; gap:16px; margin-left:auto; }
 .nb-nav-links { display:flex; align-items:center; gap:8px; list-style:none; margin:0; padding:0; flex-wrap:nowrap; }
 .nb-nav-link {
-  color: rgba(255,255,255,0.9); text-decoration:none; font-weight:700; font-size:1.03rem;
+  color: #244766; text-decoration:none; font-weight:700; font-size:1.03rem;
   padding: 10px 12px; border-radius: 999px; position:relative; white-space:nowrap;
   transition: background-color .18s ease, color .18s ease, transform .18s ease;
 }
@@ -151,14 +152,14 @@ html, body { scroll-behavior: smooth; }
   background: var(--nb-orange); opacity:0; transform: scaleX(.2);
   transition: transform .18s ease, opacity .18s ease;
 }
-.nb-nav-link:hover, .nb-nav-link.active { color:#fff; background: rgba(255,255,255,0.08); }
+.nb-nav-link:hover, .nb-nav-link.active { color:#163659; background: rgba(255,255,255,0.62); }
 .nb-nav-link:hover::after, .nb-nav-link.active::after { opacity:1; transform: scaleX(1); }
 
 .nb-phone-cta {
   display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#fff; font-weight:800;
   background: linear-gradient(180deg, var(--nb-orange-2), var(--nb-orange));
-  border-radius: 999px; padding: 10px 16px; box-shadow: 0 12px 26px rgba(247,147,26,0.24);
-  white-space:nowrap; border:1px solid rgba(255,255,255,0.12);
+  border-radius: 999px; padding: 10px 16px; box-shadow: 0 12px 26px rgba(247,147,26,0.22);
+  white-space:nowrap; border:1px solid rgba(255,255,255,0.18);
 }
 .nb-phone-cta svg { width:18px; height:18px; flex:0 0 auto; }
 
@@ -290,9 +291,9 @@ html, body { scroll-behavior: smooth; }
   .nb-nav-menu {
     position:absolute; top: calc(100% + 8px); left: 12px; right: 12px;
     display:none; flex-direction:column; align-items:stretch; gap:12px;
-    padding: 12px; border-radius: 16px; background: rgba(7,31,55,0.98);
-    border:1px solid rgba(255,255,255,0.12);
-    box-shadow: 0 16px 34px rgba(0,0,0,0.32);
+    padding: 12px; border-radius: 16px; background: rgba(224,240,248,0.99);
+    border:1px solid rgba(36,135,206,0.18);
+    box-shadow: 0 16px 34px rgba(19,59,100,0.14);
   }
   .nb-nav-menu.is-open { display:flex; }
   .nb-nav-links { flex-direction:column; align-items:stretch; gap:4px; }
@@ -1670,89 +1671,5 @@ html, body { scroll-behavior: smooth; }
     max-width:100% !important;
     font-size:1rem !important;
     line-height:1.42 !important;
-  }
-}
-
-
-/* v90: about/who icon scale + services title vertical alignment */
-#services .nb-service-card-standard .nb-service-head {
-  display: grid;
-  grid-template-columns: 50px minmax(0, 1fr);
-  align-items: center;
-  column-gap: 12px;
-  min-height: 50px;
-  margin-bottom: .12rem;
-}
-
-#services .nb-service-card-standard .nb-service-head h3 {
-  min-height: 50px;
-  display: flex;
-  align-items: center;
-}
-
-
-/* --- v83: Section heading alignment unification (services, pricing, who we serve, about) --- */
-.nb-section-header--left {
-  max-width: 920px;
-  margin: 0 0 1.1rem;
-}
-
-#services .nb-section-title,
-#pricing .nb-section-title,
-#who-we-serve .nb-section-title,
-#about .nb-section-title,
-#pricing .nb-section-title.nb-center {
-  text-align: left !important;
-  margin-bottom: .35rem !important;
-}
-
-#services .nb-section-subtitle,
-#pricing .nb-section-subtitle,
-#who-we-serve .nb-section-subtitle,
-#about .nb-section-subtitle,
-#pricing .nb-section-subtitle.nb-center,
-#services .nb-services-intro {
-  text-align: left !important;
-  margin: 0 0 1.05rem !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  max-width: 900px !important;
-  line-height: 1.48 !important;
-  color: #5b6f84 !important;
-}
-
-#services .nb-services-intro,
-#pricing .nb-pricing-intro,
-#who-we-serve .nb-who-intro,
-#about .nb-about-intro {
-  letter-spacing: .005em;
-}
-
-#services .nb-service-head {
-  align-items: center !important;
-}
-
-#services .nb-service-head h3 {
-  display: flex;
-  align-items: center;
-  min-height: 50px;
-}
-
-#pricing .nb-plan-columns {
-  margin-top: .2rem;
-}
-
-@media (max-width: 991px) {
-  .nb-section-header--left {
-    margin-bottom: .95rem;
-  }
-
-  #services .nb-section-subtitle,
-  #pricing .nb-section-subtitle,
-  #who-we-serve .nb-section-subtitle,
-  #about .nb-section-subtitle,
-  #pricing .nb-section-subtitle.nb-center,
-  #services .nb-services-intro {
-    margin-bottom: .9rem !important;
   }
 }
