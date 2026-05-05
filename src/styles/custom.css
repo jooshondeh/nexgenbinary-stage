@@ -91,10 +91,10 @@ h1,h2,h3,h4,.navbar-brand,.section-title{font-family:"Plus Jakarta Sans","Inter"
 .form-control{border-radius:.8rem;border-color:var(--nb-border);padding:.72rem .85rem}.form-control:focus{border-color:#0d6efd;box-shadow:0 0 0 .2rem rgba(13,110,253,.12)}
 .nb-contact-item{display:flex;gap:.7rem;align-items:flex-start}.nb-contact-item .nb-icon-wrap{width:38px;height:38px;min-width:38px;border-radius:10px}
 
-.nb-footer{background:linear-gradient(180deg,#071724,#0a1d2e);color:#eaf4ff;border-top:3px solid rgba(244,136,36,.85);box-shadow:0 -10px 25px rgba(0,0,0,.12)}
-.nb-footer .nb-footer-toplink{color:#eaf4ff!important;text-decoration:none;position:relative}
+.nb-footer{background:linear-gradient(180deg, rgba(224,240,248,0.97) 0%, rgba(220,236,248,0.96) 100%);color:#163659;border-top:1px solid rgba(36,135,206,0.18);box-shadow:0 -10px 24px rgba(19,59,100,0.08)}
+.nb-footer .nb-footer-toplink{color:#244766!important;text-decoration:none;position:relative}
 .nb-footer .nb-footer-toplink::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--nb-orange),#ffc183)}
-.nb-footer .nb-footer-copy{color:#eaf4ff;opacity:.92}
+.nb-footer .nb-footer-copy{color:#163659;opacity:.92}
 
 
 /* --- Stable navbar / hero / services / pricing refresh (v37) --- */
