@@ -53,9 +53,7 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
     const links = Array.from(document.querySelectorAll('.nb-nav-link'));
     if (!header || !toggle || !menu || !links.length) return;
 
-    const ids = links
-      .map((l) => (l.getAttribute('href') || '').replace('#', '').trim())
-      .filter(Boolean);
+    const ids = links.map((l) => (l.getAttribute('href') || '').replace('#', '').trim()).filter(Boolean);
 
     const closeMenu = () => {
       menu.classList.remove('is-open');
@@ -87,7 +85,6 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
 
       const nearBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 4);
       if (nearBottom && ids.length) activeId = ids[ids.length - 1];
-
       applyActive(activeId);
     };
 
@@ -108,8 +105,7 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
 
     const handleOutsideClose = (event) => {
       if (!isMobileNav() || !menu.classList.contains('is-open')) return;
-      const target = event.target;
-      if (header.contains(target)) return;
+      if (header.contains(event.target)) return;
       closeMenu();
     };
 
@@ -137,15 +133,5 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
       setTimeout(setActive, 0);
     });
     window.addEventListener('hashchange', () => setTimeout(setActive, 10));
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
-        if (window.scrollY <= 8) applyActive(ids[0] || 'home');
-        setActive();
-      }, { once: true });
-    } else {
-      if (window.scrollY <= 8) applyActive(ids[0] || 'home');
-      setActive();
-    }
   })();
 </script>
