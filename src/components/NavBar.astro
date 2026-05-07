@@ -10,8 +10,9 @@ const navItems = site?.nav ?? [
   { label: 'Contact', href: '#contact' },
 ];
 const phoneHref = site?.contact?.phoneHref ?? site?.topbar?.phoneHref ?? '#contact';
-const phoneText = site?.contact?.phoneText ?? '804-000-0000';
-const slogan = site?.brand?.slogan ?? 'Precision Built. People First. Always.';
+const rawPhoneText = site?.contact?.phoneText ?? site?.topbar?.phoneText ?? '804-000-0000';
+const phoneText = String(rawPhoneText).replace(/[^\d()+\-\.\s]/g, '').trim() || '804-000-0000';
+const slogan = site?.brand?.slogan ?? 'Virginia’s Trusted IT Partner';
 const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
 ---
 <header class="nb-nav-wrap">
@@ -34,8 +35,10 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
           <li><a class="nb-nav-link" href={item.href}>{item.label}</a></li>
         ))}
       </ul>
-      <a class="nb-phone-cta" href={phoneHref}>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.44.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.19.19 2.34.55 3.44a1 1 0 0 1-.24 1l-2.2 2.86Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <a class="nb-phone-cta" href={phoneHref} aria-label={`Call ${phoneText}`}>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.44.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.19.19 2.34.55 3.44a1 1 0 0 1-.24 1l-2.2 2.86Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         <span>{phoneText}</span>
       </a>
     </nav>
