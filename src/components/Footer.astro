@@ -11,32 +11,31 @@ const googleBusinessUrl = site?.contact?.googleBusinessUrl || 'https://www.googl
 <footer class="nb-footer nb-footer-separated">
   <div class="nb-shell">
     <div class="nb-footer-row">
-      <div class="nb-footer-copy">© {new Date().getFullYear()} {footerBrandName}. All rights reserved.</div>
+      <div class="nb-footer-left">
+        <div class="nb-footer-copy">© {new Date().getFullYear()} {footerBrandName}. All rights reserved.</div>
 
-      <div class="nb-footer-right">
         <nav class="nb-footer-legal" aria-label="Footer links">
           <a href={privacyHref}>Privacy Policy</a>
           <span aria-hidden="true">|</span>
           <a href={termsHref}>Terms of Use</a>
         </nav>
-
-        <a
-          class="nb-footer-google"
-          href={googleBusinessUrl}
-          target="_blank"
-          rel="noopener"
-          aria-label="View our Google Business page"
-          title="Google Business page"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="#4285F4" d="M22 12.27c0-.79-.07-1.54-.2-2.27H12v4.29h5.6a4.79 4.79 0 0 1-2.08 3.14v2.61h3.37C20.86 18.18 22 15.48 22 12.27Z"/>
-            <path fill="#34A853" d="M12 22c2.97 0 5.46-.98 7.28-2.66l-3.37-2.61c-.94.63-2.15 1.01-3.91 1.01-3 0-5.54-2.02-6.45-4.73H2.08v2.97A9.99 9.99 0 0 0 12 22Z"/>
-            <path fill="#FBBC05" d="M5.55 13.01A5.99 5.99 0 0 1 5.2 11c0-.7.12-1.38.35-2.01V6.02H2.08A9.99 9.99 0 0 0 1 11c0 1.61.38 3.13 1.08 4.48l3.47-2.47Z"/>
-            <path fill="#EA4335" d="M12 4.96c1.62 0 3.08.56 4.23 1.66l3.17-3.17C17.45 1.63 14.97.5 12 .5A9.99 9.99 0 0 0 2.08 6.02l3.47 2.97C6.46 6.98 9 4.96 12 4.96Z"/>
-          </svg>
-          <span>Google Business</span>
-        </a>
       </div>
+
+      <a
+        class="nb-footer-google"
+        href={googleBusinessUrl}
+        target="_blank"
+        rel="noopener"
+        aria-label="View our Google Business page"
+        title="Google Business page"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M22 12.27c0-.79-.07-1.54-.2-2.27H12v4.29h5.6a4.79 4.79 0 0 1-2.08 3.14v2.61h3.37C20.86 18.18 22 15.48 22 12.27Z"/>
+          <path fill="#34A853" d="M12 22c2.97 0 5.46-.98 7.28-2.66l-3.37-2.61c-.94.63-2.15 1.01-3.91 1.01-3 0-5.54-2.02-6.45-4.73H2.08v2.97A9.99 9.99 0 0 0 12 22Z"/>
+          <path fill="#FBBC05" d="M5.55 13.01A5.99 5.99 0 0 1 5.2 11c0-.7.12-1.38.35-2.01V6.02H2.08A9.99 9.99 0 0 0 1 11c0 1.61.38 3.13 1.08 4.48l3.47-2.47Z"/>
+          <path fill="#EA4335" d="M12 4.96c1.62 0 3.08.56 4.23 1.66l3.17-3.17C17.45 1.63 14.97.5 12 .5A9.99 9.99 0 0 0 2.08 6.02l3.47 2.97C6.46 6.98 9 4.96 12 4.96Z"/>
+        </svg>
+      </a>
     </div>
   </div>
 </footer>
@@ -57,6 +56,7 @@ const googleBusinessUrl = site?.contact?.googleBusinessUrl || 'https://www.googl
   (() => {
     const btn = document.getElementById('nbFloatTop');
     if (!btn) return;
+
     const targetId = btn.getAttribute('data-target') || 'home';
     const targetSection = document.getElementById(targetId);
     const showButton = () => btn.classList.add('is-visible');
@@ -92,8 +92,16 @@ const googleBusinessUrl = site?.contact?.googleBusinessUrl || 'https://www.googl
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:12px 18px;
+    gap:14px 18px;
     flex-wrap:nowrap;
+  }
+
+  .nb-footer-left{
+    display:flex;
+    align-items:center;
+    gap:14px 16px;
+    min-width:0;
+    flex-wrap:wrap;
   }
 
   .nb-footer-copy{
@@ -102,23 +110,11 @@ const googleBusinessUrl = site?.contact?.googleBusinessUrl || 'https://www.googl
     white-space:nowrap;
   }
 
-  .nb-footer-right{
-    margin-left:auto;
-    min-width:0;
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
-    gap:14px;
-    flex:1 1 auto;
-  }
-
   .nb-footer-legal{
     display:flex;
     align-items:center;
-    justify-content:flex-end;
-    gap:10px 12px;
+    gap:10px;
     flex-wrap:wrap;
-    min-width:0;
   }
 
   .nb-footer-legal a{
@@ -136,29 +132,24 @@ const googleBusinessUrl = site?.contact?.googleBusinessUrl || 'https://www.googl
 
   .nb-footer-google{
     margin-left:auto;
+    width:42px;
+    height:42px;
+    min-width:42px;
     display:inline-flex;
     align-items:center;
-    gap:8px;
-    padding:7px 11px;
+    justify-content:center;
     border-radius:999px;
     background:rgba(11,99,206,0.06);
     border:1px solid rgba(18,58,102,0.08);
     color:#163659;
     text-decoration:none !important;
-    white-space:nowrap;
     flex:0 0 auto;
   }
 
   .nb-footer-google svg{
-    width:16px;
-    height:16px;
-    flex:0 0 auto;
+    width:18px;
+    height:18px;
     display:block;
-  }
-
-  .nb-footer-google span{
-    line-height:1;
-    font-weight:700;
   }
 
   .nb-footer-google:hover{
@@ -230,15 +221,13 @@ const googleBusinessUrl = site?.contact?.googleBusinessUrl || 'https://www.googl
       flex-wrap:wrap;
     }
 
-    .nb-footer-copy{
-      white-space:normal;
+    .nb-footer-left{
+      width:100%;
+      align-items:flex-start;
     }
 
-    .nb-footer-right{
-      width:100%;
-      margin-left:0;
-      justify-content:flex-start;
-      flex-wrap:wrap;
+    .nb-footer-copy{
+      white-space:normal;
     }
 
     .nb-footer-google{

@@ -1,6 +1,7 @@
 ---
 import brandLogo from '../assets/company-logo-navbar.png';
 const { site } = Astro.props;
+
 const navItems = site?.nav ?? [
   { label: 'Home', href: '#home' },
   { label: 'Services', href: '#services' },
@@ -9,6 +10,7 @@ const navItems = site?.nav ?? [
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
+
 const phoneHref = site?.contact?.phoneHref ?? site?.topbar?.phoneHref ?? '#contact';
 const rawPhoneText = site?.contact?.phoneText ?? site?.topbar?.phoneText ?? '804-000-0000';
 const phoneText = String(rawPhoneText).replace(/[^\d()+\-\.\s]/g, '').trim() || '804-000-0000';
@@ -35,6 +37,7 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
           <li><a class="nb-nav-link" href={item.href}>{item.label}</a></li>
         ))}
       </ul>
+
       <a class="nb-phone-cta" href={phoneHref} aria-label={`Call ${phoneText}`}>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.44.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.19.19 2.34.55 3.44a1 1 0 0 1-.24 1l-2.2 2.86Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
@@ -85,6 +88,7 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
 
       const nearBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 4);
       if (nearBottom && ids.length) activeId = ids[ids.length - 1];
+
       applyActive(activeId);
     };
 
@@ -119,19 +123,23 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
       if (isMobileNav() && menu.classList.contains('is-open')) closeMenu();
       setActive();
     }, { passive: true });
+
     window.addEventListener('resize', () => {
       if (!isMobileNav()) closeMenu();
       setActive();
     });
+
     window.addEventListener('load', () => {
       if (window.scrollY <= 8) applyActive(ids[0] || 'home');
       setTimeout(setActive, 0);
       setTimeout(setActive, 120);
     });
+
     window.addEventListener('pageshow', () => {
       if (window.scrollY <= 8) applyActive(ids[0] || 'home');
       setTimeout(setActive, 0);
     });
+
     window.addEventListener('hashchange', () => setTimeout(setActive, 10));
   })();
 </script>
