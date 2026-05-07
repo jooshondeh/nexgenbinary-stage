@@ -6,16 +6,33 @@ const safeTopTarget = (topTarget || 'home').replace(/^#/, '') || 'home';
 const base = (import.meta.env.BASE_URL ?? '/').replace(/\/?$/, '/');
 const privacyHref = `${base}privacy`;
 const termsHref = `${base}terms`;
+const googleBusinessUrl = site?.contact?.googleBusinessUrl || 'https://www.google.com/search?q=NexGen+Binary+LLC+Virginia';
 ---
 <footer class="nb-footer nb-footer-separated">
   <div class="nb-shell">
     <div class="nb-footer-row">
       <div class="nb-footer-copy">© {new Date().getFullYear()} {footerBrandName}. All rights reserved.</div>
 
-      <nav class="nb-footer-legal" aria-label="Legal">
+      <nav class="nb-footer-legal" aria-label="Footer links">
         <a href={privacyHref}>Privacy Policy</a>
         <span aria-hidden="true">|</span>
         <a href={termsHref}>Terms of Use</a>
+        <a
+          class="nb-footer-google"
+          href={googleBusinessUrl}
+          target="_blank"
+          rel="noopener"
+          aria-label="View our Google Business page"
+          title="Google Business page"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#4285F4" d="M22 12.27c0-.79-.07-1.54-.2-2.27H12v4.29h5.6a4.79 4.79 0 0 1-2.08 3.14v2.61h3.37C20.86 18.18 22 15.48 22 12.27Z"/>
+            <path fill="#34A853" d="M12 22c2.97 0 5.46-.98 7.28-2.66l-3.37-2.61c-.94.63-2.15 1.01-3.91 1.01-3 0-5.54-2.02-6.45-4.73H2.08v2.97A9.99 9.99 0 0 0 12 22Z"/>
+            <path fill="#FBBC05" d="M5.55 13.01A5.99 5.99 0 0 1 5.2 11c0-.7.12-1.38.35-2.01V6.02H2.08A9.99 9.99 0 0 0 1 11c0 1.61.38 3.13 1.08 4.48l3.47-2.47Z"/>
+            <path fill="#EA4335" d="M12 4.96c1.62 0 3.08.56 4.23 1.66l3.17-3.17C17.45 1.63 14.97.5 12 .5A9.99 9.99 0 0 0 2.08 6.02l3.47 2.97C6.46 6.98 9 4.96 12 4.96Z"/>
+          </svg>
+          <span>Google Business</span>
+        </a>
       </nav>
     </div>
   </div>
@@ -92,7 +109,7 @@ const termsHref = `${base}terms`;
   .nb-footer-legal{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:10px 12px;
     flex-wrap:wrap;
   }
 
@@ -106,6 +123,33 @@ const termsHref = `${base}terms`;
   .nb-footer-legal a:hover{
     color:#163659;
     text-decoration:underline;
+  }
+
+  .nb-footer-google{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 11px;
+    border-radius:999px;
+    background:rgba(11,99,206,0.06);
+    border:1px solid rgba(18,58,102,0.08);
+    text-decoration:none !important;
+  }
+
+  .nb-footer-google svg{
+    width:16px;
+    height:16px;
+    flex:0 0 auto;
+    display:block;
+  }
+
+  .nb-footer-google span{
+    line-height:1;
+  }
+
+  .nb-footer-google:hover{
+    background:rgba(11,99,206,0.1);
+    text-decoration:none !important;
   }
 
   .nb-float-top{

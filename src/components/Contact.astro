@@ -4,12 +4,10 @@ import IconBadge from "./IconBadge.astro";
 const c = site.contact ?? {};
 const formEndpoint = c.formEndpoint ?? "";
 const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
-const googleBusinessUrl = c.googleBusinessUrl || 'https://www.google.com/search?q=NexGen+Binary+LLC+Virginia';
-const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
 ---
 <section id="contact" class="nb-anchor-offset nb-section">
   <div class="nb-shell">
-    <div class="row g-3 align-items-start nb-contact-grid">
+    <div class="row g-3 align-items-stretch nb-contact-grid">
       <div class="col-lg-5 d-flex nb-contact-left-col">
         <div class="w-100 d-flex flex-column nb-contact-sticky">
           <h2 class="section-title fw-bold mb-0">{c.title}</h2>
@@ -47,16 +45,6 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
               <div class="nb-contact-item-body">
                 <div class="small text-secondary">Business address</div>
                 <div class="fw-semibold nb-contact-address">11357 Nuckols Rd<br />Glen Allen, VA 23059</div>
-              </div>
-            </div>
-
-
-            <div class="nb-contact-item">
-              <div class="nb-icon-wrap nb-contact-item-icon"><IconBadge name="location" /></div>
-              <div class="nb-contact-item-body">
-                <div class="small text-secondary">Google business page</div>
-                <a href={googleBusinessUrl}
-              >{googleBusinessLabel}</a>
               </div>
             </div>
 
@@ -543,6 +531,7 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
     #contact .nb-contact-form-card {
       min-width: 0;
       overflow: hidden;
+      height: 100%;
       border: 1px solid rgba(16, 52, 86, 0.08);
       box-shadow: 0 16px 32px rgba(15, 42, 72, 0.06);
       border-radius: 1.05rem;
@@ -557,7 +546,7 @@ const googleBusinessLabel = c.googleBusinessLabel || 'Find us on Google';
 
     #contact .nb-contact-left-col {
       display: flex;
-      align-items: flex-start;
+      align-items: stretch;
       min-width: 0;
     }
 
