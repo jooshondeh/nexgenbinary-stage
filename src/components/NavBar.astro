@@ -12,19 +12,14 @@ const navItems = site?.nav ?? [
 ];
 
 const phoneHref = site?.contact?.phoneHref ?? site?.topbar?.phoneHref ?? '#contact';
-const rawPhoneText = site?.contact?.phoneText ?? site?.topbar?.phoneText ?? '804-000-0000';
-const phoneText = String(rawPhoneText).replace(/[^\d()+\-\.\s]/g, '').trim() || '804-000-0000';
-const slogan = site?.brand?.slogan ?? 'Virginia’s Trusted IT Partner';
+const rawPhoneText = site?.contact?.phoneText ?? site?.topbar?.phoneText ?? '(804) 460-9640';
+const phoneText = String(rawPhoneText).replace(/[^\d()+\-\.\s]/g, '').trim() || '(804) 460-9640';
 const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
 ---
 <header class="nb-nav-wrap">
   <div class="nb-shell nb-nav-shell">
     <a class="nb-brand" href="#home" aria-label="NexGen Binary home">
-      <img class="nb-brand-logo" src={logoSrc} alt="NexGen Binary logo" width="52" height="52" />
-      <span class="nb-brand-text">
-        <span class="nb-brand-name">{site?.brand?.name ?? 'NexGen Binary'}</span>
-        <span class="nb-brand-slogan">{slogan}</span>
-      </span>
+      <img class="nb-brand-logo" src={logoSrc} alt="NexGen Binary" width="160" height="86" decoding="async" fetchpriority="high" />
     </a>
 
     <button class="nb-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nb-nav-menu">

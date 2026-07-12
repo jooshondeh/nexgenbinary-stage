@@ -4,6 +4,10 @@ const { site } = Astro.props;
 const items = site?.whatWeDo?.items ?? [];
 const iconMap = ['monitor','lockshield','tools','pin'];
 const callHref = site?.contact?.phoneHref ?? site?.topbar?.phoneHref ?? '#contact';
+const phoneText = site?.contact?.phoneText ?? '';
+const callText = site?.hero?.secondaryCta || (phoneText ? `Call ${phoneText}` : 'Call Us');
+const bookingUrl = site?.bookings?.embedUrl || site?.bookings?.url || '';
+const bookingAvailable = Boolean(bookingUrl);
 const rawHeadline = site?.hero?.headline ?? 'Future-Ready Systems. Human-Ready Support.';
 const headlineLines = rawHeadline === 'Future-Ready Systems. Human-Ready Support.'
   ? ['Future‑Ready', 'Systems.', 'Human‑Ready', 'Support.']
@@ -23,13 +27,17 @@ const headlineLines = rawHeadline === 'Future-Ready Systems. Human-Ready Support
       </h1>
       <p class="nb-hero-subtitle">{site?.hero?.subheadline}</p>
       <div class="nb-hero-actions">
-        <a class="nb-btn-primary" href="#booking" data-nb-booking-open>
+        <a
+          class="nb-btn-primary"
+          href={bookingAvailable ? '#booking' : '#contact'}
+          data-nb-booking-open={bookingAvailable ? '' : undefined}
+        >
           <IconBadge name="calendar" />
-          <span>{site?.hero?.primaryCta || 'Book a Consultation'}</span>
+          <span>{site?.hero?.primaryCta || 'Request a Consultation'}</span>
         </a>
         <a class="nb-btn-ghost" href={callHref}>
           <IconBadge name="phone" />
-          <span>{site?.hero?.secondaryCta || 'Call Us'}</span>
+          <span>{callText}</span>
         </a>
       </div>
     </div>

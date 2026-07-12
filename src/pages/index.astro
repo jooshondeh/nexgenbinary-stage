@@ -12,7 +12,7 @@ import Footer from "../components/Footer.astro";
 import BookingModal from "../components/BookingModal.astro";
 import site from "../content/site.json";
 ---
-<Base title={site.brand?.name} description="Reliable IT, security, and support services for dental practices across Virginia.">
+<Base title={site.brand?.name} description="Reliable IT, security, and support services for dental practices across Virginia." site={site}>
   <NavBar site={site} />
   <Hero site={site} />
   <WhyUs site={site} />

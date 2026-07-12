@@ -9,10 +9,14 @@ const homeHref = `${base}#home`;
 const contactHref = `${base}#contact`;
 const privacyHref = `${base}privacy`;
 const termsHref = `${base}terms`;
-const fallbackHref = site?.bookings?.url ?? "#";
-const rawEmbedUrl = site?.bookings?.embedUrl ?? "";
-const embedUrl = rawEmbedUrl && !rawEmbedUrl.includes("PASTE-YOUR-EMBED-LINK") ? rawEmbedUrl : fallbackHref;
+const configuredBookingUrl = (site?.bookings?.url ?? "").trim();
+const rawEmbedUrl = (site?.bookings?.embedUrl ?? "").trim();
+const validEmbedUrl = rawEmbedUrl && !rawEmbedUrl.includes("PASTE-YOUR-EMBED-LINK") ? rawEmbedUrl : "";
+const bookingAvailable = Boolean(configuredBookingUrl || validEmbedUrl);
+const fallbackHref = configuredBookingUrl || contactHref;
+const embedUrl = validEmbedUrl || configuredBookingUrl;
 const phoneHref = site?.contact?.phoneHref ?? site?.topbar?.phoneHref ?? "#";
+const phoneText = site?.contact?.phoneText ?? "(804) 460-9640";
 const emailHref = site?.contact?.emailHref ?? "mailto:info@nexgenbinary.com";
 const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
 ---
@@ -25,16 +29,16 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
     <section class="nb-book-hero">
       <div class="nb-shell nb-book-hero__inner">
         <a class="nb-book-brand" href={homeHref} aria-label="Return to NexGen Binary home">
-          <img src={logoSrc} alt="NexGen Binary logo" width="48" height="48" />
+          <img src={logoSrc} alt="NexGen Binary" width="148" height="79" />
           <span>
-            <strong>{site.brand?.name ?? "NexGen Binary"}</strong>
+            <strong>Consultation Booking</strong>
             <small>Dental IT services across Virginia</small>
           </span>
         </a>
 
         <div class="nb-book-hero__actions">
           <a class="nb-book-link" href={homeHref}>Back to website</a>
-          <a class="nb-book-link" href={phoneHref}>Call us</a>
+          <a class="nb-book-link" href={phoneHref}>Call {phoneText}</a>
         </div>
       </div>
     </section>
@@ -69,7 +73,14 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
             <li>Add your practice or organization name in the notes.</li>
             <li>Do not include patient information or other protected health information in booking notes.</li>
           </ul>
-          <a class="nb-book-sidecard__cta" href={fallbackHref} target="_blank" rel="noopener">Open the booking page in a new tab</a>
+          <a
+            class="nb-book-sidecard__cta"
+            href={fallbackHref}
+            target={bookingAvailable ? '_blank' : undefined}
+            rel={bookingAvailable ? 'noopener' : undefined}
+          >
+            {bookingAvailable ? 'Open the booking page in a new tab' : 'Request a consultation'}
+          </a>
         </aside>
       </div>
     </section>
@@ -79,21 +90,39 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
         <div class="nb-book-frame-card">
           <div class="nb-book-frame-card__head">
             <div>
-              <h2>Book a Consultation with NexGen Binary</h2>
-              <p>If the embedded calendar doesn’t load in your browser, use the backup link below.</p>
+              <h2>{bookingAvailable ? 'Book a Consultation with NexGen Binary' : 'Request a Consultation'}</h2>
+              <p>{bookingAvailable ? 'If the embedded calendar doesn’t load in your browser, use the backup link.' : 'Online scheduling is being finalized. Contact us and we’ll coordinate a time directly.'}</p>
             </div>
-            <a class="nb-book-link nb-book-link--strong" href={fallbackHref} target="_blank" rel="noopener">Open in a new tab</a>
+            <a
+              class="nb-book-link nb-book-link--strong"
+              href={fallbackHref}
+              target={bookingAvailable ? '_blank' : undefined}
+              rel={bookingAvailable ? 'noopener' : undefined}
+            >
+              {bookingAvailable ? 'Open in a new tab' : 'Contact us'}
+            </a>
           </div>
 
-          <div class="nb-book-iframe-wrap">
-            <iframe
-              src={embedUrl}
-              title="NexGen Binary booking page"
-              loading="eager"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allow="fullscreen"
-            ></iframe>
-          </div>
+          {bookingAvailable ? (
+            <div class="nb-book-iframe-wrap">
+              <iframe
+                src={embedUrl}
+                title="NexGen Binary booking page"
+                loading="eager"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="fullscreen"
+              ></iframe>
+            </div>
+          ) : (
+            <div class="nb-book-unavailable">
+              <h3>Choose the easiest way to reach us</h3>
+              <p>Call <a href={phoneHref}>{phoneText}</a>, <a href={emailHref}>email us</a>, or use the website contact form. We typically respond within one business day.</p>
+              <div class="nb-book-unavailable__actions">
+                <a class="nb-book-link nb-book-link--strong" href={phoneHref}>Call {phoneText}</a>
+                <a class="nb-book-link nb-book-link--light" href={contactHref}>Open contact form</a>
+              </div>
+            </div>
+          )}
 
           <p class="nb-book-legal-note">
             By scheduling, you acknowledge our
@@ -120,7 +149,7 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
   }
   .nb-book-hero__inner{display:flex; align-items:center; justify-content:space-between; gap:16px;}
   .nb-book-brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:#fff; min-width:0;}
-  .nb-book-brand img{display:block; width:48px; height:48px; object-fit:contain; filter:drop-shadow(0 6px 14px rgba(0,0,0,.18));}
+  .nb-book-brand img{display:block; width:138px; height:auto; object-fit:contain; background:#fff; border-radius:12px; padding:5px 7px; filter:drop-shadow(0 6px 14px rgba(0,0,0,.18));}
   .nb-book-brand strong{display:block; font-size:1.1rem; letter-spacing:-.02em;}
   .nb-book-brand small{display:block; color:rgba(255,255,255,.78); margin-top:2px;}
   .nb-book-hero__actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
@@ -153,6 +182,13 @@ const logoSrc = (brandLogo && brandLogo.src) ? brandLogo.src : brandLogo;
   .nb-book-frame-card__head p{margin:6px 0 0; color:#64778a;}
   .nb-book-iframe-wrap{border:1px solid #d9e3ee; border-radius:22px; overflow:hidden; background:#fff; min-height:1500px;}
   .nb-book-iframe-wrap iframe{display:block; width:100%; min-height:1500px; border:0; background:#fff;}
+  .nb-book-unavailable{padding:32px; border:1px solid #d9e3ee; border-radius:22px; background:linear-gradient(180deg,#f8fbff,#eef5fb);}
+  .nb-book-unavailable h3{margin:0 0 8px; color:#17324f; font-size:1.25rem;}
+  .nb-book-unavailable p{margin:0; color:#56697b; line-height:1.7;}
+  .nb-book-unavailable a{font-weight:700;}
+  .nb-book-unavailable__actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
+  .nb-book-link--light{color:#17324f; background:#fff; border-color:#cbd9e7;}
+  .nb-book-link--light:hover{color:#17324f; background:#f8fbff;}
 
   .nb-book-legal-note{
     margin:14px 6px 0;

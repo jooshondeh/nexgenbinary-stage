@@ -4,6 +4,12 @@ import IconBadge from "./IconBadge.astro";
 const c = site.contact ?? {};
 const formEndpoint = c.formEndpoint ?? "";
 const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
+const addressLine1 = c.addressLine1 ?? "11357 Nuckols Rd";
+const addressLine2 = c.addressLine2 ?? "Glen Allen, VA 23059";
+const addressHref = c.addressHref ?? "https://www.google.com/maps/search/?api=1&query=11357+Nuckols+Rd%2C+Glen+Allen%2C+VA+23059";
+const bookingUrl = site?.bookings?.embedUrl || site?.bookings?.url || "";
+const bookingAvailable = Boolean(bookingUrl);
+const formConnected = Boolean(formEndpoint);
 ---
 <section id="contact" class="nb-anchor-offset nb-section">
   <div class="nb-shell">
@@ -32,6 +38,16 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
               </div>
             </div>
 
+            <div class="nb-contact-item mb-3">
+              <div class="nb-icon-wrap nb-contact-item-icon"><IconBadge name="location" /></div>
+              <div class="nb-contact-item-body">
+                <div class="small text-secondary">Business address</div>
+                <a class="fw-semibold nb-contact-address" href={addressHref} target="_blank" rel="noopener">
+                  {addressLine1}<br />{addressLine2}
+                </a>
+              </div>
+            </div>
+
             <div class="nb-contact-item">
               <div class="nb-icon-wrap nb-contact-item-icon"><IconBadge name="clock" /></div>
               <div class="nb-contact-item-body">
@@ -40,25 +56,17 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
               </div>
             </div>
 
-            <div class="nb-contact-item mb-3">
-              <div class="nb-icon-wrap nb-contact-item-icon"><IconBadge name="location" /></div>
-              <div class="nb-contact-item-body">
-                <div class="small text-secondary">Business address</div>
-                <div class="fw-semibold nb-contact-address">11357 Nuckols Rd<br />Glen Allen, VA 23059</div>
-              </div>
-            </div>
-
             <a
               class="btn nb-btn-primary mt-3 align-self-start nb-contact-booking"
-              href="#booking"
-              data-nb-booking-open>
+              href={bookingAvailable ? '#booking' : '#contact'}
+              data-nb-booking-open={bookingAvailable ? '' : undefined}>
               <svg viewBox="0 0 24 24" aria-hidden="true" class="nb-inline-icon">
                 <rect x="3" y="5" width="18" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2" />
                 <path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               </svg>
-              Book a consult
+              {bookingAvailable ? 'Book a consult' : 'Request a consult'}
             </a>
-            <p class="nb-contact-booking-note mb-0">Prefer a scheduled conversation? Use booking to pick a time that works for your office.</p>
+            <p class="nb-contact-booking-note mb-0">{bookingAvailable ? 'Prefer a scheduled conversation? Use booking to pick a time that works for your office.' : 'Prefer a scheduled conversation? Send a message or call us and we’ll coordinate a time.'}</p>
           </div>
         </div>
       </div>
@@ -66,11 +74,12 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
       <div class="col-lg-7 d-flex">
         <div class="p-4 nb-card w-100 d-flex flex-column nb-contact-form-card">
           <h3 class="h5 fw-bold mb-1">Send a message</h3>
-          <p class="nb-contact-form-helper text-secondary mb-3">Tell us about your practice, systems, or support needs. Required fields are marked with <span class="text-danger">*</span>.</p>
+          <p class="nb-contact-form-helper text-secondary mb-3">Tell us about your practice, systems, or support needs. Required fields are marked with <span class="text-danger">*</span>. {formConnected ? 'Your message will be submitted securely.' : 'After validation, your mail app will open with the message prepared for you to send.'}</p>
 
           <form id="contactForm" class="row g-3 nb-contact-form-grid" novalidate>
             <input type="hidden" id="contactEndpoint" value={formEndpoint} />
             <input type="hidden" id="contactHcaptchaSiteKey" value={hcaptchaSiteKey} />
+            <input type="hidden" id="contactFallbackEmail" value={c.emailText || "info@nexgenbinary.com"} />
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="d-none" aria-hidden="true" />
             <input type="hidden" name="_subject" value="New website message from NexGen Binary LLC" />
 
@@ -118,7 +127,7 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
                   <path d="M3 11.5 21 3l-8.5 18-1.9-6.6L3 11.5Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" />
                   <path d="M10.6 14.4 21 3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
                 </svg>
-                <span id="contactSubmitLabel">Send message</span>
+                <span id="contactSubmitLabel">{formConnected ? 'Send message' : 'Prepare email'}</span>
               </button>
               <a class="btn btn-outline-secondary rounded-pill nb-contact-mail-btn" href={c.emailHref}>Email using my mail app</a>
             </div>
@@ -154,6 +163,7 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
     const successModal = document.getElementById('contactSuccessModal');
     const successModalOk = document.getElementById('contactSuccessOk');
     const hcaptchaSiteKey = (document.getElementById('contactHcaptchaSiteKey')?.value || '').trim();
+    const fallbackEmail = (document.getElementById('contactFallbackEmail')?.value || 'info@nexgenbinary.com').trim();
     const captchaErrorEl = document.getElementById('contact-captcha-error');
     const hcaptchaWidgetEl = document.getElementById('contactHcaptchaWidget');
     let hcaptchaWidgetId = null;
@@ -384,8 +394,20 @@ const hcaptchaSiteKey = c.hcaptchaSiteKey ?? "";
         return;
       }
 
-      if (!endpoint || endpoint.includes('example.com') || endpoint.includes('PASTE-POWER-AUTOMATE')) {
-        setStatus('Contact form is not connected yet. Please use the email button for now.', 'error');
+      if (!endpoint) {
+        const fd = new FormData(form);
+        const subject = `Website consultation request — ${String(fd.get('name') || 'Prospective client').trim()}`;
+        const body = [
+          `Name: ${String(fd.get('name') || '').trim()}`,
+          `Email: ${String(fd.get('email') || '').trim()}`,
+          `Phone: ${String(fd.get('phone') || '').trim() || 'Not provided'}`,
+          `Practice / Organization: ${String(fd.get('org') || '').trim() || 'Not provided'}`,
+          '',
+          'Message:',
+          String(fd.get('message') || '').trim(),
+        ].join('\n');
+        setStatus('Opening your mail app with the message prepared…', 'neutral');
+        window.location.href = `mailto:${encodeURIComponent(fallbackEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         return;
       }
 

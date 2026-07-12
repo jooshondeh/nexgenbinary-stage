@@ -1677,3 +1677,92 @@ html, body { scroll-behavior: smooth; }
     line-height:1.42 !important;
   }
 }
+
+/* --- 2026-07 brand/contact/responsive polish --- */
+.nb-nav-shell{
+  min-height:88px;
+}
+
+.nb-brand{
+  flex:0 0 auto;
+  line-height:0;
+}
+
+.nb-brand-logo{
+  display:block;
+  width:150px !important;
+  height:auto !important;
+  max-height:78px;
+  object-fit:contain;
+  filter:drop-shadow(0 5px 12px rgba(22,54,89,.14));
+}
+
+.nb-nav-menu{
+  min-width:0;
+}
+
+.nb-phone-cta,
+#home .nb-btn-ghost{
+  white-space:nowrap;
+}
+
+#contact .nb-contact-address{
+  display:inline-block;
+  color:#163659;
+  line-height:1.38;
+  text-decoration:none;
+}
+
+#contact .nb-contact-address:hover{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+:where(a,button,input,textarea):focus-visible{
+  outline:3px solid rgba(247,147,26,.55);
+  outline-offset:3px;
+}
+
+@media (max-width:1080px){
+  .nb-nav-shell{
+    min-height:78px;
+  }
+
+  .nb-brand-logo{
+    width:136px !important;
+    max-height:70px;
+  }
+}
+
+@media (max-width:640px){
+  .nb-nav-shell{
+    min-height:72px;
+  }
+
+  .nb-brand-logo{
+    width:122px !important;
+    max-height:64px;
+  }
+
+  .nb-nav-toggle{
+    flex:0 0 auto;
+  }
+}
+
+@media (max-width:380px){
+  .nb-brand-logo{
+    width:112px !important;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  html,body{
+    scroll-behavior:auto !important;
+  }
+
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+}
