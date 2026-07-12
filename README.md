@@ -1,50 +1,45 @@
-# NexGen Binary staging website
+# NexGen Binary staging deployment package
 
-Astro 7 static website for the NexGen Binary GitHub Pages staging environment.
+This package contains a fully built static version of the NexGen Binary staging website. It intentionally does not require Astro, Bootstrap, or any other npm dependency during GitHub Actions deployment.
 
-## Current staging configuration
+## Why this package fixes exit code 127
 
-- Staging URL base: `/nexgenbinary-stage`
-- Deployment: GitHub Actions workflow in `.github/workflows/astro.yml`
-- Staging is intentionally set to `noindex` and `public/robots.txt` blocks crawlers.
-- The navbar logo, page-header logos, favicon, Apple touch icon, and web-app icons use the supplied NexGen Binary transparent logo artwork.
-- Main phone: `(804) 460-9640`
-- Address: `11357 Nuckols Rd, Glen Allen, VA 23059`
+The staging repository currently combines an Astro 7 `package.json` with an older workflow that still selects Node.js 20. Astro 7 requires Node.js 22.12 or newer, so the **Build site** step fails.
 
-## Edit site content
+This package removes that runtime conflict entirely:
 
-Most business copy, contact details, plan descriptions, and booking/form settings are in:
+- `npm ci` installs no third-party packages.
+- `npm run build` uses only Node.js built-in modules.
+- The build works with the repository's existing Node 20 workflow and with the included Node 22 workflow.
+- The build validates the logo assets, phone number, address, and required pages before copying the static site to `dist/`.
 
-- `src/content/site.json`
+## Included site corrections
 
-Global styles are in:
+- Transparent NexGen Binary logo in the top-left navigation.
+- Matching favicon, Apple touch icon, web-app icons, and browser-tab branding.
+- Phone number `(804) 460-9640` in the top navigation, home Call button, contact section, booking page, privacy page, and terms page.
+- Contact address `11357 Nuckols Rd, Glen Allen, VA 23059` with a Google Maps link.
+- Responsive navigation and layouts for desktop, tablet, mobile, and small mobile widths.
+- Keyboard focus styling, reduced-motion support, and local compiled CSS/JavaScript assets.
+- Staging-only `noindex` and crawler blocking.
 
-- `src/styles/custom.css`
+## Upload to GitHub
 
-## Contact form behavior
+1. Extract this ZIP. Do not upload the ZIP file itself.
+2. Upload the extracted contents to the root of `jooshondeh/nexgenbinary-stage`.
+3. Replace `package.json` and `package-lock.json` together in the same commit.
+4. Make sure the new `site/` and `scripts/` folders are included.
+5. The `.github/workflows/astro.yml` file is also updated. After upload, open that file on GitHub and verify it shows Node 22 and `actions/checkout@v5`.
+6. Commit to `main`.
 
-`contact.formEndpoint` is currently blank. Until an endpoint is added, the validated contact form opens the visitor's email app with a prepared message addressed to `info@nexgenbinary.com`. To submit directly from the website, add a Formspree or compatible HTTPS endpoint to `contact.formEndpoint` in `src/content/site.json`.
+Even if the hidden `.github` folder is accidentally missed, the existing Node 20 workflow will still succeed because this package's build script supports Node 20.
 
-## Booking behavior
-
-`bookings.url` and `bookings.embedUrl` are currently blank. Booking buttons therefore route visitors to the contact section, and the booking page displays phone/email/contact options instead of a broken iframe. Add the final scheduling URL in `src/content/site.json` when available.
-
-## Local build
-
-Requires Node.js 22 or newer.
+## Local verification
 
 ```bash
 npm ci
 npm run build
+npm run preview
 ```
 
-The generated static site is written to `dist/`.
-
-## Deploy to GitHub Pages
-
-1. Extract/copy this package into the staging repository root.
-2. Commit and push to the `main` branch.
-3. In GitHub repository settings, set **Pages → Source** to **GitHub Actions**.
-4. The included workflow installs dependencies, builds Astro, and deploys `dist/`.
-
-For production, update `site` and `base` in `astro.config.mjs`, remove the staging `noindex` meta tag from `src/layouts/Base.astro`, and replace `public/robots.txt` with the production crawl policy.
+Then open `http://127.0.0.1:4321/nexgenbinary-stage/`.

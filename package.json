@@ -1,15 +1,13 @@
 {
-  "name": "nexgenbinary-site",
-  "type": "module",
-  "version": "0.1.0",
+  "name": "nexgenbinary-staging-site",
+  "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+  "type": "module",
+  "engines": {
+    "node": ">=20.3.0"
   },
-  "dependencies": {
-    "astro": "^7.0.7",
-    "bootstrap": "^5.3.3"
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs"
   }
 }
