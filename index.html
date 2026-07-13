@@ -3,7 +3,7 @@
       window.addEventListener('load', () => {
         try { window.scrollTo({ top: 0, left: 0, behavior: 'auto' }); } catch { window.scrollTo(0, 0); }
       });
-    </script><link rel="stylesheet" href="/nexgenbinary-stage/_astro/company-logo-navbar.e0tzLL31.css"><link rel="stylesheet" href="/nexgenbinary-stage/_astro/index.B8Kfe5tV.css"><link rel="stylesheet" href="/nexgenbinary-stage/site-fixes-v5.css?v=20260713f"></head><body><header class="nb-nav-wrap"><div class="nb-shell nb-nav-shell"><a class="nb-brand" href="#home" aria-label="NexGen Binary home"><img class="nb-brand-logo" src="/nexgenbinary-stage/_astro/company-logo-navbar.CykzHdn4.png" alt="NexGen Binary logo" width="1910" height="1023" decoding="async" fetchpriority="high"><span class="nb-brand-text"><span class="nb-brand-name">NexGen Binary</span><span class="nb-brand-slogan">Virginia’s Trusted Dental IT Partner</span></span></a><button class="nb-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nb-nav-menu"><span></span><span></span><span></span></button><nav id="nb-nav-menu" class="nb-nav-menu" aria-label="Primary"><ul class="nb-nav-links"><li><a class="nb-nav-link" href="#home">Home</a></li><li><a class="nb-nav-link" href="#services">Services</a></li><li><a class="nb-nav-link" href="#pricing">Pricing</a></li><li><a class="nb-nav-link" href="#who-we-serve">Who We Serve</a></li><li><a class="nb-nav-link" href="#about">About</a></li><li><a class="nb-nav-link" href="#contact">Contact</a></li></ul><a class="nb-phone-cta" href="tel:+18044609640" aria-label="Call (804) 460-9640"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.44.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.19.19 2.34.55 3.44a1 1 0 0 1-.24 1l-2.2 2.86Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="nb-phone-number">(804) 460-9640</span></a></nav></div></header><script>
+    </script><link rel="stylesheet" href="/nexgenbinary-stage/_astro/company-logo-navbar.e0tzLL31.css"><link rel="stylesheet" href="/nexgenbinary-stage/_astro/index.B8Kfe5tV.css"><link rel="stylesheet" href="/nexgenbinary-stage/site-fixes-v6.css?v=20260713g"></head><body><header class="nb-nav-wrap"><div class="nb-shell nb-nav-shell"><a class="nb-brand" href="#home" aria-label="NexGen Binary home"><img class="nb-brand-logo" src="/nexgenbinary-stage/_astro/company-logo-navbar.CykzHdn4.png" alt="NexGen Binary logo" width="1910" height="1023" decoding="async" fetchpriority="high"><span class="nb-brand-text"><span class="nb-brand-name">NexGen Binary</span><span class="nb-brand-slogan">Virginia’s Trusted Dental IT Partner</span></span></a><button class="nb-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nb-nav-menu"><span></span><span></span><span></span></button><nav id="nb-nav-menu" class="nb-nav-menu" aria-label="Primary"><ul class="nb-nav-links"><li><a class="nb-nav-link" href="#home">Home</a></li><li><a class="nb-nav-link" href="#services">Services</a></li><li><a class="nb-nav-link" href="#pricing">Pricing</a></li><li><a class="nb-nav-link" href="#who-we-serve">Who We Serve</a></li><li><a class="nb-nav-link" href="#about">About</a></li><li><a class="nb-nav-link" href="#contact">Contact</a></li></ul><a class="nb-phone-cta" href="tel:+18044609640" aria-label="Call (804) 460-9640"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.44.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.19.19 2.34.55 3.44a1 1 0 0 1-.24 1l-2.2 2.86Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="nb-phone-number">(804) 460-9640</span></a></nav></div></header><script>
   (() => {
     const header = document.querySelector('.nb-nav-wrap');
     const toggle = document.querySelector('.nb-nav-toggle');
@@ -185,82 +185,83 @@
     })();</script><script id="nb-phone-icon-cleanup">
   (() => {
     const PHONE = '(804) 460-9640';
-    const cleanText = (value) => String(value || '')
-      .replace(/[\u{1F4DE}\u{1F4F1}\u{1F4F2}\u{1F919}\u{260E}\u{FE0F}\u{200D}]/gu, '')
-      .replace(/\s{2,}/g, ' ')
-      .trim();
 
-    const removeUnexpectedChildren = (element, keepSelector) => {
-      if (!element) return;
-      Array.from(element.children).forEach((child) => {
-        if (!child.matches(keepSelector)) child.remove();
-      });
+    const headerMarkup = `
+      <svg data-nb-call-icon="header" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.44.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.19.19 2.34.55 3.44a1 1 0 0 1-.24 1l-2.2 2.86Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      <span class="nb-phone-number">${PHONE}</span>`;
+
+    const heroMarkup = `
+      <span class="nb-icon nb-icon-badge" data-nb-call-icon="hero">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M6.6 4.5h3.1l1.1 4.4-2 1.3a13 13 0 0 0 6.1 6.1l1.3-2 4.4 1.1v3.1a1.8 1.8 0 0 1-1.8 1.8C10.3 20.3 3.7 13.7 3.7 6.3a1.8 1.8 0 0 1 1.8-1.8z" stroke-width="1.6" stroke-linejoin="round"></path>
+        </svg>
+      </span>
+      <span class="nb-phone-number">Call ${PHONE}</span>`;
+
+    const normalize = (value) => value.replace(/\s+/g, ' ').trim();
+
+    const headerIsClean = (link) => {
+      const children = Array.from(link.children);
+      const label = children[1];
+      return children.length === 2 &&
+        children[0].matches('svg[data-nb-call-icon="header"]') &&
+        label?.matches('span.nb-phone-number') &&
+        label.childElementCount === 0 &&
+        normalize(label.textContent) === PHONE;
+    };
+
+    const heroIsClean = (link) => {
+      const children = Array.from(link.children);
+      const label = children[1];
+      return children.length === 2 &&
+        children[0].matches('span[data-nb-call-icon="hero"]') &&
+        label?.matches('span.nb-phone-number') &&
+        label.childElementCount === 0 &&
+        normalize(label.textContent) === `Call ${PHONE}`;
     };
 
     const apply = () => {
       const headerLink = document.querySelector('.nb-phone-cta[href^="tel:"]');
-      if (headerLink) {
-        removeUnexpectedChildren(headerLink, 'svg, .nb-phone-number');
-        const label = headerLink.querySelector('.nb-phone-number');
-        if (label && label.textContent !== PHONE) label.textContent = PHONE;
-        Array.from(headerLink.childNodes).forEach((node) => {
-          if (node.nodeType === Node.TEXT_NODE && cleanText(node.nodeValue) === '') node.remove();
-        });
-      }
+      if (headerLink && !headerIsClean(headerLink)) headerLink.innerHTML = headerMarkup;
 
       const heroLink = document.querySelector('#home a.nb-btn-ghost[href^="tel:"]');
-      if (heroLink) {
-        removeUnexpectedChildren(heroLink, '.nb-icon-wrap, .nb-phone-number');
-        const label = heroLink.querySelector('.nb-phone-number');
-        const expected = `Call ${PHONE}`;
-        if (label && label.textContent !== expected) label.textContent = expected;
-        Array.from(heroLink.childNodes).forEach((node) => {
-          if (node.nodeType === Node.TEXT_NODE && cleanText(node.nodeValue) === '') node.remove();
-        });
-      }
+      if (heroLink && !heroIsClean(heroLink)) heroLink.innerHTML = heroMarkup;
 
       const contactLink = document.querySelector('#contact .nb-contact-item-body a[href^="tel:"]');
-      if (contactLink && (contactLink.textContent !== PHONE || contactLink.children.length)) {
-        contactLink.replaceChildren(document.createTextNode(PHONE));
+      if (contactLink && (contactLink.childElementCount || normalize(contactLink.textContent) !== PHONE)) {
+        contactLink.textContent = PHONE;
       }
-
-      document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
-        const walker = document.createTreeWalker(link, NodeFilter.SHOW_TEXT);
-        const nodes = [];
-        while (walker.nextNode()) nodes.push(walker.currentNode);
-        nodes.forEach((node) => {
-          const cleaned = cleanText(node.nodeValue);
-          if (node.nodeValue !== cleaned) node.nodeValue = cleaned;
-        });
-      });
     };
 
-    let observer;
-    let scheduled = false;
-    const observe = () => {
-      if (!document.body) return;
-      observer = new MutationObserver(() => {
-        if (scheduled) return;
-        scheduled = true;
-        requestAnimationFrame(() => {
-          observer.disconnect();
-          apply();
-          observer.observe(document.body, { childList: true, subtree: true, characterData: true });
-          scheduled = false;
-        });
+    let pending = false;
+    const scheduleApply = () => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => {
+        pending = false;
+        apply();
       });
-      observer.observe(document.body, { childList: true, subtree: true, characterData: true });
     };
 
     const start = () => {
       apply();
-      observe();
+      new MutationObserver(scheduleApply).observe(document.body, {
+        childList: true,
+        subtree: true,
+        characterData: true
+      });
       window.addEventListener('load', apply, { once: true });
       window.setTimeout(apply, 250);
       window.setTimeout(apply, 1000);
+      window.setTimeout(apply, 2500);
     };
 
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
-    else start();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', start, { once: true });
+    } else {
+      start();
+    }
   })();
 </script></body></html>
