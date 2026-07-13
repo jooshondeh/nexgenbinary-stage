@@ -1,8 +1,0 @@
-/* v26 logo visibility guard (paste at end of src/styles/custom.css if needed) */
-.navbar-brand .nb-logo-wrap,
-.navbar-brand .nb-logo {
-  display: inline-flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-.navbar-brand .nb-logo { display:block !important; }
