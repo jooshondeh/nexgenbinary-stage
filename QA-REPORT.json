@@ -1,32 +1,77 @@
 {
-  "file": "index.html",
-  "size_bytes": 85296,
-  "sha256": "35861c16a4e2d7885d5ab4d8681b9c9b9a7dff2841f6ca367f9dd36a9d3832a1",
-  "checks": {
-    "build_marker_present": true,
-    "four_what_we_do_cards_preserved": true,
-    "hover_lift_rule_present": true,
-    "orange_icon_hover_rule_present": true,
-    "brand_orange_used": true,
-    "touch_safe_hover_media_query": true,
-    "booking_modal_preserved": true,
-    "back_to_top_preserved": true,
-    "service_plan_rows_preserved": true,
-    "phone_cleanup_preserved": true,
-    "css_valid": true,
-    "javascript_valid": true
-  },
-  "javascript_checks": [
-    {
-      "script": 1,
-      "valid": true,
-      "error": ""
+  "build": "v16-legal-date-email-link-2026-07-13",
+  "files": {
+    "index.html": {
+      "size_bytes": 85522,
+      "sha256": "5b5c595c93dbbe31014078c8c29957034ff5cd40da5805928d9653c8ad983498"
     },
-    {
-      "script": 2,
-      "valid": true,
-      "error": ""
+    "privacy/index.html": {
+      "size_bytes": 15213,
+      "sha256": "6e239cc65fbfa01b5d29ae0df5f738cc7a3ba38052b1183249c615f5982f2f9e"
+    },
+    "terms/index.html": {
+      "size_bytes": 15206,
+      "sha256": "b619fccfd293de4acaca99e558241c80d5f7d83a9d46f7e1fa3ec201830f951d"
     }
-  ],
-  "css_error_count": 0
+  },
+  "checks": {
+    "homepage_marker_present": true,
+    "privacy_marker_present": true,
+    "terms_marker_present": true,
+    "privacy_last_updated_removed": true,
+    "terms_last_updated_removed": true,
+    "contact_email_link_preserved": true,
+    "contact_email_blue_rule_present": true,
+    "contact_email_underline_rule_present": true,
+    "phone_link_style_preserved": true,
+    "booking_modal_preserved": true,
+    "back_to_top_preserved_home": true,
+    "back_to_top_preserved_privacy": true,
+    "back_to_top_preserved_terms": true,
+    "all_css_valid": true,
+    "all_javascript_valid": true
+  },
+  "validation": {
+    "index.html": {
+      "html_parsed": true,
+      "css_error_count": 0,
+      "javascript_valid": true,
+      "javascript_checks": [
+        {
+          "script": 1,
+          "valid": true,
+          "error": ""
+        },
+        {
+          "script": 2,
+          "valid": true,
+          "error": ""
+        }
+      ]
+    },
+    "privacy/index.html": {
+      "html_parsed": true,
+      "css_error_count": 0,
+      "javascript_valid": true,
+      "javascript_checks": [
+        {
+          "script": 1,
+          "valid": true,
+          "error": ""
+        }
+      ]
+    },
+    "terms/index.html": {
+      "html_parsed": true,
+      "css_error_count": 0,
+      "javascript_valid": true,
+      "javascript_checks": [
+        {
+          "script": 1,
+          "valid": true,
+          "error": ""
+        }
+      ]
+    }
+  }
 }
