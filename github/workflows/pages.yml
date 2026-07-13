@@ -1,0 +1,92 @@
+name: Deploy NexGen Binary staging site
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  package:
+    name: Verify and package site
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Verify complete static package
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          required_files=(
+            index.html
+            404.html
+            book/index.html
+            privacy/index.html
+            terms/index.html
+            _astro/company-logo-navbar.CykzHdn4.png
+            _astro/company-logo-navbar.e0tzLL31.css
+            _astro/index.B8Kfe5tV.css
+            _astro/book.RSFKX_m9.css
+            _astro/Contact.astro_astro_type_script_index_0_lang.BcrhUTcW.js
+            favicon.ico
+            favicon.svg
+            favicon-16x16.png
+            favicon-32x32.png
+            favicon-192x192.png
+            favicon-512x512.png
+            apple-touch-icon.png
+            site.webmanifest
+            robots.txt
+          )
+
+          for file in "${required_files[@]}"; do
+            test -f "$file" || { echo "Missing required file: $file"; exit 1; }
+          done
+
+          test -z "$(find . -type l -print -quit)" || { echo "Symbolic links are not allowed in the Pages artifact."; exit 1; }
+          grep -Fq '(804) 460-9640' index.html
+          grep -Fq 'tel:+18044609640' index.html
+          grep -Fq '11357 Nuckols Rd' index.html
+          grep -Fq 'Glen Allen, VA 23059' index.html
+          grep -Fq '/nexgenbinary-stage/_astro/company-logo-navbar.CykzHdn4.png' index.html
+
+          phone_count="$(grep -Fo '(804) 460-9640' index.html | wc -l | tr -d ' ')"
+          test "$phone_count" -ge 3 || { echo "Expected the updated phone number in at least three homepage locations."; exit 1; }
+
+          if grep -RInE '804[- )]?000[- ]?0000|804-000-0000' --include='*.html' .; then
+            echo 'An obsolete placeholder phone number remains in the package.'
+            exit 1
+          fi
+
+          echo 'Static package verification passed.'
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
+          include-hidden-files: true
+
+  deploy:
+    name: Deploy site
+    needs: package
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
