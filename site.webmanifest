@@ -1,23 +1,21 @@
 {
   "name": "NexGen Binary",
   "short_name": "NexGen Binary",
-  "description": "Dental-focused managed IT, cybersecurity, cloud, and support services across Virginia.",
+  "start_url": "/nexgenbinary-stage/",
+  "scope": "/nexgenbinary-stage/",
+  "display": "standalone",
+  "background_color": "#e7f2fb",
+  "theme_color": "#dcecf8",
   "icons": [
     {
-      "src": "./favicon-192x192.png",
+      "src": "/nexgenbinary-stage/favicon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
-      "src": "./favicon-512x512.png",
+      "src": "/nexgenbinary-stage/favicon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
-  ],
-  "theme_color": "#0b2f53",
-  "background_color": "#ffffff",
-  "display": "standalone",
-  "start_url": "./"
+  ]
 }
