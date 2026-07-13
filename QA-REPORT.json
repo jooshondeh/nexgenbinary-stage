@@ -1,18 +1,22 @@
 {
   "file": "index.html",
-  "sha256": "e3354144d064cf2c84f41928452fd12de9d6b81efa5876ccb1ebc08281d9ed2a",
-  "size_bytes": 70184,
+  "sha256": "834885d60b15aaa8741b5ee23b245a4543ee35b7531845d33ca9d05c8c598574",
+  "size_bytes": 72413,
   "checks": {
-    "build_marker_present": true,
-    "inline_css_present": true,
-    "inline_js_present": true,
-    "no_external_site_css": true,
-    "no_external_site_js": true,
-    "updated_slogan": true,
-    "service_plans_nav": true,
-    "mailing_address": true,
-    "google_business_icon_retained": true,
-    "logo_reference_retained": true,
-    "green_phone_emoji_absent": true
+    "v9_build_marker": true,
+    "header_consult_removed": true,
+    "header_call_preserved": true,
+    "hero_consult_preserved": true,
+    "contact_consult_preserved": true,
+    "visible_phone_emoji_absent": true,
+    "defensive_phone_sanitizer_present": true,
+    "back_to_top_markup_present": true,
+    "back_to_top_css_present": true,
+    "back_to_top_js_present": true,
+    "service_plan_rows_preserved": true,
+    "updated_slogan_preserved": true,
+    "mailing_address_preserved": true,
+    "google_business_icon_preserved": true,
+    "logo_reference_preserved": true
   }
 }
