@@ -1,19 +1,21 @@
 {
-  "build": "v10-phone-hover-backtop-2026-07-13",
-  "file": "index.html",
-  "size_bytes": 74210,
-  "sha256": "10e097f6c3eb2fb766ae4fbe78efa85c5c06ad224021f5cc2d82333fd0cc4284",
-  "checks": {
-    "phone_controls_preserved": 4,
-    "telephone_href_links_remaining": 0,
-    "visible_green_phone_emoji_remaining": 0,
-    "additional_service_pill_present": false,
-    "back_to_top_button_present": true,
-    "independent_back_to_top_script_present": true,
-    "service_cards_preserved": 6,
-    "service_plan_rows_preserved": 24,
-    "hover_icon_orange_rule_present": true,
-    "logo_reference_preserved": true,
-    "google_business_icon_preserved": true
+  "build": "v12-2026-07-13",
+  "files": {
+    "privacy/index.html": {
+      "size_bytes": 9036,
+      "sha256": "53b94f01554c3f87eefeca9e3562a071fde19e33a7e35ed6f09a3445861948e4",
+      "request_consultation_in_header_removed": true,
+      "header_call_preserved": true,
+      "page_content_preserved": true,
+      "mobile_header_single_column": true
+    },
+    "terms/index.html": {
+      "size_bytes": 9029,
+      "sha256": "e741bc567d89aa91118a22ea10b5ea6d3d975b0733685496d8656c20e5d859a1",
+      "request_consultation_in_header_removed": true,
+      "header_call_preserved": true,
+      "page_content_preserved": true,
+      "mobile_header_single_column": true
+    }
   }
 }
