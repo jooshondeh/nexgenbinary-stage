@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- NexGen Binary build: v11-phone-autolink-block-2026-07-13 -->
+<!-- NexGen Binary build: v13-legal-phone-backtop-why-layout-2026-07-13 -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,7 +9,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="theme-color" content="#0b2f53">
   <meta name="format-detection" content="telephone=no, address=no, email=no">
-  <meta name="x-nexgen-build" content="v11-phone-autolink-block-2026-07-13">
+  <meta name="x-nexgen-build" content="v13-legal-phone-backtop-why-layout-2026-07-13">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="canonical" href="https://jooshondeh.github.io/nexgenbinary-stage/">
   <meta property="og:type" content="website">
@@ -375,12 +375,36 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 /* Why */
-.why-layout { display: grid; grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1.15fr); gap: 38px; align-items: start; }
-.why-copy .section-title { font-size: clamp(2rem, 3.4vw, 3rem); }
-.how-card { margin-top: 24px; padding: 24px; }
-.how-card h3 { margin: 0 0 16px; color: var(--text-strong); font-size: 1.22rem; }
-.check-list { display: grid; gap: 15px; margin: 0; padding: 0; list-style: none; }
-.check-list li { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 12px; }
+.why-layout { display: block; }
+.why-copy {
+  max-width: 980px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+.why-copy .section-title { font-size: clamp(2.15rem, 4vw, 3.35rem); }
+.why-copy .section-intro { max-width: 820px; }
+.why-content {
+  display: grid;
+  grid-template-columns: minmax(290px, 0.72fr) minmax(0, 1.28fr);
+  gap: 24px;
+  align-items: stretch;
+}
+.how-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  margin-top: 0;
+  padding: 26px;
+}
+.how-card h3 { margin: 0 0 18px; color: var(--text-strong); font-size: 1.22rem; }
+.check-list { display: grid; gap: 18px; margin: 0; padding: 0; list-style: none; }
+.check-list li {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 13px;
+  align-items: start;
+}
 .check-mark {
   display: grid;
   place-items: center;
@@ -391,9 +415,27 @@ button, a { -webkit-tap-highlight-color: transparent; }
   background: var(--brand-orange);
   font-weight: 900;
 }
-.why-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.why-card { display: flex; gap: 14px; min-height: 150px; padding: 22px; align-items: flex-start; }
-.why-card h3 { margin: 0; color: var(--text-strong); font-size: 1.02rem; line-height: 1.45; }
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.why-card {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 16px;
+  min-height: 150px;
+  padding: 22px;
+  align-items: center;
+}
+.why-card .icon-tile {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  flex: 0 0 52px;
+}
+.why-card h3 { margin: 0; color: var(--text-strong); font-size: 1.02rem; line-height: 1.42; }
 
 /* Services */
 .services-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
@@ -712,7 +754,7 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
 
 @media (max-width: 900px) {
   .section { padding-block: 68px; }
-  .why-layout, .about-layout, .contact-layout, .booking-grid { grid-template-columns: 1fr; }
+  .why-content, .about-layout, .contact-layout, .booking-grid { grid-template-columns: 1fr; }
   .footer-main { grid-template-columns: 1fr 1fr; }
   .footer-main > :first-child { grid-column: 1 / -1; }
 }
@@ -733,6 +775,14 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
   .icon-tile { width: 44px; height: 44px; border-radius: 13px; }
   .hero-actions, .hero-actions .button { width: 100%; }
   .why-grid, .services-grid, .audience-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-rows: none; }
+  .why-card {
+    grid-template-columns: 44px minmax(0, 1fr);
+    min-height: 0;
+    padding: 18px;
+    align-items: center;
+  }
+  .why-card .icon-tile { width: 44px; height: 44px; min-width: 44px; flex-basis: 44px; }
   .audience-card:last-child { grid-column: auto; }
   .plan-row { grid-template-columns: 1fr; }
   .plan-feature { padding-bottom: 4px; }
@@ -802,7 +852,7 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
   }
   </script>
 </head>
-<body data-nexgen-build="v11-phone-autolink-block-2026-07-13">
+<body data-nexgen-build="v13-legal-phone-backtop-why-layout-2026-07-13">
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header" data-site-header>
@@ -887,6 +937,9 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
           <p class="section-kicker">A practical partnership</p>
           <h2 class="section-title">Why Dental Practices Choose NexGen Binary</h2>
           <p class="section-intro">We combine dental workflow awareness with documented, security-minded support that keeps office technology dependable and easier to manage.</p>
+        </div>
+
+        <div class="why-content">
           <div class="card how-card">
             <h3>How We Work</h3>
             <ul class="check-list">
@@ -894,25 +947,25 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
               <li><span class="check-mark" aria-hidden="true">✓</span><span>Our approach is built around partnership, transparency, practical planning, and responsive support before, during, and after each project.</span></li>
             </ul>
           </div>
-        </div>
 
-        <div class="why-grid">
-          <article class="card card-hover why-card">
-            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 1 0 5 5l-9.9 9.9a2 2 0 0 1-2.8 0l-.9-.9a2 2 0 0 1 0-2.8l9.9-9.9Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 5l2 2M5 8l2 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-            <h3>Dental-focused support shaped around clinical, administrative, and front-office workflows</h3>
-          </article>
-          <article class="card card-hover why-card">
-            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="6" y="11" width="2.8" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="10.6" y="8" width="2.8" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="15.2" y="5" width="2.8" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></div>
-            <h3>Clear communication, documented recommendations, and dependable follow-through</h3>
-          </article>
-          <article class="card card-hover why-card">
-            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.7-2.9 7.9-7 9-4.1-1.1-7-4.3-7-9V6l7-3Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <h3>Security-minded planning for devices, networks, cloud services, access, and backups</h3>
-          </article>
-          <article class="card card-hover why-card">
-            <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="10" r="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 18a4.5 4.5 0 0 1 9 0M14 18a3.5 3.5 0 0 1 6.5 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
-            <h3>Richmond-based service with remote support and coordinated on-site assistance across Virginia</h3>
-          </article>
+          <div class="why-grid">
+            <article class="card card-hover why-card">
+              <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 1 0 5 5l-9.9 9.9a2 2 0 0 1-2.8 0l-.9-.9a2 2 0 0 1 0-2.8l9.9-9.9Z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 5l2 2M5 8l2 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+              <h3>Dental-focused support shaped around clinical, administrative, and front-office workflows</h3>
+            </article>
+            <article class="card card-hover why-card">
+              <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><rect x="6" y="11" width="2.8" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="10.6" y="8" width="2.8" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="15.2" y="5" width="2.8" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></div>
+              <h3>Clear communication, documented recommendations, and dependable follow-through</h3>
+            </article>
+            <article class="card card-hover why-card">
+              <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.7-2.9 7.9-7 9-4.1-1.1-7-4.3-7-9V6l7-3Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <h3>Security-minded planning for devices, networks, cloud services, access, and backups</h3>
+            </article>
+            <article class="card card-hover why-card">
+              <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="10" r="2.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 18a4.5 4.5 0 0 1 9 0M14 18a3.5 3.5 0 0 1 6.5 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+              <h3>Richmond-based service with remote support and coordinated on-site assistance across Virginia</h3>
+            </article>
+          </div>
         </div>
       </div>
     </section>
