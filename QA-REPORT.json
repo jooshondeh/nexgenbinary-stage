@@ -1,22 +1,19 @@
 {
+  "build": "v10-phone-hover-backtop-2026-07-13",
   "file": "index.html",
-  "sha256": "834885d60b15aaa8741b5ee23b245a4543ee35b7531845d33ca9d05c8c598574",
-  "size_bytes": 72413,
+  "size_bytes": 74210,
+  "sha256": "10e097f6c3eb2fb766ae4fbe78efa85c5c06ad224021f5cc2d82333fd0cc4284",
   "checks": {
-    "v9_build_marker": true,
-    "header_consult_removed": true,
-    "header_call_preserved": true,
-    "hero_consult_preserved": true,
-    "contact_consult_preserved": true,
-    "visible_phone_emoji_absent": true,
-    "defensive_phone_sanitizer_present": true,
-    "back_to_top_markup_present": true,
-    "back_to_top_css_present": true,
-    "back_to_top_js_present": true,
-    "service_plan_rows_preserved": true,
-    "updated_slogan_preserved": true,
-    "mailing_address_preserved": true,
-    "google_business_icon_preserved": true,
-    "logo_reference_preserved": true
+    "phone_controls_preserved": 4,
+    "telephone_href_links_remaining": 0,
+    "visible_green_phone_emoji_remaining": 0,
+    "additional_service_pill_present": false,
+    "back_to_top_button_present": true,
+    "independent_back_to_top_script_present": true,
+    "service_cards_preserved": 6,
+    "service_plan_rows_preserved": 24,
+    "hover_icon_orange_rule_present": true,
+    "logo_reference_preserved": true,
+    "google_business_icon_preserved": true
   }
 }
