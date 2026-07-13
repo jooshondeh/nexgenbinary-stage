@@ -1,0 +1,36 @@
+{
+  "files": [
+    "UPLOAD-REPLACEMENT-INSTRUCTIONS.txt",
+    "index.html",
+    "site-fixes-v4.css"
+  ],
+  "pricing_cards": 2,
+  "pricing_rows_total": 24,
+  "pricing_rows_per_card": [
+    12,
+    12
+  ],
+  "phone_anchor_text": [
+    "(804) 460-9640",
+    "Call (804) 460-9640",
+    "(804) 460-9640"
+  ],
+  "phone_emoji_present": false,
+  "required_sections": {
+    "home": true,
+    "why-choose-us": true,
+    "services": true,
+    "pricing": true,
+    "who-we-serve": true,
+    "about": true,
+    "contact": true
+  },
+  "send_email_button_present": true,
+  "address_present": true,
+  "phone_present": 4,
+  "sha256": {
+    "index.html": "2a6413cf0bfa151f9f8efea793df1075a23b693c7abc5e6064f82ccdbec0f65d",
+    "site-fixes-v4.css": "2ca7d3c6a79822727b97b8b608fbd732f936569cee53d2d1fed7cda465248d1b",
+    "UPLOAD-REPLACEMENT-INSTRUCTIONS.txt": "55cf9414ceaacea443b49e62100aff90798926b4592d4e9895dcaf94e7f48e51"
+  }
+}

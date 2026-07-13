@@ -1,0 +1,16 @@
+NEXGEN BINARY — REPLACEMENT FILES ONLY (V4)
+
+Upload both files directly to the repository root and replace the existing index.html:
+
+1. index.html
+2. site-fixes-v4.css
+
+Do not delete or replace .github/workflows/static.yml or any _astro assets.
+The index.html file already references site-fixes-v4.css. Commit both files together to main.
+
+Changes included:
+- Removed duplicate green phone emoji/icons from header, hero Call button, and contact phone link.
+- Retained the single white SVG phone icon in the two call buttons.
+- Restored the original complete 12-row service-plan content for both plans.
+- Prevented pricing-card clipping and improved responsive presentation.
+- Preserved every section, button, form, modal, legal link, and text block outside the pricing section.
