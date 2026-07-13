@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- NexGen Binary build: v10-phone-hover-backtop-2026-07-13 -->
+<!-- NexGen Binary build: v11-phone-autolink-block-2026-07-13 -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -8,7 +8,8 @@
   <meta name="description" content="Dental-focused managed IT, cybersecurity, Microsoft 365, networking, backups, and responsive support for practices across Virginia.">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="theme-color" content="#0b2f53">
-  <meta name="x-nexgen-build" content="v10-phone-hover-backtop-2026-07-13">
+  <meta name="format-detection" content="telephone=no, address=no, email=no">
+  <meta name="x-nexgen-build" content="v11-phone-autolink-block-2026-07-13">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="canonical" href="https://jooshondeh.github.io/nexgenbinary-stage/">
   <meta property="og:type" content="website">
@@ -505,6 +506,33 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .phone-text-button:hover { color: var(--navy-800); }
 .footer-phone-button { color: rgba(255, 255, 255, 0.84); }
 .footer-phone-button:hover { color: var(--brand-orange); }
+
+/* Block browser/extension-added phone decorations without changing the intended SVG icons. */
+.phone-number-display {
+  display: inline;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  white-space: nowrap;
+}
+.phone-number-display::before {
+  content: attr(data-phone-display);
+}
+[data-call-phone]::before,
+[data-call-phone]::after {
+  content: none !important;
+  display: none !important;
+}
+[data-call-phone] > :not(svg):not(.phone-number-display) {
+  display: none !important;
+}
+[data-call-phone] img,
+[data-call-phone] picture,
+[data-call-phone] [class*="call-icon"],
+[data-call-phone] [class*="phone-icon"],
+[data-call-phone] [class*="tel-icon"] {
+  display: none !important;
+}
 .contact-address { color: #111827; font-style: normal; line-height: 1.4; }
 .contact-hours small { display: block; margin-top: 4px; color: var(--text-muted); font-weight: 600; }
 .contact-card .button { margin-top: 18px; }
@@ -774,7 +802,7 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
   }
   </script>
 </head>
-<body data-nexgen-build="v10-phone-hover-backtop-2026-07-13">
+<body data-nexgen-build="v11-phone-autolink-block-2026-07-13">
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header" data-site-header>
@@ -803,7 +831,7 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
         <div class="header-actions">
           <button class="button button-primary header-call" type="button" data-call-phone aria-label="Call NexGen Binary at (804) 460-9640">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.4 15.4 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.44.55 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.85 21 3 13.15 3 3.5a1 1 0 0 1 1-1H7.5a1 1 0 0 1 1 1c0 1.19.19 2.34.55 3.44a1 1 0 0 1-.24 1l-2.2 2.86Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            (804) 460-9640
+            <span class="phone-number-display" data-phone-display="(804) 460-9640" aria-hidden="true"></span>
           </button>
         </div>
       </nav>
@@ -822,9 +850,9 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
               Request a Consultation
             </a>
-            <button class="button button-ghost" type="button" data-call-phone>
+            <button class="button button-ghost" type="button" data-call-phone aria-label="Call NexGen Binary at (804) 460-9640">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 4.5h3.1l1.1 4.4-2 1.3a13 13 0 0 0 6.1 6.1l1.3-2 4.4 1.1v3.1a1.8 1.8 0 0 1-1.8 1.8C10.3 20.3 3.7 13.7 3.7 6.3a1.8 1.8 0 0 1 1.8-1.8Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
-              Call (804) 460-9640
+              <span class="phone-number-display" data-phone-display="Call (804) 460-9640" aria-hidden="true"></span>
             </button>
           </div>
         </div>
@@ -1074,7 +1102,7 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
               <ul class="contact-list">
                 <li class="contact-item">
                   <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 4.5h3.1l1.1 4.4-2 1.3a13 13 0 0 0 6.1 6.1l1.3-2 4.4 1.1v3.1a1.8 1.8 0 0 1-1.8 1.8C10.3 20.3 3.7 13.7 3.7 6.3a1.8 1.8 0 0 1 1.8-1.8Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
-                  <div><div class="contact-label">Call or text</div><button class="contact-value phone-text-button" type="button" data-call-phone>(804) 460-9640</button></div>
+                  <div><div class="contact-label">Call or text</div><button class="contact-value phone-text-button" type="button" data-call-phone aria-label="Call or text NexGen Binary at (804) 460-9640"><span class="phone-number-display" data-phone-display="(804) 460-9640" aria-hidden="true"></span></button></div>
                 </li>
                 <li class="contact-item">
                   <div class="icon-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -1150,7 +1178,7 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
       <div>
         <h2 class="footer-heading">Contact</h2>
         <ul class="footer-list">
-          <li><button class="footer-phone-button" type="button" data-call-phone>(804) 460-9640</button></li>
+          <li><button class="footer-phone-button" type="button" data-call-phone aria-label="Call NexGen Binary at (804) 460-9640"><span class="phone-number-display" data-phone-display="(804) 460-9640" aria-hidden="true"></span></button></li>
           <li><a href="mailto:info@nexgenbinary.com">info@nexgenbinary.com</a></li>
           <li><address class="footer-address">11357 Nuckols Rd<br>Glen Allen, VA 23059</address></li>
           <li>Serving practices across Virginia</li>
@@ -1200,22 +1228,51 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
   });
 
   const decorativePhoneEmoji = /(?:\u260E\uFE0F?|\u260F|\u2706|\u{1F4DE}|\u{1F4F1}|\u{1F4F2}|\u{1F919})/gu;
-  const cleanDecorativePhoneEmoji = () => {
+
+  const sanitizePhoneControls = () => {
+    document.querySelectorAll('[data-call-phone]').forEach((control) => {
+      [...control.childNodes].forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          if (node.nodeValue.trim()) node.nodeValue = '';
+          return;
+        }
+
+        if (node.nodeType !== Node.ELEMENT_NODE) return;
+        const element = node;
+        const allowed =
+          element.matches('svg') ||
+          element.classList.contains('phone-number-display');
+
+        if (!allowed) element.remove();
+      });
+
+      control.querySelectorAll(
+        'img, picture, [class*="call-icon"], [class*="phone-icon"], [class*="tel-icon"]'
+      ).forEach((element) => {
+        if (!element.closest('svg')) element.remove();
+      });
+    });
+
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-    const textNodes = [];
-    while (walker.nextNode()) textNodes.push(walker.currentNode);
-    textNodes.forEach((node) => {
-      const cleaned = node.nodeValue.replace(decorativePhoneEmoji, '').replace(/[ \t]{2,}/g, ' ');
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => {
+      const cleaned = node.nodeValue.replace(decorativePhoneEmoji, '');
       if (cleaned !== node.nodeValue) node.nodeValue = cleaned;
     });
   };
 
-  cleanDecorativePhoneEmoji();
-  requestAnimationFrame(cleanDecorativePhoneEmoji);
-  window.setTimeout(cleanDecorativePhoneEmoji, 500);
+  sanitizePhoneControls();
+  requestAnimationFrame(sanitizePhoneControls);
+  window.setTimeout(sanitizePhoneControls, 250);
+  window.setTimeout(sanitizePhoneControls, 1000);
 
-  const phoneObserver = new MutationObserver(cleanDecorativePhoneEmoji);
-  phoneObserver.observe(document.body, { subtree: true, childList: true, characterData: true });
+  const phoneObserver = new MutationObserver(sanitizePhoneControls);
+  phoneObserver.observe(document.body, {
+    subtree: true,
+    childList: true,
+    characterData: true
+  });
 
   const header = document.querySelector('[data-site-header]');
   const toggle = document.querySelector('[data-nav-toggle]');
