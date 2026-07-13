@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- NexGen Binary build: v13-legal-phone-backtop-why-layout-2026-07-13 -->
+<!-- NexGen Binary build: v14-booking-modal-contact-copy-2026-07-13 -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -824,7 +824,133 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
   .card { box-shadow: none; }
 }
 
-  </style>
+  
+/* Booking modal — restored from the initial site behavior */
+.nb-booking-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: none;
+  padding: 12px;
+}
+.nb-booking-modal.is-open {
+  display: grid;
+  place-items: center;
+}
+.nb-booking-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 23, 43, 0.76);
+  backdrop-filter: blur(4px);
+}
+.nb-booking-dialog {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  width: min(1040px, calc(100vw - 24px));
+  height: min(850px, calc(100dvh - 24px));
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 28px 80px rgba(3, 25, 49, 0.42);
+}
+.nb-booking-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 66px;
+  padding: 12px 14px 12px 20px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #eef7fd 0%, #e2f0fa 100%);
+}
+.nb-booking-heading { min-width: 0; }
+.nb-booking-title {
+  margin: 0;
+  color: var(--navy-950);
+  font-size: 1.08rem;
+  font-weight: 850;
+  letter-spacing: -0.01em;
+}
+.nb-booking-subtitle {
+  margin: 2px 0 0;
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+.nb-booking-actions {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 8px;
+}
+.nb-booking-external,
+.nb-booking-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border: 1px solid rgba(11, 47, 83, 0.14);
+  border-radius: 12px;
+  color: var(--navy-950);
+  background: rgba(255, 255, 255, 0.82);
+}
+.nb-booking-external {
+  gap: 7px;
+  padding: 0 13px;
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+.nb-booking-external svg { width: 17px; height: 17px; }
+.nb-booking-close {
+  width: 42px;
+  padding: 0;
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.nb-booking-external:hover,
+.nb-booking-close:hover {
+  border-color: rgba(18, 91, 169, 0.34);
+  background: #fff;
+}
+.nb-booking-external:focus-visible,
+.nb-booking-close:focus-visible {
+  outline: 3px solid rgba(255, 143, 2, 0.45);
+  outline-offset: 2px;
+}
+.nb-booking-body { min-height: 0; background: #fff; }
+.nb-booking-body iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+html.nb-modal-open,
+body.nb-modal-open {
+  overflow: hidden !important;
+}
+@media (max-width: 700px) {
+  .nb-booking-modal { padding: 8px; }
+  .nb-booking-dialog {
+    width: calc(100vw - 16px);
+    height: calc(100dvh - 16px);
+    border-radius: 16px;
+  }
+  .nb-booking-header {
+    min-height: 60px;
+    padding: 10px 10px 10px 14px;
+  }
+  .nb-booking-subtitle,
+  .nb-booking-external span { display: none; }
+  .nb-booking-external { width: 42px; padding: 0; }
+}
+
+</style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -896,7 +1022,7 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
           <h1 class="hero-title"><span>Future-Ready</span><span>Systems.</span><span>Human-Ready</span><span>Support.</span></h1>
           <p class="hero-subtitle">Managed IT, cybersecurity, Microsoft 365, networking, and vendor coordination for Virginia dental practices—delivered remotely and on-site.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#contact" data-focus-contact>
+            <a class="button button-primary" href="#booking" data-booking-open>
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
               Request a Consultation
             </a>
@@ -1145,8 +1271,8 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
           <div>
             <div class="contact-summary">
               <p class="section-kicker">Start a conversation</p>
-              <h2 class="section-title">Let’s Talk About Your IT Needs</h2>
-              <p class="section-intro">Tell us about your dental practice, current systems, or support challenges. We’ll follow up with practical next steps and a clear path forward.</p>
+              <h2 class="section-title">Schedule a Call or Send a Message</h2>
+              <p class="section-intro">Choose a convenient consultation time, or tell us about your dental practice, current systems, or support challenges. We’ll follow up with practical next steps and a clear path forward.</p>
               <span class="response-pill">Typical response: within 1 business day</span>
             </div>
 
@@ -1170,14 +1296,14 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
                   <div class="contact-hours"><div class="contact-label">Sales and consultation hours</div><div class="contact-value">Monday–Saturday, 9:00 AM–5:00 PM</div><small>Managed-client support is available according to the applicable service agreement.</small></div>
                 </li>
               </ul>
-              <a class="button button-primary button-small" href="#contact-form" data-focus-contact>Request a Consultation</a>
-              <p class="contact-note">Prefer a scheduled conversation? Send a message or call us and we’ll coordinate a time.</p>
+              <a class="button button-primary button-small" href="#booking" data-booking-open><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 3v4M8 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>Schedule a Call</a>
+              <p class="contact-note">Choose a convenient time in the booking window, or send us a message using the form.</p>
             </aside>
           </div>
 
           <div class="card form-card" id="contact-form">
-            <h3>Send an Email</h3>
-            <p class="form-helper">Complete the fields below. After validation, your default email app will open with the message prepared for you to review and send.</p>
+            <h3>Send a Message</h3>
+            <p class="form-helper">Tell us about your practice, systems, or support needs. Required fields are marked with <span class="required" aria-hidden="true">*</span>. After validation, your default email app will open with the message prepared for you to review and send.</p>
             <form class="contact-form" data-contact-form data-recipient="info@nexgenbinary.com" novalidate>
               <div class="form-field">
                 <label class="form-label" for="contact-name">Name <span class="required" aria-hidden="true">*</span></label>
@@ -1259,6 +1385,38 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
     </div>
   </footer>
 
+
+
+  <div id="nb-booking-modal" class="nb-booking-modal" aria-hidden="true">
+    <div class="nb-booking-backdrop" data-booking-close></div>
+    <section class="nb-booking-dialog" role="dialog" aria-modal="true" aria-labelledby="nb-booking-title">
+      <header class="nb-booking-header">
+        <div class="nb-booking-heading">
+          <h2 class="nb-booking-title" id="nb-booking-title">Schedule a Consultation</h2>
+          <p class="nb-booking-subtitle">Choose a convenient time for a conversation with NexGen Binary.</p>
+        </div>
+        <div class="nb-booking-actions">
+          <a class="nb-booking-external" href="https://outlook.office.com/book/MeetNexGenBinary@nexgenbinary.com/" target="_blank" rel="noopener" aria-label="Open booking page in a new tab">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5l-8 8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+            <span>Open in new tab</span>
+          </a>
+          <button class="nb-booking-close" type="button" aria-label="Close booking window" data-booking-close>
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+      </header>
+      <div class="nb-booking-body">
+        <iframe
+          id="nb-booking-iframe"
+          title="NexGen Binary consultation booking"
+          data-src="https://outlook.office.com/book/MeetNexGenBinary@nexgenbinary.com/"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="camera; microphone; geolocation; clipboard-read; clipboard-write"
+        ></iframe>
+      </div>
+    </section>
+  </div>
 
   <button class="back-to-top" type="button" aria-label="Back to top" title="Back to top" data-back-to-top>
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1394,6 +1552,80 @@ textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
     window.addEventListener('resize', setActiveLink);
     window.addEventListener('pageshow', setActiveLink);
   }
+
+
+  const bookingModal = document.getElementById('nb-booking-modal');
+  const bookingFrame = document.getElementById('nb-booking-iframe');
+  const bookingOpeners = Array.from(document.querySelectorAll('[data-booking-open]'));
+  const bookingClosers = bookingModal
+    ? Array.from(bookingModal.querySelectorAll('[data-booking-close]'))
+    : [];
+  let bookingReturnFocus = null;
+
+  const bookingFocusable = () => bookingModal
+    ? Array.from(
+        bookingModal.querySelectorAll(
+          'a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])'
+        )
+      )
+    : [];
+
+  const openBooking = (event) => {
+    event?.preventDefault();
+    if (!bookingModal || !bookingFrame) return;
+
+    bookingReturnFocus = event?.currentTarget || document.activeElement;
+    if (!bookingFrame.src) bookingFrame.src = bookingFrame.dataset.src || '';
+
+    closeNav();
+    bookingModal.classList.add('is-open');
+    bookingModal.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('nb-modal-open');
+    document.body.classList.add('nb-modal-open');
+
+    const closeButton = bookingModal.querySelector('.nb-booking-close');
+    window.setTimeout(() => closeButton?.focus({ preventScroll: true }), 0);
+  };
+
+  const closeBooking = (event) => {
+    event?.preventDefault();
+    if (!bookingModal) return;
+
+    bookingModal.classList.remove('is-open');
+    bookingModal.setAttribute('aria-hidden', 'true');
+    document.documentElement.classList.remove('nb-modal-open');
+    document.body.classList.remove('nb-modal-open');
+
+    if (bookingReturnFocus instanceof HTMLElement) {
+      window.setTimeout(() => bookingReturnFocus.focus({ preventScroll: true }), 0);
+    }
+  };
+
+  bookingOpeners.forEach((opener) => opener.addEventListener('click', openBooking));
+  bookingClosers.forEach((closer) => closer.addEventListener('click', closeBooking));
+
+  document.addEventListener('keydown', (event) => {
+    if (!bookingModal?.classList.contains('is-open')) return;
+
+    if (event.key === 'Escape') {
+      closeBooking(event);
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+    const focusable = bookingFocusable();
+    if (!focusable.length) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
 
   const consultationLinks = document.querySelectorAll('[data-focus-contact]');
   const nameField = document.getElementById('contact-name');
