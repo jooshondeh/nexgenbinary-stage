@@ -1,21 +1,32 @@
 {
-  "build": "v12-2026-07-13",
-  "files": {
-    "privacy/index.html": {
-      "size_bytes": 9036,
-      "sha256": "53b94f01554c3f87eefeca9e3562a071fde19e33a7e35ed6f09a3445861948e4",
-      "request_consultation_in_header_removed": true,
-      "header_call_preserved": true,
-      "page_content_preserved": true,
-      "mobile_header_single_column": true
+  "file": "index.html",
+  "size_bytes": 85296,
+  "sha256": "35861c16a4e2d7885d5ab4d8681b9c9b9a7dff2841f6ca367f9dd36a9d3832a1",
+  "checks": {
+    "build_marker_present": true,
+    "four_what_we_do_cards_preserved": true,
+    "hover_lift_rule_present": true,
+    "orange_icon_hover_rule_present": true,
+    "brand_orange_used": true,
+    "touch_safe_hover_media_query": true,
+    "booking_modal_preserved": true,
+    "back_to_top_preserved": true,
+    "service_plan_rows_preserved": true,
+    "phone_cleanup_preserved": true,
+    "css_valid": true,
+    "javascript_valid": true
+  },
+  "javascript_checks": [
+    {
+      "script": 1,
+      "valid": true,
+      "error": ""
     },
-    "terms/index.html": {
-      "size_bytes": 9029,
-      "sha256": "e741bc567d89aa91118a22ea10b5ea6d3d975b0733685496d8656c20e5d859a1",
-      "request_consultation_in_header_removed": true,
-      "header_call_preserved": true,
-      "page_content_preserved": true,
-      "mobile_header_single_column": true
+    {
+      "script": 2,
+      "valid": true,
+      "error": ""
     }
-  }
+  ],
+  "css_error_count": 0
 }

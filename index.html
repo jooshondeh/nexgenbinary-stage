@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- NexGen Binary build: v14-booking-modal-contact-copy-2026-07-13 -->
+<!-- NexGen Binary build: v15-hero-service-hover-2026-07-13 -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,7 +9,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="theme-color" content="#0b2f53">
   <meta name="format-detection" content="telephone=no, address=no, email=no">
-  <meta name="x-nexgen-build" content="v13-legal-phone-backtop-why-layout-2026-07-13">
+  <meta name="x-nexgen-build" content="v15-hero-service-hover-2026-07-13">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="canonical" href="https://jooshondeh.github.io/nexgenbinary-stage/">
   <meta property="og:type" content="website">
@@ -328,6 +328,32 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .hero-service h3 { margin: 0 0 3px; color: var(--text-strong); font-size: 1.05rem; line-height: 1.25; }
 .hero-service p { margin: 0; line-height: 1.38; }
+
+/* What We Do cards: match the refined hover treatment used across the site. */
+@media (hover: hover) and (pointer: fine) {
+  .hero-service {
+    border: 1px solid transparent;
+    transition:
+      transform 160ms ease,
+      box-shadow 160ms ease,
+      border-color 160ms ease,
+      background-color 160ms ease;
+  }
+
+  .hero-service:hover {
+    transform: translateY(-4px);
+    border-color: #bcd4e7;
+    background: #ffffff;
+    box-shadow: 0 16px 34px rgba(6, 39, 72, 0.24);
+  }
+
+  .hero-service:hover .icon-tile {
+    color: var(--navy-950);
+    border-color: var(--brand-orange);
+    background: var(--brand-orange);
+    transform: translateY(-1px) scale(1.04);
+  }
+}
 .icon-tile {
   display: grid;
   place-items: center;
@@ -978,7 +1004,7 @@ body.nb-modal-open {
   }
   </script>
 </head>
-<body data-nexgen-build="v13-legal-phone-backtop-why-layout-2026-07-13">
+<body data-nexgen-build="v15-hero-service-hover-2026-07-13">
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
   <header class="site-header" data-site-header>
