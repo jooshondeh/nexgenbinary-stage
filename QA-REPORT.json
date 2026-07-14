@@ -1,73 +1,16 @@
 {
-  "source_package": "nexgenbinary-v20-complete-clean-site.zip",
-  "validator_output": "Validated 5 HTML files in /mnt/data/nexgenbinary-v21-footer-home-google-work/site",
-  "javascript_syntax_valid": true,
-  "page_checks": {
-    "index.html": {
-      "home_is_first_quick_link": true,
-      "home_href_correct": true,
-      "google_under_service_area": true,
-      "google_href_preserved": true,
-      "google_not_in_brand_column": true,
-      "google_not_in_copyright_row": true
-    },
-    "404.html": {
-      "home_is_first_quick_link": true,
-      "home_href_correct": true,
-      "google_under_service_area": true,
-      "google_href_preserved": true,
-      "google_not_in_brand_column": true,
-      "google_not_in_copyright_row": true
-    },
-    "book/index.html": {
-      "home_is_first_quick_link": true,
-      "home_href_correct": true,
-      "google_under_service_area": true,
-      "google_href_preserved": true,
-      "google_not_in_brand_column": true,
-      "google_not_in_copyright_row": true
-    },
-    "privacy/index.html": {
-      "home_is_first_quick_link": true,
-      "home_href_correct": true,
-      "google_under_service_area": true,
-      "google_href_preserved": true,
-      "google_not_in_brand_column": true,
-      "google_not_in_copyright_row": true
-    },
-    "terms/index.html": {
-      "home_is_first_quick_link": true,
-      "home_href_correct": true,
-      "google_under_service_area": true,
-      "google_href_preserved": true,
-      "google_not_in_brand_column": true,
-      "google_not_in_copyright_row": true
-    }
+  "file": "index.html",
+  "size_bytes": 40680,
+  "sha256": "463c63d4b368b5f3e8b2967b5a869164b62ce15387020ab796efcda78baefdbd",
+  "checks": {
+    "four_what_we_do_cards": true,
+    "existing_card_hover_css_reference_preserved": true,
+    "service_plan_rows_preserved": true,
+    "formspree_preserved": true,
+    "booking_preserved": true,
+    "back_to_top_preserved": true,
+    "footer_home_link_preserved": true,
+    "audio_wording_preserved": true
   },
-  "replacement_files": {
-    "index.html": {
-      "size_bytes": 40636,
-      "sha256": "c45a6a32e54b62f9381745acc651159ab30d27cb670cbd745ae96f559e0d9900"
-    },
-    "404.html": {
-      "size_bytes": 6680,
-      "sha256": "520a7578116a0636a5229e72ff901c261b566c5400a6f0c219f97facbf6a8dbc"
-    },
-    "book/index.html": {
-      "size_bytes": 8430,
-      "sha256": "4ad93b452368e9ebb969a1e6b4a079584a9d8605b6227e579bed4584c1073ae3"
-    },
-    "privacy/index.html": {
-      "size_bytes": 9985,
-      "sha256": "082d60208fe5f786433f3512344e077d8e07af425de397327ae14a31c22982c0"
-    },
-    "terms/index.html": {
-      "size_bytes": 9814,
-      "sha256": "8c5d7648a3482cbe121e02b2e2268c538a5a1ee003f1c69755b9df84f9c5d674"
-    },
-    "assets/site.css": {
-      "size_bytes": 39366,
-      "sha256": "58912344085a17f26a11556884ae5ac67074995e144a1f969d298cac949ba70b"
-    }
-  }
+  "change": "Added the existing card-hover class to the four What We Do cards so they use the same lift, border/shadow emphasis, and orange icon-tile hover treatment as the other interactive cards on the page."
 }
