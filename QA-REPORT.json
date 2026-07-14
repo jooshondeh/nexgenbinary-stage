@@ -1,82 +1,76 @@
 {
-  "build": "v19-contact-balance-footer-google-2026-07-14",
-  "source": "nexgenbinary-v17-complete-clean-replacement.zip",
-  "replacement_files": {
-    "index.html": {
-      "size_bytes": 40524,
-      "sha256": "4f3bba8bfbe9c937cb301023acb9967fdfb42857413378632fafbf41554183e4"
-    },
-    "404.html": {
-      "size_bytes": 6567,
-      "sha256": "75711b17c43fb907e67862aa156369b6f3c311da25441f24e06f2604886ca505"
-    },
-    "book/index.html": {
-      "size_bytes": 8317,
-      "sha256": "22803590506558cacf970c7fe3c358b13526cf595fb9ec8a8b08fc685c3d0020"
-    },
-    "privacy/index.html": {
-      "size_bytes": 9872,
-      "sha256": "375050090ebf9a902113624c08fff7f81afc492609949cf20f77e4ff54a6ecfa"
-    },
-    "terms/index.html": {
-      "size_bytes": 9701,
-      "sha256": "e061ebe66c3ae897bca7c12e2bcd2ca6e830272bc5a17f18b4b48a98a2d11300"
-    },
-    "assets/site.css": {
-      "size_bytes": 39038,
-      "sha256": "1c4f58c9ef9d96ef2f4ad27e1ef9a775ba01050b2f64751163519c98acca5532"
-    }
+  "build": "v20-recommended-adjustments-2026-07-14",
+  "cache_version": "20260714v20",
+  "source_package": "nexgenbinary-stage-main (1).zip",
+  "implemented": [
+    "Explicit business audio systems service wording",
+    "Clearer support-availability wording in both service plans",
+    "More direct Email Us Directly secondary contact label",
+    "One synchronized build/cache version across all active pages",
+    "Clean _site-only GitHub Pages deployment",
+    "Current major official GitHub Pages workflow actions",
+    "Expanded dependency-free validator",
+    "Regenerated release metadata and cleanup instructions"
+  ],
+  "preserved_integrations": {
+    "formspree": "https://formspree.io/f/mdalpbzo",
+    "hcaptcha": "267e959c-42c0-45b2-a4d2-45621dbc4f28",
+    "microsoft_bookings": "https://outlook.office.com/book/MeetNexGenBinary@nexgenbinary.com/"
   },
-  "checks": {
-    "site_validator_passed": true,
-    "css_valid": true,
-    "javascript_valid": true,
-    "all_page_footer_updates_valid": true,
-    "homepage_contact_updates_valid": true
+  "validation": {
+    "source": {
+      "html_files": 5,
+      "errors": []
+    },
+    "deployment_artifact": {
+      "html_files": 5,
+      "errors": []
+    },
+    "javascript_syntax_valid": true,
+    "validator_python_syntax_valid": true,
+    "http_smoke_tests": {
+      "/index.html": {
+        "status": 200,
+        "bytes": 40542
+      },
+      "/404.html": {
+        "status": 200,
+        "bytes": 6564
+      },
+      "/book/": {
+        "status": 200,
+        "bytes": 8314
+      },
+      "/privacy/": {
+        "status": 200,
+        "bytes": 9869
+      },
+      "/terms/": {
+        "status": 200,
+        "bytes": 9698
+      },
+      "/assets/site.css": {
+        "status": 200,
+        "bytes": 39038
+      },
+      "/assets/site.js": {
+        "status": 200,
+        "bytes": 13599
+      }
+    },
+    "service_plan_rows": 24,
+    "obsolete_astro_excluded_from_deployment": true
   },
-  "page_checks": {
-    "index.html": {
-      "build_marker": true,
-      "footer_google_in_copy_row": true,
-      "footer_google_not_in_brand": true,
-      "css_cache_v19": true
-    },
-    "404.html": {
-      "build_marker": true,
-      "footer_google_in_copy_row": true,
-      "footer_google_not_in_brand": true,
-      "css_cache_v19": true
-    },
-    "book/index.html": {
-      "build_marker": true,
-      "footer_google_in_copy_row": true,
-      "footer_google_not_in_brand": true,
-      "css_cache_v19": true
-    },
-    "privacy/index.html": {
-      "build_marker": true,
-      "footer_google_in_copy_row": true,
-      "footer_google_not_in_brand": true,
-      "css_cache_v19": true
-    },
-    "terms/index.html": {
-      "build_marker": true,
-      "footer_google_in_copy_row": true,
-      "footer_google_not_in_brand": true,
-      "css_cache_v19": true
-    }
-  },
-  "homepage_checks": {
-    "contact_summary_centered": true,
-    "contact_cards_layout_present": true,
-    "two_cards_in_layout": true,
-    "schedule_button_preserved": true,
-    "formspree_preserved": true,
-    "privacy_disclosure_present": true,
-    "message_button_preserved": true,
-    "service_plan_rows_preserved": true
-  },
-  "validator_stdout": "Validated 5 HTML files in /mnt/data/nexgenbinary-v19-work/site",
-  "css_error_count": 0,
-  "javascript_stderr": ""
+  "files_to_delete": [
+    "_astro/",
+    "site-fixes-v3.css through site-fixes-v6.css if present",
+    "github/workflows/ if the incorrect non-dot folder exists"
+  ],
+  "intentionally_not_changed": [
+    "Call or text wording, because SMS capability must be verified operationally",
+    "Founder credentials, certifications, insurance, testimonials, or partnership claims",
+    "Google Business placeholder link until the verified profile URL exists",
+    "Production-domain SEO, robots, canonical, manifest, and path settings while this remains staging",
+    "Service-plan commitments beyond wording clarification"
+  ]
 }
