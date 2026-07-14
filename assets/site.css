@@ -1261,3 +1261,21 @@ html.form-modal-open, body.form-modal-open { overflow: hidden !important; }
     gap: 8px;
   }
 }
+
+
+/* Footer service-area Google Business placement */
+.footer-service-area {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+}
+.footer-service-area .footer-google-business {
+  width: 34px;
+  height: 34px;
+  margin: 0;
+  flex: 0 0 34px;
+}
+.footer-service-area .footer-google-business svg {
+  width: 19px;
+  height: 19px;
+}

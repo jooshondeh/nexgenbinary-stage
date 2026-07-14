@@ -1,76 +1,73 @@
 {
-  "build": "v20-recommended-adjustments-2026-07-14",
-  "cache_version": "20260714v20",
-  "source_package": "nexgenbinary-stage-main (1).zip",
-  "implemented": [
-    "Explicit business audio systems service wording",
-    "Clearer support-availability wording in both service plans",
-    "More direct Email Us Directly secondary contact label",
-    "One synchronized build/cache version across all active pages",
-    "Clean _site-only GitHub Pages deployment",
-    "Current major official GitHub Pages workflow actions",
-    "Expanded dependency-free validator",
-    "Regenerated release metadata and cleanup instructions"
-  ],
-  "preserved_integrations": {
-    "formspree": "https://formspree.io/f/mdalpbzo",
-    "hcaptcha": "267e959c-42c0-45b2-a4d2-45621dbc4f28",
-    "microsoft_bookings": "https://outlook.office.com/book/MeetNexGenBinary@nexgenbinary.com/"
+  "source_package": "nexgenbinary-v20-complete-clean-site.zip",
+  "validator_output": "Validated 5 HTML files in /mnt/data/nexgenbinary-v21-footer-home-google-work/site",
+  "javascript_syntax_valid": true,
+  "page_checks": {
+    "index.html": {
+      "home_is_first_quick_link": true,
+      "home_href_correct": true,
+      "google_under_service_area": true,
+      "google_href_preserved": true,
+      "google_not_in_brand_column": true,
+      "google_not_in_copyright_row": true
+    },
+    "404.html": {
+      "home_is_first_quick_link": true,
+      "home_href_correct": true,
+      "google_under_service_area": true,
+      "google_href_preserved": true,
+      "google_not_in_brand_column": true,
+      "google_not_in_copyright_row": true
+    },
+    "book/index.html": {
+      "home_is_first_quick_link": true,
+      "home_href_correct": true,
+      "google_under_service_area": true,
+      "google_href_preserved": true,
+      "google_not_in_brand_column": true,
+      "google_not_in_copyright_row": true
+    },
+    "privacy/index.html": {
+      "home_is_first_quick_link": true,
+      "home_href_correct": true,
+      "google_under_service_area": true,
+      "google_href_preserved": true,
+      "google_not_in_brand_column": true,
+      "google_not_in_copyright_row": true
+    },
+    "terms/index.html": {
+      "home_is_first_quick_link": true,
+      "home_href_correct": true,
+      "google_under_service_area": true,
+      "google_href_preserved": true,
+      "google_not_in_brand_column": true,
+      "google_not_in_copyright_row": true
+    }
   },
-  "validation": {
-    "source": {
-      "html_files": 5,
-      "errors": []
+  "replacement_files": {
+    "index.html": {
+      "size_bytes": 40636,
+      "sha256": "c45a6a32e54b62f9381745acc651159ab30d27cb670cbd745ae96f559e0d9900"
     },
-    "deployment_artifact": {
-      "html_files": 5,
-      "errors": []
+    "404.html": {
+      "size_bytes": 6680,
+      "sha256": "520a7578116a0636a5229e72ff901c261b566c5400a6f0c219f97facbf6a8dbc"
     },
-    "javascript_syntax_valid": true,
-    "validator_python_syntax_valid": true,
-    "http_smoke_tests": {
-      "/index.html": {
-        "status": 200,
-        "bytes": 40542
-      },
-      "/404.html": {
-        "status": 200,
-        "bytes": 6564
-      },
-      "/book/": {
-        "status": 200,
-        "bytes": 8314
-      },
-      "/privacy/": {
-        "status": 200,
-        "bytes": 9869
-      },
-      "/terms/": {
-        "status": 200,
-        "bytes": 9698
-      },
-      "/assets/site.css": {
-        "status": 200,
-        "bytes": 39038
-      },
-      "/assets/site.js": {
-        "status": 200,
-        "bytes": 13599
-      }
+    "book/index.html": {
+      "size_bytes": 8430,
+      "sha256": "4ad93b452368e9ebb969a1e6b4a079584a9d8605b6227e579bed4584c1073ae3"
     },
-    "service_plan_rows": 24,
-    "obsolete_astro_excluded_from_deployment": true
-  },
-  "files_to_delete": [
-    "_astro/",
-    "site-fixes-v3.css through site-fixes-v6.css if present",
-    "github/workflows/ if the incorrect non-dot folder exists"
-  ],
-  "intentionally_not_changed": [
-    "Call or text wording, because SMS capability must be verified operationally",
-    "Founder credentials, certifications, insurance, testimonials, or partnership claims",
-    "Google Business placeholder link until the verified profile URL exists",
-    "Production-domain SEO, robots, canonical, manifest, and path settings while this remains staging",
-    "Service-plan commitments beyond wording clarification"
-  ]
+    "privacy/index.html": {
+      "size_bytes": 9985,
+      "sha256": "082d60208fe5f786433f3512344e077d8e07af425de397327ae14a31c22982c0"
+    },
+    "terms/index.html": {
+      "size_bytes": 9814,
+      "sha256": "8c5d7648a3482cbe121e02b2e2268c538a5a1ee003f1c69755b9df84f9c5d674"
+    },
+    "assets/site.css": {
+      "size_bytes": 39366,
+      "sha256": "58912344085a17f26a11556884ae5ac67074995e144a1f969d298cac949ba70b"
+    }
+  }
 }
