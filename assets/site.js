@@ -1,6 +1,48 @@
 (() => {
   'use strict';
 
+  const dialUri = String.fromCharCode(116, 101, 108, 58) + '+18044609640';
+  document.querySelectorAll('[data-call-phone]').forEach((control) => {
+    control.addEventListener('click', () => { window.location.href = dialUri; });
+  });
+
+  const decorativePhoneEmoji = /(?:\u260E\uFE0F?|\u260F|\u2706|\u{1F4DE}|\u{1F4F1}|\u{1F4F2}|\u{1F919})/gu;
+  const sanitizePhoneControls = () => {
+    document.querySelectorAll('[data-call-phone]').forEach((control) => {
+      [...control.childNodes].forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          if (node.nodeValue.trim()) node.nodeValue = '';
+          return;
+        }
+        if (node.nodeType !== Node.ELEMENT_NODE) return;
+        const element = node;
+        const allowed = element.matches('svg') || element.classList.contains('phone-number-display');
+        if (!allowed) element.remove();
+      });
+      control.querySelectorAll('img, picture, [class*="call-icon"], [class*="phone-icon"], [class*="tel-icon"]').forEach((element) => {
+        if (!element.closest('svg')) element.remove();
+      });
+    });
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach((node) => {
+      const cleaned = node.nodeValue.replace(decorativePhoneEmoji, '');
+      if (cleaned !== node.nodeValue) node.nodeValue = cleaned;
+    });
+  };
+
+  sanitizePhoneControls();
+  requestAnimationFrame(sanitizePhoneControls);
+  window.setTimeout(sanitizePhoneControls, 250);
+  window.setTimeout(sanitizePhoneControls, 1000);
+  new MutationObserver(sanitizePhoneControls).observe(document.body, {
+    subtree: true,
+    childList: true,
+    characterData: true
+  });
+
   const header = document.querySelector('[data-site-header]');
   const toggle = document.querySelector('[data-nav-toggle]');
   const nav = document.querySelector('[data-primary-nav]');
@@ -19,18 +61,15 @@
       nav.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', String(open));
     });
-
     document.addEventListener('click', (event) => {
       if (!mobileBreakpoint.matches || !nav.classList.contains('is-open')) return;
       if (header && header.contains(event.target)) return;
       closeNav();
     });
-
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closeNav();
     });
-
-    mobileBreakpoint.addEventListener?.('change', () => closeNav());
+    mobileBreakpoint.addEventListener?.('change', closeNav);
     navLinks.forEach((link) => link.addEventListener('click', closeNav));
   }
 
@@ -38,27 +77,22 @@
     const href = link.getAttribute('href') || '';
     return href.startsWith('#') && href.length > 1;
   });
-
   const setActiveLink = () => {
     if (!sectionLinks.length) return;
     const offset = (header?.offsetHeight || 80) + 24;
     let current = sectionLinks[0].getAttribute('href').slice(1);
-
     for (const link of sectionLinks) {
       const id = link.getAttribute('href').slice(1);
       const section = document.getElementById(id);
       if (section && window.scrollY + offset >= section.offsetTop) current = id;
     }
-
     if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
       current = sectionLinks[sectionLinks.length - 1].getAttribute('href').slice(1);
     }
-
     sectionLinks.forEach((link) => {
       link.classList.toggle('is-active', link.getAttribute('href') === `#${current}`);
     });
   };
-
   if (sectionLinks.length) {
     setActiveLink();
     window.addEventListener('scroll', () => {
@@ -69,6 +103,64 @@
     window.addEventListener('pageshow', setActiveLink);
   }
 
+  const bookingModal = document.getElementById('nb-booking-modal');
+  const bookingFrame = document.getElementById('nb-booking-iframe');
+  const bookingOpeners = Array.from(document.querySelectorAll('[data-booking-open]'));
+  const bookingClosers = bookingModal ? Array.from(bookingModal.querySelectorAll('[data-booking-close]')) : [];
+  let bookingReturnFocus = null;
+
+  const bookingFocusable = () => bookingModal
+    ? Array.from(bookingModal.querySelectorAll('a[href], button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])'))
+    : [];
+
+  const openBooking = (event) => {
+    if (!bookingModal || !bookingFrame) return;
+    event.preventDefault();
+    bookingReturnFocus = event.currentTarget || document.activeElement;
+    if (!bookingFrame.src) bookingFrame.src = bookingFrame.dataset.src || '';
+    closeNav();
+    bookingModal.classList.add('is-open');
+    bookingModal.setAttribute('aria-hidden', 'false');
+    document.documentElement.classList.add('nb-modal-open');
+    document.body.classList.add('nb-modal-open');
+    window.setTimeout(() => bookingModal.querySelector('.nb-booking-close')?.focus({ preventScroll: true }), 0);
+  };
+
+  const closeBooking = (event) => {
+    event?.preventDefault();
+    if (!bookingModal) return;
+    bookingModal.classList.remove('is-open');
+    bookingModal.setAttribute('aria-hidden', 'true');
+    document.documentElement.classList.remove('nb-modal-open');
+    document.body.classList.remove('nb-modal-open');
+    if (bookingReturnFocus instanceof HTMLElement) {
+      window.setTimeout(() => bookingReturnFocus.focus({ preventScroll: true }), 0);
+    }
+  };
+
+  bookingOpeners.forEach((opener) => opener.addEventListener('click', openBooking));
+  bookingClosers.forEach((closer) => closer.addEventListener('click', closeBooking));
+
+  document.addEventListener('keydown', (event) => {
+    if (!bookingModal?.classList.contains('is-open')) return;
+    if (event.key === 'Escape') {
+      closeBooking(event);
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const focusable = bookingFocusable();
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+
   const consultationLinks = document.querySelectorAll('[data-focus-contact]');
   const nameField = document.getElementById('contact-name');
   consultationLinks.forEach((link) => {
@@ -78,81 +170,158 @@
   });
 
   const form = document.querySelector('[data-contact-form]');
-  if (!form) return;
+  if (form) {
+    const status = document.getElementById('contact-status');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const submitLabel = submitButton?.querySelector('[data-submit-label]');
+    const captchaError = document.getElementById('contact-captcha-error');
+    const successModal = document.getElementById('contact-success-modal');
+    const successClose = successModal?.querySelector('[data-success-close]');
+    const requiredFields = Array.from(form.querySelectorAll('[required]'));
+    const endpoint = form.getAttribute('action') || form.dataset.formspreeEndpoint || '';
 
-  const status = document.getElementById('contact-status');
-  const recipient = form.getAttribute('data-recipient') || 'info@nexgenbinary.com';
-  const requiredFields = Array.from(form.querySelectorAll('[required]'));
+    const setStatus = (message, type = 'neutral') => {
+      if (!status) return;
+      status.textContent = message;
+      status.classList.remove('is-error', 'is-success', 'is-sending');
+      if (type !== 'neutral') status.classList.add(`is-${type}`);
+    };
 
-  const setStatus = (message, type = 'neutral') => {
-    if (!status) return;
-    status.textContent = message;
-    status.classList.remove('is-error', 'is-success');
-    if (type === 'error') status.classList.add('is-error');
-    if (type === 'success') status.classList.add('is-success');
-  };
+    const errorElement = (field) => document.getElementById(`${field.id}-error`);
+    const validateField = (field) => {
+      const value = field.value.trim();
+      let message = '';
+      if (field.required && !value) message = `${field.dataset.label || 'This field'} is required.`;
+      else if (field.type === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) message = 'Enter a valid email address.';
+      const error = errorElement(field);
+      field.setAttribute('aria-invalid', message ? 'true' : 'false');
+      if (error) error.textContent = message;
+      return !message;
+    };
 
-  const errorElement = (field) => document.getElementById(`${field.id}-error`);
-
-  const validateField = (field) => {
-    const value = field.value.trim();
-    let message = '';
-
-    if (field.required && !value) {
-      message = `${field.dataset.label || 'This field'} is required.`;
-    } else if (field.type === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-      message = 'Enter a valid email address.';
-    }
-
-    const error = errorElement(field);
-    field.setAttribute('aria-invalid', message ? 'true' : 'false');
-    if (error) error.textContent = message;
-    return !message;
-  };
-
-  requiredFields.forEach((field) => {
-    field.addEventListener('blur', () => validateField(field));
-    field.addEventListener('input', () => {
-      if (field.getAttribute('aria-invalid') === 'true') validateField(field);
+    requiredFields.forEach((field) => {
+      field.addEventListener('blur', () => validateField(field));
+      field.addEventListener('input', () => {
+        if (field.getAttribute('aria-invalid') === 'true') validateField(field);
+      });
     });
-  });
 
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
+    const openSuccess = () => {
+      if (!successModal) return;
+      successModal.classList.add('is-open');
+      successModal.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('form-modal-open');
+      document.body.classList.add('form-modal-open');
+      window.setTimeout(() => successClose?.focus({ preventScroll: true }), 0);
+    };
+    const closeSuccess = () => {
+      if (!successModal) return;
+      successModal.classList.remove('is-open');
+      successModal.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('form-modal-open');
+      document.body.classList.remove('form-modal-open');
+    };
+    successClose?.addEventListener('click', closeSuccess);
+    successModal?.querySelector('.form-success-backdrop')?.addEventListener('click', closeSuccess);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && successModal?.classList.contains('is-open')) closeSuccess();
+    });
 
-    let firstInvalid = null;
-    for (const field of requiredFields) {
-      if (!validateField(field) && !firstInvalid) firstInvalid = field;
-    }
+    const parseFormspreeError = async (response) => {
+      try {
+        const data = await response.json();
+        const messages = Array.isArray(data?.errors) ? data.errors.map((item) => item?.message).filter(Boolean) : [];
+        if (typeof data?.error === 'string') messages.push(data.error);
+        return messages.join(' ').trim();
+      } catch {
+        return '';
+      }
+    };
 
-    if (firstInvalid) {
-      setStatus('Please correct the highlighted fields before continuing.', 'error');
-      firstInvalid.focus();
-      return;
-    }
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      let firstInvalid = null;
+      for (const field of requiredFields) {
+        if (!validateField(field) && !firstInvalid) firstInvalid = field;
+      }
+      if (firstInvalid) {
+        setStatus('Please correct the highlighted fields before sending.', 'error');
+        firstInvalid.focus();
+        return;
+      }
 
-    const data = new FormData(form);
-    const name = String(data.get('name') || '').trim();
-    const email = String(data.get('email') || '').trim();
-    const phone = String(data.get('phone') || '').trim() || 'Not provided';
-    const organization = String(data.get('organization') || '').trim() || 'Not provided';
-    const message = String(data.get('message') || '').trim();
+      const data = new FormData(form);
+      if (String(data.get('_gotcha') || '').trim()) {
+        form.reset();
+        openSuccess();
+        return;
+      }
 
-    const subject = `Website consultation request — ${name || 'Prospective client'}`;
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Phone: ${phone}`,
-      `Practice / Organization: ${organization}`,
-      '',
-      'Message:',
-      message,
-      '',
-      'Submitted from the NexGen Binary staging website.'
-    ].join('\n');
+      const captchaWidget = form.querySelector('.h-captcha');
+      const captchaToken = String(data.get('h-captcha-response') || '').trim();
+      if (captchaWidget && !captchaToken) {
+        if (captchaError) captchaError.textContent = 'Complete the verification before sending.';
+        setStatus('Please complete the verification before sending.', 'error');
+        captchaWidget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      if (captchaError) captchaError.textContent = '';
 
-    const mailto = `mailto:${encodeURIComponent(recipient)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setStatus('Opening your default email app with the message prepared. Review it there and press Send.', 'success');
-    window.location.href = mailto;
-  });
+      data.set('_replyto', String(data.get('email') || ''));
+      data.set('_subject', 'New website message from NexGen Binary LLC');
+
+      const originalLabel = submitLabel?.textContent || 'Send Message';
+      submitButton?.setAttribute('disabled', 'disabled');
+      if (submitLabel) submitLabel.textContent = 'Sending…';
+      setStatus('Sending your message…', 'sending');
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data
+        });
+        if (!response.ok) {
+          const detail = await parseFormspreeError(response);
+          throw new Error(detail || `Request failed (${response.status}).`);
+        }
+
+        form.reset();
+        requiredFields.forEach((field) => {
+          field.setAttribute('aria-invalid', 'false');
+          const error = errorElement(field);
+          if (error) error.textContent = '';
+        });
+        if (window.hcaptcha?.reset) {
+          try { window.hcaptcha.reset(); } catch {}
+        }
+        setStatus('', 'neutral');
+        openSuccess();
+      } catch (error) {
+        const detail = error instanceof Error ? error.message.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 180) : '';
+        setStatus(detail ? `Unable to send: ${detail}` : 'Unable to send right now. Please try again or use the email link.', 'error');
+        console.error('Contact form submission failed:', error);
+      } finally {
+        submitButton?.removeAttribute('disabled');
+        if (submitLabel) submitLabel.textContent = originalLabel;
+      }
+    });
+  }
+
+  const backToTop = document.querySelector('[data-back-to-top]');
+  if (backToTop) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateBackToTop = () => {
+      const visible = window.scrollY > 420;
+      backToTop.classList.toggle('is-visible', visible);
+      backToTop.tabIndex = visible ? 0 : -1;
+      backToTop.setAttribute('aria-hidden', String(!visible));
+    };
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+    });
+    updateBackToTop();
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    window.addEventListener('pageshow', updateBackToTop);
+  }
 })();

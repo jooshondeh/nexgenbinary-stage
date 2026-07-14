@@ -1,0 +1,38 @@
+REMOVE THESE OLD REPOSITORY ITEMS BEFORE OR WITH THIS REPLACEMENT
+
+Required cleanup:
+- _astro/                              (entire obsolete Astro build directory)
+- site-fixes-v3.css
+- site-fixes-v4.css
+- site-fixes-v5.css
+- site-fixes-v6.css
+- QA-REPORT.json                      (replace with the new report in this package)
+- SHA256SUMS.txt                      (replace with the regenerated file in this package)
+
+Workflow cleanup:
+- Delete every file in .github/workflows/ except static.yml.
+- Delete github/workflows/ if an incorrect non-dot folder still exists.
+- Replace .github/workflows/static.yml with the included version.
+
+Replace these active paths with the package versions:
+- index.html
+- 404.html
+- assets/site.css
+- assets/site.js
+- book/index.html
+- privacy/index.html
+- terms/index.html
+- robots.txt
+- site.webmanifest
+- .github/workflows/static.yml
+- scripts/validate_site.py
+
+Keep these supplied brand/icon files; the package includes exact copies for completeness:
+- nexgenbinary-logo.png
+- favicon.ico
+- favicon.svg
+- favicon-16x16.png
+- favicon-32x32.png
+- favicon-192x192.png
+- favicon-512x512.png
+- apple-touch-icon.png
