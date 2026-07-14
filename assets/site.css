@@ -516,21 +516,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .about-card li + li { margin-top: 7px; }
 
 /* Contact */
-.contact-layout { display: grid; grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr); gap: 28px; align-items: start; }
+.contact-layout { display: grid; grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1.18fr); gap: 28px; align-items: stretch; }
 .contact-summary { margin-bottom: 20px; }
-.contact-summary-wide {
-  max-width: 900px;
-  margin: 0 auto 28px;
-  text-align: center;
-}
-.contact-summary-wide .section-intro {
-  max-width: 780px;
-  margin-inline: auto;
-}
-.contact-cards-layout > .contact-card,
-.contact-cards-layout > .form-card {
-  width: 100%;
-}
 .response-pill { display: inline-flex; margin-top: 10px; padding: 5px 12px; color: var(--navy-800); border: 1px solid #bfd8ea; border-radius: 999px; background: #edf7fd; font-size: 0.87rem; font-weight: 900; }
 .contact-card { padding: 26px; }
 .contact-card h3 { margin: 0 0 10px; color: var(--text-strong); font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
@@ -606,7 +593,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .contact-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; flex: 1; }
 .form-field { display: flex; flex-direction: column; min-width: 0; }
 .form-field.full { grid-column: 1 / -1; }
-.form-field.message { min-height: 160px; }
+.form-field.message { min-height: 250px; }
 .form-label { margin-bottom: 6px; color: var(--text-strong); font-weight: 800; }
 .required { color: var(--danger); }
 .form-control {
@@ -619,7 +606,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   background: #fff;
   transition: border-color 140ms ease, box-shadow 140ms ease;
 }
-textarea.form-control { min-height: 160px; max-height: 320px; resize: vertical; flex: none; }
+textarea.form-control { min-height: 250px; resize: vertical; flex: 1; }
 .form-control:focus { border-color: var(--brand-blue); outline: 0; box-shadow: 0 0 0 4px rgba(18, 91, 169, 0.12); }
 .form-control[aria-invalid="true"] { border-color: var(--danger); }
 .field-error { min-height: 1.2em; margin-top: 4px; color: var(--danger); font-size: 0.84rem; }
@@ -644,25 +631,6 @@ textarea.form-control { min-height: 160px; max-height: 320px; resize: vertical; 
 .footer-brand-panel { display: inline-flex; align-items: center; width: fit-content; padding: 10px 14px; border-radius: 14px; background: #f5fbff; }
 .footer-brand-panel img { width: 120px; height: 64px; object-fit: contain; }
 .footer-title { margin: 18px 0 6px; color: #fff; font-size: 1.2rem; font-weight: 900; }
-.footer-brand-title-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 18px;
-}
-.footer-brand-title-row .footer-title {
-  margin: 0;
-}
-.footer-brand-title-row .google-business {
-  width: 38px;
-  height: 38px;
-  margin-top: 0;
-  flex: 0 0 38px;
-}
-.footer-brand-title-row .google-business svg {
-  width: 21px;
-  height: 21px;
-}
 .footer-copy { max-width: 470px; margin: 0; }
 .footer-heading { margin: 0 0 14px; color: #fff; font-size: 1rem; letter-spacing: 0.04em; text-transform: uppercase; }
 .footer-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
@@ -830,7 +798,7 @@ textarea.form-control { min-height: 160px; max-height: 320px; resize: vertical; 
   .service-area { grid-template-columns: 1fr; }
   .contact-form { grid-template-columns: 1fr; }
   .form-field.full, .phi-warning, .form-actions { grid-column: 1; }
-  .form-field.message, textarea.form-control { min-height: 170px; }
+  .form-field.message, textarea.form-control { min-height: 220px; }
   .footer-main { grid-template-columns: 1fr; gap: 30px; }
   .footer-main > :first-child { grid-column: auto; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
@@ -1139,4 +1107,157 @@ html.form-modal-open, body.form-modal-open { overflow: hidden !important; }
   .booking-info-card { padding: 20px; }
   .booking-frame-shell,
   .booking-frame-shell iframe { min-height: 720px; }
+}
+
+
+/* v19-contact-balance-footer-google-2026-07-14 */
+
+/* Footer: smaller Google Business icon beside the copyright line */
+.footer-copy-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer-copy-row .google-business {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  margin: 0;
+}
+.footer-copy-row .google-business svg {
+  width: 16px;
+  height: 16px;
+}
+.footer-copy-row .footer-copy {
+  margin: 0;
+}
+
+/* Contact section: centered summary + balanced cards */
+#contact .contact-summary-centered {
+  max-width: 900px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+#contact .contact-summary-centered .section-intro {
+  max-width: 780px;
+  margin-inline: auto;
+}
+#contact .contact-layout-balanced {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.86fr) minmax(0, 1.14fr);
+  gap: 26px;
+  align-items: stretch;
+}
+#contact .contact-layout-balanced > .card {
+  height: 100%;
+}
+#contact .contact-layout-balanced .contact-card {
+  display: flex;
+  flex-direction: column;
+}
+#contact .contact-layout-balanced .contact-card-cta {
+  margin-top: auto;
+  padding-top: 18px;
+}
+#contact .contact-layout-balanced .contact-card-cta .button {
+  margin-bottom: 12px;
+}
+
+/* Send a Message card: reduced gaps + compact collapsible note */
+#contact .form-card-compact {
+  padding: 28px;
+}
+#contact .form-card-compact h3 {
+  margin-bottom: 8px;
+}
+#contact .form-card-compact > p {
+  margin-bottom: 16px;
+}
+#contact .contact-form-v19 {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+#contact .contact-form-v19 .form-grid {
+  gap: 14px;
+}
+#contact .contact-form-v19 .form-field,
+#contact .contact-form-v19 .field-group {
+  margin: 0;
+}
+#contact .contact-form-v19 textarea.form-control {
+  min-height: 140px;
+  max-height: 260px;
+  resize: vertical;
+}
+#contact .privacy-disclosure {
+  border: 1px solid #e7c07a;
+  border-radius: 14px;
+  background: #fff8eb;
+  color: #7d4d0b;
+  padding: 12px 14px;
+}
+#contact .privacy-disclosure summary {
+  cursor: pointer;
+  font-weight: 900;
+  color: #9b5d08;
+  list-style: none;
+}
+#contact .privacy-disclosure summary::-webkit-details-marker {
+  display: none;
+}
+#contact .privacy-disclosure summary::after {
+  content: "+";
+  float: right;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+#contact .privacy-disclosure[open] summary::after {
+  content: "−";
+}
+#contact .privacy-disclosure-body {
+  margin-top: 8px;
+  line-height: 1.45;
+}
+#contact .verification-heading-compact {
+  margin-bottom: 6px;
+}
+#contact .captcha-compact {
+  margin-top: 0;
+}
+#contact .captcha-compact,
+#contact .contact-form-v19 .h-captcha,
+#contact .contact-form-v19 .captcha-frame {
+  padding-block: 0;
+}
+#contact .form-actions-compact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+@media (max-width: 960px) {
+  #contact .contact-layout-balanced {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  #contact .contact-layout-balanced > .card {
+    height: auto;
+  }
+}
+@media (max-width: 640px) {
+  #contact .form-card-compact {
+    padding: 22px;
+  }
+  #contact .contact-form-v19 {
+    gap: 12px;
+  }
+  #contact .contact-form-v19 textarea.form-control {
+    min-height: 150px;
+  }
+  .footer-copy-row {
+    gap: 8px;
+  }
 }

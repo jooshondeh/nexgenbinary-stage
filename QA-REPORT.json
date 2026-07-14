@@ -1,81 +1,82 @@
 {
-  "build": "v18-contact-footer-layout-2026-07-14",
+  "build": "v19-contact-balance-footer-google-2026-07-14",
   "source": "nexgenbinary-v17-complete-clean-replacement.zip",
   "replacement_files": {
     "index.html": {
-      "size_bytes": 40299,
-      "sha256": "ee070b71d1cf406a88eb07403fbef1e0d10285b0b1e34da99a9ed4eaf8e0e377"
+      "size_bytes": 40524,
+      "sha256": "4f3bba8bfbe9c937cb301023acb9967fdfb42857413378632fafbf41554183e4"
     },
     "404.html": {
-      "size_bytes": 6566,
-      "sha256": "cb346fb8c7b8db74b14b6fa3b88b7dc70a1efc183a01b6fb6ff7bcde8437e383"
+      "size_bytes": 6567,
+      "sha256": "75711b17c43fb907e67862aa156369b6f3c311da25441f24e06f2604886ca505"
     },
     "book/index.html": {
-      "size_bytes": 8316,
-      "sha256": "126e2b70c0d3498a1187a49089ac6bf1834a46b14cb41ecfe0949c23ca4a4f83"
+      "size_bytes": 8317,
+      "sha256": "22803590506558cacf970c7fe3c358b13526cf595fb9ec8a8b08fc685c3d0020"
     },
     "privacy/index.html": {
-      "size_bytes": 9871,
-      "sha256": "6a98e361c56c6aeb1ff3a5b880eaa2dd347a4defe8325260786ba23c8b389792"
+      "size_bytes": 9872,
+      "sha256": "375050090ebf9a902113624c08fff7f81afc492609949cf20f77e4ff54a6ecfa"
     },
     "terms/index.html": {
-      "size_bytes": 9700,
-      "sha256": "c20e20aa23e2809b9ab489b7d81fab00855cba5fda85e414074c69eab54f903d"
+      "size_bytes": 9701,
+      "sha256": "e061ebe66c3ae897bca7c12e2bcd2ca6e830272bc5a17f18b4b48a98a2d11300"
     },
     "assets/site.css": {
-      "size_bytes": 36485,
-      "sha256": "9bb06389001dabe0f30827351f74b8a20713a39b44767b8bb28ccc49dbd1d4ee"
+      "size_bytes": 39038,
+      "sha256": "1c4f58c9ef9d96ef2f4ad27e1ef9a775ba01050b2f64751163519c98acca5532"
     }
   },
   "checks": {
     "site_validator_passed": true,
-    "all_pages_footer_google_repositioned": true,
-    "all_pages_use_v18_css_cache": true,
-    "homepage_contact_restructured": true,
     "css_valid": true,
-    "javascript_valid": true
+    "javascript_valid": true,
+    "all_page_footer_updates_valid": true,
+    "homepage_contact_updates_valid": true
   },
-  "page_validation": {
+  "page_checks": {
     "index.html": {
-      "html_present": true,
-      "google_icon_in_title_row": true,
-      "build_marker_present": true,
-      "css_v18_reference": true
+      "build_marker": true,
+      "footer_google_in_copy_row": true,
+      "footer_google_not_in_brand": true,
+      "css_cache_v19": true
     },
     "404.html": {
-      "html_present": true,
-      "google_icon_in_title_row": true,
-      "build_marker_present": true,
-      "css_v18_reference": true
+      "build_marker": true,
+      "footer_google_in_copy_row": true,
+      "footer_google_not_in_brand": true,
+      "css_cache_v19": true
     },
     "book/index.html": {
-      "html_present": true,
-      "google_icon_in_title_row": true,
-      "build_marker_present": true,
-      "css_v18_reference": true
+      "build_marker": true,
+      "footer_google_in_copy_row": true,
+      "footer_google_not_in_brand": true,
+      "css_cache_v19": true
     },
     "privacy/index.html": {
-      "html_present": true,
-      "google_icon_in_title_row": true,
-      "build_marker_present": true,
-      "css_v18_reference": true
+      "build_marker": true,
+      "footer_google_in_copy_row": true,
+      "footer_google_not_in_brand": true,
+      "css_cache_v19": true
     },
     "terms/index.html": {
-      "html_present": true,
-      "google_icon_in_title_row": true,
-      "build_marker_present": true,
-      "css_v18_reference": true
+      "build_marker": true,
+      "footer_google_in_copy_row": true,
+      "footer_google_not_in_brand": true,
+      "css_cache_v19": true
     }
   },
   "homepage_checks": {
-    "contact_summary_above_cards": true,
-    "two_contact_cards_in_aligned_grid": true,
+    "contact_summary_centered": true,
+    "contact_cards_layout_present": true,
+    "two_cards_in_layout": true,
+    "schedule_button_preserved": true,
     "formspree_preserved": true,
-    "hcaptcha_preserved": true,
-    "booking_preserved": true,
+    "privacy_disclosure_present": true,
+    "message_button_preserved": true,
     "service_plan_rows_preserved": true
   },
-  "site_validator_output": "Validated 5 HTML files in /mnt/data/nexgenbinary-v18-work/full-site",
+  "validator_stdout": "Validated 5 HTML files in /mnt/data/nexgenbinary-v19-work/site",
   "css_error_count": 0,
-  "javascript_syntax_error": ""
+  "javascript_stderr": ""
 }
