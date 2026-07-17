@@ -37,47 +37,7 @@
   window.addEventListener('pageshow', scrollReloadToTop, { once: true });
   window.setTimeout(scrollReloadToTop, 120);
 
-  const dialUri = String.fromCharCode(116, 101, 108, 58) + '+18044609640';
-  document.querySelectorAll('[data-call-phone]').forEach((control) => {
-    control.addEventListener('click', () => { window.location.href = dialUri; });
-  });
-
-  const decorativePhoneEmoji = /(?:\u260E\uFE0F?|\u260F|\u2706|\u{1F4DE}|\u{1F4F1}|\u{1F4F2}|\u{1F919})/gu;
-  const sanitizePhoneControls = () => {
-    document.querySelectorAll('[data-call-phone]').forEach((control) => {
-      [...control.childNodes].forEach((node) => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          if (node.nodeValue.trim()) node.nodeValue = '';
-          return;
-        }
-        if (node.nodeType !== Node.ELEMENT_NODE) return;
-        const element = node;
-        const allowed = element.matches('svg') || element.classList.contains('phone-number-display');
-        if (!allowed) element.remove();
-      });
-      control.querySelectorAll('img, picture, [class*="call-icon"], [class*="phone-icon"], [class*="tel-icon"]').forEach((element) => {
-        if (!element.closest('svg')) element.remove();
-      });
-    });
-
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-    nodes.forEach((node) => {
-      const cleaned = node.nodeValue.replace(decorativePhoneEmoji, '');
-      if (cleaned !== node.nodeValue) node.nodeValue = cleaned;
-    });
-  };
-
-  sanitizePhoneControls();
-  requestAnimationFrame(sanitizePhoneControls);
-  window.setTimeout(sanitizePhoneControls, 250);
-  window.setTimeout(sanitizePhoneControls, 1000);
-  new MutationObserver(sanitizePhoneControls).observe(document.body, {
-    subtree: true,
-    childList: true,
-    characterData: true
-  });
+  // Phone controls are native tel: anchors. No JavaScript dialing is required.
 
   const header = document.querySelector('[data-site-header]');
   const toggle = document.querySelector('[data-nav-toggle]');
