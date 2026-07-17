@@ -11,8 +11,8 @@ args = parser.parse_args()
 
 ROOT = Path(args.root).resolve()
 PREFIX = "/nexgenbinary-stage/"
-BUILD = "v29-native-phone-status-google-direct-2026-07-17"
-CACHE = "20260717v29"
+BUILD = "v30-preserve-phone-content-2026-07-17"
+CACHE = "20260717v30"
 PHONE_HREF = "tel:+18044609640"
 GOOGLE_BUSINESS_URL = "https://share.google/UWWubeCa8CN4sffAM"
 
@@ -161,6 +161,7 @@ for marker in (
     "const removePhoneDecorations",
     "a[data-call-phone][href^=\"tel:\"]",
     "phoneDecorationGlyphs",
+    "element.tagName === 'svg' || element === display",
     "scrollReloadToTop",
 ):
     if marker not in site_js:
