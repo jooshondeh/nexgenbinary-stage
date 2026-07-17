@@ -11,9 +11,10 @@ args = parser.parse_args()
 
 ROOT = Path(args.root).resolve()
 PREFIX = "/nexgenbinary-stage/"
-BUILD = "v28-phone-ui-no-green-badge-2026-07-17"
-CACHE = "20260717v28"
-GOOGLE_FALLBACK_URL = "https://www.google.com/maps/search/?api=1&query=NexGen%20Binary%20LLC%20%28804%29%20460-9640"
+BUILD = "v29-native-phone-status-google-direct-2026-07-17"
+CACHE = "20260717v29"
+PHONE_HREF = "tel:+18044609640"
+GOOGLE_BUSINESS_URL = "https://share.google/UWWubeCa8CN4sffAM"
 
 REQUIRED = [
     "index.html", "404.html", "robots.txt", "site.webmanifest",
@@ -48,7 +49,7 @@ class Parser(HTMLParser):
 
         if "data-call-phone" in data:
             self.phones.append(
-                (tag, data.get("type"), data.get("title"), data.get("aria-label"))
+                (tag, data.get("href"), data.get("title"), data.get("aria-label"))
             )
 
         if "google-business" in data.get("class", "").split():
@@ -83,20 +84,20 @@ for path in html_files:
     if 'name="viewport"' not in text:
         errors.append(f"{path.relative_to(ROOT)} missing viewport metadata")
 
-    for tag, control_type, title, aria_label in parsed.phones:
+    for tag, href, title, aria_label in parsed.phones:
         phone_count += 1
-        if tag != "button" or control_type != "button":
-            errors.append(f"{path.relative_to(ROOT)} phone control must be a button")
+        if tag != "a" or href != PHONE_HREF:
+            errors.append(f"{path.relative_to(ROOT)} phone control is not a native tel link")
         if title is not None:
-            errors.append(f"{path.relative_to(ROOT)} phone control still has a tooltip title")
+            errors.append(f"{path.relative_to(ROOT)} phone link still has a tooltip title")
         if not aria_label or any(character.isdigit() for character in aria_label):
-            errors.append(f"{path.relative_to(ROOT)} phone aria-label is detectable numeric text")
+            errors.append(f"{path.relative_to(ROOT)} phone aria-label contains numeric text")
 
     if not parsed.google_links:
         errors.append(f"{path.relative_to(ROOT)} missing Google Business link")
 
     for tag, href in parsed.google_links:
-        if tag != "a" or href != GOOGLE_FALLBACK_URL:
+        if tag != "a" or href != GOOGLE_BUSINESS_URL:
             errors.append(f"{path.relative_to(ROOT)} incorrect Google link: {href}")
 
     for ref in parsed.refs:
@@ -126,16 +127,12 @@ for path in html_files:
             errors.append(f"{path.relative_to(ROOT)} missing local reference: {ref}")
 
 if phone_count != 14:
-    errors.append(f"Expected 14 phone controls, found {phone_count}")
+    errors.append(f"Expected 14 phone links, found {phone_count}")
 
 index = (ROOT / "index.html").read_text(encoding="utf-8")
 
 if "(804) 460-9640</span>" in index:
     errors.append("Homepage still has a numeric phone text node")
-
-for symbol in ("📞", "☎", "📱", "📲", "🤙"):
-    if symbol in index:
-        errors.append(f"Homepage still contains unwanted phone symbol: {symbol}")
 
 if index.count('class="plan-row"') != 24:
     errors.append("index.html must contain 24 service-plan rows")
@@ -151,22 +148,31 @@ for marker in (
         errors.append(f"index.html missing marker: {marker}")
 
 site_css = (ROOT / "assets/site.css").read_text(encoding="utf-8")
-if '.phone-number-display::before' not in site_css:
-    errors.append("assets/site.css is missing the visible phone number")
+for marker in (
+    '.phone-number-display::before',
+    'a[data-call-phone] > :not(svg):not(.phone-number-display)',
+    'a[data-call-phone]::after',
+):
+    if marker not in site_css:
+        errors.append(f"assets/site.css missing phone-protection marker: {marker}")
 
 site_js = (ROOT / "assets/site.js").read_text(encoding="utf-8")
 for marker in (
-    "const dialUri = 'tel:+18044609640'",
-    "document.querySelectorAll('[data-call-phone]')",
-    "window.location.href = dialUri",
+    "const removePhoneDecorations",
+    "a[data-call-phone][href^=\"tel:\"]",
+    "phoneDecorationGlyphs",
     "scrollReloadToTop",
 ):
     if marker not in site_js:
         errors.append(f"assets/site.js missing marker: {marker}")
 
-for stale in ("sanitizePhoneLink", "decorativePhoneCharacters"):
+for stale in (
+    "const dialUri =",
+    "window.location.href = dialUri",
+    "sanitizePhoneLink",
+):
     if stale in site_js:
-        errors.append(f"assets/site.js contains obsolete sanitizer: {stale}")
+        errors.append(f"assets/site.js contains obsolete phone code: {stale}")
 
 if "Disallow: /" not in (ROOT / "robots.txt").read_text(encoding="utf-8"):
     errors.append("robots.txt must block staging crawling")
@@ -174,4 +180,4 @@ if "Disallow: /" not in (ROOT / "robots.txt").read_text(encoding="utf-8"):
 if errors:
     raise SystemExit("\n".join(errors))
 
-print(f"Validated {len(html_files)} HTML files, {phone_count} phone controls, and Google links in {ROOT}")
+print(f"Validated {len(html_files)} HTML files, {phone_count} native phone links, and Google links in {ROOT}")

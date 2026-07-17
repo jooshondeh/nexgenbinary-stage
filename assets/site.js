@@ -37,15 +37,86 @@
   window.addEventListener('pageshow', scrollReloadToTop, { once: true });
   window.setTimeout(scrollReloadToTop, 120);
 
-  // Branded phone controls remain buttons so browsers do not inject
-  // an extra green call badge. A trusted click still opens the dialer.
-  const dialUri = 'tel:+18044609640';
+  // Native tel: links expose their destination in the browser status area.
+  // Remove only extension-added phone decorations and preserve the branded SVG
+  // plus the CSS-generated phone-number span.
+  const phoneDecorationGlyphs =
+    /(?:\u260E\uFE0F?|\u260F|\u2706|\u{1F4DE}|\u{1F4F1}|\u{1F4F2}|\u{1F919})/gu;
 
-  document.querySelectorAll('[data-call-phone]').forEach((control) => {
-    control.addEventListener('click', (event) => {
-      event.preventDefault();
-      window.location.href = dialUri;
+  const isPhoneDecoration = (node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const value = node.nodeValue.trim();
+      return Boolean(value) &&
+        value.replace(phoneDecorationGlyphs, '').trim() === '';
+    }
+
+    if (node.nodeType !== Node.ELEMENT_NODE) return false;
+
+    const element = node;
+    const text = element.textContent.trim();
+
+    if (text && text.replace(phoneDecorationGlyphs, '').trim() === '') {
+      return true;
+    }
+
+    const marker = [
+      element.id,
+      element.className,
+      element.getAttribute('title'),
+      element.getAttribute('aria-label'),
+      element.getAttribute('alt'),
+      element.getAttribute('src')
+    ].filter(Boolean).join(' ');
+
+    return /(?:green.?call|phone.?badge|call.?badge|dial.?badge|tel.?icon)/i.test(marker);
+  };
+
+  const removePhoneDecorations = (link) => {
+    [...link.childNodes].forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        if (node.nodeValue.trim()) node.remove();
+        return;
+      }
+
+      if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+      const element = node;
+      if (element.matches(':scope > svg, :scope > .phone-number-display')) return;
+      element.remove();
     });
+
+    const display = link.querySelector(':scope > .phone-number-display');
+    if (display && (display.children.length || display.textContent.trim())) {
+      display.replaceChildren();
+    }
+
+    let sibling = link.nextSibling;
+    while (sibling && isPhoneDecoration(sibling)) {
+      const next = sibling.nextSibling;
+      sibling.remove();
+      sibling = next;
+    }
+  };
+
+  document.querySelectorAll('a[data-call-phone][href^="tel:"]').forEach((link) => {
+    removePhoneDecorations(link);
+
+    new MutationObserver(() => removePhoneDecorations(link)).observe(link, {
+      subtree: true,
+      childList: true,
+      characterData: true
+    });
+
+    const parent = link.parentElement;
+    if (parent) {
+      new MutationObserver(() => removePhoneDecorations(link)).observe(parent, {
+        childList: true
+      });
+    }
+
+    requestAnimationFrame(() => removePhoneDecorations(link));
+    window.setTimeout(() => removePhoneDecorations(link), 250);
+    window.setTimeout(() => removePhoneDecorations(link), 1000);
   });
 
   const header = document.querySelector('[data-site-header]');

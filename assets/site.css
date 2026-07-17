@@ -1258,7 +1258,9 @@ html.form-modal-open, body.form-modal-open { overflow: hidden !important; }
 
 
 
-/* v28-phone-ui-no-green-badge-2026-07-17: preserve branded phone controls without extension-added badges */
+
+
+/* v29-native-phone-status-google-direct-2026-07-17: native phone links with branded UI and no injected badges */
 .phone-number-display {
   display: inline;
   color: inherit;
@@ -1271,35 +1273,51 @@ html.form-modal-open, body.form-modal-open { overflow: hidden !important; }
   content: "(804) 460-9640";
 }
 
-button[data-call-phone] {
+a[data-call-phone] {
   cursor: pointer;
   touch-action: manipulation;
   -webkit-tap-highlight-color: rgba(18, 91, 169, 0.16);
 }
 
-button[data-call-phone]:focus-visible {
+a[data-call-phone]:focus-visible {
   outline: 3px solid rgba(255, 143, 2, 0.48);
   outline-offset: 3px;
 }
 
-button[data-call-phone] > svg {
+a[data-call-phone] > svg {
   display: block;
   flex: 0 0 auto;
 }
 
-button.phone-text-button,
-button.legal-phone-button,
-button.footer-phone-button {
+a[data-call-phone] > :not(svg):not(.phone-number-display),
+a[data-call-phone] .phone-number-display > *,
+a[data-call-phone] img,
+a[data-call-phone] picture,
+a[data-call-phone] object,
+a[data-call-phone] embed {
+  display: none !important;
+}
+
+a[data-call-phone]::before,
+a[data-call-phone]::after,
+a[data-call-phone] .phone-number-display::after {
+  content: none !important;
+  display: none !important;
+}
+
+a.phone-text-button,
+a.legal-phone-button,
+a.footer-phone-button {
   text-decoration-thickness: 1.5px;
   text-decoration-skip-ink: auto;
 }
 
-button.footer-phone-button {
+a.footer-phone-button {
   display: inline-block;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-button.footer-phone-button:hover {
+a.footer-phone-button:hover {
   color: var(--brand-orange);
 }
