@@ -1,6 +1,42 @@
 (() => {
   'use strict';
 
+
+  // On a browser refresh, start at the top instead of restoring the previous scroll position.
+  // Normal link navigation and non-refresh hash links continue to work as expected.
+  const navigationEntry = performance.getEntriesByType?.('navigation')?.[0];
+  const isPageReload =
+    navigationEntry?.type === 'reload' ||
+    performance.navigation?.type === 1;
+
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  const scrollReloadToTop = () => {
+    if (!isPageReload) return;
+
+    // A section hash would otherwise force the browser back to that section after refresh.
+    if (window.location.hash) {
+      history.replaceState(
+        history.state,
+        document.title,
+        `${window.location.pathname}${window.location.search}`
+      );
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
+
+  scrollReloadToTop();
+  requestAnimationFrame(() => requestAnimationFrame(scrollReloadToTop));
+  window.addEventListener('DOMContentLoaded', scrollReloadToTop, { once: true });
+  window.addEventListener('load', scrollReloadToTop, { once: true });
+  window.addEventListener('pageshow', scrollReloadToTop, { once: true });
+  window.setTimeout(scrollReloadToTop, 120);
+
   const dialUri = String.fromCharCode(116, 101, 108, 58) + '+18044609640';
   document.querySelectorAll('[data-call-phone]').forEach((control) => {
     control.addEventListener('click', () => { window.location.href = dialUri; });

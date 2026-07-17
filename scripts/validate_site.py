@@ -11,8 +11,8 @@ args = parser.parse_args()
 
 ROOT = Path(args.root).resolve()
 PREFIX = "/nexgenbinary-stage/"
-BUILD = "v20-recommended-adjustments-2026-07-14"
-CACHE = "20260714v20"
+BUILD = "v23-tab-icon-title-refresh-top-2026-07-17"
+CACHE = "20260717v23"
 
 REQUIRED = [
     "index.html",
@@ -177,6 +177,24 @@ for required in (
 robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
 if "Disallow: /" not in robots:
     errors.append("robots.txt must continue blocking staging-site crawling.")
+
+
+for page in html_files:
+    page_text = page.read_text(encoding="utf-8")
+    if "<title>NexGen Binary</title>" not in page_text:
+        errors.append(f"{page.relative_to(ROOT)} must use the browser-tab title NexGen Binary.")
+    if "/nexgenbinary-stage/favicon.svg?v=20260717favicon23" not in page_text:
+        errors.append(f"{page.relative_to(ROOT)} is missing the V23 SVG favicon reference.")
+
+site_js = (ROOT / "assets/site.js").read_text(encoding="utf-8")
+for marker in (
+    "const isPageReload",
+    "history.scrollRestoration = 'manual'",
+    "scrollReloadToTop",
+):
+    if marker not in site_js:
+        errors.append(f"assets/site.js missing refresh scroll marker: {marker}")
+
 
 if errors:
     raise SystemExit("\n".join(errors))

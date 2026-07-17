@@ -1,16 +1,120 @@
 {
-  "file": "index.html",
-  "size_bytes": 40680,
-  "sha256": "463c63d4b368b5f3e8b2967b5a869164b62ce15387020ab796efcda78baefdbd",
+  "build": "v23-tab-icon-title-refresh-top-2026-07-17",
+  "cache_version": "20260717v23",
+  "favicon_cache_version": "20260717favicon23",
+  "source_composition": [
+    "nexgenbinary-v20-complete-clean-site.zip",
+    "nexgenbinary-footer-home-google-placement-replacement.zip",
+    "/mnt/data/nexgenbinary-v22-what-we-do-hover/index.html",
+    "favicon(2).svg"
+  ],
   "checks": {
-    "four_what_we_do_cards": true,
-    "existing_card_hover_css_reference_preserved": true,
-    "service_plan_rows_preserved": true,
+    "all_page_checks_pass": true,
+    "uploaded_svg_copied_exactly": true,
+    "favicon_16_is_16px": true,
+    "favicon_32_is_32px": true,
+    "favicon_ico_exists": true,
+    "scroll_refresh_logic_present": true,
+    "header_footer_logo_file_unchanged": true,
+    "what_we_do_hover_preserved": true,
+    "audio_service_wording_preserved": true,
     "formspree_preserved": true,
-    "booking_preserved": true,
-    "back_to_top_preserved": true,
-    "footer_home_link_preserved": true,
-    "audio_wording_preserved": true
+    "booking_preserved": true
   },
-  "change": "Added the existing card-hover class to the four What We Do cards so they use the same lift, border/shadow emphasis, and orange icon-tile hover treatment as the other interactive cards on the page."
+  "page_checks": {
+    "index.html": {
+      "title_is_exact": true,
+      "svg_favicon_first": true,
+      "png_32_fallback": true,
+      "png_16_fallback": true,
+      "ico_fallback": true,
+      "build_marker": true,
+      "shared_js_cache": true
+    },
+    "404.html": {
+      "title_is_exact": true,
+      "svg_favicon_first": true,
+      "png_32_fallback": true,
+      "png_16_fallback": true,
+      "ico_fallback": true,
+      "build_marker": true,
+      "shared_js_cache": true
+    },
+    "book/index.html": {
+      "title_is_exact": true,
+      "svg_favicon_first": true,
+      "png_32_fallback": true,
+      "png_16_fallback": true,
+      "ico_fallback": true,
+      "build_marker": true,
+      "shared_js_cache": true
+    },
+    "privacy/index.html": {
+      "title_is_exact": true,
+      "svg_favicon_first": true,
+      "png_32_fallback": true,
+      "png_16_fallback": true,
+      "ico_fallback": true,
+      "build_marker": true,
+      "shared_js_cache": true
+    },
+    "terms/index.html": {
+      "title_is_exact": true,
+      "svg_favicon_first": true,
+      "png_32_fallback": true,
+      "png_16_fallback": true,
+      "ico_fallback": true,
+      "build_marker": true,
+      "shared_js_cache": true
+    }
+  },
+  "site_validator_output": "Validated 5 HTML files in /mnt/data/nexgenbinary-v23-work/site",
+  "javascript_syntax_valid": true,
+  "validator_python_syntax_valid": true,
+  "replacement_files": {
+    "index.html": {
+      "size_bytes": 40747,
+      "sha256": "fc62586aac0facf7040dc4ba1026ce2872e7d27049d2ca9d3502fda358f9f795"
+    },
+    "404.html": {
+      "size_bytes": 6893,
+      "sha256": "7389ca7f740e6eb3140953934cd20563066374bac4e657fc79e603e8947619e4"
+    },
+    "book/index.html": {
+      "size_bytes": 8634,
+      "sha256": "06b07fb2b9e3fe1faab6d923dfc7f85e65ecc78e0ef0f904a6147ebb8d8ce2a2"
+    },
+    "privacy/index.html": {
+      "size_bytes": 10198,
+      "sha256": "0fb551943b93da632fef0fc1cc83e7935e072b0d3312f661ae5b3f9aa152395d"
+    },
+    "terms/index.html": {
+      "size_bytes": 10029,
+      "sha256": "93b6f9f1500bd7da4ed57daab9b3e31b03bad2da068cee3568b3f89a9eba0523"
+    },
+    "assets/site.js": {
+      "size_bytes": 14907,
+      "sha256": "fe1e040441705df412b2c251eb1ed3df42bc80b42bc02431bdc156919ae10a66"
+    },
+    "scripts/validate_site.py": {
+      "size_bytes": 6388,
+      "sha256": "53c5f0026ef816f6f779c6f4869463f459b04da6d94314ef627dae7b376f0b2a"
+    },
+    "favicon.svg": {
+      "size_bytes": 28283,
+      "sha256": "9847c0f6d0734fefbfcab07d95e58e6b9dcac0bfafd64a76171edf91b84c53e3"
+    },
+    "favicon.ico": {
+      "size_bytes": 4309,
+      "sha256": "84d3742ced35cfe6447c887ac109a197b901c54658129b76c25e5c2b151e6936"
+    },
+    "favicon-16x16.png": {
+      "size_bytes": 609,
+      "sha256": "de71baeed2664965569c5ce26fa1fcf195a0563dded521176d0de98114019b7d"
+    },
+    "favicon-32x32.png": {
+      "size_bytes": 1426,
+      "sha256": "f6557733434446e8d270f042e41a4022a9549766061f61b13debd382190aadf4"
+    }
+  }
 }
