@@ -1256,7 +1256,7 @@ html.form-modal-open, body.form-modal-open { overflow: hidden !important; }
 }
 
 
-/* v25-native-phone-links-compatibility-2026-07-17: native, visible telephone links */
+/* v27-restore-phone-controls-google-link-2026-07-17: restored branded phone controls without extra green decorations */
 .phone-number-display {
   display: inline;
   color: inherit;
@@ -1265,66 +1265,35 @@ html.form-modal-open, body.form-modal-open { overflow: hidden !important; }
   white-space: nowrap;
 }
 
-a[data-call-phone] {
+button[data-call-phone] {
   cursor: pointer;
   touch-action: manipulation;
   -webkit-tap-highlight-color: rgba(18, 91, 169, 0.16);
 }
 
-a[data-call-phone]:focus-visible {
+button[data-call-phone]:focus-visible {
   outline: 3px solid rgba(255, 143, 2, 0.48);
   outline-offset: 3px;
 }
 
-a.phone-text-button,
-a.legal-phone-button,
-a.footer-phone-button {
+button[data-call-phone] > svg {
+  display: block;
+  flex: 0 0 auto;
+}
+
+button.phone-text-button,
+button.legal-phone-button,
+button.footer-phone-button {
   text-decoration-thickness: 1.5px;
   text-decoration-skip-ink: auto;
 }
 
-a.footer-phone-button {
+button.footer-phone-button {
   display: inline-block;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-a.footer-phone-button:hover {
+button.footer-phone-button:hover {
   color: var(--brand-orange);
-}
-
-
-/* v26-remove-green-phone-decorations-2026-07-17: suppress browser/extension-added phone decorations only */
-a[data-call-phone]::before,
-a[data-call-phone]::after,
-a[data-call-phone] .phone-number-display::before,
-a[data-call-phone] .phone-number-display::after {
-  content: none !important;
-  display: none !important;
-}
-
-a[data-call-phone] > :not(svg):not(.phone-number-display),
-a[data-call-phone] .phone-number-display > *,
-a[data-call-phone] img,
-a[data-call-phone] picture,
-a[data-call-phone] object,
-a[data-call-phone] embed,
-a[data-call-phone] [class*="call-icon"],
-a[data-call-phone] [class*="phone-icon"],
-a[data-call-phone] [class*="tel-icon"],
-a[data-call-phone] [class*="dial-icon"] {
-  display: none !important;
-}
-
-a[data-call-phone] > svg {
-  display: block;
-  flex: 0 0 auto;
-}
-
-a[data-call-phone] .phone-number-display {
-  display: inline;
-  color: inherit;
-  font: inherit;
-  letter-spacing: inherit;
-  white-space: nowrap;
 }

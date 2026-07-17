@@ -37,95 +37,15 @@
   window.addEventListener('pageshow', scrollReloadToTop, { once: true });
   window.setTimeout(scrollReloadToTop, 120);
 
-  // Phone controls are native tel: anchors. No JavaScript dialing is required.
+  // Branded phone controls remain buttons so browsers do not inject
+  // an extra green call badge. A trusted click still opens the dialer.
+  const dialUri = 'tel:+18044609640';
 
-
-  // Remove browser/extension-added phone decorations while preserving:
-  // 1) the native tel: link, 2) the intended SVG icon, and 3) the phone text.
-  const decorativePhoneCharacters =
-    /(?:\u260E\uFE0F?|\u260F|\u2706|\u{1F4DE}|\u{1F4F1}|\u{1F4F2}|\u{1F919})/gu;
-
-  const isPhoneDecorationNode = (node) => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      const value = node.nodeValue.trim();
-      return Boolean(value) && value.replace(decorativePhoneCharacters, '').trim() === '';
-    }
-
-    if (node.nodeType !== Node.ELEMENT_NODE) return false;
-
-    const element = node;
-    const text = element.textContent.trim();
-    if (text && text.replace(decorativePhoneCharacters, '').trim() === '') {
-      return true;
-    }
-
-    const marker = [
-      element.id,
-      element.className,
-      element.getAttribute('title'),
-      element.getAttribute('aria-label'),
-      element.getAttribute('alt'),
-      element.getAttribute('src')
-    ].filter(Boolean).join(' ');
-
-    return /(?:phone|call|dial|telephone|tel-icon)/i.test(marker);
-  };
-
-  const sanitizePhoneLink = (link) => {
-    const display = link.querySelector(':scope > .phone-number-display');
-    const expectedText = link.dataset.phoneText || display?.textContent.trim() || '';
-
-    [...link.childNodes].forEach((node) => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        if (node.nodeValue.trim()) node.remove();
-        return;
-      }
-
-      if (node.nodeType !== Node.ELEMENT_NODE) return;
-      const element = node;
-      if (element.matches(':scope > svg, :scope > .phone-number-display')) return;
-      element.remove();
+  document.querySelectorAll('[data-call-phone]').forEach((control) => {
+    control.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.location.href = dialUri;
     });
-
-    if (display) {
-      const currentText = display.textContent
-        .replace(decorativePhoneCharacters, '')
-        .trim();
-
-      if (display.children.length || currentText !== expectedText) {
-        display.replaceChildren(document.createTextNode(expectedText));
-      }
-    }
-
-    // Some extensions append the green phone decoration immediately after
-    // the telephone link rather than placing it inside the link.
-    let sibling = link.nextSibling;
-    while (sibling && isPhoneDecorationNode(sibling)) {
-      const next = sibling.nextSibling;
-      sibling.remove();
-      sibling = next;
-    }
-  };
-
-  document.querySelectorAll('a[data-call-phone][href^="tel:"]').forEach((link) => {
-    sanitizePhoneLink(link);
-
-    new MutationObserver(() => sanitizePhoneLink(link)).observe(link, {
-      subtree: true,
-      childList: true,
-      characterData: true
-    });
-
-    const parent = link.parentElement;
-    if (parent) {
-      new MutationObserver(() => sanitizePhoneLink(link)).observe(parent, {
-        childList: true
-      });
-    }
-
-    requestAnimationFrame(() => sanitizePhoneLink(link));
-    window.setTimeout(() => sanitizePhoneLink(link), 250);
-    window.setTimeout(() => sanitizePhoneLink(link), 1000);
   });
 
   const header = document.querySelector('[data-site-header]');
