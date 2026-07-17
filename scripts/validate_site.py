@@ -11,8 +11,8 @@ args = parser.parse_args()
 
 ROOT = Path(args.root).resolve()
 PREFIX = "/nexgenbinary-stage/"
-BUILD = "v25-native-phone-links-compatibility-2026-07-17"
-CACHE = "20260717v25"
+BUILD = "v26-remove-green-phone-decorations-2026-07-17"
+CACHE = "20260717v26"
 PHONE_HREF = "tel:+18044609640"
 
 REQUIRED = [
@@ -143,6 +143,19 @@ for obsolete in ("const dialUri", "window.location.href = dialUri",
 
 if "scrollReloadToTop" not in site_js:
     errors.append("assets/site.js missing refresh-to-top behavior")
+
+for required_phone_cleanup in (
+    "const sanitizePhoneLink",
+    "decorativePhoneCharacters",
+    "data-phone-text",
+):
+    if required_phone_cleanup not in site_js and required_phone_cleanup != "data-phone-text":
+        errors.append(f"assets/site.js missing phone-cleanup marker: {required_phone_cleanup}")
+
+for page in html_files:
+    page_text = page.read_text(encoding="utf-8")
+    if "data-call-phone" in page_text and "data-phone-text" not in page_text:
+        errors.append(f"{page.relative_to(ROOT)} missing data-phone-text protection")
 
 book = (ROOT / "book/index.html").read_text(encoding="utf-8")
 for marker in ("Microsoft Bookings", "Open Booking in a New Tab",

@@ -1292,3 +1292,39 @@ a.footer-phone-button {
 a.footer-phone-button:hover {
   color: var(--brand-orange);
 }
+
+
+/* v26-remove-green-phone-decorations-2026-07-17: suppress browser/extension-added phone decorations only */
+a[data-call-phone]::before,
+a[data-call-phone]::after,
+a[data-call-phone] .phone-number-display::before,
+a[data-call-phone] .phone-number-display::after {
+  content: none !important;
+  display: none !important;
+}
+
+a[data-call-phone] > :not(svg):not(.phone-number-display),
+a[data-call-phone] .phone-number-display > *,
+a[data-call-phone] img,
+a[data-call-phone] picture,
+a[data-call-phone] object,
+a[data-call-phone] embed,
+a[data-call-phone] [class*="call-icon"],
+a[data-call-phone] [class*="phone-icon"],
+a[data-call-phone] [class*="tel-icon"],
+a[data-call-phone] [class*="dial-icon"] {
+  display: none !important;
+}
+
+a[data-call-phone] > svg {
+  display: block;
+  flex: 0 0 auto;
+}
+
+a[data-call-phone] .phone-number-display {
+  display: inline;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  white-space: nowrap;
+}
