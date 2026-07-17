@@ -1,7 +1,7 @@
 {
-  "build": "v27-restore-phone-controls-google-link-2026-07-17",
-  "cache_version": "20260717v27",
-  "source_package": "nexgenbinary-stage-main(10).zip",
+  "build": "v28-phone-ui-no-green-badge-2026-07-17",
+  "cache_version": "20260717v28",
+  "source": "V27 current site state",
   "phone_controls": {
     "dial_uri": "tel:+18044609640",
     "total": 14,
@@ -12,12 +12,14 @@
       "privacy/index.html": 3,
       "terms/index.html": 3
     },
-    "regular_icons_restored": true,
-    "visible_numbers_restored": true,
-    "v26_sanitizer_removed": true
+    "visible_number_is_css_generated": true,
+    "numeric_phone_text_nodes_removed": true,
+    "tooltip_titles_removed": true,
+    "regular_svg_icons_preserved": true,
+    "call_action_preserved": true
   },
   "google_business": {
-    "url": "https://www.google.com/maps/search/?api=1&query=NexGen%20Binary%20LLC%20%28804%29%20460-9640",
+    "current_fallback_url": "https://www.google.com/maps/search/?api=1&query=NexGen%20Binary%20LLC%20%28804%29%20460-9640",
     "links_by_page": {
       "index.html": 1,
       "404.html": 1,
@@ -25,99 +27,91 @@
       "privacy/index.html": 1,
       "terms/index.html": 1
     },
-    "note": "The uploaded files and screenshot did not expose a direct profile-share URL. This exact-name-and-phone Maps lookup opens the matching business result."
+    "direct_share_link_needed_for_guaranteed_exact_profile": true
   },
   "checks": {
     "four_home_phone_controls": true,
-    "regular_phone_icons_restored": true,
-    "phone_numbers_visible": true,
-    "green_phone_emoji_not_in_source": true,
-    "v26_cleanup_removed": true,
-    "dial_action_present": true,
-    "google_link_updated": true,
+    "regular_phone_svg_icons_preserved": true,
+    "numeric_phone_text_nodes_removed": true,
+    "tooltip_titles_removed": true,
+    "accessible_labels_are_non_numeric": true,
+    "visible_number_generated_in_css": true,
+    "click_to_call_preserved": true,
+    "unwanted_green_symbols_absent": true,
+    "google_fallback_link_preserved": true,
     "formspree_preserved": true,
     "hcaptcha_preserved": true,
     "booking_preserved": true,
-    "service_plans_preserved": true,
+    "service_plan_rows_preserved": true,
     "audio_wording_preserved": true,
     "back_to_top_preserved": true,
     "refresh_to_top_preserved": true
   },
-  "site_validator": "Validated 5 HTML files, 14 phone controls, and Google links in /mnt/data/nexgenbinary-v27-work/site",
+  "site_validator": "Validated 5 HTML files, 14 phone controls, and Google links in /mnt/data/nexgenbinary-v28-work/site",
   "javascript_syntax_valid": true,
   "css_error_count": 0,
   "http_smoke_tests": {
     "/index.html": {
       "status": 200,
-      "bytes": 40762
+      "bytes": 40779
     },
     "/404.html": {
       "status": 200,
-      "bytes": 6935
+      "bytes": 6939
     },
     "/book/": {
       "status": 200,
-      "bytes": 8676
+      "bytes": 8680
     },
     "/privacy/": {
       "status": 200,
-      "bytes": 10227
+      "bytes": 10244
     },
     "/terms/": {
       "status": 200,
-      "bytes": 10058
+      "bytes": 10075
     },
     "/assets/site.css": {
       "status": 200,
-      "bytes": 39673
+      "bytes": 39727
     },
     "/assets/site.js": {
       "status": 200,
       "bytes": 13539
     }
   },
-  "render_checks": {
-    "desktop": {
-      "rendered": false,
-      "reason": " /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq: No such file or directory (2)\n[0717/192458.762894:ERROR:third_party/crashpad/crashpad/util/linux/socket.cc:182] incorrect payload size 0\n[0717/192458.767031:ERROR:third_party/crashpad/crashpad/util/linux/socket.cc:182] incorrect payload size 0\n"
-    },
-    "mobile": {
-      "rendered": false,
-      "reason": " /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq: No such file or directory (2)\n[0717/192459.994915:ERROR:third_party/crashpad/crashpad/util/linux/socket.cc:182] incorrect payload size 0\n[0717/192459.998373:ERROR:third_party/crashpad/crashpad/util/linux/socket.cc:182] incorrect payload size 0\n"
-    }
-  },
   "replacement_files": {
     "index.html": {
-      "size_bytes": 40762,
-      "sha256": "fdbb87b437997b34b3e45073051937b836b91dc03f7dd78e507b9407fca4e993"
+      "size_bytes": 40779,
+      "sha256": "25b224b6855fcb9aef882c5e8ab977e11fca837602de6fb0cc8c1c29b0f9617d"
     },
     "404.html": {
-      "size_bytes": 6935,
-      "sha256": "b06274201386ac37e894d62eb50a6aa54c6eb199448c5037e9a896f660dc8bfb"
+      "size_bytes": 6939,
+      "sha256": "0a30f04b4715fe904b8b1ed6236d5a3744e697a038dd8d3d7537bd0bc2e564d3"
     },
     "book/index.html": {
-      "size_bytes": 8676,
-      "sha256": "c4b3f8768a1b4737235251bc20d83936c43d0563f31e35188850639171573dcd"
+      "size_bytes": 8680,
+      "sha256": "9ea1054f59dcf3a82d9a96f768b3516948e60a67838abe49a450093edaf00e93"
     },
     "privacy/index.html": {
-      "size_bytes": 10227,
-      "sha256": "d21896183a29c67ced335ce9b0463608d90a5f666c9bd3cc2982a0a08040cbe0"
+      "size_bytes": 10244,
+      "sha256": "b90eb820296f7cf849520165b6b12e3f9f3aec9b1c8bc3cd5da0f3e60a939296"
     },
     "terms/index.html": {
-      "size_bytes": 10058,
-      "sha256": "96bcd57b3a9a50de847e4dcb0471a7e156d1c2f3c74b6534439b4ff6afd4f1c4"
+      "size_bytes": 10075,
+      "sha256": "c8587c2a95edb714ec56e976f3688d70a7eb0288b349207bcce8e9e5470b2c41"
     },
     "assets/site.css": {
-      "size_bytes": 39673,
-      "sha256": "e8ac00d064750e1e2de4ba93fba51f9411510406d2b6af21eb41474646e96405"
+      "size_bytes": 39727,
+      "sha256": "78b97422e14620cf8ec5e00af0a5ebf69f06e5eb575f7551382bb26bc72d110e"
     },
     "assets/site.js": {
       "size_bytes": 13539,
       "sha256": "ce7cebf488a98710a16e810c4bf6d26c6eda06ed571ca0cac959a7cbe78a74c4"
     },
     "scripts/validate_site.py": {
-      "size_bytes": 5397,
-      "sha256": "dcd7ec067bbe199f5700d1c81e9a63ec7b8f202e0ceb357d9579cc7ea13c6240"
+      "size_bytes": 6264,
+      "sha256": "67510e2788c40f90307aee86e7c9decbb98a35f2df45847b28132ccbcfc9145d"
     }
   }
 }

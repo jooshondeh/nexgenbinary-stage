@@ -1256,13 +1256,19 @@ html.form-modal-open, body.form-modal-open { overflow: hidden !important; }
 }
 
 
-/* v27-restore-phone-controls-google-link-2026-07-17: restored branded phone controls without extra green decorations */
+
+
+/* v28-phone-ui-no-green-badge-2026-07-17: preserve branded phone controls without extension-added badges */
 .phone-number-display {
   display: inline;
   color: inherit;
   font: inherit;
   letter-spacing: inherit;
   white-space: nowrap;
+}
+
+.phone-number-display::before {
+  content: "(804) 460-9640";
 }
 
 button[data-call-phone] {

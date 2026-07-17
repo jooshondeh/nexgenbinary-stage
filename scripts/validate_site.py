@@ -11,9 +11,9 @@ args = parser.parse_args()
 
 ROOT = Path(args.root).resolve()
 PREFIX = "/nexgenbinary-stage/"
-BUILD = "v27-restore-phone-controls-google-link-2026-07-17"
-CACHE = "20260717v27"
-GOOGLE_BUSINESS_URL = "https://www.google.com/maps/search/?api=1&query=NexGen%20Binary%20LLC%20%28804%29%20460-9640"
+BUILD = "v28-phone-ui-no-green-badge-2026-07-17"
+CACHE = "20260717v28"
+GOOGLE_FALLBACK_URL = "https://www.google.com/maps/search/?api=1&query=NexGen%20Binary%20LLC%20%28804%29%20460-9640"
 
 REQUIRED = [
     "index.html", "404.html", "robots.txt", "site.webmanifest",
@@ -35,25 +35,29 @@ class Parser(HTMLParser):
         self.ids = set()
         self.duplicates = set()
         self.phones = []
-        self.google = []
+        self.google_links = []
 
     def handle_starttag(self, tag, attrs):
         data = dict(attrs)
         element_id = data.get("id")
+
         if element_id:
             if element_id in self.ids:
                 self.duplicates.add(element_id)
             self.ids.add(element_id)
 
         if "data-call-phone" in data:
-            self.phones.append((tag, data.get("type"), data.get("href")))
+            self.phones.append(
+                (tag, data.get("type"), data.get("title"), data.get("aria-label"))
+            )
 
         if "google-business" in data.get("class", "").split():
-            self.google.append((tag, data.get("href")))
+            self.google_links.append((tag, data.get("href")))
 
         for key in ("href", "src", "data-src"):
-            if data.get(key):
-                self.refs.append(data[key])
+            value = data.get(key)
+            if value:
+                self.refs.append(value)
 
 errors = []
 phone_count = 0
@@ -66,29 +70,39 @@ for path in html_files:
 
     if parsed.duplicates:
         errors.append(f"{path.relative_to(ROOT)} duplicate IDs: {sorted(parsed.duplicates)}")
+
     if BUILD not in text:
         errors.append(f"{path.relative_to(ROOT)} missing build marker")
+
     if f"site.css?v={CACHE}" not in text:
         errors.append(f"{path.relative_to(ROOT)} missing CSS cache version")
+
     if f"site.js?v={CACHE}" not in text:
         errors.append(f"{path.relative_to(ROOT)} missing JS cache version")
+
     if 'name="viewport"' not in text:
-        errors.append(f"{path.relative_to(ROOT)} missing viewport meta")
+        errors.append(f"{path.relative_to(ROOT)} missing viewport metadata")
 
-    for tag, control_type, href in parsed.phones:
+    for tag, control_type, title, aria_label in parsed.phones:
         phone_count += 1
-        if tag != "button" or control_type != "button" or href:
-            errors.append(f"{path.relative_to(ROOT)} invalid phone button")
+        if tag != "button" or control_type != "button":
+            errors.append(f"{path.relative_to(ROOT)} phone control must be a button")
+        if title is not None:
+            errors.append(f"{path.relative_to(ROOT)} phone control still has a tooltip title")
+        if not aria_label or any(character.isdigit() for character in aria_label):
+            errors.append(f"{path.relative_to(ROOT)} phone aria-label is detectable numeric text")
 
-    if not parsed.google:
+    if not parsed.google_links:
         errors.append(f"{path.relative_to(ROOT)} missing Google Business link")
-    for tag, href in parsed.google:
-        if tag != "a" or href != GOOGLE_BUSINESS_URL:
-            errors.append(f"{path.relative_to(ROOT)} incorrect Google Business link: {href}")
+
+    for tag, href in parsed.google_links:
+        if tag != "a" or href != GOOGLE_FALLBACK_URL:
+            errors.append(f"{path.relative_to(ROOT)} incorrect Google link: {href}")
 
     for ref in parsed.refs:
         if ref.startswith(("#", "mailto:", "tel:", "javascript:", "data:")):
             continue
+
         parsed_url = urlparse(ref)
         if parsed_url.scheme in ("http", "https"):
             continue
@@ -98,6 +112,7 @@ for path in html_files:
             clean = clean[len(PREFIX):]
         elif clean.startswith("/"):
             clean = clean[1:]
+
         if not clean:
             clean = "index.html"
 
@@ -114,6 +129,14 @@ if phone_count != 14:
     errors.append(f"Expected 14 phone controls, found {phone_count}")
 
 index = (ROOT / "index.html").read_text(encoding="utf-8")
+
+if "(804) 460-9640</span>" in index:
+    errors.append("Homepage still has a numeric phone text node")
+
+for symbol in ("📞", "☎", "📱", "📲", "🤙"):
+    if symbol in index:
+        errors.append(f"Homepage still contains unwanted phone symbol: {symbol}")
+
 if index.count('class="plan-row"') != 24:
     errors.append("index.html must contain 24 service-plan rows")
 
@@ -127,6 +150,10 @@ for marker in (
     if marker not in index:
         errors.append(f"index.html missing marker: {marker}")
 
+site_css = (ROOT / "assets/site.css").read_text(encoding="utf-8")
+if '.phone-number-display::before' not in site_css:
+    errors.append("assets/site.css is missing the visible phone number")
+
 site_js = (ROOT / "assets/site.js").read_text(encoding="utf-8")
 for marker in (
     "const dialUri = 'tel:+18044609640'",
@@ -137,9 +164,9 @@ for marker in (
     if marker not in site_js:
         errors.append(f"assets/site.js missing marker: {marker}")
 
-for obsolete in ("sanitizePhoneLink", "decorativePhoneCharacters"):
-    if obsolete in site_js:
-        errors.append(f"assets/site.js contains V26 cleanup code: {obsolete}")
+for stale in ("sanitizePhoneLink", "decorativePhoneCharacters"):
+    if stale in site_js:
+        errors.append(f"assets/site.js contains obsolete sanitizer: {stale}")
 
 if "Disallow: /" not in (ROOT / "robots.txt").read_text(encoding="utf-8"):
     errors.append("robots.txt must block staging crawling")
